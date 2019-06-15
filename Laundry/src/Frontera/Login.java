@@ -5,6 +5,11 @@
  */
 package Frontera;
 
+import Control.ValidateLogin;
+import DAO.DAOUser;
+import Entidad.User;
+import java.util.ArrayList;
+
 /**
  *
  * @author leons
@@ -14,9 +19,13 @@ public class Login extends javax.swing.JPanel {
     /**
      * Creates new form Login
      */
+    
+    public static DAOUser dao = new DAOUser();
+    
     public Login() {
         initComponents();
         
+    
     }
 
     /**
@@ -129,10 +138,15 @@ public class Login extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AcceptBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptBActionPerformed
-        MainFrame.MainPanel.setVisible(false);                              //Main panel es público y estátco por eso lo puedo llamar desde aquí
-        MainFrame.MainPanel.removeAll();
-        MainFrame.MainPanel.add(MainFrame.admin);
-        MainFrame.MainPanel.setVisible(true);        // si 
+         User user = new User();
+    user.setUserName(NameTF.getText());
+    user.setPassword(PassTF.getText());
+    
+    ValidateLogin validar = new ValidateLogin();
+    System.out.println("-----------");
+    String result = validar.verifyLogin(user);
+    System.out.println(result);
+         
     }//GEN-LAST:event_AcceptBActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

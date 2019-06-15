@@ -7,6 +7,7 @@ package Control;
 
 import DAO.DAOUser;
 import Entidad.User;
+import java.util.ArrayList;
 
 /**
  *
@@ -15,15 +16,17 @@ import Entidad.User;
 public class ValidateLogin {
     //private Sistema sistema = formularioFramePrincipal.sistema;
     
-    private DAOUser dao = new DAOUser();
+    public static DAOUser dao = new DAOUser();
     
+               
     public ValidateLogin() {
+        
     }
-    public String verificarLogin (User user){
-        if (!verificarLongitudNombre(user.getUserName())){
+    public String verifyLogin (User user){
+        if (!verifyNameLength(user.getUserName())){
             return("Longitud nombre incorrecta");
         }
-        if (!verificarLongitudPassword(user.getPassword())){
+        if (!verifyPasswordLength(user.getPassword())){
             return("Longitud contraseña incorrecta");
         }
 
@@ -34,11 +37,11 @@ public class ValidateLogin {
         return("Datos Incorrectos");
     }
     
-    public boolean verificarLongitudNombre(String nombre){
-        return (nombre.length() >1 && nombre.length() <= 6);
+    public boolean verifyNameLength(String name){
+        return (name.length() >1 && name.length() <= 6);
         
     }
-    public boolean verificarLongitudPassword(String password){
+    public boolean verifyPasswordLength(String password){
         return (password.length() >=3 && password.length() < 6);
     }
     

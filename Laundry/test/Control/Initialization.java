@@ -70,7 +70,13 @@ public class Initialization {
         for (User u : users ){
             System.out.println(u.getUserName());
             System.out.println(u.getPassword());
-            System.out.println("-------------");
+            if(u.getRol()==Boolean.TRUE){
+                System.out.println("Administrador");
+            }
+            else {
+                System.out.println("Encargado de Cabina");
+            }
+           System.out.println("-------------");
             dao.create(u);
             
         }

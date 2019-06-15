@@ -60,10 +60,10 @@ public class DAOUser {
         EntityManager em =emf.createEntityManager();
         User user= null;
         Query q =em.createQuery("SELECT u FROM User u "+
-                "WHERE u.userName LIKE : userName"+
-                "AND u.password LIKE :password")
+                "WHERE u.userName LIKE: userName "+
+                "AND u.password LIKE: password")
                 .setParameter("userName",par.getUserName())
-                .setParameter("Password",par.getPassword());
+                .setParameter("password",par.getPassword());
             try{
                 user = (User) q.getSingleResult();
             }catch (NonUniqueResultException e){

@@ -9,13 +9,12 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table (name="Usuarios")
+@Table (name="Users")
 public class User implements Serializable {
     private String userName;
     private String password;
     private Boolean rol;
-    private int ID;
-    
+       
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -39,7 +38,7 @@ public class User implements Serializable {
     public String getPassword() {
         return password;
     }
-    public Boolean getRol(Boolean rol) {
+    public Boolean getRol() {
         return rol;
     }
 

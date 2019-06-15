@@ -1,36 +1,45 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Control;
 
+import DAO.DAOUser;
 import Entidad.User;
-import Frontera.MainFrame;
 
+/**
+ *
+ * @author leoleguizamon
+ */
 public class ValidateLogin {
-   
+    //private Sistema sistema = formularioFramePrincipal.sistema;
     
-    public ValidateLogin (){
+    private DAOUser dao = new DAOUser();
+    
+    public ValidateLogin() {
+    }
+    public String verificarLogin (User user){
+        if (!verificarLongitudNombre(user.getUserName())){
+            return("Longitud nombre incorrecta");
+        }
+        if (!verificarLongitudPassword(user.getPassword())){
+            return("Longitud contraseña incorrecta");
+        }
+
+        if(dao.read(user) != null){
+            return ("Bienvenido");
+        }
+        
+        return("Datos Incorrectos");
     }
     
-//    public String validarLogin(User usuario){
-//        if(!verificarLongitudNombre(usuario.getName())){
-//            return ("Longitud nombre incorrecta");
-//        }
-//        if(!verificarLongitudPassword(usuario.getPassword())){
-//            return ("Longitud contraseña incorrecta");
-//        }
-//        for(User u : sistema.getUsuarios()){
-//            if(u.getName().equals(usuario.getName())&&u.getPassword().equals(usuario.getPassword())){
-//                return ("Bienvenido");
-//            }
-//        }
-//        return ("Datos incorrectos");
-//    }
-//    
-//    private boolean verificarLongitudNombre(String nombre){
-//        return (nombre.length() > 1 && nombre.length() <= 6);
-//    }
-//    
-//    private boolean verificarLongitudPassword(String password){
-//        return (password.length() >= 3 && password.length() < 6);
-//    }
+    public boolean verificarLongitudNombre(String nombre){
+        return (nombre.length() >1 && nombre.length() <= 6);
+        
     }
-
-
+    public boolean verificarLongitudPassword(String password){
+        return (password.length() >=3 && password.length() < 6);
+    }
+    
+}

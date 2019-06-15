@@ -3,6 +3,7 @@
   <persistence-unit name="LoginJPAPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>Entidad.User</class>
+    <class>Entidad.Template</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/Login_JPA"/>
       <property name="javax.persistence.jdbc.user" value="admin_app"/>

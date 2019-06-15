@@ -17,7 +17,7 @@ import javax.persistence.Table;
  * @author luaalvarezve
  */
 @Entity
-@Table (name="Pantilla")
+@Table (name="Plantilla")
 public class Template implements Serializable  {
     
     private String gender;
@@ -27,7 +27,7 @@ public class Template implements Serializable  {
     private float ironPrice;
     private boolean fold;
     
-     @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
      
@@ -38,6 +38,7 @@ public class Template implements Serializable  {
     public void setId(int id){
         this.id = id;
     }
+    
     public Template(){
     }
 
@@ -52,7 +53,13 @@ public class Template implements Serializable  {
     public float getWashPrice(){
         return washPrice;
     }
-    public Boolean getFold(Boolean fold) {
+    public float getWaiPrice(){
+        return waiPrice;
+    }
+    public float getIronPrice(){
+        return ironPrice;
+    }
+    public Boolean getFold() {
         return fold;
     }
 
@@ -64,7 +71,17 @@ public class Template implements Serializable  {
     public void setClothName(String clothName) {
         this.clothName = clothName;
     }
-//    public void setRol(Boolean rol) {
-//        this.rol = rol;
-//    }
+     public void setWashPrice(float washPrice){
+        this.washPrice = washPrice;
+    }
+    public void setWaiPrice(float waiPrice){
+        this.waiPrice=waiPrice;
+    }
+    public void setIronPrice(float ironPrice){
+       this.ironPrice=ironPrice;
+    }
+    public void setFold(boolean fold) {
+        this.fold=fold;
+    }
+
 }

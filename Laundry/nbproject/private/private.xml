@@ -5,6 +5,9 @@
         <group>
             <file>file:/C:/Users/leons/Documents/LaundryRepo/Laundry/Laundry/src/DAO/DAOUser.java</file>
             <file>file:/C:/Users/leons/Documents/LaundryRepo/Laundry/Laundry/src/Entidad/User.java</file>
+            <file>file:/C:/Users/leons/Documents/LaundryRepo/Laundry/Laundry/src/Entidad/Template.java</file>
+            <file>file:/C:/Users/leons/Documents/LaundryRepo/Laundry/Laundry/test/Inicializacion.java</file>
+            <file>file:/C:/Users/leons/Documents/LaundryRepo/Laundry/Laundry/src/Control/ValidateLogin.java</file>
             <file>file:/C:/Users/leons/Documents/LaundryRepo/Laundry/Laundry/src/META-INF/persistence.xml</file>
         </group>
     </open-files>

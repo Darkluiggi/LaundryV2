@@ -6,10 +6,7 @@
 package DAO;
 
 import Entidad.User;
-import java.sql.*;
 import javax.persistence.*;
-import jdk.nashorn.internal.ir.Statement;
-
 /**
  *
  * @author Darkluiggi

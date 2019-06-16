@@ -56,15 +56,13 @@ public class DAOTemplate {
         
         EntityManager em =emf.createEntityManager();
         Template user= null;
-//            Query q =em.createQuery("SELECT u FROM User u "+
-//                "WHERE u.userName LIKE: name "+
-//                "AND u.password LIKE: password")
-//                .setParameter("name",object.getUserName())
-//                .setParameter("password",object.getPassword());
+            Query q =em.createQuery("SELECT u FROM Template u "+
+                "WHERE u.clothName LIKE: clothName")
+                .setParameter("clothName",object.getClothName());
             try{
-//                user = (Template) q.getSingleResult();
-//            }catch (NonUniqueResultException e){
-//                user = (Template) q.getResultList().get(0);
+                user = (Template) q.getSingleResult();
+            }catch (NonUniqueResultException e){
+                user = (Template) q.getResultList().get(0);
             }catch(Exception e){
             e.printStackTrace();
            }finally {

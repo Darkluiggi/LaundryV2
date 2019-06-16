@@ -36,12 +36,16 @@ public class Login extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         AcceptB = new javax.swing.JButton();
         NameTF = new javax.swing.JTextField();
         PassTF = new javax.swing.JTextField();
         userL = new javax.swing.JLabel();
         passL = new javax.swing.JLabel();
         LoginL = new javax.swing.JLabel();
+        ExceptionField = new javax.swing.JLabel();
+
+        jLabel1.setText("jLabel1");
 
         setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         setPreferredSize(new java.awt.Dimension(400, 300));
@@ -69,40 +73,44 @@ public class Login extends javax.swing.JPanel {
                         .addGap(49, 49, 49)
                         .addComponent(LoginL))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
+                        .addGap(200, 200, 200)
+                        .addComponent(AcceptB)))
+                .addContainerGap(148, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(userL)
                         .addGap(56, 56, 56)
                         .addComponent(NameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
                         .addComponent(passL)
                         .addGap(31, 31, 31)
-                        .addComponent(PassTF, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(200, 200, 200)
-                        .addComponent(AcceptB)))
-                .addContainerGap(97, Short.MAX_VALUE))
+                        .addComponent(PassTF, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(28, 28, 28)
+                .addComponent(ExceptionField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(9, 9, 9)
                 .addComponent(LoginL)
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(userL))
-                    .addComponent(NameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(passL))
-                    .addComponent(PassTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addComponent(userL))
+                            .addComponent(NameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(PassTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(passL)))
+                    .addComponent(ExceptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(65, 65, 65)
                 .addComponent(AcceptB)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -112,18 +120,19 @@ public class Login extends javax.swing.JPanel {
     user.setPassword(PassTF.getText());
     
     ValidateLogin validate = new ValidateLogin();
-    System.out.println("-----------");
     String result = validate.verifyLogin(user);
     if (result.equals("Administrador")){
         MainFrame.MainPanel.setVisible(false);
         MainFrame.MainPanel.removeAll();                                //codigo de prueba, se debe borrar
         MainFrame.MainPanel.add(MainFrame.admin);
         MainFrame.MainPanel.setVisible(true);
-    }else{
+    } if(result.equals("Ayudante de Cabina")){
         MainFrame.MainPanel.setVisible(false);
         MainFrame.MainPanel.removeAll();                                //codigo de prueba, se debe borrar
         MainFrame.MainPanel.add(MainFrame.user);
         MainFrame.MainPanel.setVisible(true);
+    }else{
+        ExceptionField.setText(result);
     }
       MainFrame.ExitB.setVisible(true);
       MainFrame.LoginB.setVisible(false);
@@ -132,9 +141,11 @@ public class Login extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AcceptB;
+    private javax.swing.JLabel ExceptionField;
     private javax.swing.JLabel LoginL;
     private javax.swing.JTextField NameTF;
     private javax.swing.JTextField PassTF;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel passL;
     private javax.swing.JLabel userL;
     // End of variables declaration//GEN-END:variables

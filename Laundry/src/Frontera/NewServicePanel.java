@@ -6,6 +6,7 @@
 
 package Frontera;
 
+import Entidad.Template;
 import java.util.ArrayList;
 
 /**
@@ -52,7 +53,7 @@ public class NewServicePanel extends javax.swing.JPanel {
         WashTF = new javax.swing.JTextField();
         AddGenderB = new javax.swing.JButton();
         NameTF = new javax.swing.JTextField();
-        NAmeL = new javax.swing.JLabel();
+        NameL = new javax.swing.JLabel();
         GenderL = new javax.swing.JLabel();
         GenderBox = new javax.swing.JComboBox<>();
 
@@ -109,7 +110,7 @@ public class NewServicePanel extends javax.swing.JPanel {
             }
         });
 
-        NAmeL.setText("Nombre");
+        NameL.setText("Nombre");
 
         GenderL.setText("Género");
 
@@ -139,7 +140,7 @@ public class NewServicePanel extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(NameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(NAmeL)
+                                .addComponent(NameL)
                                 .addGap(29, 29, 29)))
                         .addGap(28, 28, 28))
                     .addComponent(AvalL, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -152,13 +153,13 @@ public class NewServicePanel extends javax.swing.JPanel {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addComponent(WashC)))
-                        .addGap(42, 42, 42)
+                        .addGap(69, 69, 69)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(IronandWashTF, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addComponent(IronAndeWashC))
-                            .addComponent(IronandWashTF, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(78, 78, 78)
+                                .addComponent(IronAndeWashC)))
+                        .addGap(51, 51, 51)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
@@ -189,7 +190,7 @@ public class NewServicePanel extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(NAmeL)
+                            .addComponent(NameL)
                             .addComponent(GenderL))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,19 +200,14 @@ public class NewServicePanel extends javax.swing.JPanel {
                             .addComponent(FoldC)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(1, 1, 1)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(IronandWashTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(IronTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(IronTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(AddGenderB))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(IronC))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(IronAndeWashC))))
+                                .addComponent(IronC))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(WashTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -219,7 +215,12 @@ public class NewServicePanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(WashC)
-                            .addComponent(AvalL)))))
+                            .addComponent(AvalL)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(IronandWashTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(IronAndeWashC))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -276,6 +277,14 @@ public class NewServicePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_CancelBActionPerformed
 
     private void AcceptBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptBActionPerformed
+        Template temp = new Template();
+        
+        temp.setGender((String)GenderBox.getSelectedItem());
+        temp.setClothName(NameTF.getText());
+        temp.setWashPrice(Float.parseFloat(WashTF.getText()));
+                
+
+
         // TODO add your handling code here:
     }//GEN-LAST:event_AcceptBActionPerformed
 
@@ -295,7 +304,7 @@ public class NewServicePanel extends javax.swing.JPanel {
     private javax.swing.JTextField IronTF;
     private javax.swing.JTextField IronandWashTF;
     private javax.swing.JLabel LaundryL;
-    private javax.swing.JLabel NAmeL;
+    private javax.swing.JLabel NameL;
     private javax.swing.JTextField NameTF;
     private javax.swing.JCheckBox WashC;
     private javax.swing.JTextField WashTF;

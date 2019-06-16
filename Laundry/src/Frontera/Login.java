@@ -20,8 +20,7 @@ public class Login extends javax.swing.JPanel {
      * Creates new form Login
      */
     
-    public static DAOUser dao = new DAOUser();
-    
+      
     public Login() {
         initComponents();
         
@@ -138,13 +137,13 @@ public class Login extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AcceptBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptBActionPerformed
-         User user = new User();
+    User user = new User();
     user.setUserName(NameTF.getText());
     user.setPassword(PassTF.getText());
     
-    ValidateLogin validar = new ValidateLogin();
+    ValidateLogin validate = new ValidateLogin();
     System.out.println("-----------");
-    String result = validar.verifyLogin(user);
+    String result = validate.verifyLogin(user);
     System.out.println(result);
          
     }//GEN-LAST:event_AcceptBActionPerformed

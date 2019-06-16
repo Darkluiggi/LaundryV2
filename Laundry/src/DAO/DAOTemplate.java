@@ -5,21 +5,20 @@
  */
 package DAO;
 
-import Entidad.User;
-import java.sql.*;
+import Entidad.Template;
 import javax.persistence.*;
-import jdk.nashorn.internal.ir.Statement;
+
 
 /**
  *
  * @author Darkluiggi
  */
-public class DAOUser {
+public class DAOTemplate {
     
     private static EntityManagerFactory 
             emf= Persistence.createEntityManagerFactory("LoginJPAPU");
     
-    public void create (User object){
+    public void create (Template object){
         
         EntityManager em =emf.createEntityManager();
         em.getTransaction().begin();
@@ -35,7 +34,7 @@ public class DAOUser {
     }
     }
         
-     public boolean delete(User object){
+     public boolean delete(Template object){
         
         EntityManager em =emf.createEntityManager();
         em.getTransaction().begin();
@@ -53,19 +52,19 @@ public class DAOUser {
         return ret;
             }
      }
-     public User read(User object){
+     public Template read(Template object){
         
         EntityManager em =emf.createEntityManager();
-        User user= null;
-            Query q =em.createQuery("SELECT u FROM User u "+
-                "WHERE u.userName LIKE :name "+
-                "AND u.password LIKE :password")
-                .setParameter("name",object.getUserName())
-                .setParameter("password",object.getPassword());
+        Template user= null;
+//            Query q =em.createQuery("SELECT u FROM User u "+
+//                "WHERE u.userName LIKE: name "+
+//                "AND u.password LIKE: password")
+//                .setParameter("name",object.getUserName())
+//                .setParameter("password",object.getPassword());
             try{
-                user = (User) q.getSingleResult();
+                user = (Template) q.getSingleResult();
             }catch (NonUniqueResultException e){
-                user = (User) q.getResultList().get(0);
+                user = (Template) q.getResultList().get(0);
             }catch(Exception e){
             e.printStackTrace();
            }finally {
@@ -75,15 +74,15 @@ public class DAOUser {
             
      }
      
-     public boolean update(User object, User newObject){
+     public boolean update(Template object, Template newObject){
          
          EntityManager em =emf.createEntityManager();
         em.getTransaction().begin();
         boolean ret=false;
         try{
             object=read(object);
-            object.setUserName(newObject.getUserName());
-            object.setPassword(newObject.getPassword());
+//            object.setUserName(newObject.getUserName());
+//            object.setPassword(newObject.getPassword());
             em.merge(object);
             em.getTransaction().commit();
             ret = true;

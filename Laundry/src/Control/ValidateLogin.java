@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class ValidateLogin {
     //private Sistema sistema = formularioFramePrincipal.sistema;
     
-    public static DAOUser dao = new DAOUser();
+    private DAOUser dao = new DAOUser();
     
                
     public ValidateLogin() {
@@ -30,7 +30,7 @@ public class ValidateLogin {
             return("Longitud contraseña incorrecta");
         }
 
-        if(dao.read(user) != null){
+        if(dao.read(user)!= null){
             return ("Bienvenido");
         }
         
@@ -38,11 +38,11 @@ public class ValidateLogin {
     }
     
     public boolean verifyNameLength(String name){
-        return (name.length() >1 && name.length() <= 6);
+        return (name.length() >1 && name.length() <= 8);
         
     }
     public boolean verifyPasswordLength(String password){
-        return (password.length() >=3 && password.length() < 6);
+        return (password.length() >=3 && password.length() < 8);
     }
     
 }

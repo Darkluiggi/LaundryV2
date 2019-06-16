@@ -5,8 +5,9 @@
  */
 package Frontera;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
+import DAO.DAOUser;
+import Entidad.User;
+import java.util.ArrayList;
 
 /**
  *
@@ -22,10 +23,11 @@ public class MainFrame extends javax.swing.JFrame {
     public static AdminFrame admin = new AdminFrame();
     public static UserFrame user = new UserFrame();             
     
-    
+         
     
     public MainFrame() {
         initComponents();
+        init();
         setLocationRelativeTo(null);                            //Centra el programa en la pantalla
         
     }
@@ -143,6 +145,41 @@ public class MainFrame extends javax.swing.JFrame {
                 new MainFrame().setVisible(true);
             }
         });
+    }
+    
+    public void init(){
+          
+        DAOUser dao= new DAOUser();
+        ArrayList<User> usuarios = new ArrayList<User>();
+       
+        
+        User a = new User();
+        User b = new User();
+        User c = new User();
+        
+        a.setUserName("juan");
+        a.setPassword("1234");
+        b.setUserName("pedro");
+        b.setPassword("123");
+        c.setUserName("maria");
+        c.setPassword("12345");
+        
+        usuarios.add(a);
+        usuarios.add(b);
+        usuarios.add(c);
+        
+      for(User u: usuarios){
+            System.out.println(u.getUserName());
+            System.out.println(u.getPassword());
+            System.out.println("--------------");
+            dao.create(u);
+        }
+        
+        
+        
+             
+        
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

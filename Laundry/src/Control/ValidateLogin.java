@@ -17,7 +17,7 @@ public class ValidateLogin {
     //private Sistema sistema = formularioFramePrincipal.sistema;
     
     private DAOUser dao = new DAOUser();
-    
+    private User log = new User();
                
     public ValidateLogin() {
         
@@ -31,7 +31,12 @@ public class ValidateLogin {
         }
 
         if(dao.read(user)!= null){
-            return ("Bienvenido");
+            log=dao.read(user);
+            if(log.getRol()== Boolean.TRUE){
+            return ("Administrador");
+            }else{
+                return ("Ayudante de Cabina");
+            }
         }
         
         return("Datos Incorrectos");

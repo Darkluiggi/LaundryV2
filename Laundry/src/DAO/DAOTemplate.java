@@ -62,9 +62,9 @@ public class DAOTemplate {
 //                .setParameter("name",object.getUserName())
 //                .setParameter("password",object.getPassword());
             try{
-                user = (Template) q.getSingleResult();
-            }catch (NonUniqueResultException e){
-                user = (Template) q.getResultList().get(0);
+//                user = (Template) q.getSingleResult();
+//            }catch (NonUniqueResultException e){
+//                user = (Template) q.getResultList().get(0);
             }catch(Exception e){
             e.printStackTrace();
            }finally {

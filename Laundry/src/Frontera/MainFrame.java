@@ -27,6 +27,7 @@ public class MainFrame extends javax.swing.JFrame {
     
     public MainFrame() {
         initComponents();
+        ExitB.setVisible(false);
         init();
         setLocationRelativeTo(null);                            //Centra el programa en la pantalla
         
@@ -45,10 +46,10 @@ public class MainFrame extends javax.swing.JFrame {
         PanelTB = new javax.swing.JPanel();
         TBar = new javax.swing.JToolBar();
         LoginB = new javax.swing.JButton();
+        ExitB = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Lavandería a Bordo");
-        setPreferredSize(new java.awt.Dimension(800, 600));
         setSize(new java.awt.Dimension(800, 600));
 
         MainPanel.setOpaque(true);
@@ -67,6 +68,17 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         TBar.add(LoginB);
+
+        ExitB.setText("Exit");
+        ExitB.setFocusable(false);
+        ExitB.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        ExitB.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        ExitB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExitBActionPerformed(evt);
+            }
+        });
+        TBar.add(ExitB);
 
         javax.swing.GroupLayout PanelTBLayout = new javax.swing.GroupLayout(PanelTB);
         PanelTB.setLayout(PanelTBLayout);
@@ -103,11 +115,16 @@ public class MainFrame extends javax.swing.JFrame {
         MainPanel.updateUI();
         MainPanel.add(login);
         MainPanel.setVisible(true);
-//        LoginB.setVisible(false);
-        
-       
-                            // TODO add your handling code here:
+    // TODO add your handling code here:
     }//GEN-LAST:event_LoginBActionPerformed
+
+    private void ExitBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitBActionPerformed
+        MainPanel.setVisible(false);
+        MainPanel.removeAll(); 
+        MainPanel.setVisible(true);
+        LoginB.setVisible(true);
+        ExitB.setVisible(false);
+    }//GEN-LAST:event_ExitBActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,10 +176,13 @@ public class MainFrame extends javax.swing.JFrame {
         
         a.setUserName("juan");
         a.setPassword("1234");
+        a.setRol(Boolean.FALSE);
         b.setUserName("pedro");
+        b.setRol(Boolean.TRUE);                 //administrador
         b.setPassword("123");
         c.setUserName("maria");
         c.setPassword("12345");
+        c.setRol(Boolean.FALSE);
         
         usuarios.add(a);
         usuarios.add(b);
@@ -183,7 +203,8 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton LoginB;
+    public static javax.swing.JButton ExitB;
+    public static javax.swing.JButton LoginB;
     public static javax.swing.JPanel MainPanel;
     private javax.swing.JPanel PanelTB;
     private javax.swing.JToolBar TBar;

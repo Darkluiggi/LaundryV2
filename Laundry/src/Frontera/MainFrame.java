@@ -167,37 +167,20 @@ public class MainFrame extends javax.swing.JFrame {
     public void init(){
           
         DAOUser dao= new DAOUser();
-        ArrayList<User> usuarios = new ArrayList<User>();
        
         
         User a = new User();
         User b = new User();
-        User c = new User();
-        
-        a.setUserName("juan");
-        a.setPassword("1234");
-        a.setRol(Boolean.FALSE);
-        b.setUserName("pedro");
-        b.setRol(Boolean.TRUE);                 //administrador
-        b.setPassword("123");
-        c.setUserName("maria");
-        c.setPassword("12345");
-        c.setRol(Boolean.FALSE);
-        
-        usuarios.add(a);
-        usuarios.add(b);
-        usuarios.add(c);
-        
-      for(User u: usuarios){
-            System.out.println(u.getUserName());
-            System.out.println(u.getPassword());
-            System.out.println("--------------");
-            dao.create(u);
-        }
-        
-        
-        
              
+        a.setUserName("Admin");
+        a.setRol(Boolean.TRUE);                 //administrador
+        a.setPassword("12345");
+       
+        if(dao.read(a) == null){
+            dao.create(a);
+        }
+            
+       
         
         
     }

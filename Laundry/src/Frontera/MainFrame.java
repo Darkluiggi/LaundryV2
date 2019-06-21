@@ -172,7 +172,7 @@ public class MainFrame extends javax.swing.JFrame {
         User a = new User();
         User b = new User();
              
-        a.setUserName("Admin");
+        a.setUserName("admin");
         a.setRol(Boolean.TRUE);                 //administrador
         a.setPassword("12345");
        

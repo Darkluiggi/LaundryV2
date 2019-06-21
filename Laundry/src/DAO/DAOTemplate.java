@@ -6,6 +6,7 @@
 package DAO;
 
 import Entidad.Template;
+import java.util.*;
 import javax.persistence.*;
 
 
@@ -55,19 +56,19 @@ public class DAOTemplate {
      public Template read(Template object){
         
         EntityManager em =emf.createEntityManager();
-        Template user= null;
+        Template temp= null;
             Query q =em.createQuery("SELECT u FROM Template u "+
                 "WHERE u.clothName LIKE: clothName")
                 .setParameter("clothName",object.getClothName());
             try{
-                user = (Template) q.getSingleResult();
+                temp = (Template) q.getSingleResult();
             }catch (NonUniqueResultException e){
-                user = (Template) q.getResultList().get(0);
+                temp = (Template) q.getResultList().get(0);
             }catch(Exception e){
             e.printStackTrace();
            }finally {
                 em.close();
-                return user;
+                return temp;
             }
             
      }
@@ -93,7 +94,22 @@ public class DAOTemplate {
             }
      }
      
-     
+     public List<Template> findAll(){
+        
+        List list = new ArrayList();
+        EntityManager em =emf.createEntityManager();
+        Template temp= null;
+            Query q =em.createQuery("SELECT u FROM Template u");
+            try{
+                list =  q.getResultList();
+            }catch(Exception e){
+            e.printStackTrace();
+           }finally {
+                em.close();
+                return list;
+            }
+            
+     }
      
      
      

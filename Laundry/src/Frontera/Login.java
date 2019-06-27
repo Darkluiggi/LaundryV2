@@ -123,12 +123,12 @@ public class Login extends javax.swing.JPanel {
     String result = validate.verifyLogin(user);
     if (result.equals("Administrador")){
         MainFrame.MainPanel.setVisible(false);
-        MainFrame.MainPanel.removeAll();                                //codigo de prueba, se debe borrar
+        MainFrame.MainPanel.removeAll();                                
         MainFrame.MainPanel.add(MainFrame.admin);
         MainFrame.MainPanel.setVisible(true);
-    } if(result.equals("Ayudante de Cabina")){
+    } if(result.equals("Encargado de cabina")){
         MainFrame.MainPanel.setVisible(false);
-        MainFrame.MainPanel.removeAll();                                //codigo de prueba, se debe borrar
+        MainFrame.MainPanel.removeAll();                                
         MainFrame.MainPanel.add(MainFrame.user);
         MainFrame.MainPanel.setVisible(true);
     }else{

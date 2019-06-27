@@ -173,7 +173,7 @@ public class MainFrame extends javax.swing.JFrame {
         User b = new User();
              
         a.setUserName("admin");
-        a.setRol(Boolean.TRUE);                 //administrador
+        a.setRol("Administrador");                 //administrador
         a.setPassword("12345");
        
         if(dao.read(a) == null){

@@ -15,6 +15,8 @@ public class ServicePanel extends javax.swing.JPanel {
      * Creates new form ServicePanel
      */
     public static NewServicePanel NServ = new NewServicePanel();
+    public static CreateAccount acc = new CreateAccount();
+    
     
     public ServicePanel() {
         initComponents();
@@ -71,6 +73,11 @@ public class ServicePanel extends javax.swing.JPanel {
         AccountB.setFocusable(false);
         AccountB.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         AccountB.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        AccountB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AccountBActionPerformed(evt);
+            }
+        });
         jToolBar1.add(AccountB);
 
         javax.swing.GroupLayout TBPanelLayout = new javax.swing.GroupLayout(TBPanel);
@@ -96,6 +103,14 @@ public class ServicePanel extends javax.swing.JPanel {
         ServP.add(NServ);
         ServP.setVisible(true); // TODO add your handling code here:
     }//GEN-LAST:event_AddBActionPerformed
+
+    private void AccountBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccountBActionPerformed
+        ServP.setVisible(false);
+        ServP.removeAll();
+        ServP.updateUI();
+        ServP.add(acc);
+        ServP.setVisible(true);                                       // TODO add your handling code here:
+    }//GEN-LAST:event_AccountBActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

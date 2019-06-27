@@ -14,8 +14,8 @@ public class User implements Serializable {
     private String country;
     private String adress;
     private String password;
-    private int phone;
-    private Boolean rol;
+    private String phone;
+    private String rol;
        
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,7 +40,7 @@ public class User implements Serializable {
     public String getPassword() {
         return password;
     }
-    public Boolean getRol() {
+    public String getRol() {
         return rol;
     }
 
@@ -50,7 +50,7 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-    public void setRol(Boolean rol) {
+    public void setRol(String rol) {
         this.rol = rol;
     }
 
@@ -70,7 +70,7 @@ public class User implements Serializable {
         return adress;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
@@ -86,7 +86,7 @@ public class User implements Serializable {
         this.adress = adress;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

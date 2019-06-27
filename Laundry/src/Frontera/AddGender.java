@@ -128,7 +128,7 @@ public class AddGender extends javax.swing.JFrame {
         NewServicePanel.GenderBox.addItem(a);                           //guardo los datos en el combobox
         this.dispose();                                                 //cierro la ventana e nuevo genero
         GenderTF.setText(null);                                         //borro lo escrito en el textfield
-// TODO add your handling code here:
+
     }//GEN-LAST:event_AcceptBActionPerformed
 
     private void CancelBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBActionPerformed
@@ -142,8 +142,8 @@ public class AddGender extends javax.swing.JFrame {
     }//GEN-LAST:event_GenderTFKeyPressed
 
     private void GenderTFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_GenderTFKeyReleased
-           if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-           {AcceptBActionPerformed(null);                                   //al presionar enter creando el género presiona aceptar y guarda el dato
+           if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+               AcceptBActionPerformed(null);                                   //al presionar enter creando el género presiona aceptar y guarda el dato
                       }
 // TODO add your handling code here:
     }//GEN-LAST:event_GenderTFKeyReleased

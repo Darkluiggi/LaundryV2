@@ -501,8 +501,13 @@ public class CreateAccount extends javax.swing.JPanel {
       user.setCountry((String)countryTF.getText());
       user.setAdress((String) adressTF.getText());
       user.setPassword((String) passwordTF.getText());
-      user.setPhone(Integer.parseInt (phoneTF.getText()));
-      user.setRol(adminC.isSelected());
+      user.setPhone((String) phoneTF.getText());
+      if(adminC.isSelected() == Boolean.TRUE){
+          user.setRol("Administrador");
+      }else{
+          user.setRol("Encargado de cabina");
+      }
+      
       
       dao.create(user);   
         

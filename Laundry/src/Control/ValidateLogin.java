@@ -32,11 +32,13 @@ public class ValidateLogin {
 
         if(dao.read(user)!= null){
             log=dao.read(user);
-            if(log.getRol()== Boolean.TRUE){
+            if(log.getRol().equals("Administrador") ){
             return ("Administrador");
             }else{
-                return ("Ayudante de Cabina");
+                if(log.getRol().equals("Encargado de cabina") ){
+                return ("Encargado de cabina");
             }
+          }
         }
         
         return("Datos Incorrectos");

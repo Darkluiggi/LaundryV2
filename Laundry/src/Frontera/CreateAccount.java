@@ -17,6 +17,14 @@ public class CreateAccount extends javax.swing.JPanel {
     /**
      * Creates new form CreateAccount
      */
+    
+    
+   
+    private DAOUser dao = new DAOUser();
+    private User usera = new User();
+    private User userb = new User(); 
+    private User userc = new User(); 
+    
     public CreateAccount() {
         initComponents();
     }
@@ -30,7 +38,7 @@ public class CreateAccount extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDialog1 = new javax.swing.JDialog();
+        createConfirm = new javax.swing.JDialog();
         jLabel2 = new javax.swing.JLabel();
         AceptarBDialogo = new javax.swing.JButton();
         CancelarBDialogo = new javax.swing.JButton();
@@ -44,24 +52,26 @@ public class CreateAccount extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         buscarErrorLabel = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        editPanel = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        editNameTF = new javax.swing.JTextField();
+        editLastNameTF = new javax.swing.JTextField();
+        editUserNameTF = new javax.swing.JTextField();
+        editPassTF = new javax.swing.JTextField();
+        editCountryTF = new javax.swing.JTextField();
+        editPhoneTF = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         idEditLabel = new javax.swing.JLabel();
-        editarB = new javax.swing.JButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jButton2 = new javax.swing.JButton();
+        editB = new javax.swing.JButton();
+        editAdminC = new javax.swing.JCheckBox();
+        cancelB = new javax.swing.JButton();
+        passwordL = new javax.swing.JLabel();
+        editAdressTF = new javax.swing.JTextField();
         createB = new javax.swing.JButton();
         nameTF = new javax.swing.JTextField();
         lastNameTF = new javax.swing.JTextField();
@@ -72,15 +82,21 @@ public class CreateAccount extends javax.swing.JPanel {
         passwordTF = new javax.swing.JTextField();
         adminC = new javax.swing.JCheckBox();
         createUserL = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        idBuscar = new javax.swing.JTextField();
+        findB = new javax.swing.JButton();
+        findIdTF = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         editUserActualPanel = new javax.swing.JPanel();
 
-        jDialog1.setTitle("Nuevo Usuario");
-        jDialog1.setResizable(false);
+        createConfirm.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        createConfirm.setTitle("Nuevo Usuario");
+        createConfirm.setLocation(new java.awt.Point(0, 0));
+        createConfirm.setPreferredSize(new java.awt.Dimension(440, 240));
+        createConfirm.setResizable(false);
+        createConfirm.setSize(new java.awt.Dimension(440, 240));
+        createConfirm.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setText("¿Crear nuevo usuario?");
+        createConfirm.getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 17, -1, 29));
 
         AceptarBDialogo.setText("Aceptar");
         AceptarBDialogo.addActionListener(new java.awt.event.ActionListener() {
@@ -88,66 +104,25 @@ public class CreateAccount extends javax.swing.JPanel {
                 AceptarBDialogoActionPerformed(evt);
             }
         });
+        createConfirm.getContentPane().add(AceptarBDialogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 158, 292, -1));
 
         CancelarBDialogo.setText("Cancelar");
+        createConfirm.getContentPane().add(CancelarBDialogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(325, 158, -1, -1));
 
         jLabel3.setText("Se creará un nuevo usuario, este proceso es irreversible");
+        createConfirm.getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 62, -1, -1));
 
         jLabel4.setText("ID del nuevo usuario:");
+        createConfirm.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 91, -1, -1));
 
-        IDNUsuarioLabel.setText("####################");
+        IDNUsuarioLabel.setText("###################");
+        createConfirm.getContentPane().add(IDNUsuarioLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, -1, -1));
 
         jLabel6.setText("Contraseña:");
+        createConfirm.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 120, -1, -1));
 
-        ContraseñaNUsuarioLabel.setText("####################");
-
-        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
-        jDialog1.getContentPane().setLayout(jDialog1Layout);
-        jDialog1Layout.setHorizontalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jDialog1Layout.createSequentialGroup()
-                        .addComponent(AceptarBDialogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(CancelarBDialogo))
-                    .addGroup(jDialog1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(IDNUsuarioLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jDialog1Layout.createSequentialGroup()
-                        .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addGroup(jDialog1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(68, 68, 68)
-                                .addComponent(ContraseñaNUsuarioLabel)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jDialog1Layout.setVerticalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog1Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(IDNUsuarioLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(ContraseñaNUsuarioLabel))
-                .addGap(18, 18, 18)
-                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CancelarBDialogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(AceptarBDialogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
+        ContraseñaNUsuarioLabel.setText("###################");
+        createConfirm.getContentPane().add(ContraseñaNUsuarioLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, -1, -1));
 
         jFrame1.setUndecorated(true);
 
@@ -183,7 +158,7 @@ public class CreateAccount extends javax.swing.JPanel {
                     .addGroup(editUserErrorPanelLayout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(buscarErrorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)))
+                        .addComponent(buscarErrorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         editUserErrorPanelLayout.setVerticalGroup(
@@ -198,127 +173,78 @@ public class CreateAccount extends javax.swing.JPanel {
                 .addGap(210, 210, 210))
         );
 
-        jPanel2.setPreferredSize(new java.awt.Dimension(398, 258));
+        editPanel.setPreferredSize(new java.awt.Dimension(456, 386));
+        editPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel9.setText("Nombre:");
+        editPanel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 98, 78, -1));
 
         jLabel10.setText("Apellido:");
+        editPanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 140, 78, -1));
 
-        jLabel11.setText("CC./ID:");
+        jLabel11.setText("User Name");
+        editPanel.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 182, -1, -1));
 
         jLabel12.setText("Dirección:");
+        editPanel.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 78, -1));
 
         jLabel13.setText("Telefono:");
+        editPanel.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 78, -1));
 
         jLabel14.setText("País:");
+        editPanel.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 70, -1));
 
-        jTextField1.setText("jTextField1");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        editNameTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                editNameTFActionPerformed(evt);
             }
         });
+        editPanel.add(editNameTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 190, -1));
+        editPanel.add(editLastNameTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 190, -1));
+        editPanel.add(editUserNameTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 190, -1));
+        editPanel.add(editPassTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 190, -1));
 
-        jTextField2.setText("jTextField1");
-
-        jTextField3.setText("jTextField1");
-
-        jTextField4.setText("jTextField1");
-
-        jTextField5.setText("jTextField1");
-
-        jTextField6.setText("jTextField1");
+        editCountryTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editCountryTFActionPerformed(evt);
+            }
+        });
+        editPanel.add(editCountryTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 190, -1));
+        editPanel.add(editPhoneTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 190, -1));
 
         jLabel15.setText("ID:");
+        editPanel.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 16, -1, -1));
 
         idEditLabel.setText("######");
+        editPanel.add(idEditLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 16, -1, -1));
 
-        editarB.setText("Editar");
-
-        jCheckBox1.setText("Administrador");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        editB.setText("Editar");
+        editB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                editBActionPerformed(evt);
             }
         });
+        editPanel.add(editB, new org.netbeans.lib.awtextra.AbsoluteConstraints(332, 16, 90, -1));
 
-        jButton2.setText("Cancelar");
+        editAdminC.setText("Administrador");
+        editAdminC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editAdminCActionPerformed(evt);
+            }
+        });
+        editPanel.add(editAdminC, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 48, -1, -1));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel15)
-                        .addGap(18, 18, 18)
-                        .addComponent(idEditLabel))
-                    .addComponent(jCheckBox1)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(editarB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel15)
-                            .addComponent(idEditLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox1)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel14)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel13)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(editarB)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        cancelB.setText("Cancelar");
+        cancelB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBActionPerformed(evt);
+            }
+        });
+        editPanel.add(cancelB, new org.netbeans.lib.awtextra.AbsoluteConstraints(332, 61, -1, -1));
+
+        passwordL.setText("Contraseña");
+        editPanel.add(passwordL, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
+        editPanel.add(editAdressTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, 190, -1));
 
         setAutoscrolls(true);
         setMaximumSize(new java.awt.Dimension(640, 331));
@@ -332,6 +258,11 @@ public class CreateAccount extends javax.swing.JPanel {
         });
 
         nameTF.setText("Nombre");
+        nameTF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nameTFMouseClicked(evt);
+            }
+        });
         nameTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nameTFActionPerformed(evt);
@@ -339,6 +270,11 @@ public class CreateAccount extends javax.swing.JPanel {
         });
 
         lastNameTF.setText("Apellido");
+        lastNameTF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lastNameTFMouseClicked(evt);
+            }
+        });
         lastNameTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lastNameTFActionPerformed(evt);
@@ -346,10 +282,25 @@ public class CreateAccount extends javax.swing.JPanel {
         });
 
         userNameTF.setText("Nombre de Usuario");
+        userNameTF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                userNameTFMouseClicked(evt);
+            }
+        });
 
         countryTF.setText("País");
+        countryTF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                countryTFMouseClicked(evt);
+            }
+        });
 
         adressTF.setText("Dirección");
+        adressTF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                adressTFMouseClicked(evt);
+            }
+        });
         adressTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 adressTFActionPerformed(evt);
@@ -357,6 +308,11 @@ public class CreateAccount extends javax.swing.JPanel {
         });
 
         phoneTF.setText("Telefono");
+        phoneTF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                phoneTFMouseClicked(evt);
+            }
+        });
         phoneTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 phoneTFActionPerformed(evt);
@@ -364,34 +320,39 @@ public class CreateAccount extends javax.swing.JPanel {
         });
 
         passwordTF.setText("Contraseña");
+        passwordTF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                passwordTFMouseClicked(evt);
+            }
+        });
 
         adminC.setText("Administrador");
 
         createUserL.setText("Crear Usuario:");
 
-        jButton1.setText("Buscar");
-
-        idBuscar.setText("ID a buscar");
-        idBuscar.addActionListener(new java.awt.event.ActionListener() {
+        findB.setText("Buscar");
+        findB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idBuscarActionPerformed(evt);
+                findBActionPerformed(evt);
+            }
+        });
+
+        findIdTF.setText("ID a buscar");
+        findIdTF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                findIdTFMouseClicked(evt);
+            }
+        });
+        findIdTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                findIdTFActionPerformed(evt);
             }
         });
 
         jLabel5.setText("Buscar Usuario:");
 
         editUserActualPanel.setPreferredSize(new java.awt.Dimension(258, 258));
-
-        javax.swing.GroupLayout editUserActualPanelLayout = new javax.swing.GroupLayout(editUserActualPanel);
-        editUserActualPanel.setLayout(editUserActualPanelLayout);
-        editUserActualPanelLayout.setHorizontalGroup(
-            editUserActualPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 398, Short.MAX_VALUE)
-        );
-        editUserActualPanelLayout.setVerticalGroup(
-            editUserActualPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 258, Short.MAX_VALUE)
-        );
+        editUserActualPanel.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -411,15 +372,16 @@ public class CreateAccount extends javax.swing.JPanel {
                     .addComponent(passwordTF, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                     .addComponent(createB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(4, 4, 4)
-                        .addComponent(idBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(findIdTF, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(editUserActualPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                        .addComponent(findB, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 56, Short.MAX_VALUE))
+                    .addComponent(editUserActualPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -429,12 +391,11 @@ public class CreateAccount extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(idBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(findB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(findIdTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(editUserActualPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20))
+                        .addComponent(editUserActualPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(createUserL)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -454,8 +415,8 @@ public class CreateAccount extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(adminC)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(createB)
-                        .addContainerGap())))
+                        .addComponent(createB)))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -476,25 +437,8 @@ public class CreateAccount extends javax.swing.JPanel {
     }//GEN-LAST:event_adressTFActionPerformed
 
     private void AceptarBDialogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarBDialogoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AceptarBDialogoActionPerformed
-
-    private void idBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idBuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_idBuscarActionPerformed
-
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void createBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBActionPerformed
-      User user = new User();
-      DAOUser dao = new DAOUser();
       
+       User user = new User();
       user.setName((String)nameTF.getText());
       user.setLastName((String)lastNameTF.getText());
       user.setUserName((String) userNameTF.getText());
@@ -507,15 +451,124 @@ public class CreateAccount extends javax.swing.JPanel {
       }else{
           user.setRol("Encargado de cabina");
       }
-      
-      
-      dao.create(user);   
+            
+      dao.create(user);         // TODO add your handling code here:
+    }//GEN-LAST:event_AceptarBDialogoActionPerformed
+
+    private void findIdTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findIdTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_findIdTFActionPerformed
+
+    private void editAdminCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editAdminCActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editAdminCActionPerformed
+
+    private void editNameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editNameTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editNameTFActionPerformed
+
+    private void createBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBActionPerformed
+        
+        createConfirm.setVisible(true);
+        createConfirm.setLocationRelativeTo(null);
+        IDNUsuarioLabel.setText(userNameTF.getText());
+        ContraseñaNUsuarioLabel.setText(passwordTF.getText());
+         
         
         
         
         
         
     }//GEN-LAST:event_createBActionPerformed
+
+    private void findBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findBActionPerformed
+        String a;
+                     
+        a=findIdTF.getText();
+        usera.setUserName(a);
+        userb=dao.read(usera);
+        editNameTF.setText(userb.getName());
+        editLastNameTF.setText(userb.getLastName());
+        editUserNameTF.setText(userb.getUserName());
+        editPassTF.setText(userb.getPassword());
+        editCountryTF.setText(userb.getCountry());
+        editPhoneTF.setText(userb.getPhone());
+        editAdressTF.setText(userb.getAdress());
+        if(userb.getRol().equals("Administrador")){
+          editAdminC.setSelected(Boolean.TRUE);
+      }else{
+          editAdminC.setSelected(Boolean.FALSE);
+      }
+        
+        editUserActualPanel.setVisible(false);
+        editUserActualPanel.removeAll();                                
+        editUserActualPanel.add(editPanel);
+        editUserActualPanel.setVisible(true);
+        idEditLabel.setText(findIdTF.getText());
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_findBActionPerformed
+
+    private void nameTFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameTFMouseClicked
+        nameTF.selectAll();
+    }//GEN-LAST:event_nameTFMouseClicked
+
+    private void lastNameTFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lastNameTFMouseClicked
+        lastNameTF.selectAll();        // TODO add your handling code here:
+    }//GEN-LAST:event_lastNameTFMouseClicked
+
+    private void userNameTFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userNameTFMouseClicked
+        userNameTF.selectAll();          // TODO add your handling code here:
+    }//GEN-LAST:event_userNameTFMouseClicked
+
+    private void countryTFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_countryTFMouseClicked
+        countryTF.selectAll();          // TODO add your handling code here:
+    }//GEN-LAST:event_countryTFMouseClicked
+
+    private void adressTFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adressTFMouseClicked
+        adressTF.selectAll();          // TODO add your handling code here:
+    }//GEN-LAST:event_adressTFMouseClicked
+
+    private void phoneTFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_phoneTFMouseClicked
+        phoneTF.selectAll();          // TODO add your handling code here:
+    }//GEN-LAST:event_phoneTFMouseClicked
+
+    private void passwordTFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordTFMouseClicked
+        passwordTF.selectAll();          // TODO add your handling code here:
+    }//GEN-LAST:event_passwordTFMouseClicked
+
+    private void findIdTFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_findIdTFMouseClicked
+        findIdTF.selectAll();          // TODO add your handling code here:
+    }//GEN-LAST:event_findIdTFMouseClicked
+
+    private void editBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBActionPerformed
+        userc.setName(editNameTF.getText());
+        userc.setLastName(editLastNameTF.getText());
+        userc.setUserName(editUserNameTF.getText());
+        userc.setCountry(editCountryTF.getText());       
+        userc.setPhone(editPhoneTF.getText());
+        userc.setAdress(editAdressTF.getText());
+        userc.setPassword(editPassTF.getText());
+        if(editAdminC.isSelected() == Boolean.TRUE){
+          userc.setRol("Administrador");
+      }else{
+          userc.setRol("Encargado de cabina");
+      }
+        dao.update(usera, userc);
+                                                                        // TODO add your handling code here:
+    }//GEN-LAST:event_editBActionPerformed
+
+    private void editCountryTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCountryTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editCountryTFActionPerformed
+
+    private void cancelBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBActionPerformed
+        
+        editUserActualPanel.setVisible(false);
+        editUserActualPanel.removeAll();
+        editUserActualPanel.setVisible(true);
+                // TODO add your handling code here:
+    }//GEN-LAST:event_cancelBActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AceptarBDialogo;
@@ -525,18 +578,26 @@ public class CreateAccount extends javax.swing.JPanel {
     private javax.swing.JCheckBox adminC;
     private javax.swing.JTextField adressTF;
     private javax.swing.JLabel buscarErrorLabel;
+    private javax.swing.JButton cancelB;
     private javax.swing.JTextField countryTF;
     private javax.swing.JButton createB;
+    private javax.swing.JDialog createConfirm;
     private javax.swing.JLabel createUserL;
+    private javax.swing.JCheckBox editAdminC;
+    private javax.swing.JTextField editAdressTF;
+    private javax.swing.JButton editB;
+    private javax.swing.JTextField editCountryTF;
+    private javax.swing.JTextField editLastNameTF;
+    private javax.swing.JTextField editNameTF;
+    private javax.swing.JPanel editPanel;
+    private javax.swing.JTextField editPassTF;
+    private javax.swing.JTextField editPhoneTF;
     private javax.swing.JPanel editUserActualPanel;
     private javax.swing.JPanel editUserErrorPanel;
-    private javax.swing.JButton editarB;
-    private javax.swing.JTextField idBuscar;
+    private javax.swing.JTextField editUserNameTF;
+    private javax.swing.JButton findB;
+    private javax.swing.JTextField findIdTF;
     private javax.swing.JLabel idEditLabel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JDialog jDialog1;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -552,15 +613,9 @@ public class CreateAccount extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField lastNameTF;
     private javax.swing.JTextField nameTF;
+    private javax.swing.JLabel passwordL;
     private javax.swing.JTextField passwordTF;
     private javax.swing.JTextField phoneTF;
     private javax.swing.JTextField userNameTF;

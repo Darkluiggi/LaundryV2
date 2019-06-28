@@ -8,6 +8,7 @@ package Frontera;
 import Control.ValidateLogin;
 import DAO.DAOUser;
 import Entidad.User;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 /**
@@ -54,6 +55,17 @@ public class Login extends javax.swing.JPanel {
         AcceptB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AcceptBActionPerformed(evt);
+            }
+        });
+
+        PassTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PassTFActionPerformed(evt);
+            }
+        });
+        PassTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                PassTFKeyReleased(evt);
             }
         });
 
@@ -137,6 +149,16 @@ public class Login extends javax.swing.JPanel {
       MainFrame.ExitB.setVisible(true);
       MainFrame.LoginB.setVisible(false);
     }//GEN-LAST:event_AcceptBActionPerformed
+
+    private void PassTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PassTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PassTFActionPerformed
+
+    private void PassTFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PassTFKeyReleased
+             if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+               AcceptBActionPerformed(null);                                   //al presionar enter creando el género presiona aceptar y guarda el dato
+                      }        // TODO add your handling code here:
+    }//GEN-LAST:event_PassTFKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

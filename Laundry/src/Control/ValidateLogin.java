@@ -30,8 +30,8 @@ public class ValidateLogin {
             return("Longitud contraseña incorrecta");
         }
 
-        if(dao.read(user)!= null){
-            log=dao.read(user);
+        if(dao.readLogin(user)!= null){
+            log=dao.readLogin(user);
             if(log.getRol().equals("Administrador") ){
             return ("Administrador");
             }else{

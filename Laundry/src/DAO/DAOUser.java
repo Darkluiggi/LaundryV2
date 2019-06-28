@@ -50,7 +50,7 @@ public class DAOUser {
         return ret;
             }
      }
-     public User read(User object){
+     public User readLogin(User object){
         
         EntityManager em =emf.createEntityManager();
         User user= null;
@@ -59,6 +59,25 @@ public class DAOUser {
                 "AND u.password LIKE :password")
                 .setParameter("name",object.getUserName())
                 .setParameter("password",object.getPassword());
+            try{
+                user = (User) q.getSingleResult();
+            }catch (NonUniqueResultException e){
+                user = (User) q.getResultList().get(0);
+            }catch(Exception e){
+            e.printStackTrace();
+           }finally {
+                em.close();
+                return user;
+            }
+            
+     }
+     public User read(User object){
+        
+        EntityManager em =emf.createEntityManager();
+        User user= null;
+            Query q =em.createQuery("SELECT u FROM User u "+
+                "WHERE u.userName LIKE :name ")
+                .setParameter("name",object.getUserName());
             try{
                 user = (User) q.getSingleResult();
             }catch (NonUniqueResultException e){
@@ -81,6 +100,12 @@ public class DAOUser {
             object=read(object);
             object.setUserName(newObject.getUserName());
             object.setPassword(newObject.getPassword());
+            object.setAdress(newObject.getAdress());
+            object.setCountry(newObject.getCountry());
+            object.setLastName(newObject.getLastName());
+            object.setName(newObject.getName());
+            object.setPhone(newObject.getPhone());
+            object.setRol(newObject.getRol());
             em.merge(object);
             em.getTransaction().commit();
             ret = true;

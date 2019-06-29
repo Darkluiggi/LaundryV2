@@ -103,7 +103,6 @@ public class DAOTemplate {
             try{
                 list =  q.getResultList();
             }catch(Exception e){
-            e.printStackTrace();
            }finally {
                 em.close();
                 return list;
@@ -111,6 +110,18 @@ public class DAOTemplate {
             
      }
      
-     
+     public List<String> getGenders(){
+        List list = new ArrayList();
+        EntityManager em =emf.createEntityManager();
+        Template temp= null;
+            Query q =em.createQuery("SELECT DISTINCT u.gender FROM Template u");
+            try{
+                list =  q.getResultList();
+            }catch(Exception e){
+           }finally {
+                em.close();
+                return list;
+            }
+     } 
      
 }

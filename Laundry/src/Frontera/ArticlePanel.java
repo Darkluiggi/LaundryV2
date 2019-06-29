@@ -5,20 +5,22 @@
  */
 package Frontera;
 
+import Control.changePanels;
+
 /**
  *
  * @author leons
  */
-public class ServicePanel extends javax.swing.JPanel {
+public class ArticlePanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form ServicePanel
+     * Creates new form ArticlePanel
      */
-    public static NewServicePanel NServ = new NewServicePanel();
+    public static NewArticlePanel NServ = new NewArticlePanel();
     public static CreateAccount acc = new CreateAccount();
-    
-    
-    public ServicePanel() {
+    public static ViewArticles viewT = new ViewArticles();
+    public static EditArticle editT = new EditArticle();
+    public ArticlePanel() {
         initComponents();
     }
 
@@ -45,6 +47,7 @@ public class ServicePanel extends javax.swing.JPanel {
         ServP.setLayout(new java.awt.BorderLayout());
         add(ServP, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 800, 470));
 
+        jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
         jToolBar1.setMaximumSize(new java.awt.Dimension(800, 23));
 
@@ -61,12 +64,22 @@ public class ServicePanel extends javax.swing.JPanel {
         ViewSB.setFocusable(false);
         ViewSB.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         ViewSB.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        ViewSB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ViewSBActionPerformed(evt);
+            }
+        });
         jToolBar1.add(ViewSB);
 
         EditSB.setText("Editar servicios");
         EditSB.setFocusable(false);
         EditSB.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         EditSB.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        EditSB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditSBActionPerformed(evt);
+            }
+        });
         jToolBar1.add(EditSB);
 
         AccountB.setText("Gestión cuentas");
@@ -97,20 +110,23 @@ public class ServicePanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AddBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBActionPerformed
-       ServP.setVisible(false);
-        ServP.removeAll();
-        ServP.updateUI();
-        ServP.add(NServ);
-        ServP.setVisible(true); // TODO add your handling code here:
+      
+        changePanels.change(ServP, NServ); 
+        // TODO add your handling code here:
     }//GEN-LAST:event_AddBActionPerformed
 
     private void AccountBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccountBActionPerformed
-        ServP.setVisible(false);
-        ServP.removeAll();
-        ServP.updateUI();
-        ServP.add(acc);
-        ServP.setVisible(true);                                       // TODO add your handling code here:
+        changePanels.change(ServP, acc); 
+                                              // TODO add your handling code here:
     }//GEN-LAST:event_AccountBActionPerformed
+
+    private void ViewSBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewSBActionPerformed
+        changePanels.change(ServP, viewT);        // TODO add your handling code here:
+    }//GEN-LAST:event_ViewSBActionPerformed
+
+    private void EditSBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditSBActionPerformed
+        changePanels.change(ServP, editT);         // TODO add your handling code here:
+    }//GEN-LAST:event_EditSBActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

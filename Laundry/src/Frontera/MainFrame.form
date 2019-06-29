@@ -74,6 +74,7 @@
       <SubComponents>
         <Container class="javax.swing.JToolBar" name="TBar">
           <Properties>
+            <Property name="floatable" type="boolean" value="false"/>
             <Property name="rollover" type="boolean" value="true"/>
           </Properties>
 

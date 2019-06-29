@@ -48,6 +48,7 @@ public class UserFrame extends javax.swing.JPanel {
             .addGap(0, 238, Short.MAX_VALUE)
         );
 
+        UserTB.setFloatable(false);
         UserTB.setRollover(true);
 
         NServiceB.setText("Nuevo Servicio");

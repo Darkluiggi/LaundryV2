@@ -5,9 +5,11 @@
  */
 package Frontera;
 
+import Control.changePanels;
+import Control.createAdmin;
 import DAO.DAOUser;
 import Entidad.User;
-import java.util.ArrayList;
+
 
 /**
  *
@@ -26,9 +28,9 @@ public class MainFrame extends javax.swing.JFrame {
          
     
     public MainFrame() {
+        createAdmin.createA();
         initComponents();
         ExitB.setVisible(false);
-        init();
         setLocationRelativeTo(null);                            //Centra el programa en la pantalla
         
     }
@@ -56,6 +58,7 @@ public class MainFrame extends javax.swing.JFrame {
         MainPanel.setPreferredSize(new java.awt.Dimension(800, 500));
         MainPanel.setLayout(new java.awt.BorderLayout());
 
+        TBar.setFloatable(false);
         TBar.setRollover(true);
 
         LoginB.setText("Login");
@@ -110,18 +113,12 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void LoginBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginBActionPerformed
-        MainPanel.setVisible(false);
-        MainPanel.removeAll();                                  //cambia el main panel por el loginal dar clic en login
-        MainPanel.updateUI();
-        MainPanel.add(login);
-        MainPanel.setVisible(true);
+       changePanels.change(MainPanel, login);
     // TODO add your handling code here:
     }//GEN-LAST:event_LoginBActionPerformed
 
     private void ExitBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitBActionPerformed
-        MainPanel.setVisible(false);
-        MainPanel.removeAll(); 
-        MainPanel.setVisible(true);
+       changePanels.clear(MainPanel);
         LoginB.setVisible(true);
         ExitB.setVisible(false);
     }//GEN-LAST:event_ExitBActionPerformed
@@ -164,26 +161,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
     }
     
-    public void init(){
-          
-        DAOUser dao= new DAOUser();
-       
-        
-        User a = new User();
-        User b = new User();
-             
-        a.setUserName("admin");
-        a.setRol("Administrador");                 //administrador
-        a.setPassword("12345");
-       
-        if(dao.readLogin(a) == null){
-            dao.create(a);
-        }
-            
-       
-        
-        
-    }
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton ExitB;

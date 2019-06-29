@@ -15,7 +15,7 @@ public class AdminFrame extends javax.swing.JPanel {
      * Creates new form AdminFrame
      */
     
-    public static ServicePanel sPan =new ServicePanel();                //instancio el panel de gestionar servicios
+    public static ArticlePanel sPan =new ArticlePanel();                //instancio el panel de gestionar servicios
     
     public AdminFrame() {
         initComponents();
@@ -40,6 +40,7 @@ public class AdminFrame extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(800, 540));
         setPreferredSize(new java.awt.Dimension(800, 540));
 
+        AdminTB.setFloatable(false);
         AdminTB.setRollover(true);
         AdminTB.setPreferredSize(new java.awt.Dimension(800, 23));
 

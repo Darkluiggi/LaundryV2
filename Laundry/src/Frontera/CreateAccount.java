@@ -7,6 +7,7 @@ package Frontera;
 
 import DAO.DAOUser;
 import Entidad.User;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -38,7 +39,7 @@ public class CreateAccount extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        createConfirm = new javax.swing.JDialog();
+        confirmCreate = new javax.swing.JDialog();
         jLabel2 = new javax.swing.JLabel();
         AceptarBDialogo = new javax.swing.JButton();
         CancelarBDialogo = new javax.swing.JButton();
@@ -87,16 +88,16 @@ public class CreateAccount extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         editUserActualPanel = new javax.swing.JPanel();
 
-        createConfirm.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        createConfirm.setTitle("Nuevo Usuario");
-        createConfirm.setLocation(new java.awt.Point(0, 0));
-        createConfirm.setPreferredSize(new java.awt.Dimension(440, 240));
-        createConfirm.setResizable(false);
-        createConfirm.setSize(new java.awt.Dimension(440, 240));
-        createConfirm.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        confirmCreate.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        confirmCreate.setTitle("Nuevo Usuario");
+        confirmCreate.setLocation(new java.awt.Point(0, 0));
+        confirmCreate.setPreferredSize(new java.awt.Dimension(440, 240));
+        confirmCreate.setResizable(false);
+        confirmCreate.setSize(new java.awt.Dimension(440, 240));
+        confirmCreate.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setText("¿Crear nuevo usuario?");
-        createConfirm.getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 17, -1, 29));
+        confirmCreate.getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 17, -1, 29));
 
         AceptarBDialogo.setText("Aceptar");
         AceptarBDialogo.addActionListener(new java.awt.event.ActionListener() {
@@ -104,25 +105,30 @@ public class CreateAccount extends javax.swing.JPanel {
                 AceptarBDialogoActionPerformed(evt);
             }
         });
-        createConfirm.getContentPane().add(AceptarBDialogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 158, 292, -1));
+        confirmCreate.getContentPane().add(AceptarBDialogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 158, 292, -1));
 
         CancelarBDialogo.setText("Cancelar");
-        createConfirm.getContentPane().add(CancelarBDialogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(325, 158, -1, -1));
+        CancelarBDialogo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarBDialogoActionPerformed(evt);
+            }
+        });
+        confirmCreate.getContentPane().add(CancelarBDialogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(325, 158, -1, -1));
 
         jLabel3.setText("Se creará un nuevo usuario, este proceso es irreversible");
-        createConfirm.getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 62, -1, -1));
+        confirmCreate.getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 62, -1, -1));
 
         jLabel4.setText("ID del nuevo usuario:");
-        createConfirm.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 91, -1, -1));
+        confirmCreate.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 91, -1, -1));
 
         IDNUsuarioLabel.setText("###################");
-        createConfirm.getContentPane().add(IDNUsuarioLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, -1, -1));
+        confirmCreate.getContentPane().add(IDNUsuarioLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, -1, -1));
 
         jLabel6.setText("Contraseña:");
-        createConfirm.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 120, -1, -1));
+        confirmCreate.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 120, -1, -1));
 
         ContraseñaNUsuarioLabel.setText("###################");
-        createConfirm.getContentPane().add(ContraseñaNUsuarioLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, -1, -1));
+        confirmCreate.getContentPane().add(ContraseñaNUsuarioLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, -1, -1));
 
         jFrame1.setUndecorated(true);
 
@@ -256,6 +262,11 @@ public class CreateAccount extends javax.swing.JPanel {
                 createBActionPerformed(evt);
             }
         });
+        createB.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                createBKeyReleased(evt);
+            }
+        });
 
         nameTF.setText("Nombre");
         nameTF.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -323,6 +334,11 @@ public class CreateAccount extends javax.swing.JPanel {
         passwordTF.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 passwordTFMouseClicked(evt);
+            }
+        });
+        passwordTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                passwordTFKeyReleased(evt);
             }
         });
 
@@ -469,8 +485,8 @@ public class CreateAccount extends javax.swing.JPanel {
 
     private void createBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBActionPerformed
         
-        createConfirm.setVisible(true);
-        createConfirm.setLocationRelativeTo(null);
+        confirmCreate.setVisible(true);
+        confirmCreate.setLocationRelativeTo(null);
         IDNUsuarioLabel.setText(userNameTF.getText());
         ContraseñaNUsuarioLabel.setText(passwordTF.getText());
          
@@ -487,6 +503,14 @@ public class CreateAccount extends javax.swing.JPanel {
         a=findIdTF.getText();
         usera.setUserName(a);
         userb=dao.read(usera);
+        if(userb==null){
+            editUserActualPanel.setVisible(false);
+        editUserActualPanel.removeAll();                                
+        editUserActualPanel.add(editUserErrorPanel);
+        editUserActualPanel.setVisible(true);
+        buscarErrorLabel.setText(findIdTF.getText());
+        }else{
+        
         editNameTF.setText(userb.getName());
         editLastNameTF.setText(userb.getLastName());
         editUserNameTF.setText(userb.getUserName());
@@ -505,7 +529,8 @@ public class CreateAccount extends javax.swing.JPanel {
         editUserActualPanel.add(editPanel);
         editUserActualPanel.setVisible(true);
         idEditLabel.setText(findIdTF.getText());
-
+    
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_findBActionPerformed
 
@@ -570,6 +595,20 @@ public class CreateAccount extends javax.swing.JPanel {
                 // TODO add your handling code here:
     }//GEN-LAST:event_cancelBActionPerformed
 
+    private void passwordTFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordTFKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordTFKeyReleased
+
+    private void createBKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_createBKeyReleased
+              if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+               createBActionPerformed(null);                                   //al presionar enter creando el género presiona aceptar y guarda el dato
+                      }         // TODO add your handling code here:
+    }//GEN-LAST:event_createBKeyReleased
+
+    private void CancelarBDialogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBDialogoActionPerformed
+       confirmCreate.dispose();                 // TODO add your handling code here:
+    }//GEN-LAST:event_CancelarBDialogoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AceptarBDialogo;
     private javax.swing.JButton CancelarBDialogo;
@@ -579,9 +618,9 @@ public class CreateAccount extends javax.swing.JPanel {
     private javax.swing.JTextField adressTF;
     private javax.swing.JLabel buscarErrorLabel;
     private javax.swing.JButton cancelB;
+    private javax.swing.JDialog confirmCreate;
     private javax.swing.JTextField countryTF;
     private javax.swing.JButton createB;
-    private javax.swing.JDialog createConfirm;
     private javax.swing.JLabel createUserL;
     private javax.swing.JCheckBox editAdminC;
     private javax.swing.JTextField editAdressTF;

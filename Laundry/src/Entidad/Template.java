@@ -23,8 +23,11 @@ public class Template implements Serializable  {
     private String gender;
     private String clothName;
     private float washPrice;
+    private boolean washA;
     private float waiPrice;
+    private boolean waiA;
     private float ironPrice;
+    private boolean ironA;
     private boolean fold;
     
     @Id
@@ -48,6 +51,22 @@ public class Template implements Serializable  {
 
      public String getClothName() {
         return clothName;
+    }
+
+    public boolean isWashA() {
+        return washA;
+    }
+
+    public boolean isWaiA() {
+        return waiA;
+    }
+
+    public boolean isIronA() {
+        return ironA;
+    }
+
+    public boolean isFold() {
+        return fold;
     }
     
     public float getWashPrice(){
@@ -73,6 +92,18 @@ public class Template implements Serializable  {
     }
      public void setWashPrice(float washPrice){
         this.washPrice = washPrice;
+    }
+
+    public void setWashA(boolean washA) {
+        this.washA = washA;
+    }
+
+    public void setWaiA(boolean waiA) {
+        this.waiA = waiA;
+    }
+
+    public void setIronA(boolean ironA) {
+        this.ironA = ironA;
     }
     public void setWaiPrice(float waiPrice){
         this.waiPrice=waiPrice;

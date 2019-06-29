@@ -58,7 +58,9 @@ public class DAOTemplate {
         EntityManager em =emf.createEntityManager();
         Template temp= null;
             Query q =em.createQuery("SELECT u FROM Template u "+
-                "WHERE u.clothName LIKE: clothName")
+                "WHERE u.gender LIKE: gender"+
+                    "WHERE u.clothName LIKE: clothName")
+                .setParameter("gender",object.getGender())
                 .setParameter("clothName",object.getClothName());
             try{
                 temp = (Template) q.getSingleResult();

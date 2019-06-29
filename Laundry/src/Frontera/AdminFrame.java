@@ -5,6 +5,8 @@
  */
 package Frontera;
 
+import Control.ChangePanels;
+
 /**
  *
  * @author leons
@@ -91,11 +93,8 @@ public class AdminFrame extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ServiceBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ServiceBActionPerformed
-       ServP.setVisible(false);                                     //el botón cambia el panel al de editar servicios
-       ServP.removeAll();
-       ServP.add(sPan);
-       ServP.setVisible(true);
-        // TODO add your handling code here:
+        ChangePanels.change(ServP, sPan);
+         // TODO add your handling code here:
     }//GEN-LAST:event_ServiceBActionPerformed
 
 

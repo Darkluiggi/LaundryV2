@@ -5,8 +5,8 @@
  */
 package Frontera;
 
-import Control.changePanels;
-import Control.createAdmin;
+import Control.ChangePanels;
+import Control.CreateAccount;
 import DAO.DAOUser;
 import Entidad.User;
 
@@ -28,7 +28,7 @@ public class MainFrame extends javax.swing.JFrame {
          
     
     public MainFrame() {
-        createAdmin.createA();
+        CreateAccount.createAdmin();
         initComponents();
         ExitB.setVisible(false);
         setLocationRelativeTo(null);                            //Centra el programa en la pantalla
@@ -113,12 +113,12 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void LoginBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginBActionPerformed
-       changePanels.change(MainPanel, login);
+       ChangePanels.change(MainPanel, login);
     // TODO add your handling code here:
     }//GEN-LAST:event_LoginBActionPerformed
 
     private void ExitBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitBActionPerformed
-       changePanels.clear(MainPanel);
+       ChangePanels.clear(MainPanel);
         LoginB.setVisible(true);
         ExitB.setVisible(false);
     }//GEN-LAST:event_ExitBActionPerformed

@@ -5,6 +5,7 @@
  */
 package Frontera;
 
+import Control.ChangePanels;
 import DAO.DAOUser;
 import Entidad.User;
 import java.awt.event.KeyEvent;
@@ -269,6 +270,11 @@ public class CreateAccount extends javax.swing.JPanel {
         });
 
         nameTF.setText("Nombre");
+        nameTF.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                nameTFFocusGained(evt);
+            }
+        });
         nameTF.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 nameTFMouseClicked(evt);
@@ -281,6 +287,11 @@ public class CreateAccount extends javax.swing.JPanel {
         });
 
         lastNameTF.setText("Apellido");
+        lastNameTF.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                lastNameTFFocusGained(evt);
+            }
+        });
         lastNameTF.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lastNameTFMouseClicked(evt);
@@ -454,21 +465,7 @@ public class CreateAccount extends javax.swing.JPanel {
 
     private void AceptarBDialogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarBDialogoActionPerformed
       
-       User user = new User();
-      user.setName((String)nameTF.getText());
-      user.setLastName((String)lastNameTF.getText());
-      user.setUserName((String) userNameTF.getText());
-      user.setCountry((String)countryTF.getText());
-      user.setAdress((String) adressTF.getText());
-      user.setPassword((String) passwordTF.getText());
-      user.setPhone((String) phoneTF.getText());
-      if(adminC.isSelected() == Boolean.TRUE){
-          user.setRol("Administrador");
-      }else{
-          user.setRol("Encargado de cabina");
-      }
-            
-      dao.create(user);         // TODO add your handling code here:
+        Control.CreateAccount.createUser(nameTF, lastNameTF, userNameTF, countryTF, adressTF, passwordTF, phoneTF, adminC);        // TODO add your handling code here:
     }//GEN-LAST:event_AceptarBDialogoActionPerformed
 
     private void findIdTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findIdTFActionPerformed
@@ -484,7 +481,7 @@ public class CreateAccount extends javax.swing.JPanel {
     }//GEN-LAST:event_editNameTFActionPerformed
 
     private void createBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBActionPerformed
-        
+      
         confirmCreate.setVisible(true);
         confirmCreate.setLocationRelativeTo(null);
         IDNUsuarioLabel.setText(userNameTF.getText());
@@ -504,13 +501,8 @@ public class CreateAccount extends javax.swing.JPanel {
         usera.setUserName(a);
         userb=dao.read(usera);
         if(userb==null){
-            editUserActualPanel.setVisible(false);
-        editUserActualPanel.removeAll();                                
-        editUserActualPanel.add(editUserErrorPanel);
-        editUserActualPanel.setVisible(true);
-        buscarErrorLabel.setText(findIdTF.getText());
-        }else{
-        
+            ChangePanels.change(editUserActualPanel, editUserErrorPanel);
+            }else{        
         editNameTF.setText(userb.getName());
         editLastNameTF.setText(userb.getLastName());
         editUserNameTF.setText(userb.getUserName());
@@ -523,11 +515,7 @@ public class CreateAccount extends javax.swing.JPanel {
       }else{
           editAdminC.setSelected(Boolean.FALSE);
       }
-        
-        editUserActualPanel.setVisible(false);
-        editUserActualPanel.removeAll();                                
-        editUserActualPanel.add(editPanel);
-        editUserActualPanel.setVisible(true);
+        ChangePanels.change(editUserActualPanel, editPanel);
         idEditLabel.setText(findIdTF.getText());
     
         }
@@ -567,19 +555,10 @@ public class CreateAccount extends javax.swing.JPanel {
     }//GEN-LAST:event_findIdTFMouseClicked
 
     private void editBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBActionPerformed
-        userc.setName(editNameTF.getText());
-        userc.setLastName(editLastNameTF.getText());
-        userc.setUserName(editUserNameTF.getText());
-        userc.setCountry(editCountryTF.getText());       
-        userc.setPhone(editPhoneTF.getText());
-        userc.setAdress(editAdressTF.getText());
-        userc.setPassword(editPassTF.getText());
-        if(editAdminC.isSelected() == Boolean.TRUE){
-          userc.setRol("Administrador");
-      }else{
-          userc.setRol("Encargado de cabina");
-      }
-        dao.update(usera, userc);
+       
+        Control.CreateAccount.updateUser(usera, userc, editNameTF, editLastNameTF, editUserNameTF,
+                                            editCountryTF, editAdressTF, editPassTF, editPhoneTF, editAdminC);
+        
                                                                         // TODO add your handling code here:
     }//GEN-LAST:event_editBActionPerformed
 
@@ -588,11 +567,8 @@ public class CreateAccount extends javax.swing.JPanel {
     }//GEN-LAST:event_editCountryTFActionPerformed
 
     private void cancelBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBActionPerformed
-        
-        editUserActualPanel.setVisible(false);
-        editUserActualPanel.removeAll();
-        editUserActualPanel.setVisible(true);
-                // TODO add your handling code here:
+        ChangePanels.clear(editUserActualPanel);
+                  // TODO add your handling code here:
     }//GEN-LAST:event_cancelBActionPerformed
 
     private void passwordTFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordTFKeyReleased
@@ -608,6 +584,14 @@ public class CreateAccount extends javax.swing.JPanel {
     private void CancelarBDialogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBDialogoActionPerformed
        confirmCreate.dispose();                 // TODO add your handling code here:
     }//GEN-LAST:event_CancelarBDialogoActionPerformed
+
+    private void nameTFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameTFFocusGained
+              nameTF.selectAll(); // TODO add your handling code here:
+    }//GEN-LAST:event_nameTFFocusGained
+
+    private void lastNameTFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lastNameTFFocusGained
+       lastNameTF.selectAll(); // TODO add your handling code here:
+    }//GEN-LAST:event_lastNameTFFocusGained
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AceptarBDialogo;

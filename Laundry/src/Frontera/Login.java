@@ -6,7 +6,7 @@
 package Frontera;
 
 import Control.ValidateLogin;
-import Control.changePanels;
+import Control.ChangePanels;
 import DAO.DAOUser;
 import Entidad.User;
 import java.awt.event.KeyEvent;
@@ -135,11 +135,11 @@ public class Login extends javax.swing.JPanel {
     ValidateLogin validate = new ValidateLogin();
     String result = validate.verifyLogin(user);
     if (result.equals("Administrador")){
-        changePanels.change(MainFrame.MainPanel, MainFrame.admin);
+        ChangePanels.change(MainFrame.MainPanel, MainFrame.admin);
         
     } if(result.equals("Encargado de cabina")){
         
-        changePanels.change(MainFrame.MainPanel, MainFrame.user);
+        ChangePanels.change(MainFrame.MainPanel, MainFrame.user);
         
     }else{
         ExceptionField.setText(result);

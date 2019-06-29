@@ -5,7 +5,7 @@
  */
 package Frontera;
 
-import Control.changePanels;
+import Control.ChangePanels;
 
 /**
  *
@@ -111,21 +111,21 @@ public class ArticlePanel extends javax.swing.JPanel {
 
     private void AddBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBActionPerformed
       
-        changePanels.change(ServP, NServ); 
+        ChangePanels.change(ServP, NServ); 
         // TODO add your handling code here:
     }//GEN-LAST:event_AddBActionPerformed
 
     private void AccountBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccountBActionPerformed
-        changePanels.change(ServP, acc); 
+        ChangePanels.change(ServP, acc); 
                                               // TODO add your handling code here:
     }//GEN-LAST:event_AccountBActionPerformed
 
     private void ViewSBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewSBActionPerformed
-        changePanels.change(ServP, viewT);        // TODO add your handling code here:
+        ChangePanels.change(ServP, viewT);        // TODO add your handling code here:
     }//GEN-LAST:event_ViewSBActionPerformed
 
     private void EditSBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditSBActionPerformed
-        changePanels.change(ServP, editT);         // TODO add your handling code here:
+        ChangePanels.change(ServP, editT);         // TODO add your handling code here:
     }//GEN-LAST:event_EditSBActionPerformed
 
 

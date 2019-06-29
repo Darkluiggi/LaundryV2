@@ -6,7 +6,8 @@
 
 package Frontera;
 
-import Control.listTemplate;
+import Control.ChangePanels;
+import Control.ListTemplate;
 import DAO.DAOTemplate;
 import Entidad.Template;
 import java.awt.event.KeyEvent;
@@ -35,7 +36,7 @@ public class NewArticlePanel extends javax.swing.JPanel {
     public NewArticlePanel() {
        
         initComponents();
-        listTemplate.fillTable(schemaClothes);
+        ListTemplate.fillTable(schemaClothes);
         
         List<String> list2 = daoT.getGenders();
         
@@ -216,9 +217,8 @@ public class NewArticlePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_NameTFActionPerformed
 
     private void CancelBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBActionPerformed
-     ArticlePanel.ServP.setVisible(false);
-     ArticlePanel.ServP.removeAll();                        //al cancelar oculta la ventana
-     ArticlePanel.ServP.setVisible(true);
+        ChangePanels.clear(ArticlePanel.ServP);                                         //al cancelar oculta la ventana
+        
      // TODO add your handling code here:
     }//GEN-LAST:event_CancelBActionPerformed
 
@@ -235,8 +235,8 @@ public class NewArticlePanel extends javax.swing.JPanel {
         temp.setIronA(IronC.isSelected());
         temp.setFold(foldC.isSelected());
         daoT.create(temp);
-        listTemplate.fillTable(schemaClothes);
-//        DefaultTableModel servicesTable = (DefaultTableModel) schemaClothes.getModel();
+        ListTemplate.fillTable(schemaClothes);
+
                 
 
 

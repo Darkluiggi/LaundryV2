@@ -10,6 +10,7 @@ import DAO.DAOTemplate;
 import Entidad.Template;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -35,11 +36,17 @@ public class NewServicePanel extends javax.swing.JPanel {
         DefaultTableModel model = new DefaultTableModel(null, new String [] {
                 "Género", "Nombre", "Lavado", "Lavado y Planchado", "Planchado"
             });
-    for (Template t : list) {
-        model.addRow(new Object[]{t.getGender(), t.getClothName(), t.getWashPrice(), t.getWaiPrice(), t.getIronPrice()});
-    }
-    schemaClothes.setModel(model);
+        for (Template t : list) {
+            model.addRow(new Object[]{t.getGender(), t.getClothName(), t.getWashPrice(), t.getWaiPrice(), t.getIronPrice()});
+        }
         
+        schemaClothes.setModel(model);
+        
+        List<String> list2 = daoT.getGenders();
+        
+        DefaultComboBoxModel model2 = new DefaultComboBoxModel(list2.toArray());
+        
+        GenderBox.setModel(model2);
     }
 
     /**

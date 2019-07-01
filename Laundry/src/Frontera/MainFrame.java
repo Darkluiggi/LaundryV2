@@ -5,7 +5,7 @@
  */
 package Frontera;
 
-import Control.ChangePanels;
+import Utils.PanelUtils;
 import Control.CreateAccount;
 import DAO.DAOUser;
 import Entidad.User;
@@ -113,12 +113,12 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void LoginBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginBActionPerformed
-       ChangePanels.change(MainPanel, login);
+       PanelUtils.change(MainPanel, login);
     // TODO add your handling code here:
     }//GEN-LAST:event_LoginBActionPerformed
 
     private void ExitBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitBActionPerformed
-       ChangePanels.clear(MainPanel);
+       PanelUtils.clear(MainPanel);
         LoginB.setVisible(true);
         ExitB.setVisible(false);
     }//GEN-LAST:event_ExitBActionPerformed

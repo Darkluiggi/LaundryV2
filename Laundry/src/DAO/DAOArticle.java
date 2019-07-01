@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import Entidad.Template;
+import Entidad.Article;
 import java.util.*;
 import javax.persistence.*;
 
@@ -14,12 +14,12 @@ import javax.persistence.*;
  *
  * @author Darkluiggi
  */
-public class DAOTemplate {
+public class DAOArticle {
     
     private static EntityManagerFactory 
             emf= Persistence.createEntityManagerFactory("LoginJPAPU");
     
-    public void create (Template object){
+    public void create (Article object){
         
         EntityManager em =emf.createEntityManager();
         em.getTransaction().begin();
@@ -35,7 +35,7 @@ public class DAOTemplate {
     }
     }
         
-     public boolean delete(Template object){
+     public boolean delete(Article object){
         
         EntityManager em =emf.createEntityManager();
         em.getTransaction().begin();
@@ -53,19 +53,19 @@ public class DAOTemplate {
         return ret;
             }
      }
-     public Template read(Template object){
+     public Article read(Article object){
         
         EntityManager em =emf.createEntityManager();
-        Template temp= null;
-            Query q =em.createQuery("SELECT u FROM Template u "+
+        Article temp= null;
+            Query q =em.createQuery("SELECT u FROM Article u "+
                 "WHERE u.gender LIKE: gender"+
                     "WHERE u.clothName LIKE: clothName")
                 .setParameter("gender",object.getGender())
                 .setParameter("clothName",object.getClothName());
             try{
-                temp = (Template) q.getSingleResult();
+                temp = (Article) q.getSingleResult();
             }catch (NonUniqueResultException e){
-                temp = (Template) q.getResultList().get(0);
+                temp = (Article) q.getResultList().get(0);
             }catch(Exception e){
             e.printStackTrace();
            }finally {
@@ -75,7 +75,7 @@ public class DAOTemplate {
             
      }
      
-     public boolean update(Template object, Template newObject){
+     public boolean update(Article object, Article newObject){
          
          EntityManager em =emf.createEntityManager();
         em.getTransaction().begin();
@@ -96,12 +96,12 @@ public class DAOTemplate {
             }
      }
      
-     public List<Template> findAll(){
+     public List<Article> findAll(){
         
         List list = new ArrayList();
         EntityManager em =emf.createEntityManager();
-        Template temp= null;
-            Query q =em.createQuery("SELECT u FROM Template u");
+        Article temp= null;
+            Query q =em.createQuery("SELECT u FROM Article u");
             try{
                 list =  q.getResultList();
             }catch(Exception e){
@@ -115,8 +115,8 @@ public class DAOTemplate {
      public List<String> getGenders(){
         List list = new ArrayList();
         EntityManager em =emf.createEntityManager();
-        Template temp= null;
-            Query q =em.createQuery("SELECT DISTINCT u.gender FROM Template u");
+        Article temp= null;
+            Query q =em.createQuery("SELECT DISTINCT u.gender FROM Article u");
             try{
                 list =  q.getResultList();
             }catch(Exception e){

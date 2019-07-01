@@ -5,7 +5,7 @@
  */
 package Frontera;
 
-import DAO.DAOTemplate;
+import DAO.DAOArticle;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 
@@ -18,7 +18,7 @@ public class EditArticle extends javax.swing.JPanel {
     /**
      * Creates new form EditService
      */
-    private DAOTemplate daoT = new DAOTemplate();
+    private DAOArticle daoT = new DAOArticle();
     public EditArticle() {
         initComponents();
         List<String> list = daoT.getGenders();

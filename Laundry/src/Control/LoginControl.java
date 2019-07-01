@@ -7,19 +7,18 @@ package Control;
 
 import DAO.DAOUser;
 import Entidad.User;
-import java.util.ArrayList;
 
 /**
  *
  * @author leoleguizamon
  */
-public class ValidateLogin {
+public class LoginControl {
     //private Sistema sistema = formularioFramePrincipal.sistema;
     
     private DAOUser dao = new DAOUser();
     private User log = new User();
                
-    public ValidateLogin() {
+    public LoginControl() {
         
     }
     public String verifyLogin (User user){
@@ -31,11 +30,11 @@ public class ValidateLogin {
         }
 
         if(dao.readLogin(user)!= null){
-            log=dao.readLogin(user);
-            if(log.getRol().equals("Administrador") ){
+            log = dao.readLogin(user);
+            if(log.getRole().equals("Administrador") ){
             return ("Administrador");
             }else{
-                if(log.getRol().equals("Encargado de cabina") ){
+                if(log.getRole().equals("Encargado de cabina") ){
                 return ("Encargado de cabina");
             }
           }

@@ -17,8 +17,8 @@ import javax.persistence.Table;
  * @author luaalvarezve
  */
 @Entity
-@Table (name="Plantilla")
-public class Template implements Serializable  {
+@Table (name="Article")
+public class Article implements Serializable  {
     
     private String gender;
     private String clothName;
@@ -42,7 +42,7 @@ public class Template implements Serializable  {
         this.id = id;
     }
     
-    public Template(){
+    public Article(){
     }
 
     public String getGender() {

@@ -5,9 +5,9 @@
  */
 package Frontera;
 
-import Control.ListTemplate;
-import DAO.DAOTemplate;
-import Entidad.Template;
+import Utils.TableUtils;
+import DAO.DAOArticle;
+import Entidad.Article;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,7 +25,7 @@ public class ViewArticles extends javax.swing.JPanel {
     public ViewArticles() {
             
         initComponents();
-        ListTemplate.fillTable(schemaClothes);
+        TableUtils.fillTable(schemaClothes);
         
     }
 

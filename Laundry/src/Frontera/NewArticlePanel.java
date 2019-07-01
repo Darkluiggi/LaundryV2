@@ -6,10 +6,10 @@
 
 package Frontera;
 
-import Control.ChangePanels;
-import Control.ListTemplate;
-import DAO.DAOTemplate;
-import Entidad.Template;
+import Utils.PanelUtils;
+import Utils.TableUtils;
+import DAO.DAOArticle;
+import Entidad.Article;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,12 +31,12 @@ public class NewArticlePanel extends javax.swing.JPanel {
      */
     public static AddGender addG = new AddGender();             //instancio las ventanas a las que puede acceder este panel
     public static ArrayList genders= new ArrayList();
-    private DAOTemplate daoT = new DAOTemplate();
+    private DAOArticle daoT = new DAOArticle();
     
     public NewArticlePanel() {
        
         initComponents();
-        ListTemplate.fillTable(schemaClothes);
+        TableUtils.fillTable(schemaClothes);
         
         List<String> list2 = daoT.getGenders();
         
@@ -217,13 +217,13 @@ public class NewArticlePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_NameTFActionPerformed
 
     private void CancelBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBActionPerformed
-        ChangePanels.clear(ArticlePanel.ServP);                                         //al cancelar oculta la ventana
+        PanelUtils.clear(ArticlePanel.ServP);                                         //al cancelar oculta la ventana
         
      // TODO add your handling code here:
     }//GEN-LAST:event_CancelBActionPerformed
 
     private void AcceptBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptBActionPerformed
-        Template temp = new Template();
+        Article temp = new Article();
         
         temp.setGender((String)GenderBox.getSelectedItem());
         temp.setClothName(NameTF.getText());
@@ -235,7 +235,7 @@ public class NewArticlePanel extends javax.swing.JPanel {
         temp.setIronA(IronC.isSelected());
         temp.setFold(foldC.isSelected());
         daoT.create(temp);
-        ListTemplate.fillTable(schemaClothes);
+        TableUtils.fillTable(schemaClothes);
 
                 
 

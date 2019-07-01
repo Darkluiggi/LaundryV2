@@ -57,7 +57,7 @@ public class DAOUser {
             Query q =em.createQuery("SELECT u FROM User u "+
                 "WHERE u.userName LIKE :name "+
                 "AND u.password LIKE :password")
-                .setParameter("name",object.getUserName())
+                .setParameter("name",object.getUserName().toLowerCase())
                 .setParameter("password",object.getPassword());
             try{
                 user = (User) q.getSingleResult();
@@ -105,7 +105,7 @@ public class DAOUser {
             object.setLastName(newObject.getLastName());
             object.setName(newObject.getName());
             object.setPhone(newObject.getPhone());
-            object.setRol(newObject.getRol());
+            object.setRole(newObject.getRole());
             em.merge(object);
             em.getTransaction().commit();
             ret = true;

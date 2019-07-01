@@ -5,7 +5,7 @@
  */
 package Frontera;
 
-import Control.ChangePanels;
+import Utils.PanelUtils;
 
 /**
  *
@@ -93,7 +93,7 @@ public class AdminFrame extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ServiceBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ServiceBActionPerformed
-        ChangePanels.change(ServP, sPan);
+        PanelUtils.change(ServP, sPan);
          // TODO add your handling code here:
     }//GEN-LAST:event_ServiceBActionPerformed
 

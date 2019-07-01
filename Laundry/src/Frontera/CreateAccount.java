@@ -5,7 +5,7 @@
  */
 package Frontera;
 
-import Control.ChangePanels;
+import Utils.PanelUtils;
 import DAO.DAOUser;
 import Entidad.User;
 import java.awt.event.KeyEvent;
@@ -501,7 +501,7 @@ public class CreateAccount extends javax.swing.JPanel {
         usera.setUserName(a);
         userb=dao.read(usera);
         if(userb==null){
-            ChangePanels.change(editUserActualPanel, editUserErrorPanel);
+            PanelUtils.change(editUserActualPanel, editUserErrorPanel);
             }else{        
         editNameTF.setText(userb.getName());
         editLastNameTF.setText(userb.getLastName());
@@ -510,12 +510,12 @@ public class CreateAccount extends javax.swing.JPanel {
         editCountryTF.setText(userb.getCountry());
         editPhoneTF.setText(userb.getPhone());
         editAdressTF.setText(userb.getAdress());
-        if(userb.getRol().equals("Administrador")){
+        if(userb.getRole().equals("Administrador")){
           editAdminC.setSelected(Boolean.TRUE);
       }else{
           editAdminC.setSelected(Boolean.FALSE);
       }
-        ChangePanels.change(editUserActualPanel, editPanel);
+        PanelUtils.change(editUserActualPanel, editPanel);
         idEditLabel.setText(findIdTF.getText());
     
         }
@@ -567,7 +567,7 @@ public class CreateAccount extends javax.swing.JPanel {
     }//GEN-LAST:event_editCountryTFActionPerformed
 
     private void cancelBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBActionPerformed
-        ChangePanels.clear(editUserActualPanel);
+        PanelUtils.clear(editUserActualPanel);
                   // TODO add your handling code here:
     }//GEN-LAST:event_cancelBActionPerformed
 

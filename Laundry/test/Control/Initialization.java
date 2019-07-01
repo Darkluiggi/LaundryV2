@@ -54,13 +54,13 @@ public class Initialization {
         
         a.setUserName("juan");
         a.setPassword("1234");
-        a.setRol("Encargado de cabina");
+        a.setRole("Encargado de cabina");
         b.setUserName("pedro");
-        b.setRol("Administrador");                 //administrador
+        b.setRole("Administrador");                 //administrador
         b.setPassword("123");
         c.setUserName("maria");
         c.setPassword("12345");
-        c.setRol("Encargado de cabina");
+        c.setRole("Encargado de cabina");
         
         users.add(a);
         users.add(b);
@@ -70,7 +70,7 @@ public class Initialization {
         for (User u : users ){
             System.out.println(u.getUserName());
             System.out.println(u.getPassword());
-            if(u.getRol().equals("Administrador")){
+            if(u.getRole().equals("Administrador")){
                 System.out.println("Administrador");
             }
             else {

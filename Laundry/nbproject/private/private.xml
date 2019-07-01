@@ -3,21 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/leons/Documents/NetBeansProjects/LaundryRepo/Laundry/Laundry/src/Frontera/Login.java</file>
-            <file>file:/C:/Users/leons/Documents/NetBeansProjects/LaundryRepo/Laundry/Laundry/src/Frontera/CreateAccount.java</file>
-            <file>file:/C:/Users/leons/Documents/NetBeansProjects/LaundryRepo/Laundry/Laundry/src/Entidad/Template.java</file>
-            <file>file:/C:/Users/leons/Documents/NetBeansProjects/LaundryRepo/Laundry/Laundry/src/Frontera/EditService.java</file>
-            <file>file:/C:/Users/leons/Documents/NetBeansProjects/LaundryRepo/Laundry/Laundry/src/DAO/DAOTemplate.java</file>
-            <file>file:/C:/Users/leons/Documents/NetBeansProjects/LaundryRepo/Laundry/Laundry/test/Control/Initialization.java</file>
-            <file>file:/C:/Users/leons/Documents/NetBeansProjects/LaundryRepo/Laundry/Laundry/src/Entidad/User.java</file>
-            <file>file:/C:/Users/leons/Documents/NetBeansProjects/LaundryRepo/Laundry/Laundry/src/Frontera/ServicePanel.java</file>
-            <file>file:/C:/Users/leons/Documents/NetBeansProjects/LaundryRepo/Laundry/Laundry/src/Frontera/NewServicePanel.java</file>
-            <file>file:/C:/Users/leons/Documents/NetBeansProjects/LaundryRepo/Laundry/Laundry/src/Frontera/UserFrame.java</file>
-            <file>file:/C:/Users/leons/Documents/NetBeansProjects/LaundryRepo/Laundry/Laundry/src/Frontera/AccountManagement.java</file>
-            <file>file:/C:/Users/leons/Documents/NetBeansProjects/LaundryRepo/Laundry/Laundry/src/Frontera/MainFrame.java</file>
-            <file>file:/C:/Users/leons/Documents/NetBeansProjects/LaundryRepo/Laundry/Laundry/src/Frontera/AddGender.java</file>
-            <file>file:/C:/Users/leons/Documents/NetBeansProjects/LaundryRepo/Laundry/Laundry/src/Frontera/viewTemplate.java</file>
-            <file>file:/C:/Users/leons/Documents/NetBeansProjects/LaundryRepo/Laundry/Laundry/src/Control/ValidateLogin.java</file>
+            <file>file:/D:/Documentos/NetBeansProjects/Laundry/Laundry/src/Frontera/MainFrame.java</file>
+            <file>file:/D:/Documentos/NetBeansProjects/Laundry/Laundry/test/Control/Initialization.java</file>
+            <file>file:/D:/Documentos/NetBeansProjects/Laundry/Laundry/src/DAO/DAOTemplate.java</file>
         </group>
     </open-files>
 </project-private>

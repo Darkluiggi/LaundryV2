@@ -15,65 +15,65 @@ import javax.swing.JTextField;
  * @author leons
  */
 public class CreateAccount {
-    
+
     private static DAOUser dao = new DAOUser();
-    
+
     public CreateAccount() {
     }
-    public static void createAdmin(){
-                 
-        DAOUser dao= new DAOUser();
-       
-        
+
+    public static void createAdmin() {
+
+        DAOUser dao = new DAOUser();
+
         User a = new User();
         User b = new User();
-             
+
         a.setUserName("admin");
-        a.setRol("Administrador");                 //administrador
+        a.setRole("Administrador");                 //administrador
         a.setPassword("12345");
-       
-        if(dao.readLogin(a) == null){
+
+        if (dao.readLogin(a) == null) {
             dao.create(a);
         }
-            
-       }
-    
-    public static void createUser(JTextField nameTF, JTextField lastNameTF,JTextField userNameTF,
-            JTextField countryTF, JTextField adressTF,JTextField passwordTF,JTextField phoneTF,JCheckBox adminC){
-      
-      User user = new User();
-      user.setName((String)nameTF.getText());
-      user.setLastName((String)lastNameTF.getText());
-      user.setUserName((String) userNameTF.getText());
-      user.setCountry((String)countryTF.getText());
-      user.setAdress((String) adressTF.getText());
-      user.setPassword((String) passwordTF.getText());
-      user.setPhone((String) phoneTF.getText());
-      if(adminC.isSelected() == Boolean.TRUE){
-          user.setRol("Administrador");
-      }else{
-          user.setRol("Encargado de cabina");
-      }
-            
-      dao.create(user); 
+
     }
-    public static void updateUser(User usera, User userb, JTextField nameTF, JTextField lastNameTF,JTextField userNameTF,
-            JTextField countryTF, JTextField adressTF,JTextField passwordTF,JTextField phoneTF,JCheckBox adminC){
-        
+
+    public static void createUser(JTextField nameTF, JTextField lastNameTF, JTextField userNameTF,
+            JTextField countryTF, JTextField adressTF, JTextField passwordTF, JTextField phoneTF, JCheckBox adminC) {
+
+        User user = new User();
+        user.setName((String) nameTF.getText());
+        user.setLastName((String) lastNameTF.getText());
+        user.setUserName((String) userNameTF.getText());
+        user.setCountry((String) countryTF.getText());
+        user.setAdress((String) adressTF.getText());
+        user.setPassword((String) passwordTF.getText());
+        user.setPhone((String) phoneTF.getText());
+        if (adminC.isSelected() == Boolean.TRUE) {
+            user.setRole("Administrador");
+        } else {
+            user.setRole("Encargado de cabina");
+        }
+
+        dao.create(user);
+    }
+
+    public static void updateUser(User usera, User userb, JTextField nameTF, JTextField lastNameTF, JTextField userNameTF,
+            JTextField countryTF, JTextField adressTF, JTextField passwordTF, JTextField phoneTF, JCheckBox adminC) {
+
         userb.setName(nameTF.getText());
         userb.setLastName(lastNameTF.getText());
         userb.setUserName(userNameTF.getText());
-        userb.setCountry(countryTF.getText());       
+        userb.setCountry(countryTF.getText());
         userb.setPhone(phoneTF.getText());
         userb.setAdress(adressTF.getText());
         userb.setPassword(passwordTF.getText());
-        if(adminC.isSelected() == Boolean.TRUE){
-          userb.setRol("Administrador");
-      }else{
-          userb.setRol("Encargado de cabina");
-      }
+        if (adminC.isSelected() == Boolean.TRUE) {
+            userb.setRole("Administrador");
+        } else {
+            userb.setRole("Encargado de cabina");
+        }
         dao.update(usera, userb);
     }
-    
-    }
 
+}

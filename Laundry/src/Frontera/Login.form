@@ -42,22 +42,19 @@
               </Group>
               <EmptySpace pref="148" max="32767" attributes="0"/>
           </Group>
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="54" pref="54" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="userL" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="56" pref="56" max="-2" attributes="0"/>
-                      <Component id="NameTF" min="-2" pref="123" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="passL" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="31" pref="31" max="-2" attributes="0"/>
-                      <Component id="PassTF" min="-2" pref="123" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="userL" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="passL" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="NameTF" pref="123" max="32767" attributes="0"/>
+                  <Component id="PassTF" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-              <Component id="ExceptionField" max="32767" attributes="0"/>
+              <Component id="ExceptionField" pref="95" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -78,15 +75,15 @@
                       </Group>
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="PassTF" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="passL" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="PassTF" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="ExceptionField" min="-2" pref="91" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
               <Component id="AcceptB" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="40" max="32767" attributes="0"/>
+              <EmptySpace pref="91" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -98,15 +95,10 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AcceptBActionPerformed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="AcceptBKeyPressed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="NameTF">
-    </Component>
-    <Component class="javax.swing.JTextField" name="PassTF">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PassTFActionPerformed"/>
-        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="PassTFKeyReleased"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="userL">
       <Properties>
@@ -124,6 +116,11 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="ExceptionField">
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="PassTF">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PassTFActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

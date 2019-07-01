@@ -5,12 +5,11 @@
  */
 package Frontera;
 
-import Control.ValidateLogin;
-import Control.ChangePanels;
-import DAO.DAOUser;
+import Control.LoginControl;
+import Utils.PanelUtils;
 import Entidad.User;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 
 /**
  *
@@ -26,6 +25,17 @@ public class Login extends javax.swing.JPanel {
     public Login() {
         initComponents();
         
+        KeyAdapter ka;
+        ka = new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode()==KeyEvent.VK_ENTER) {
+                    AcceptB.doClick();
+                }
+            }
+        };
+        PassTF.addKeyListener(ka);
+        NameTF.addKeyListener(ka);
     
     }
 
@@ -41,11 +51,11 @@ public class Login extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         AcceptB = new javax.swing.JButton();
         NameTF = new javax.swing.JTextField();
-        PassTF = new javax.swing.JTextField();
         userL = new javax.swing.JLabel();
         passL = new javax.swing.JLabel();
         LoginL = new javax.swing.JLabel();
         ExceptionField = new javax.swing.JLabel();
+        PassTF = new javax.swing.JPasswordField();
 
         jLabel1.setText("jLabel1");
 
@@ -58,15 +68,9 @@ public class Login extends javax.swing.JPanel {
                 AcceptBActionPerformed(evt);
             }
         });
-
-        PassTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PassTFActionPerformed(evt);
-            }
-        });
-        PassTF.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                PassTFKeyReleased(evt);
+        AcceptB.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                AcceptBKeyPressed(evt);
             }
         });
 
@@ -75,6 +79,12 @@ public class Login extends javax.swing.JPanel {
         passL.setText("Contraseña");
 
         LoginL.setText("Login");
+
+        PassTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PassTFActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -92,16 +102,14 @@ public class Login extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(userL)
-                        .addGap(56, 56, 56)
-                        .addComponent(NameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(passL)
-                        .addGap(31, 31, 31)
-                        .addComponent(PassTF, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(userL)
+                    .addComponent(passL))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(NameTF, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                    .addComponent(PassTF))
                 .addGap(28, 28, 28)
-                .addComponent(ExceptionField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(ExceptionField, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,28 +126,28 @@ public class Login extends javax.swing.JPanel {
                             .addComponent(NameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(PassTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(passL)))
+                            .addComponent(passL)
+                            .addComponent(PassTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(ExceptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(65, 65, 65)
+                .addGap(59, 59, 59)
                 .addComponent(AcceptB)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void AcceptBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptBActionPerformed
     User user = new User();
-    user.setUserName(NameTF.getText());
+    user.setUserName(NameTF.getText().toLowerCase());
     user.setPassword(PassTF.getText());
     
-    ValidateLogin validate = new ValidateLogin();
+    LoginControl validate = new LoginControl();
     String result = validate.verifyLogin(user);
     if (result.equals("Administrador")){
-        ChangePanels.change(MainFrame.MainPanel, MainFrame.admin);
+        PanelUtils.change(MainFrame.MainPanel, MainFrame.admin);
         
     } if(result.equals("Encargado de cabina")){
         
-        ChangePanels.change(MainFrame.MainPanel, MainFrame.user);
+        PanelUtils.change(MainFrame.MainPanel, MainFrame.user);
         
     }else{
         ExceptionField.setText(result);
@@ -152,11 +160,9 @@ public class Login extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_PassTFActionPerformed
 
-    private void PassTFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PassTFKeyReleased
-             if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-               AcceptBActionPerformed(null);                                   //al presionar enter creando el género presiona aceptar y guarda el dato
-                      }        // TODO add your handling code here:
-    }//GEN-LAST:event_PassTFKeyReleased
+    private void AcceptBKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AcceptBKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AcceptBKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -164,7 +170,7 @@ public class Login extends javax.swing.JPanel {
     private javax.swing.JLabel ExceptionField;
     private javax.swing.JLabel LoginL;
     private javax.swing.JTextField NameTF;
-    private javax.swing.JTextField PassTF;
+    private javax.swing.JPasswordField PassTF;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel passL;
     private javax.swing.JLabel userL;

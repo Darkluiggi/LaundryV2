@@ -6,10 +6,12 @@
 package Entidad;
 
 import java.io.Serializable;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -33,6 +35,17 @@ public class Article implements Serializable  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    
+    @ManyToMany
+    private Set requestsSet;
+
+    public Set getRequestsSet() {
+        return requestsSet;
+    }
+
+    public void setRequestsSet(Set requestsSet) {
+        this.requestsSet = requestsSet;
+    }
      
       public int getId(){
         return id;        

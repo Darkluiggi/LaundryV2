@@ -13,6 +13,7 @@ import Entidad.Article;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -36,11 +37,12 @@ public class NewArticlePanel extends javax.swing.JPanel {
     public NewArticlePanel() {
        
         initComponents();
-        TableUtils.fillTable(schemaClothes);
+        List<Article> list = daoT.findAll();
+        TableUtils.fillTable(schemaClothes, list);
         
-        List<String> list2 = daoT.getGenders();
+        List<String> genderList = (list.stream().map(t -> t.getGender()).distinct().collect(Collectors.toList()));
         
-        DefaultComboBoxModel model2 = new DefaultComboBoxModel(list2.toArray());
+        DefaultComboBoxModel model2 = new DefaultComboBoxModel(genderList.toArray());
         
         GenderBox.setModel(model2);
     }
@@ -235,9 +237,7 @@ public class NewArticlePanel extends javax.swing.JPanel {
         temp.setIronA(IronC.isSelected());
         temp.setFold(foldC.isSelected());
         daoT.create(temp);
-        TableUtils.fillTable(schemaClothes);
-
-                
+        TableUtils.fillTable(schemaClothes, daoT.findAll());
 
 
         // TODO add your handling code here:

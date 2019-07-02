@@ -9,10 +9,16 @@ import javax.persistence.*;
 public class User extends Person implements Serializable  {
     private String userName;
     private String password;
-       
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private String role;
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
 
     public User() {
     }
@@ -36,12 +42,4 @@ public class User extends Person implements Serializable  {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    } 
 }

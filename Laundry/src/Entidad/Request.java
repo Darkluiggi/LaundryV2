@@ -7,10 +7,14 @@ package Entidad;
 
 import java.io.Serializable;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -22,13 +26,22 @@ import javax.persistence.Table;
 public class Request implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
-    @ManyToMany(targetEntity = Article.class)
+    @OneToMany(mappedBy = "request", targetEntity = ArticleRequest.class)
     private Set articleSet;
     
     @ManyToOne
     private Cabin cabin;
+
+    public Request() {
+    }
+    
+    public Request(ArticleRequest... articleRequests) {
+        for(ArticleRequest articleRequest : articleRequests) articleRequest.setRequest(this);
+        this.articleSet = Stream.of(articleRequests).collect(Collectors.toSet());
+    }
 
     public Cabin getCabin() {
         return cabin;

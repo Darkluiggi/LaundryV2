@@ -7,8 +7,6 @@ package Frontera;
 
 import Utils.PanelUtils;
 import Control.CreateAccount;
-import DAO.DAOUser;
-import Entidad.User;
 
 
 /**
@@ -154,10 +152,8 @@ public class MainFrame extends javax.swing.JFrame {
         
         
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainFrame().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new MainFrame().setVisible(true);
         });
     }
     

@@ -5,17 +5,24 @@
  */
 package Entidad;
 
+import javax.persistence.*;
+
 /**
  *
  * @author User
  */
+
+@MappedSuperclass
 public abstract class Person {
-    private String name;
-    private String lastName;
-    private String country;
-    private String address;
-    private String phone;
-    private String role;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected int id;
+    
+    protected String name;
+    protected String lastName;
+    protected String country;
+    protected String address;
+    protected String phone;
 
     public Person(String name, String lastName) {
         this.name = name;
@@ -23,6 +30,22 @@ public abstract class Person {
     }
     
     public Person(){
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     
@@ -64,16 +87,7 @@ public abstract class Person {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-    
+    }  
     
     
 }

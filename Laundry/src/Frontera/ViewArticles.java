@@ -5,11 +5,9 @@
  */
 package Frontera;
 
-import Utils.TableUtils;
 import DAO.DAOArticle;
-import Entidad.Article;
+import Utils.TableUtils;
 import java.util.List;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -23,9 +21,12 @@ public class ViewArticles extends javax.swing.JPanel {
     
       
     public ViewArticles() {
-            
+        DAOArticle dao = new DAOArticle();
         initComponents();
-        TableUtils.fillTable(schemaClothes);
+        
+        List list = dao.findAll();
+        
+        TableUtils.fillTable(schemaClothes, list);
         
     }
 

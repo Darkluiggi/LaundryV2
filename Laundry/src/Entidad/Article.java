@@ -11,7 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -36,8 +36,8 @@ public class Article implements Serializable  {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
-    @ManyToMany
-    private Set requestsSet;
+    @OneToMany(mappedBy = "article", targetEntity = ArticleRequest.class)
+    private Set<ArticleRequest> requestsSet;
 
     public Set getRequestsSet() {
         return requestsSet;

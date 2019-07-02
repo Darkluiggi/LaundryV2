@@ -23,7 +23,7 @@ public class CreateAccount {
 
     public static void createAdmin() {
 
-        DAOUser dao = new DAOUser();
+        DAOUser UserDAO = new DAOUser();
 
         User a = new User();
         User b = new User();
@@ -32,8 +32,8 @@ public class CreateAccount {
         a.setRole("Administrador");                 //administrador
         a.setPassword("12345");
 
-        if (dao.readLogin(a) == null) {
-            dao.create(a);
+        if (UserDAO.readLogin(a) == null) {
+            UserDAO.create(a);
         }
 
     }

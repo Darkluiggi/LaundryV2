@@ -17,20 +17,16 @@ import javax.swing.JTable;
  */
 public class TableUtils {
 
-    private static DAOArticle daoT = new DAOArticle();
-
     public TableUtils() {
     }
 
-    public static void fillTable(JTable schemaClothes) {
-        List<Article> list = daoT.findAll();
+    public static void fillTable(JTable table, List<Article> list) {
         DefaultTableModel model = new DefaultTableModel(null, new String[]{
             "Género", "Nombre", "Lavado", "Lavado y Planchado", "Planchado"
         });
         for (Article t : list) {
             model.addRow(new Object[]{t.getGender(), t.getClothName(), t.getWashPrice(), t.getWaiPrice(), t.getIronPrice()});
         }
-        schemaClothes.setModel(model);
-
+        table.setModel(model);
     }
 }

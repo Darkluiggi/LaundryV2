@@ -5,10 +5,17 @@
  */
 package DAO;
 
+import Entidad.Request;
+import javax.persistence.EntityManagerFactory;
+
 /**
  *
  * @author User
  */
-public class DAORequest {
+public class DAORequest extends GenericDAO<Request>{
+    
+    public DAORequest(EntityManagerFactory factory) {
+        super(factory);
+    }
     
 }

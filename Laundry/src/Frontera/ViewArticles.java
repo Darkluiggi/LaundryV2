@@ -28,6 +28,8 @@ public class ViewArticles extends javax.swing.JPanel {
         
         TableUtils.fillTable(schemaClothes, list);
         
+        TableUtils.addPopUpMenu(schemaClothes);
+        
     }
 
     /**

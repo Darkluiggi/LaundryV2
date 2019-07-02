@@ -5,9 +5,13 @@
  */
 package Utils;
 
-import DAO.DAOArticle;
 import Entidad.Article;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
 
@@ -28,5 +32,15 @@ public class TableUtils {
             model.addRow(new Object[]{t.getGender(), t.getClothName(), t.getWashPrice(), t.getWaiPrice(), t.getIronPrice()});
         }
         table.setModel(model);
+    }
+    
+    public static void addPopUpMenu(JTable table){
+        final JPopupMenu popupMenu = new JPopupMenu();
+        JMenuItem editItem = new JMenuItem("Editar");
+        editItem.addActionListener((ActionEvent e) -> {
+            //TODO: Add Popup for editing
+        });
+        popupMenu.add(editItem);
+        table.setComponentPopupMenu(popupMenu);
     }
 }

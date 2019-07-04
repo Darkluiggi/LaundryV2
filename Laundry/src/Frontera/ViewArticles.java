@@ -5,9 +5,15 @@
  */
 package Frontera;
 
-import DAO.DAOArticle;
+//<<<<<<< Upstream, based on origin/master
 import Utils.TableUtils;
+import DAO.DAOArticle;
+import Entidad.Article;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
+
+//>>>>>>> 78c7e5a agregadas funcionalidades a la GUI, y creados algunos controles para el funcionamiento v3
 
 /**
  *
@@ -21,14 +27,13 @@ public class ViewArticles extends javax.swing.JPanel {
     
       
     public ViewArticles() {
-        DAOArticle dao = new DAOArticle();
+            
         initComponents();
-        
-        List list = dao.findAll();
-        
-        TableUtils.fillTable(schemaClothes, list);
-        
-        TableUtils.addPopUpMenu(schemaClothes);
+//<<<<<<< Upstream, based on origin/master
+        TableUtils.fillTable(schemaClothes);
+
+    
+//>>>>>>> 78c7e5a agregadas funcionalidades a la GUI, y creados algunos controles para el funcionamiento v3
         
     }
 
@@ -87,6 +92,6 @@ public class ViewArticles extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable schemaClothes;
+    public static javax.swing.JTable schemaClothes;
     // End of variables declaration//GEN-END:variables
 }

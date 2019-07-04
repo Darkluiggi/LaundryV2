@@ -8,6 +8,7 @@ package Frontera;
 import Utils.PanelUtils;
 import DAO.DAOUser;
 import Entidad.User;
+import Utils.TableUtils;
 import java.awt.event.KeyEvent;
 
 /**
@@ -17,15 +18,14 @@ import java.awt.event.KeyEvent;
 public class CreateAccount extends javax.swing.JPanel {
 
     /**
-     * Creates new form CreateAccount
+     * Creates new form ManageAccount
      */
     
     
    
     private DAOUser dao = new DAOUser();
     private User usera = new User();
-    private User userb = new User(); 
-    private User userc = new User(); 
+    
     
     public CreateAccount() {
         initComponents();
@@ -49,7 +49,6 @@ public class CreateAccount extends javax.swing.JPanel {
         IDNUsuarioLabel = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         ContraseñaNUsuarioLabel = new javax.swing.JLabel();
-        jFrame1 = new javax.swing.JFrame();
         editUserErrorPanel = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -74,6 +73,9 @@ public class CreateAccount extends javax.swing.JPanel {
         cancelB = new javax.swing.JButton();
         passwordL = new javax.swing.JLabel();
         editAdressTF = new javax.swing.JTextField();
+        ViewPanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        usersTable = new javax.swing.JTable();
         createB = new javax.swing.JButton();
         nameTF = new javax.swing.JTextField();
         lastNameTF = new javax.swing.JTextField();
@@ -88,11 +90,11 @@ public class CreateAccount extends javax.swing.JPanel {
         findIdTF = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         editUserActualPanel = new javax.swing.JPanel();
+        viewB = new javax.swing.JButton();
 
         confirmCreate.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         confirmCreate.setTitle("Nuevo Usuario");
         confirmCreate.setLocation(new java.awt.Point(0, 0));
-        confirmCreate.setPreferredSize(new java.awt.Dimension(440, 240));
         confirmCreate.setResizable(false);
         confirmCreate.setSize(new java.awt.Dimension(440, 240));
         confirmCreate.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -130,19 +132,6 @@ public class CreateAccount extends javax.swing.JPanel {
 
         ContraseñaNUsuarioLabel.setText("###################");
         confirmCreate.getContentPane().add(ContraseñaNUsuarioLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, -1, -1));
-
-        jFrame1.setUndecorated(true);
-
-        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
-        jFrame1.getContentPane().setLayout(jFrame1Layout);
-        jFrame1Layout.setHorizontalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jFrame1Layout.setVerticalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
 
         editUserErrorPanel.setPreferredSize(new java.awt.Dimension(398, 258));
 
@@ -253,6 +242,30 @@ public class CreateAccount extends javax.swing.JPanel {
         editPanel.add(passwordL, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
         editPanel.add(editAdressTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, 190, -1));
 
+        usersTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Nombre", "Apellido", "Usuario", "Contraseña", "País", "Dirección", "Teléfono"
+            }
+        ));
+        jScrollPane1.setViewportView(usersTable);
+
+        javax.swing.GroupLayout ViewPanelLayout = new javax.swing.GroupLayout(ViewPanel);
+        ViewPanel.setLayout(ViewPanelLayout);
+        ViewPanelLayout.setHorizontalGroup(
+            ViewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE)
+        );
+        ViewPanelLayout.setVerticalGroup(
+            ViewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
+        );
+
         setAutoscrolls(true);
         setMaximumSize(new java.awt.Dimension(640, 331));
         setMinimumSize(new java.awt.Dimension(640, 331));
@@ -304,6 +317,11 @@ public class CreateAccount extends javax.swing.JPanel {
         });
 
         userNameTF.setText("Nombre de Usuario");
+        userNameTF.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                userNameTFFocusGained(evt);
+            }
+        });
         userNameTF.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 userNameTFMouseClicked(evt);
@@ -311,6 +329,11 @@ public class CreateAccount extends javax.swing.JPanel {
         });
 
         countryTF.setText("País");
+        countryTF.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                countryTFFocusGained(evt);
+            }
+        });
         countryTF.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 countryTFMouseClicked(evt);
@@ -318,6 +341,11 @@ public class CreateAccount extends javax.swing.JPanel {
         });
 
         adressTF.setText("Dirección");
+        adressTF.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                adressTFFocusGained(evt);
+            }
+        });
         adressTF.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 adressTFMouseClicked(evt);
@@ -330,6 +358,11 @@ public class CreateAccount extends javax.swing.JPanel {
         });
 
         phoneTF.setText("Telefono");
+        phoneTF.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                phoneTFFocusGained(evt);
+            }
+        });
         phoneTF.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 phoneTFMouseClicked(evt);
@@ -342,6 +375,11 @@ public class CreateAccount extends javax.swing.JPanel {
         });
 
         passwordTF.setText("Contraseña");
+        passwordTF.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                passwordTFFocusGained(evt);
+            }
+        });
         passwordTF.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 passwordTFMouseClicked(evt);
@@ -365,6 +403,11 @@ public class CreateAccount extends javax.swing.JPanel {
         });
 
         findIdTF.setText("ID a buscar");
+        findIdTF.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                findIdTFFocusGained(evt);
+            }
+        });
         findIdTF.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 findIdTFMouseClicked(evt);
@@ -375,11 +418,23 @@ public class CreateAccount extends javax.swing.JPanel {
                 findIdTFActionPerformed(evt);
             }
         });
+        findIdTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                findIdTFKeyReleased(evt);
+            }
+        });
 
         jLabel5.setText("Buscar Usuario:");
 
         editUserActualPanel.setPreferredSize(new java.awt.Dimension(258, 258));
         editUserActualPanel.setLayout(new java.awt.BorderLayout());
+
+        viewB.setText("Ver todos");
+        viewB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewBActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -406,7 +461,9 @@ public class CreateAccount extends javax.swing.JPanel {
                         .addComponent(findIdTF, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(findB, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 56, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(viewB)
+                        .addGap(0, 32, Short.MAX_VALUE))
                     .addComponent(editUserActualPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -420,7 +477,8 @@ public class CreateAccount extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(findB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(findIdTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabel5)
+                            .addComponent(viewB))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(editUserActualPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -465,7 +523,8 @@ public class CreateAccount extends javax.swing.JPanel {
 
     private void AceptarBDialogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarBDialogoActionPerformed
       
-        Control.CreateAccount.createUser(nameTF, lastNameTF, userNameTF, countryTF, adressTF, passwordTF, phoneTF, adminC);        // TODO add your handling code here:
+        Control.ManageAccount.createUser(nameTF, lastNameTF, userNameTF,
+                countryTF, adressTF, passwordTF, phoneTF, adminC);        // TODO add your handling code here:
     }//GEN-LAST:event_AceptarBDialogoActionPerformed
 
     private void findIdTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findIdTFActionPerformed
@@ -487,39 +546,19 @@ public class CreateAccount extends javax.swing.JPanel {
         IDNUsuarioLabel.setText(userNameTF.getText());
         ContraseñaNUsuarioLabel.setText(passwordTF.getText());
          
-        
-        
-        
-        
-        
     }//GEN-LAST:event_createBActionPerformed
 
     private void findBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findBActionPerformed
-        String a;
-                     
-        a=findIdTF.getText();
-        usera.setUserName(a);
-        userb=dao.read(usera);
-        if(userb==null){
-            PanelUtils.change(editUserActualPanel, editUserErrorPanel);
-            }else{        
-        editNameTF.setText(userb.getName());
-        editLastNameTF.setText(userb.getLastName());
-        editUserNameTF.setText(userb.getUserName());
-        editPassTF.setText(userb.getPassword());
-        editCountryTF.setText(userb.getCountry());
-        editPhoneTF.setText(userb.getPhone());
-        editAdressTF.setText(userb.getAdress());
-        if(userb.getRole().equals("Administrador")){
-          editAdminC.setSelected(Boolean.TRUE);
-      }else{
-          editAdminC.setSelected(Boolean.FALSE);
-      }
-        PanelUtils.change(editUserActualPanel, editPanel);
-        idEditLabel.setText(findIdTF.getText());
+//<<<<<<< Upstream, based on origin/master
+         
+                       
+//>>>>>>> 78c7e5a agregadas funcionalidades a la GUI, y creados algunos controles para el funcionamiento v3
     
-        }
-        // TODO add your handling code here:
+        Control.ManageAccount.findUser(usera, findIdTF, editNameTF, editLastNameTF,
+                editUserNameTF, editPassTF, editCountryTF, editPhoneTF, editAdressTF, editAdminC,
+                editUserActualPanel, editUserErrorPanel, editPanel, idEditLabel, buscarErrorLabel);
+
+              // TODO add your handling code here:
     }//GEN-LAST:event_findBActionPerformed
 
     private void nameTFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameTFMouseClicked
@@ -556,10 +595,10 @@ public class CreateAccount extends javax.swing.JPanel {
 
     private void editBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBActionPerformed
        
-        Control.CreateAccount.updateUser(usera, userc, editNameTF, editLastNameTF, editUserNameTF,
+       
+        Control.ManageAccount.updateUser(usera, editNameTF, editLastNameTF, editUserNameTF,
                                             editCountryTF, editAdressTF, editPassTF, editPhoneTF, editAdminC);
-        
-                                                                        // TODO add your handling code here:
+                                            // TODO add your handling code here:
     }//GEN-LAST:event_editBActionPerformed
 
     private void editCountryTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCountryTFActionPerformed
@@ -572,13 +611,13 @@ public class CreateAccount extends javax.swing.JPanel {
     }//GEN-LAST:event_cancelBActionPerformed
 
     private void passwordTFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordTFKeyReleased
-        // TODO add your handling code here:
+                if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+               createBActionPerformed(null);                                   //al presionar enter creando el género presiona aceptar y guarda el dato
+                      }        // TODO add your handling code here:
     }//GEN-LAST:event_passwordTFKeyReleased
 
     private void createBKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_createBKeyReleased
-              if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-               createBActionPerformed(null);                                   //al presionar enter creando el género presiona aceptar y guarda el dato
-                      }         // TODO add your handling code here:
+                    // TODO add your handling code here:
     }//GEN-LAST:event_createBKeyReleased
 
     private void CancelarBDialogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBDialogoActionPerformed
@@ -593,11 +632,48 @@ public class CreateAccount extends javax.swing.JPanel {
        lastNameTF.selectAll(); // TODO add your handling code here:
     }//GEN-LAST:event_lastNameTFFocusGained
 
+    private void findIdTFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_findIdTFKeyReleased
+            if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+               findBActionPerformed(null);                                   //al presionar enter creando el género presiona aceptar y guarda el dato
+                      }        // TODO add your handling code here:
+    }//GEN-LAST:event_findIdTFKeyReleased
+
+    private void userNameTFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userNameTFFocusGained
+        userNameTF.selectAll();    
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userNameTFFocusGained
+
+    private void countryTFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_countryTFFocusGained
+        countryTF.selectAll();        // TODO add your handling code here:
+    }//GEN-LAST:event_countryTFFocusGained
+
+    private void adressTFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_adressTFFocusGained
+        adressTF.selectAll();        // TODO add your handling code here:
+    }//GEN-LAST:event_adressTFFocusGained
+
+    private void phoneTFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_phoneTFFocusGained
+        phoneTF.selectAll();        // TODO add your handling code here:
+    }//GEN-LAST:event_phoneTFFocusGained
+
+    private void passwordTFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordTFFocusGained
+        passwordTF.selectAll();        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordTFFocusGained
+
+    private void findIdTFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_findIdTFFocusGained
+        findIdTF.selectAll();        // TODO add your handling code here:
+    }//GEN-LAST:event_findIdTFFocusGained
+
+    private void viewBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBActionPerformed
+        TableUtils.fillUserTable(usersTable);
+        PanelUtils.change(editUserActualPanel, ViewPanel);        // TODO add your handling code here:
+    }//GEN-LAST:event_viewBActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AceptarBDialogo;
     private javax.swing.JButton CancelarBDialogo;
     private javax.swing.JLabel ContraseñaNUsuarioLabel;
     private javax.swing.JLabel IDNUsuarioLabel;
+    private javax.swing.JPanel ViewPanel;
     private javax.swing.JCheckBox adminC;
     private javax.swing.JTextField adressTF;
     private javax.swing.JLabel buscarErrorLabel;
@@ -621,7 +697,6 @@ public class CreateAccount extends javax.swing.JPanel {
     private javax.swing.JButton findB;
     private javax.swing.JTextField findIdTF;
     private javax.swing.JLabel idEditLabel;
-    private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -636,11 +711,14 @@ public class CreateAccount extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField lastNameTF;
     private javax.swing.JTextField nameTF;
     private javax.swing.JLabel passwordL;
     private javax.swing.JTextField passwordTF;
     private javax.swing.JTextField phoneTF;
     private javax.swing.JTextField userNameTF;
+    private javax.swing.JTable usersTable;
+    private javax.swing.JButton viewB;
     // End of variables declaration//GEN-END:variables
 }

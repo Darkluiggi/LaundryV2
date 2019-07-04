@@ -6,14 +6,17 @@
 
 package Frontera;
 
+//<<<<<<< Upstream, based on origin/master
 import Utils.PanelUtils;
 import Utils.TableUtils;
 import DAO.DAOArticle;
 import Entidad.Article;
+
+import Control.ManageArticle;
+//>>>>>>> 78c7e5a agregadas funcionalidades a la GUI, y creados algunos controles para el funcionamiento v3
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -37,12 +40,11 @@ public class NewArticlePanel extends javax.swing.JPanel {
     public NewArticlePanel() {
        
         initComponents();
-        List<Article> list = daoT.findAll();
-        TableUtils.fillTable(schemaClothes, list);
+        TableUtils.fillTable(schemaClothes);
         
-        List<String> genderList = (list.stream().map(t -> t.getGender()).distinct().collect(Collectors.toList()));
+        List<String> list2 = daoT.getGenders();
         
-        DefaultComboBoxModel model2 = new DefaultComboBoxModel(genderList.toArray());
+        DefaultComboBoxModel model2 = new DefaultComboBoxModel(list2.toArray());
         
         GenderBox.setModel(model2);
     }
@@ -73,7 +75,7 @@ public class NewArticlePanel extends javax.swing.JPanel {
         NameL = new javax.swing.JLabel();
         GenderL = new javax.swing.JLabel();
         GenderBox = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
+        FoldTF = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         foldC = new javax.swing.JCheckBox();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -147,12 +149,12 @@ public class NewArticlePanel extends javax.swing.JPanel {
         });
         jPanel1.add(GenderBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 99, -1));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        FoldTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                FoldTFActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 130, 70, -1));
+        jPanel1.add(FoldTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 130, 70, -1));
 
         jLabel1.setText("Doblado");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 100, -1, -1));
@@ -181,7 +183,7 @@ public class NewArticlePanel extends javax.swing.JPanel {
                 AcceptBKeyReleased(evt);
             }
         });
-        jPanel1.add(AcceptB, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 420, 93, 47));
+        jPanel1.add(AcceptB, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 430, 93, 47));
 
         CancelB.setText("Cancelar");
         CancelB.addActionListener(new java.awt.event.ActionListener() {
@@ -194,7 +196,7 @@ public class NewArticlePanel extends javax.swing.JPanel {
         IronL1.setText("Planchado");
         jPanel1.add(IronL1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 100, -1, -1));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 470));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 510));
     }// </editor-fold>//GEN-END:initComponents
 
     private void IronTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IronTFActionPerformed
@@ -225,32 +227,23 @@ public class NewArticlePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_CancelBActionPerformed
 
     private void AcceptBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptBActionPerformed
-        Article temp = new Article();
-        
-        temp.setGender((String)GenderBox.getSelectedItem());
-        temp.setClothName(NameTF.getText());
-        temp.setWashPrice(Float.parseFloat(WashTF.getText()));
-        temp.setWashA(WashC.isSelected());
-        temp.setWaiPrice(Float.parseFloat(IronandWashTF.getText()));
-        temp.setWaiA(WaiC.isSelected());
-        temp.setIronPrice(Float.parseFloat(IronTF.getText()));
-        temp.setIronA(IronC.isSelected());
-        temp.setFold(foldC.isSelected());
-        daoT.create(temp);
-        TableUtils.fillTable(schemaClothes, daoT.findAll());
+//<<<<<<< Upstream, based on origin/master
+                        
+        ManageArticle.createArticle(GenderBox, NameTF, WashTF, IronandWashTF, 
+                                            IronTF,FoldTF, WashC, WaiC, IronC, foldC);
+        TableUtils.fillTable(schemaClothes);
+//>>>>>>> 78c7e5a agregadas funcionalidades a la GUI, y creados algunos controles para el funcionamiento v3
 
 
         // TODO add your handling code here:
     }//GEN-LAST:event_AcceptBActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void FoldTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FoldTFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_FoldTFActionPerformed
 
     private void AcceptBKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AcceptBKeyReleased
-            if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-               AcceptBActionPerformed(null);                                   //al presionar enter creando el género presiona aceptar y guarda el dato
-                      }         // TODO add your handling code here:
+                  // TODO add your handling code here:
     }//GEN-LAST:event_AcceptBKeyReleased
 
 
@@ -259,6 +252,7 @@ public class NewArticlePanel extends javax.swing.JPanel {
     private javax.swing.JButton AddGenderB;
     private javax.swing.JLabel AvalL;
     private javax.swing.JButton CancelB;
+    private javax.swing.JTextField FoldTF;
     public static javax.swing.JComboBox<String> GenderBox;
     private javax.swing.JLabel GenderL;
     private javax.swing.JLabel IronAndWashL;
@@ -278,7 +272,6 @@ public class NewArticlePanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable schemaClothes;
     // End of variables declaration//GEN-END:variables
 }

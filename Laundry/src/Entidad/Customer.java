@@ -7,7 +7,7 @@ package Entidad;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -17,16 +17,16 @@ import javax.persistence.Table;
 @Entity
 @Table (name="Customer")
 public class Customer extends Person implements Serializable{
-    
-    @ManyToOne
-    private Cabin cabin;
 
-    public Cabin getCabin() {
-        return cabin;
+    @Id
+    private int id;
+
+    public int getId() {
+        return id;
     }
 
-    public void setCabin(Cabin cabin) {
-        this.cabin = cabin;
+    public void setId(int id) {
+        this.id = id;
     }
     
 }

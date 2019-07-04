@@ -6,6 +6,9 @@
 package Frontera;
 
 import DAO.DAOArticle;
+import Entidad.Article;
+import Entidad.User;
+import Utils.TableUtils;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 
@@ -19,11 +22,14 @@ public class EditArticle extends javax.swing.JPanel {
      * Creates new form EditService
      */
     private DAOArticle daoT = new DAOArticle();
-    public EditArticle() {
-        initComponents();
-        List<String> list = daoT.getGenders();
+     List<String> list = daoT.getGenders();
+     Article art = new Article();
+     Article art1 = new Article();
         
         DefaultComboBoxModel model = new DefaultComboBoxModel(list.toArray());
+    public EditArticle() {
+        initComponents();
+       
         
         GenderBox.setModel(model);
         
@@ -41,7 +47,7 @@ public class EditArticle extends javax.swing.JPanel {
     private void initComponents() {
 
         foldC = new javax.swing.JCheckBox();
-        jTextField1 = new javax.swing.JTextField();
+        foldTF = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         IronL1 = new javax.swing.JLabel();
         IronTF = new javax.swing.JTextField();
@@ -61,12 +67,14 @@ public class EditArticle extends javax.swing.JPanel {
         AddGenderB = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         schemaClothes = new javax.swing.JTable();
+        AcceptB = new javax.swing.JButton();
+        CancelB = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(800, 600));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        foldTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                foldTFActionPerformed(evt);
             }
         });
 
@@ -117,6 +125,12 @@ public class EditArticle extends javax.swing.JPanel {
             }
         });
 
+        jScrollPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jScrollPane1MouseClicked(evt);
+            }
+        });
+
         schemaClothes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -125,14 +139,28 @@ public class EditArticle extends javax.swing.JPanel {
                 "Género", "Nombre", "Lavado", "Lavado y Planchado", "Planchado", "Doblado"
             }
         ));
+        schemaClothes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                schemaClothesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(schemaClothes);
+
+        AcceptB.setText("Aceptar");
+        AcceptB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AcceptBActionPerformed(evt);
+            }
+        });
+
+        CancelB.setText("Cancelar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(IronL)
                     .addGroup(layout.createSequentialGroup()
@@ -156,7 +184,7 @@ public class EditArticle extends javax.swing.JPanel {
                             .addComponent(WashTF, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(IronandWashTF, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(IronTF, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(foldTF, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(66, 66, 66)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(foldC)
@@ -170,12 +198,18 @@ public class EditArticle extends javax.swing.JPanel {
                         .addGap(25, 25, 25)))
                 .addGap(53, 53, 53)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(24, 24, 24))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(AcceptB, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
+                .addComponent(CancelB)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(156, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -218,15 +252,19 @@ public class EditArticle extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel1)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(foldTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(foldC))))
-                .addGap(54, 54, 54))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AcceptB, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CancelB, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(65, 65, 65))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void foldTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foldTFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_foldTFActionPerformed
 
     private void IronTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IronTFActionPerformed
         // TODO add your handling code here:
@@ -249,10 +287,57 @@ public class EditArticle extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_AddGenderBActionPerformed
 
+    private void AcceptBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptBActionPerformed
+        
+       art.setGender((String)GenderBox.getSelectedItem());
+       art.setClothName((String)NameTF.getText());
+       art.setWashPrice((Float.parseFloat(WashTF.getText())));
+       art.setWashA(WashC.isSelected());
+       art.setWaiPrice(Float.parseFloat(IronandWashTF.getText()));
+       art.setWaiA(WaiC.isSelected());
+       art.setIronPrice(Float.parseFloat(IronTF.getText()));
+       art.setIronA(IronC.isSelected());
+       art.setFoldPrice(Float.parseFloat(foldTF.getText()));
+       art.setIronA(foldC.isSelected());
+       
+       daoT.update(art);
+        TableUtils.fillTable(schemaClothes);
+         GenderBox.setModel(model);;     
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AcceptBActionPerformed
+
+    private void jScrollPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jScrollPane1MouseClicked
+
+    private void schemaClothesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_schemaClothesMouseClicked
+        
+        String a,b;
+               
+       a= (String)schemaClothes.getValueAt(schemaClothes.getSelectedRow(), 0);
+       b= (String)schemaClothes.getValueAt(schemaClothes.getSelectedRow(), 1);
+       art.setGender(a);
+       art.setClothName(b);
+       art=daoT.read(schemaClothes.getSelectedRow()+1);
+       GenderBox.setSelectedItem(art.getGender());
+       NameTF.setText(art.getClothName());
+       WashTF.setText(Float.toString(art.getWashPrice()));
+       WashC.setSelected(art.isWashA());
+       IronandWashTF.setText(Float.toString(art.getWaiPrice()));
+       WaiC.setSelected(art.isWaiA());
+       IronTF.setText(Float.toString(art.getIronPrice()));
+       IronC.setSelected(art.isIronA());
+       foldTF.setText(Float.toString(art.getFoldPrice()));
+       foldC.setSelected(art.isFoldA());  
+         GenderBox.setModel(model);;        // TODO add your handling code here:
+    }//GEN-LAST:event_schemaClothesMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AcceptB;
     private javax.swing.JButton AddGenderB;
     private javax.swing.JLabel AvalL;
+    private javax.swing.JButton CancelB;
     public static javax.swing.JComboBox<String> GenderBox;
     private javax.swing.JLabel GenderL;
     private javax.swing.JLabel IronAndWashL;
@@ -268,10 +353,9 @@ public class EditArticle extends javax.swing.JPanel {
     private javax.swing.JCheckBox WashC;
     private javax.swing.JTextField WashTF;
     private javax.swing.JCheckBox foldC;
+    private javax.swing.JTextField foldTF;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTable schemaClothes;
+    public static javax.swing.JTable schemaClothes;
     // End of variables declaration//GEN-END:variables
 }

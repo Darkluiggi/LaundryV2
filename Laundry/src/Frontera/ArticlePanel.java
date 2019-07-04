@@ -5,7 +5,11 @@
  */
 package Frontera;
 
+//<<<<<<< Upstream, based on origin/master
 import Utils.PanelUtils;
+import Utils.TableUtils;
+
+//>>>>>>> 78c7e5a agregadas funcionalidades a la GUI, y creados algunos controles para el funcionamiento v3
 
 /**
  *
@@ -20,6 +24,7 @@ public class ArticlePanel extends javax.swing.JPanel {
     public static CreateAccount acc = new CreateAccount();
     public static ViewArticles viewT = new ViewArticles();
     public static EditArticle editT = new EditArticle();
+    
     public ArticlePanel() {
         initComponents();
     }
@@ -45,7 +50,7 @@ public class ArticlePanel extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ServP.setLayout(new java.awt.BorderLayout());
-        add(ServP, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 800, 470));
+        add(ServP, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 800, 510));
 
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
@@ -121,11 +126,15 @@ public class ArticlePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_AccountBActionPerformed
 
     private void ViewSBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewSBActionPerformed
+//<<<<<<< Upstream, based on origin/master
         PanelUtils.change(ServP, viewT);        // TODO add your handling code here:
+        TableUtils.fillTable(ViewArticles.schemaClothes);        // TODO add your handling code here:
+//>>>>>>> 78c7e5a agregadas funcionalidades a la GUI, y creados algunos controles para el funcionamiento v3
     }//GEN-LAST:event_ViewSBActionPerformed
 
     private void EditSBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditSBActionPerformed
-        PanelUtils.change(ServP, editT);         // TODO add your handling code here:
+        PanelUtils.change(ServP, editT);  
+        TableUtils.fillTable(EditArticle.schemaClothes);// TODO add your handling code here:
     }//GEN-LAST:event_EditSBActionPerformed
 
 

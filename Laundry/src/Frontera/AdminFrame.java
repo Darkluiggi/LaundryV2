@@ -17,7 +17,7 @@ public class AdminFrame extends javax.swing.JPanel {
      * Creates new form AdminFrame
      */
     
-    public static ArticlePanel sPan = new ArticlePanel();                //instancio el panel de gestionar servicios
+    public static ArticlePanel sPan =new ArticlePanel();                //instancio el panel de gestionar servicios
     
     public AdminFrame() {
         initComponents();

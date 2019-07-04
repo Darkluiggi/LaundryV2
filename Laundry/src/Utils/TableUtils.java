@@ -5,13 +5,11 @@
  */
 package Utils;
 
+import DAO.DAOArticle;
+import DAO.DAOUser;
 import Entidad.Article;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import Entidad.User;
 import java.util.List;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
 
@@ -21,26 +19,34 @@ import javax.swing.JTable;
  */
 public class TableUtils {
 
+    private static DAOArticle daoT = new DAOArticle();
+    private static DAOUser daoU = new DAOUser();
+    
     public TableUtils() {
     }
 
-    public static void fillTable(JTable table, List<Article> list) {
+    public static void fillTable(JTable schemaClothes) {
+        List<Article> list = daoT.findAll();
         DefaultTableModel model = new DefaultTableModel(null, new String[]{
             "Género", "Nombre", "Lavado", "Lavado y Planchado", "Planchado"
         });
         for (Article t : list) {
             model.addRow(new Object[]{t.getGender(), t.getClothName(), t.getWashPrice(), t.getWaiPrice(), t.getIronPrice()});
         }
-        table.setModel(model);
+        schemaClothes.setModel(model);
+
     }
     
-    public static void addPopUpMenu(JTable table){
-        final JPopupMenu popupMenu = new JPopupMenu();
-        JMenuItem editItem = new JMenuItem("Editar");
-        editItem.addActionListener((ActionEvent e) -> {
-            //TODO: Add Popup for editing
-        });
-        popupMenu.add(editItem);
-        table.setComponentPopupMenu(popupMenu);
+     public static void fillUserTable(JTable userTable){
+       List <User> list=  daoU.findAll();
+        DefaultTableModel model = new DefaultTableModel(null, new String [] {
+                "Nombre","Apellido","Usuario","Contraseña","Rol","País","Dirección","Teléfono"
+            });
+    for (User t : list) {
+        model.addRow(new Object[]{t.getName(), t.getLastName(), t.getUserName(), t.getPassword(), t.getRole(),
+                                t.getCountry(),t.getAdress(),t.getPhone()});
+    }
+    userTable.setModel(model);
+        
     }
 }

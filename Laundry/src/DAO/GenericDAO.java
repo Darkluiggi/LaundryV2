@@ -9,6 +9,7 @@ import java.util.*;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
+import org.eclipse.persistence.internal.jpa.metadata.listeners.EntityClassListener;
 
 public abstract class GenericDAO<T> {
 
@@ -42,9 +43,10 @@ public abstract class GenericDAO<T> {
     public T read(Serializable id) {
         EntityManager em = Provider();
         T temp = null;
-        Query q = em.createQuery("SELECT u FROM" + entityClass.getSimpleName() + " u "
-                + "WHERE u.id LIKE: parameter1")
-                .setParameter("parameter1", id);
+        Query q = em.createQuery(
+                "SELECT u FROM " + entityClass.getSimpleName() + " u "
+                + "WHERE u.id LIKE :parameter ")
+                .setParameter("id", id);
         try {
             temp = (T) q.getSingleResult();
         } catch (NonUniqueResultException e) {

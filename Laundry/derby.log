@@ -1,7 +1,7 @@
-Sat Jun 29 14:55:26 COT 2019 : Servidor de red Apache Derby: Se ha iniciado 10.10.2.0 - (1582446) y está listo para aceptar las conexiones en el puerto 1527
+Thu Jul 04 13:45:39 COT 2019 : Servidor de red Apache Derby: Se ha iniciado 10.10.2.0 - (1582446) y está listo para aceptar las conexiones en el puerto 1527
 ----------------------------------------------------------------
-Sat Jun 29 14:55:27 COT 2019:
- Iniciando instancia a816c00e-016b-a4ce-8643-0000695c2ed3 de Derby, versión The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): 
+Thu Jul 04 13:45:40 COT 2019:
+ Iniciando instancia a816c00e-016b-be4e-6ac0-0000695c2ed3 de Derby, versión The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): 
 en el directorio de base de datos C:\Users\leons\Documents\NetBeansProjects\LaundryRepo\Laundry\Laundry\Login_JPA con el cargador de clases sun.misc.Launcher$AppClassLoader@1d44bcfa
 Cargado desde file:/C:/Program%20Files/glassfish-4.1.1/javadb/lib/derby.jar
 java.vendor=Oracle Corporation

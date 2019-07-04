@@ -5,8 +5,14 @@
  */
 package Frontera;
 
+//<<<<<<< Upstream, based on origin/master
 import Utils.PanelUtils;
-import Control.CreateAccount;
+import Control.ManageAccount;
+
+
+//>>>>>>> 78c7e5a agregadas funcionalidades a la GUI, y creados algunos controles para el funcionamiento v3
+import DAO.DAOUser;
+import Entidad.User;
 
 
 /**
@@ -26,7 +32,7 @@ public class MainFrame extends javax.swing.JFrame {
          
     
     public MainFrame() {
-        CreateAccount.createAdmin();
+        ManageAccount.createAdmin();
         initComponents();
         ExitB.setVisible(false);
         setLocationRelativeTo(null);                            //Centra el programa en la pantalla
@@ -152,8 +158,10 @@ public class MainFrame extends javax.swing.JFrame {
         
         
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new MainFrame().setVisible(true);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new MainFrame().setVisible(true);
+            }
         });
     }
     

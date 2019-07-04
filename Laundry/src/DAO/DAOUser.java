@@ -29,47 +29,7 @@ public class DAOUser  extends GenericDAO<User>{
     
     }
     
-    public User reada(User object){
-        
-        EntityManager em =emf.createEntityManager();
-        User user= null;
-            Query q =em.createQuery("SELECT u FROM User u "+
-                "WHERE u.userName LIKE :name ")
-                .setParameter("name",object.getUserName());
-            try{
-                user = (User) q.getSingleResult();
-            }catch (NonUniqueResultException e){
-                user = (User) q.getResultList().get(0);
-            }catch(Exception e){
-            e.printStackTrace();
-           }finally {
-                em.close();
-                return user;
-            }
-            
-     }
-      public User readb(Serializable id){
-        
-        EntityManager em =emf.createEntityManager();
-        User user= null;
-            Query q =em.createQuery("SELECT u FROM User u "+
-                "WHERE u.id LIKE :id ")
-                .setParameter("id",id);
-            try{
-                user = (User) q.getSingleResult();
-            }catch (NonUniqueResultException e){
-                user = (User) q.getResultList().get(0);
-            }catch(Exception e){
-            e.printStackTrace();
-           }finally {
-                em.close();
-                return user;
-            }
-            
-     }
-    
     public int findID(User Object){
-      
         EntityManager em =emf.createEntityManager();
         User user= null;
             Query q =em.createQuery("SELECT u FROM User u "+
@@ -80,10 +40,15 @@ public class DAOUser  extends GenericDAO<User>{
             }catch (NonUniqueResultException e){
                 user = (User) q.getResultList().get(0);
             }catch(Exception e){
-            e.printStackTrace();
+                e.printStackTrace();
            }finally {
                 em.close();
-                return user.getId();
+                if(user != null){
+                    return user.getId();
+                }
+                else{
+                    return -1;
+                }
             }
     }
 }

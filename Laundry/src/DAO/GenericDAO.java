@@ -42,20 +42,8 @@ public abstract class GenericDAO<T> {
      */
     public T read(Serializable id) {
         EntityManager em = Provider();
-        T temp = null;
-        Query q = em.createQuery(
-                "SELECT u FROM " + entityClass.getSimpleName() + " u "
-                + "WHERE u.id LIKE :parameter ")
-                .setParameter("id", id);
-        try {
-            temp = (T) q.getSingleResult();
-        } catch (NonUniqueResultException e) {
-            temp = (T) q.getResultList().get(0);
-        } catch (Exception e) {
-        } finally {
-            close(em);
-            return temp;
-        }
+        T temp = em.find(entityClass, id);
+        return temp;
     }
 
     public void create(T object) {

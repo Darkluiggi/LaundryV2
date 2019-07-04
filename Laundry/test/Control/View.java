@@ -67,7 +67,10 @@ public class View {
        
     
         for (User u : users ){
-            d= dao.read(u);
+            int id = dao.findID(u);
+            if(id > 0){
+               d = dao.read(id); 
+            }
             System.out.println(d.getUserName());
             System.out.println(d.getPassword());
             if(d.getRole().equals("Administrador")){
@@ -77,7 +80,7 @@ public class View {
                 System.out.println("Encargado de Cabina");
             }
            System.out.println("-------------");
-            dao.read(u);
+            dao.read(u.getId());
             
         }
     }

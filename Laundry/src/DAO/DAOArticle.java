@@ -26,5 +26,19 @@ public class DAOArticle extends GenericDAO<Article> {
             return list;
         }
     }
+    public List<String> getClothName(String gender) {
+        List list = new ArrayList();
+        EntityManager em = Provider();
+        Query q = em.createQuery("SELECT u.clothName FROM Article u " +
+                                    "WHERE u.gender LIKE :gender")
+                                    .setParameter("gender",gender);
+        try {
+            list = q.getResultList();
+        } catch (Exception e) {
+        } finally {
+            em.close();
+            return list;
+        }
+    }
 
 }

@@ -49,7 +49,6 @@ public class CreateAccount extends javax.swing.JPanel {
         IDNUsuarioLabel = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         ContraseñaNUsuarioLabel = new javax.swing.JLabel();
-        jFrame1 = new javax.swing.JFrame();
         editUserErrorPanel = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -92,7 +91,6 @@ public class CreateAccount extends javax.swing.JPanel {
         confirmCreate.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         confirmCreate.setTitle("Nuevo Usuario");
         confirmCreate.setLocation(new java.awt.Point(0, 0));
-        confirmCreate.setPreferredSize(new java.awt.Dimension(440, 240));
         confirmCreate.setResizable(false);
         confirmCreate.setSize(new java.awt.Dimension(440, 240));
         confirmCreate.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -130,19 +128,6 @@ public class CreateAccount extends javax.swing.JPanel {
 
         ContraseñaNUsuarioLabel.setText("###################");
         confirmCreate.getContentPane().add(ContraseñaNUsuarioLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, -1, -1));
-
-        jFrame1.setUndecorated(true);
-
-        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
-        jFrame1.getContentPane().setLayout(jFrame1Layout);
-        jFrame1Layout.setHorizontalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jFrame1Layout.setVerticalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
 
         editUserErrorPanel.setPreferredSize(new java.awt.Dimension(398, 258));
 
@@ -465,7 +450,8 @@ public class CreateAccount extends javax.swing.JPanel {
 
     private void AceptarBDialogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarBDialogoActionPerformed
       
-        Control.CreateAccount.createUser(nameTF, lastNameTF, userNameTF, countryTF, adressTF, passwordTF, phoneTF, adminC);        // TODO add your handling code here:
+        Control.ManageAccount.createUser(nameTF, lastNameTF, userNameTF, countryTF,
+                                            adressTF, passwordTF, phoneTF, adminC);        // TODO add your handling code here:
     }//GEN-LAST:event_AceptarBDialogoActionPerformed
 
     private void findIdTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findIdTFActionPerformed
@@ -496,12 +482,15 @@ public class CreateAccount extends javax.swing.JPanel {
 
     private void findBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findBActionPerformed
         String a;
+        int m;
                      
         a=findIdTF.getText();
         usera.setUserName(a);
-        userb=dao.read(usera);
+        m=dao.findID(usera);
+        userb=dao.read(m);
         if(userb==null){
             PanelUtils.change(editUserActualPanel, editUserErrorPanel);
+            buscarErrorLabel.setText(findIdTF.getText());
             }else{        
         editNameTF.setText(userb.getName());
         editLastNameTF.setText(userb.getLastName());
@@ -556,7 +545,7 @@ public class CreateAccount extends javax.swing.JPanel {
 
     private void editBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBActionPerformed
        
-        Control.CreateAccount.updateUser(usera, userc, editNameTF, editLastNameTF, editUserNameTF,
+        Control.ManageAccount.updateUser(usera, editNameTF, editLastNameTF, editUserNameTF,
                                             editCountryTF, editAdressTF, editPassTF, editPhoneTF, editAdminC);
         
                                                                         // TODO add your handling code here:
@@ -621,7 +610,6 @@ public class CreateAccount extends javax.swing.JPanel {
     private javax.swing.JButton findB;
     private javax.swing.JTextField findIdTF;
     private javax.swing.JLabel idEditLabel;
-    private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

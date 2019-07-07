@@ -6,7 +6,10 @@
 package DAO;
 
 import Entidad.Request;
-import javax.persistence.EntityManagerFactory;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.*;
+
 
 /**
  *
@@ -17,5 +20,9 @@ public class DAORequest extends GenericDAO<Request>{
     public DAORequest(EntityManagerFactory factory) {
         super(factory);
     }
+     public DAORequest() {
+        super(Persistence.createEntityManagerFactory("LoginJPAPU"));
+    }
     
+     
 }

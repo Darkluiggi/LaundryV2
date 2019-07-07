@@ -5,6 +5,8 @@
  */
 package Frontera;
 
+import Utils.PanelUtils;
+
 /**
  *
  * @author leons
@@ -14,6 +16,7 @@ public class UserFrame extends javax.swing.JPanel {
     /**
      * Creates new form UserFrame
      */
+    public static NewRequestPanel nreq = new NewRequestPanel();
     public UserFrame() {
         initComponents();
         
@@ -37,16 +40,7 @@ public class UserFrame extends javax.swing.JPanel {
 
         jButton2.setText("jButton2");
 
-        javax.swing.GroupLayout PanelUserLayout = new javax.swing.GroupLayout(PanelUser);
-        PanelUser.setLayout(PanelUserLayout);
-        PanelUserLayout.setHorizontalGroup(
-            PanelUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        PanelUserLayout.setVerticalGroup(
-            PanelUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 238, Short.MAX_VALUE)
-        );
+        PanelUser.setLayout(new java.awt.BorderLayout());
 
         UserTB.setFloatable(false);
         UserTB.setRollover(true);
@@ -55,6 +49,11 @@ public class UserFrame extends javax.swing.JPanel {
         NServiceB.setFocusable(false);
         NServiceB.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         NServiceB.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        NServiceB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NServiceBActionPerformed(evt);
+            }
+        });
         UserTB.add(NServiceB);
 
         FindB.setText("Buscar");
@@ -90,6 +89,10 @@ public class UserFrame extends javax.swing.JPanel {
                 .addGap(7, 7, 7))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void NServiceBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NServiceBActionPerformed
+        PanelUtils.change(PanelUser, nreq);        // TODO add your handling code here:
+    }//GEN-LAST:event_NServiceBActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

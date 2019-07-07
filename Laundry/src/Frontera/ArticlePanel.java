@@ -5,7 +5,11 @@
  */
 package Frontera;
 
+import DAO.DAOArticle;
+import Entidad.Article;
 import Utils.PanelUtils;
+import Utils.TableUtils;
+import java.util.List;
 
 /**
  *
@@ -20,8 +24,12 @@ public class ArticlePanel extends javax.swing.JPanel {
     public static CreateAccount acc = new CreateAccount();
     public static ViewArticles viewT = new ViewArticles();
     public static EditArticle editT = new EditArticle();
+    private DAOArticle daoT = new DAOArticle();
+    List<Article> list = daoT.findAll(); 
     public ArticlePanel() {
         initComponents();
+                
+                
     }
 
     /**
@@ -102,7 +110,7 @@ public class ArticlePanel extends javax.swing.JPanel {
         TBPanelLayout.setVerticalGroup(
             TBPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TBPanelLayout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, Short.MAX_VALUE)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -121,11 +129,13 @@ public class ArticlePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_AccountBActionPerformed
 
     private void ViewSBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewSBActionPerformed
-        PanelUtils.change(ServP, viewT);        // TODO add your handling code here:
+        PanelUtils.change(ServP, viewT);  
+        TableUtils.fillTable(viewT.schemaClothes, daoT.findAll());// TODO add your handling code here:
     }//GEN-LAST:event_ViewSBActionPerformed
 
     private void EditSBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditSBActionPerformed
-        PanelUtils.change(ServP, editT);         // TODO add your handling code here:
+        PanelUtils.change(ServP, editT); 
+        TableUtils.fillTable(editT.schemaClothes, daoT.findAll());        // TODO add your handling code here:
     }//GEN-LAST:event_EditSBActionPerformed
 
 

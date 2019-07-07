@@ -137,7 +137,7 @@ public class Login extends javax.swing.JPanel {
 
     private void AcceptBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptBActionPerformed
     User user = new User();
-    user.setUserName(NameTF.getText().toLowerCase());
+    user.setUserName(NameTF.getText());
     user.setPassword(PassTF.getText());
     
     LoginControl validate = new LoginControl();

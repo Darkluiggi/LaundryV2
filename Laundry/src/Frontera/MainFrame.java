@@ -6,7 +6,7 @@
 package Frontera;
 
 import Utils.PanelUtils;
-import Control.CreateAccount;
+import Control.ManageAccount;
 
 
 /**
@@ -26,7 +26,7 @@ public class MainFrame extends javax.swing.JFrame {
          
     
     public MainFrame() {
-        CreateAccount.createAdmin();
+        ManageAccount.createAdmin();
         initComponents();
         ExitB.setVisible(false);
         setLocationRelativeTo(null);                            //Centra el programa en la pantalla

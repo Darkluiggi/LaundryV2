@@ -28,9 +28,9 @@ public class LoginControl {
         if (!verifyPasswordLength(user.getPassword())){
             return("Longitud contraseña incorrecta");
         }
-
-        if(dao.readLogin(user)!= null){
-            log = dao.readLogin(user);
+        int a = dao.findID(user);
+        if(dao.read(a)!= null){
+            log = dao.read(a);
             if(log.getRole().equals("Administrador") ){
             return ("Administrador");
             }else{

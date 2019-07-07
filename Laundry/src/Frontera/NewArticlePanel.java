@@ -11,12 +11,8 @@ import Utils.TableUtils;
 import DAO.DAOArticle;
 import Entidad.Article;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
+import java.util.*;
+import javax.swing.*;
 
 /**
  *
@@ -34,15 +30,17 @@ public class NewArticlePanel extends javax.swing.JPanel {
     public static ArrayList genders= new ArrayList();
     private DAOArticle daoT = new DAOArticle();
     
+    
     public NewArticlePanel() {
        
         initComponents();
-        List<Article> list = daoT.findAll();
-        TableUtils.fillTable(schemaClothes, list);
+
+       
+        TableUtils.fillTable(schemaClothes, daoT.findAll());
         
-        List<String> genderList = (list.stream().map(t -> t.getGender()).distinct().collect(Collectors.toList()));
+          List<String> list2 = daoT.getGenders();
         
-        DefaultComboBoxModel model2 = new DefaultComboBoxModel(genderList.toArray());
+        DefaultComboBoxModel model2 = new DefaultComboBoxModel(list2.toArray());
         
         GenderBox.setModel(model2);
     }
@@ -235,7 +233,7 @@ public class NewArticlePanel extends javax.swing.JPanel {
         temp.setWaiA(WaiC.isSelected());
         temp.setIronPrice(Float.parseFloat(IronTF.getText()));
         temp.setIronA(IronC.isSelected());
-        temp.setFold(foldC.isSelected());
+        temp.setFoldA(foldC.isSelected());
         daoT.create(temp);
         TableUtils.fillTable(schemaClothes, daoT.findAll());
 

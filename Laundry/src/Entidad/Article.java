@@ -30,7 +30,8 @@ public class Article implements Serializable  {
     private boolean waiA;
     private float ironPrice;
     private boolean ironA;
-    private boolean fold;
+    private float foldPrice;
+    private boolean foldA;
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,6 +59,14 @@ public class Article implements Serializable  {
     public Article(){
     }
 
+    public void setFoldPrice(float foldPrice) {
+        this.foldPrice = foldPrice;
+    }
+
+    public float getFoldPrice() {
+        return foldPrice;
+    }
+
     public String getGender() {
         return gender;
     }
@@ -78,8 +87,8 @@ public class Article implements Serializable  {
         return ironA;
     }
 
-    public boolean isFold() {
-        return fold;
+    public boolean isFoldA() {
+        return foldA;
     }
     
     public float getWashPrice(){
@@ -92,7 +101,7 @@ public class Article implements Serializable  {
         return ironPrice;
     }
     public Boolean getFold() {
-        return fold;
+        return foldA;
     }
 
 
@@ -124,8 +133,8 @@ public class Article implements Serializable  {
     public void setIronPrice(float ironPrice){
        this.ironPrice=ironPrice;
     }
-    public void setFold(boolean fold) {
-        this.fold=fold;
+    public void setFoldA(boolean foldA) {
+        this.foldA=foldA;
     }
 
 }

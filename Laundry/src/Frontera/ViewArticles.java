@@ -21,13 +21,10 @@ public class ViewArticles extends javax.swing.JPanel {
     
       
     public ViewArticles() {
-        DAOArticle dao = new DAOArticle();
+       
         initComponents();
         
-        List list = dao.findAll();
-        
-        TableUtils.fillTable(schemaClothes, list);
-        
+         
         TableUtils.addPopUpMenu(schemaClothes);
         
     }
@@ -45,6 +42,8 @@ public class ViewArticles extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         schemaClothes = new javax.swing.JTable();
 
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
         schemaClothes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -55,21 +54,7 @@ public class ViewArticles extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(schemaClothes);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE))
-        );
+        jPanel1.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -87,6 +72,6 @@ public class ViewArticles extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable schemaClothes;
+    public static javax.swing.JTable schemaClothes;
     // End of variables declaration//GEN-END:variables
 }

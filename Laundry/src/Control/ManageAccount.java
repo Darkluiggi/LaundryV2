@@ -17,7 +17,7 @@ import javax.swing.JTextField;
  *
  * @author leons
  */
-public class ManageAccount {
+public class ManageAccount implements Controller{
     
     private static DAOUser dao = new DAOUser();
     
@@ -106,6 +106,11 @@ public class ManageAccount {
         idEditLabel.setText(findIdTF.getText());
     }
     
+    }
+
+    @Override
+    public void executeCallBack(Runnable callback) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
 

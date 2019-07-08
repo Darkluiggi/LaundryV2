@@ -17,7 +17,7 @@ import javax.swing.JTextField;
  * @author leons
  */
 
-public class ManageArticle {
+public class ManageArticle implements Controller{
 
     private static DAOArticle daoT = new DAOArticle();
     public ManageArticle() {
@@ -39,5 +39,10 @@ public class ManageArticle {
         temp.setFoldA(foldC.isSelected());
         daoT.create(temp);
         
+    }
+
+    @Override
+    public void executeCallBack(Runnable callback) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

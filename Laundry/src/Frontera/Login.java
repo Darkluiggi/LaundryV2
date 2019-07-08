@@ -5,9 +5,11 @@
  */
 package Frontera;
 
+import Control.Controller;
 import Control.LoginControl;
 import Utils.PanelUtils;
 import Entidad.User;
+import java.awt.BorderLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -20,23 +22,27 @@ public class Login extends javax.swing.JPanel {
     /**
      * Creates new form Login
      */
-    
-      
-    public Login() {
+    private final MainFrame main;
+    private final Controller controller;
+
+    public Login(MainFrame main, Controller controller) {
+        this.main = main;
         initComponents();
-        
+
+        this.controller = controller;
+
         KeyAdapter ka;
         ka = new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode()==KeyEvent.VK_ENTER) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     AcceptB.doClick();
                 }
             }
         };
         PassTF.addKeyListener(ka);
         NameTF.addKeyListener(ka);
-    
+
     }
 
     /**
@@ -47,22 +53,85 @@ public class Login extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jLabel1 = new javax.swing.JLabel();
-        AcceptB = new javax.swing.JButton();
-        NameTF = new javax.swing.JTextField();
-        userL = new javax.swing.JLabel();
-        passL = new javax.swing.JLabel();
         LoginL = new javax.swing.JLabel();
-        ExceptionField = new javax.swing.JLabel();
+        userL = new javax.swing.JLabel();
+        NameTF = new javax.swing.JTextField();
+        passL = new javax.swing.JLabel();
         PassTF = new javax.swing.JPasswordField();
+        AcceptB = new javax.swing.JButton();
+        ExceptionField = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         setPreferredSize(new java.awt.Dimension(400, 300));
+        java.awt.GridBagLayout layout = new java.awt.GridBagLayout();
+        layout.columnWidths = new int[] {0};
+        layout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0};
+        setLayout(layout);
 
+        LoginL.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        LoginL.setForeground(new java.awt.Color(51, 51, 255));
+        LoginL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontera/password.png"))); // NOI18N
+        LoginL.setText("Login");
+        LoginL.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        LoginL.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 0);
+        add(LoginL, gridBagConstraints);
+
+        userL.setForeground(new java.awt.Color(51, 51, 255));
+        userL.setText("Usuario");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        add(userL, gridBagConstraints);
+
+        NameTF.setPreferredSize(new java.awt.Dimension(60, 28));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.ipadx = 111;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        add(NameTF, gridBagConstraints);
+
+        passL.setForeground(new java.awt.Color(51, 51, 255));
+        passL.setText("Contraseña");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.weightx = 1.0;
+        add(passL, gridBagConstraints);
+
+        PassTF.setPreferredSize(new java.awt.Dimension(60, 28));
+        PassTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PassTFActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.ipadx = 111;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        add(PassTF, gridBagConstraints);
+
+        AcceptB.setBackground(new java.awt.Color(153, 255, 255));
         AcceptB.setText("Aceptar");
+        AcceptB.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(102, 255, 204), new java.awt.Color(0, 0, 0), new java.awt.Color(204, 204, 255), new java.awt.Color(102, 102, 255)));
+        AcceptB.setBorderPainted(false);
+        AcceptB.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        AcceptB.setMaximumSize(new java.awt.Dimension(2000, 22));
+        AcceptB.setPreferredSize(new java.awt.Dimension(180, 22));
         AcceptB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AcceptBActionPerformed(evt);
@@ -73,87 +142,44 @@ public class Login extends javax.swing.JPanel {
                 AcceptBKeyPressed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        add(AcceptB, gridBagConstraints);
 
-        userL.setText("Usuario");
-
-        passL.setText("Contraseña");
-
-        LoginL.setText("Login");
-
-        PassTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PassTFActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(LoginL))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(200, 200, 200)
-                        .addComponent(AcceptB)))
-                .addContainerGap(148, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(userL)
-                    .addComponent(passL))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(NameTF, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
-                    .addComponent(PassTF))
-                .addGap(28, 28, 28)
-                .addComponent(ExceptionField, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(9, 9, 9)
-                .addComponent(LoginL)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(userL))
-                            .addComponent(NameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(passL)
-                            .addComponent(PassTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(ExceptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(59, 59, 59)
-                .addComponent(AcceptB)
-                .addContainerGap(91, Short.MAX_VALUE))
-        );
+        ExceptionField.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        ExceptionField.setForeground(new java.awt.Color(255, 0, 0));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 12;
+        add(ExceptionField, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void AcceptBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptBActionPerformed
-    User user = new User();
-    user.setUserName(NameTF.getText());
-    user.setPassword(PassTF.getText());
-    
-    LoginControl validate = new LoginControl();
-    String result = validate.verifyLogin(user);
-    if (result.equals("Administrador")){
-        PanelUtils.change(MainFrame.MainPanel, MainFrame.admin);
-        
-    } if(result.equals("Encargado de cabina")){
-        
-        PanelUtils.change(MainFrame.MainPanel, MainFrame.user);
-        
-    }else{
-        ExceptionField.setText(result);
-    }
-      MainFrame.ExitB.setVisible(true);
-      MainFrame.LoginB.setVisible(false);
+        User user = new User();
+        user.setUserName(NameTF.getText());
+        user.setPassword(PassTF.getText());
+
+        String result = ((LoginControl) controller).verifyLogin(user);
+
+        controller.executeCallBack(() -> {
+            if (result.equals("Administrador")) {
+                AdminFrame adminFrame = new AdminFrame();
+                PanelUtils.change(main.getBigPanel(), adminFrame);
+            }
+            if (result.equals("Encargado de cabina")) {
+                UserFrame userFrame = new UserFrame();
+                PanelUtils.change(main.getBigPanel(), userFrame);
+            } else {
+                ExceptionField.setText(result);
+            }
+            main.getMainTB().setVisible(true);
+            main.getExitB().setVisible(true);
+            main.getUserLbl().setText(user.getUserName());
+        });
+
+
     }//GEN-LAST:event_AcceptBActionPerformed
 
     private void PassTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PassTFActionPerformed

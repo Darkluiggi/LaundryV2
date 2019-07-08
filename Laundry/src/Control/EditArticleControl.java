@@ -9,6 +9,11 @@ package Control;
  *
  * @author User
  */
-public class EditArticleControl {
+public class EditArticleControl implements Controller {
+
+    @Override
+    public void executeCallBack(Runnable callback) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

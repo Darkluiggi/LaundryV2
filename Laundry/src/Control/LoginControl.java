@@ -7,12 +7,13 @@ package Control;
 
 import DAO.DAOUser;
 import Entidad.User;
+import javax.swing.SwingUtilities;
 
 /**
  *
  * @author leoleguizamon
  */
-public class LoginControl {
+public class LoginControl implements Controller{
     //private Sistema sistema = formularioFramePrincipal.sistema;
     
     private DAOUser dao = new DAOUser();
@@ -49,6 +50,11 @@ public class LoginControl {
     }
     public boolean verifyPasswordLength(String password){
         return (password.length() >=3 && password.length() < 8);
+    }
+
+    @Override
+    public void executeCallBack(Runnable callback) {
+        SwingUtilities.invokeLater(callback);
     }
     
 }

@@ -3,15 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/leons/Documents/NetBeansProjects/LaundryRepo2/Laundry/Laundry/src/Frontera/NewArticlePanel.java</file>
-            <file>file:/C:/Users/leons/Documents/NetBeansProjects/LaundryRepo2/Laundry/Laundry/src/DAO/DAOUser.java</file>
-            <file>file:/C:/Users/leons/Documents/NetBeansProjects/LaundryRepo2/Laundry/Laundry/src/Frontera/NewRequestPanel.java</file>
-            <file>file:/C:/Users/leons/Documents/NetBeansProjects/LaundryRepo2/Laundry/Laundry/src/Frontera/ViewArticles.java</file>
-            <file>file:/C:/Users/leons/Documents/NetBeansProjects/LaundryRepo2/Laundry/Laundry/src/Frontera/ArticlePanel.java</file>
-            <file>file:/C:/Users/leons/Documents/NetBeansProjects/LaundryRepo2/Laundry/Laundry/src/Frontera/AdminFrame.java</file>
-            <file>file:/C:/Users/leons/Documents/NetBeansProjects/LaundryRepo2/Laundry/Laundry/src/DAO/GenericDAO.java</file>
-            <file>file:/C:/Users/leons/Documents/NetBeansProjects/LaundryRepo2/Laundry/Laundry/src/Utils/TableUtils.java</file>
-            <file>file:/C:/Users/leons/Documents/NetBeansProjects/LaundryRepo2/Laundry/Laundry/src/Frontera/EditArticle.java</file>
+            <file>file:/D:/Documentos/NetBeansProjects/Laundry/Laundry/src/Entidad/ArticleRequest.java</file>
+            <file>file:/D:/Documentos/NetBeansProjects/Laundry/Laundry/src/Frontera/NewArticlePanel.java</file>
+            <file>file:/D:/Documentos/NetBeansProjects/Laundry/Laundry/src/Frontera/NewRequestPanel.java</file>
+            <file>file:/D:/Documentos/NetBeansProjects/Laundry/Laundry/src/Entidad/Request.java</file>
         </group>
     </open-files>
 </project-private>

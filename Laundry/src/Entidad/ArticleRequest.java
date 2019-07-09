@@ -27,14 +27,19 @@ public class ArticleRequest implements Serializable {
     @JoinColumn
     private Request request;
 
+    @Column
     private int quantity;
+    
+    @Column 
+    private double subtotal;
 
     public ArticleRequest() {
     }
     
-    public ArticleRequest(Article article, int quantity){
+    public ArticleRequest(Article article, int quantity, double subtotal){
         this.article = article;
         this.quantity = quantity;
+        this.subtotal = subtotal;
     }
     
     @Override
@@ -74,6 +79,14 @@ public class ArticleRequest implements Serializable {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public double getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
     }
     
     

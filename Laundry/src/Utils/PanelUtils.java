@@ -5,6 +5,8 @@
  */
 package Utils;
 
+import java.awt.BorderLayout;
+import java.awt.Component;
 import javax.swing.JPanel;
 
 /**
@@ -17,11 +19,14 @@ public class PanelUtils {
     }
     
     public static void change(JPanel panelA, JPanel panelB){
-        
+        BorderLayout layout = (BorderLayout) panelA.getLayout();
         panelA.setVisible(false);
-        panelA.removeAll();                                  //cambia el main panel por el loginal dar clic en login
-        panelA.updateUI();
-        panelA.add(panelB);
+        Component center = layout.getLayoutComponent(BorderLayout.CENTER);
+        if(center != null){
+            panelA.remove(center); 
+            panelA.updateUI();
+        }                           //cambia el main panel por el loginal dar clic en login
+        panelA.add(panelB, BorderLayout.CENTER);
         panelA.setVisible(true);
     }
     

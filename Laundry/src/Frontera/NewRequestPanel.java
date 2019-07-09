@@ -11,6 +11,7 @@ import Utils.PanelUtils;
 import Utils.TableUtils;
 import DAO.DAOArticle;
 import Entidad.Article;
+import Entidad.ArticleRequest;
 import Utils.BoxUtils;
 import java.awt.event.KeyEvent;
 import java.util.*;
@@ -26,6 +27,8 @@ public class NewRequestPanel extends javax.swing.JPanel {
      * Creates new form NewRequestPanel
      */
     private DAOArticle daoT = new DAOArticle();
+    private ArticleRequest artR = new ArticleRequest();
+    private Article art = new Article();
     
     public NewRequestPanel() {
         initComponents();
@@ -53,15 +56,20 @@ public class NewRequestPanel extends javax.swing.JPanel {
         jCheckBox3 = new javax.swing.JCheckBox();
         clothL = new javax.swing.JLabel();
         ClothBox = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        AddB = new javax.swing.JButton();
+        CancelB = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         QuantityTF = new javax.swing.JTextField();
         jCheckBox4 = new javax.swing.JCheckBox();
 
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jLabel1.setText("Id de cabina");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
+        add(CabinTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 37, 99, -1));
 
         jLabel2.setText("Género");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 84, -1, -1));
 
         GenderBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         GenderBox.addActionListener(new java.awt.event.ActionListener() {
@@ -69,6 +77,7 @@ public class NewRequestPanel extends javax.swing.JPanel {
                 GenderBoxActionPerformed(evt);
             }
         });
+        add(GenderBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 81, 89, -1));
 
         requestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -100,114 +109,68 @@ public class NewRequestPanel extends javax.swing.JPanel {
             requestTable.getColumnModel().getColumn(5).setResizable(false);
         }
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 37, 539, -1));
+
         jCheckBox1.setText("Lavado");
+        add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 231, -1, -1));
 
         jCheckBox2.setText("Planchado");
+        add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, -1));
 
         jCheckBox3.setText("Doblado");
+        add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, -1));
 
         clothL.setText("Prenda");
+        add(clothL, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 133, -1, -1));
 
         ClothBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(ClothBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 130, 89, -1));
 
-        jButton1.setText("Agregar");
+        AddB.setText("Agregar");
+        AddB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddBActionPerformed(evt);
+            }
+        });
+        add(AddB, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, -1, -1));
 
-        jButton2.setText("Cancelar");
+        CancelB.setText("Cancelar");
+        add(CancelB, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 400, -1, -1));
 
         jLabel3.setText("Cantidad");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 183, -1, -1));
+        add(QuantityTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 180, 89, -1));
 
-        jCheckBox4.setText("jCheckBox4");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(CabinTF))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCheckBox4)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel2)
-                                            .addComponent(jLabel3))
-                                        .addGap(44, 44, 44)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(ClothBox, 0, 89, Short.MAX_VALUE)
-                                            .addComponent(GenderBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(QuantityTF)))
-                                    .addComponent(jCheckBox1)
-                                    .addComponent(jCheckBox2)
-                                    .addComponent(jCheckBox3)
-                                    .addComponent(clothL))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(CabinTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(GenderBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(clothL)
-                            .addComponent(ClothBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(QuantityTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(31, 31, 31)
-                        .addComponent(jCheckBox1)
-                        .addGap(31, 31, 31)
-                        .addComponent(jCheckBox2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jCheckBox4)
-                        .addGap(21, 21, 21)
-                        .addComponent(jCheckBox3)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
-                .addContainerGap())
-        );
+        jCheckBox4.setText("Lavado y planchado");
+        add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void GenderBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenderBoxActionPerformed
         BoxUtils.updateBox(daoT.getClothName((String)GenderBox.getSelectedItem()), ClothBox);        // TODO add your handling code here:
     }//GEN-LAST:event_GenderBoxActionPerformed
 
+    private void AddBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBActionPerformed
+        String a =(String) ClothBox.getSelectedItem();
+        String b = (String)GenderBox.getSelectedItem();
+        art.setClothName(a);
+        art.setGender(b);
+        int c =daoT.findID(art);
+        art=daoT.read(c);        
+        artR.setArticle(art);
+        artR.setQuantity(Integer.parseInt(QuantityTF.getText()));
+        
+            // TODO add your handling code here:
+    }//GEN-LAST:event_AddBActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddB;
     private javax.swing.JTextField CabinTF;
+    private javax.swing.JButton CancelB;
     private javax.swing.JComboBox<String> ClothBox;
     private javax.swing.JComboBox<String> GenderBox;
     private javax.swing.JTextField QuantityTF;
     private javax.swing.JLabel clothL;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;

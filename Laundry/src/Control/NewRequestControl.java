@@ -9,6 +9,11 @@ package Control;
  *
  * @author User
  */
-public class NewRequestControl {
+public class NewRequestControl implements Controller{
+
+    @Override
+    public void executeCallBack(Runnable callback) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

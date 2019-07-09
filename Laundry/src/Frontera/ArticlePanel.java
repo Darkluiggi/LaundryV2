@@ -7,6 +7,7 @@ package Frontera;
 
 import DAO.DAOArticle;
 import Entidad.Article;
+import Utils.BoxUtils;
 import Utils.PanelUtils;
 import Utils.TableUtils;
 import java.util.List;
@@ -23,7 +24,7 @@ public class ArticlePanel extends javax.swing.JPanel {
     public static NewArticlePanel NServ = new NewArticlePanel();
     public static CreateAccount acc = new CreateAccount();
     public static ViewArticles viewT = new ViewArticles();
-    public static EditArticle editT = new EditArticle();
+    public static EditArticlePanel editT = new EditArticlePanel();
     private DAOArticle daoT = new DAOArticle();
     List<Article> list = daoT.findAll(); 
     public ArticlePanel() {
@@ -120,6 +121,7 @@ public class ArticlePanel extends javax.swing.JPanel {
     private void AddBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBActionPerformed
       
         PanelUtils.change(ServP, NServ); 
+        TableUtils.fillTable(NewArticlePanel.schemaClothes, daoT.findAll()); 
         // TODO add your handling code here:
     }//GEN-LAST:event_AddBActionPerformed
 
@@ -135,7 +137,8 @@ public class ArticlePanel extends javax.swing.JPanel {
 
     private void EditSBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditSBActionPerformed
         PanelUtils.change(ServP, editT); 
-        TableUtils.fillTable(editT.schemaClothes, daoT.findAll());        // TODO add your handling code here:
+        TableUtils.fillTable(editT.schemaClothes, daoT.findAll()); 
+        BoxUtils.updateBox(daoT.getGenders(),EditArticlePanel.GenderBox);// TODO add your handling code here:
     }//GEN-LAST:event_EditSBActionPerformed
 
 

@@ -13,7 +13,7 @@ import Utils.TableUtils;
  *
  * @author luaalvarezve
  */
-public class EditArticle extends javax.swing.JPanel {
+public class EditArticlePanel extends javax.swing.JPanel {
 
     /**
      * Creates new form EditService
@@ -23,9 +23,9 @@ public class EditArticle extends javax.swing.JPanel {
      Article art1 = new Article();
         
         
-    public EditArticle() {
+    public EditArticlePanel() {
         initComponents();
-        BoxUtils.updateBox(daoT.getGenders(),GenderBox); 
+//        BoxUtils.updateBox(daoT.getGenders(),GenderBox); 
         
            
         
@@ -57,7 +57,6 @@ public class EditArticle extends javax.swing.JPanel {
         WashC = new javax.swing.JCheckBox();
         AvalL = new javax.swing.JLabel();
         NameTF = new javax.swing.JTextField();
-        GenderBox = new javax.swing.JComboBox<>();
         GenderL = new javax.swing.JLabel();
         NameL = new javax.swing.JLabel();
         AddGenderB = new javax.swing.JButton();
@@ -65,6 +64,7 @@ public class EditArticle extends javax.swing.JPanel {
         schemaClothes = new javax.swing.JTable();
         AcceptB = new javax.swing.JButton();
         CancelB = new javax.swing.JButton();
+        GenderBox = new javax.swing.JComboBox<>();
 
         setPreferredSize(new java.awt.Dimension(800, 600));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -120,13 +120,6 @@ public class EditArticle extends javax.swing.JPanel {
         });
         add(NameTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 125, 210, -1));
 
-        GenderBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GenderBoxActionPerformed(evt);
-            }
-        });
-        add(GenderBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 77, 99, -1));
-
         GenderL.setText("Género");
         add(GenderL, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 43, -1, -1));
 
@@ -174,6 +167,8 @@ public class EditArticle extends javax.swing.JPanel {
 
         CancelB.setText("Cancelar");
         add(CancelB, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 400, -1, 40));
+
+        add(GenderBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 80, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void foldTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foldTFActionPerformed
@@ -191,10 +186,6 @@ public class EditArticle extends javax.swing.JPanel {
     private void NameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_NameTFActionPerformed
-
-    private void GenderBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenderBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_GenderBoxActionPerformed
 
     private void AddGenderBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddGenderBActionPerformed
         NewArticlePanel.addG.setVisible(true);                   //visibiliza la ventana de añadir genero
@@ -217,7 +208,7 @@ public class EditArticle extends javax.swing.JPanel {
        daoT.update(art);
        TableUtils.fillTable(schemaClothes,daoT.findAll());
        BoxUtils.updateBox(daoT.getGenders(),GenderBox);
-        // TODO add your handling code here:
+//         TODO add your handling code here:
     }//GEN-LAST:event_AcceptBActionPerformed
 
     private void jScrollPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseClicked
@@ -225,7 +216,7 @@ public class EditArticle extends javax.swing.JPanel {
     }//GEN-LAST:event_jScrollPane1MouseClicked
 
     private void schemaClothesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_schemaClothesMouseClicked
-        
+        BoxUtils.updateBox(daoT.getGenders(),GenderBox);
         String a,b;
                
        a= (String)schemaClothes.getValueAt(schemaClothes.getSelectedRow(), 0);
@@ -255,7 +246,7 @@ public class EditArticle extends javax.swing.JPanel {
     private javax.swing.JButton AddGenderB;
     private javax.swing.JLabel AvalL;
     private javax.swing.JButton CancelB;
-    public static javax.swing.JComboBox<String> GenderBox;
+    protected static javax.swing.JComboBox<String> GenderBox;
     private javax.swing.JLabel GenderL;
     private javax.swing.JLabel IronAndWashL;
     private javax.swing.JCheckBox IronC;

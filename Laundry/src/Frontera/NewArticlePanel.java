@@ -277,6 +277,6 @@ public class NewArticlePanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTable schemaClothes;
+    public static javax.swing.JTable schemaClothes;
     // End of variables declaration//GEN-END:variables
 }

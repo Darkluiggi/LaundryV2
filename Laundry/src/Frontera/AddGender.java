@@ -122,10 +122,8 @@ public class AddGender extends javax.swing.JFrame {
       
         
         NewGender = GenderTF.getText();                             //lee el texto en el textfield
-        int w = NewArticlePanel.genders.size();                       //me da el tamaño del array donde estoy guardando la lista de géneros
-        NewArticlePanel.genders.add( NewGender);                         //guardo los datos en el array
-        String a = (String) genders.get(w);                             //traigo los datos guardados en el array
-        NewArticlePanel.GenderBox.addItem(a);                           //guardo los datos en el combobox
+        NewArticlePanel.GenderBox.addItem(NewGender); 
+        EditArticlePanel.GenderBox.addItem(NewGender);
         this.dispose();                                                 //cierro la ventana e nuevo genero
         GenderTF.setText(null);                                         //borro lo escrito en el textfield
 

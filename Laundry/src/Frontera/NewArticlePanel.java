@@ -36,13 +36,13 @@ public class NewArticlePanel extends javax.swing.JPanel {
         initComponents();
 
        
-        TableUtils.fillTable(schemaClothes, daoT.findAll());
+        //TableUtils.fillTable(schemaClothes, daoT.findAll());
         
-          List<String> list2 = daoT.getGenders();
+          //List<String> list2 = daoT.getGenders();
         
-        DefaultComboBoxModel model2 = new DefaultComboBoxModel(list2.toArray());
+        //DefaultComboBoxModel model2 = new DefaultComboBoxModel(list2.toArray());
         
-        GenderBox.setModel(model2);
+        //GenderBox.setModel(model2);
     }
 
     /**
@@ -204,7 +204,7 @@ public class NewArticlePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_WashTFActionPerformed
 
     private void AddGenderBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddGenderBActionPerformed
-       addG.setVisible(true);                   //visibiliza la ventana de añadir genero
+       //addG.setVisible(true);                   //visibiliza la ventana de añadir genero
        // TODO add your handling code here:
     }//GEN-LAST:event_AddGenderBActionPerformed
 
@@ -217,7 +217,7 @@ public class NewArticlePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_NameTFActionPerformed
 
     private void CancelBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBActionPerformed
-        PanelUtils.clear(ArticlePanel.ServP);                                         //al cancelar oculta la ventana
+        //PanelUtils.clear(ArticlePanel.ServP);                                         //al cancelar oculta la ventana
         
      // TODO add your handling code here:
     }//GEN-LAST:event_CancelBActionPerformed

@@ -24,7 +24,8 @@ public class MainFrame extends javax.swing.JFrame {
      * Creates new form MainFrame
      */
     
-    public Login login;                  //instancio los paneles cambiantes del programa               
+    public Login login;                  //instancio los paneles cambiantes del programa   
+    public MainMenu menu;
     
     public MainFrame() {
         login = new Login(this, new LoginControl());
@@ -72,7 +73,8 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
 
         headerPanel.setBackground(new java.awt.Color(51, 51, 255));
-        headerPanel.setPreferredSize(new java.awt.Dimension(800, 150));
+        headerPanel.setMaximumSize(new java.awt.Dimension(2147483647, 100));
+        headerPanel.setPreferredSize(new java.awt.Dimension(800, 100));
         java.awt.GridBagLayout jPanel1Layout = new java.awt.GridBagLayout();
         jPanel1Layout.columnWeights = new double[] {0.0};
         jPanel1Layout.rowWeights = new double[] {0.0};
@@ -177,14 +179,18 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        // TODO add your handling code here:
+        PanelUtils.change(BigPanel, this.menu);
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void ExitBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitBActionPerformed
-        PanelUtils.clear(BigPanel);         
-        PanelUtils.change(BigPanel,login);        // TODO add your handling code here:
+        logOut();
     }//GEN-LAST:event_ExitBActionPerformed
 
+    public void logOut(){
+        PanelUtils.change(BigPanel, new Login(this, new LoginControl()));
+        mainTB.setVisible(false);
+        backBtn.setVisible(false);
+    }
     /**
      * @param args the command line arguments
      */
@@ -255,6 +261,10 @@ public class MainFrame extends javax.swing.JFrame {
 
     public JLabel getUserLbl() {
         return userLbl;
+    }
+
+    public JButton getBackBtn() {
+        return backBtn;
     }
     
     

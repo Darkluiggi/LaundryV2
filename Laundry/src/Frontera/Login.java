@@ -164,19 +164,25 @@ public class Login extends javax.swing.JPanel {
         String result = ((LoginControl) controller).verifyLogin(user);
 
         controller.executeCallBack(() -> {
-            if (result.equals("Administrador")) {
-                AdminFrame adminFrame = new AdminFrame();
-                PanelUtils.change(main.getBigPanel(), adminFrame);
-            }
-            if (result.equals("Encargado de cabina")) {
-                UserFrame userFrame = new UserFrame();
-                PanelUtils.change(main.getBigPanel(), userFrame);
+//            if (result.equals("Administrador")) {
+//                AdminFrame adminFrame = new AdminFrame();
+//                PanelUtils.change(main.getBigPanel(), adminFrame);
+//            }
+//            if (result.equals("Encargado de cabina")) {
+//                UserFrame userFrame = new UserFrame();
+//                PanelUtils.change(main.getBigPanel(), userFrame);
+//            } else {
+//                ExceptionField.setText(result);
+//            }
+            if (result.equals("Administrador") || result.equals("Encargado de cabina")) {
+                MainMenu menu = new MainMenu(result, main);
+                PanelUtils.change(main.getBigPanel(), menu);
+                main.getMainTB().setVisible(true);
+                main.getExitB().setVisible(true);
+                main.getUserLbl().setText(user.getUserName());
             } else {
                 ExceptionField.setText(result);
             }
-            main.getMainTB().setVisible(true);
-            main.getExitB().setVisible(true);
-            main.getUserLbl().setText(user.getUserName());
         });
 
 

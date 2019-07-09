@@ -35,33 +35,33 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="addArticleTab">
+        <Container class="javax.swing.JPanel" name="addRequestTab">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Agregar nuevo art&#xed;culo">
-                <Property name="tabTitle" type="java.lang.String" value="Agregar nuevo art&#xed;culo"/>
+              <JTabbedPaneConstraints tabName="Agregar nueva solicitud">
+                <Property name="tabTitle" type="java.lang.String" value="Agregar nueva solicitud"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
         </Container>
-        <Container class="javax.swing.JPanel" name="viewArticlesTab">
+        <Container class="javax.swing.JPanel" name="viewRequestsTab">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Ver art&#xed;culos">
-                <Property name="tabTitle" type="java.lang.String" value="Ver art&#xed;culos"/>
+              <JTabbedPaneConstraints tabName="Ver solicitudes">
+                <Property name="tabTitle" type="java.lang.String" value="Ver solicitudes"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
         </Container>
-        <Container class="javax.swing.JPanel" name="editArticleTab">
+        <Container class="javax.swing.JPanel" name="editRequestTab">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Editar art&#xed;culo">
-                <Property name="tabTitle" type="java.lang.String" value="Editar art&#xed;culo"/>
+              <JTabbedPaneConstraints tabName="Editar solicitud">
+                <Property name="tabTitle" type="java.lang.String" value="Editar solicitud"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>

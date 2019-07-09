@@ -25,7 +25,7 @@ public class EditArticle extends javax.swing.JPanel {
         
     public EditArticle() {
         initComponents();
-        BoxUtils.updateBox(daoT.getGenders(),GenderBox); 
+        //BoxUtils.updateBox(daoT.getGenders(),GenderBox); 
         
            
         

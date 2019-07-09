@@ -20,15 +20,34 @@ public class ArticlePanel extends javax.swing.JPanel {
     /**
      * Creates new form ArticlePanel
      */
-    public static NewArticlePanel NServ = new NewArticlePanel();
-    public static CreateAccount acc = new CreateAccount();
-    public static ViewArticles viewT = new ViewArticles();
-    public static EditArticle editT = new EditArticle();
-    private DAOArticle daoT = new DAOArticle();
-    List<Article> list = daoT.findAll(); 
+    public NewArticlePanel newArticle;
+    public ViewArticles viewArticles ;
+    public EditArticle editArticle;
+    
     public ArticlePanel() {
         initComponents();
-                
+        newArticle = new NewArticlePanel();
+        viewArticles = new ViewArticles();
+        editArticle = new EditArticle();  
+        
+        PanelUtils.change(addArticleTab, newArticle);
+        
+        tabs.addChangeListener(e -> {
+            switch (tabs.getSelectedIndex()) {
+                case 0:
+                    PanelUtils.change(addArticleTab, newArticle);
+                    break;
+                case 1:
+                    PanelUtils.change(viewArticlesTab, viewArticles);
+                    break;
+                default:
+                    PanelUtils.change(editArticleTab, editArticle);
+                    break;
+            }
+        });
+//        PanelUtils.change(addArticleTab, newArticle);
+//        //PanelUtils.change(viewArticlesTab, viewArticles);
+//        PanelUtils.change(editArticleTab, editArticle);
                 
     }
 
@@ -40,112 +59,35 @@ public class ArticlePanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        ServP = new javax.swing.JPanel();
-        TBPanel = new javax.swing.JPanel();
-        jToolBar1 = new javax.swing.JToolBar();
-        AddB = new javax.swing.JButton();
-        ViewSB = new javax.swing.JButton();
-        EditSB = new javax.swing.JButton();
-        AccountB = new javax.swing.JButton();
+        tabs = new javax.swing.JTabbedPane();
+        addArticleTab = new javax.swing.JPanel();
+        viewArticlesTab = new javax.swing.JPanel();
+        editArticleTab = new javax.swing.JPanel();
 
         setPreferredSize(new java.awt.Dimension(860, 500));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setLayout(new java.awt.BorderLayout());
 
-        ServP.setLayout(new java.awt.BorderLayout());
-        add(ServP, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 800, 470));
+        tabs.setPreferredSize(new java.awt.Dimension(800, 300));
 
-        jToolBar1.setFloatable(false);
-        jToolBar1.setRollover(true);
-        jToolBar1.setMaximumSize(new java.awt.Dimension(800, 23));
+        addArticleTab.setLayout(new java.awt.BorderLayout());
+        tabs.addTab("Agregar nuevo artículo", addArticleTab);
 
-        AddB.setText("Agregar nuevo servicio");
-        AddB.setPreferredSize(new java.awt.Dimension(117, 42));
-        AddB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddBActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(AddB);
+        viewArticlesTab.setLayout(new java.awt.BorderLayout());
+        tabs.addTab("Ver artículos", viewArticlesTab);
 
-        ViewSB.setText("Ver servicios");
-        ViewSB.setFocusable(false);
-        ViewSB.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        ViewSB.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        ViewSB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ViewSBActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(ViewSB);
+        editArticleTab.setLayout(new java.awt.BorderLayout());
+        tabs.addTab("Editar artículo", editArticleTab);
 
-        EditSB.setText("Editar servicios");
-        EditSB.setFocusable(false);
-        EditSB.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        EditSB.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        EditSB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EditSBActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(EditSB);
-
-        AccountB.setText("Gestión cuentas");
-        AccountB.setFocusable(false);
-        AccountB.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        AccountB.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        AccountB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AccountBActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(AccountB);
-
-        javax.swing.GroupLayout TBPanelLayout = new javax.swing.GroupLayout(TBPanel);
-        TBPanel.setLayout(TBPanelLayout);
-        TBPanelLayout.setHorizontalGroup(
-            TBPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
-        );
-        TBPanelLayout.setVerticalGroup(
-            TBPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TBPanelLayout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        add(TBPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 30));
+        add(tabs, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void AddBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBActionPerformed
-      
-        PanelUtils.change(ServP, NServ); 
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddBActionPerformed
-
-    private void AccountBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccountBActionPerformed
-        PanelUtils.change(ServP, acc); 
-                                              // TODO add your handling code here:
-    }//GEN-LAST:event_AccountBActionPerformed
-
-    private void ViewSBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewSBActionPerformed
-        PanelUtils.change(ServP, viewT);  
-        TableUtils.fillTable(viewT.schemaClothes, daoT.findAll());// TODO add your handling code here:
-    }//GEN-LAST:event_ViewSBActionPerformed
-
-    private void EditSBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditSBActionPerformed
-        PanelUtils.change(ServP, editT); 
-        TableUtils.fillTable(editT.schemaClothes, daoT.findAll());        // TODO add your handling code here:
-    }//GEN-LAST:event_EditSBActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AccountB;
-    private javax.swing.JButton AddB;
-    private javax.swing.JButton EditSB;
-    public static javax.swing.JPanel ServP;
-    private javax.swing.JPanel TBPanel;
-    private javax.swing.JButton ViewSB;
-    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JPanel addArticleTab;
+    private javax.swing.JPanel editArticleTab;
+    private javax.swing.JTabbedPane tabs;
+    private javax.swing.JPanel viewArticlesTab;
     // End of variables declaration//GEN-END:variables
 }

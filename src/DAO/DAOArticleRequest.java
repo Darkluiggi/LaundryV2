@@ -5,22 +5,20 @@
  */
 package DAO;
 
-import Entidad.Request;
-import javax.persistence.*;
-
+import Entidad.ArticleRequest;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  *
- * @author User
+ * @author leons
  */
-public class DAORequest extends GenericDAO<Request>{
+public class DAOArticleRequest extends GenericDAO<ArticleRequest>{
     
-    public DAORequest(EntityManagerFactory factory) {
+      public DAOArticleRequest(EntityManagerFactory factory) {
         super(factory);
     }
-     public DAORequest() {
+     public DAOArticleRequest() {
         super(Persistence.createEntityManagerFactory("LoginJPAPU"));
     }
-    
-     
 }

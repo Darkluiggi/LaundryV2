@@ -24,13 +24,13 @@ public class Article implements Serializable  {
     
     private String gender;
     private String clothName;
-    private float washPrice;
+    private double washPrice;
     private boolean washA;
-    private float waiPrice;
+    private double waiPrice;
     private boolean waiA;
-    private float ironPrice;
+    private double ironPrice;
     private boolean ironA;
-    private float foldPrice;
+    private double foldPrice;
     private boolean foldA;
     
     @Id
@@ -59,11 +59,11 @@ public class Article implements Serializable  {
     public Article(){
     }
 
-    public void setFoldPrice(float foldPrice) {
+    public void setFoldPrice(double foldPrice) {
         this.foldPrice = foldPrice;
     }
 
-    public float getFoldPrice() {
+    public double getFoldPrice() {
         return foldPrice;
     }
 
@@ -91,13 +91,13 @@ public class Article implements Serializable  {
         return foldA;
     }
     
-    public float getWashPrice(){
+    public double getWashPrice(){
         return washPrice;
     }
-    public float getWaiPrice(){
+    public double getWaiPrice(){
         return waiPrice;
     }
-    public float getIronPrice(){
+    public double getIronPrice(){
         return ironPrice;
     }
     public Boolean getFold() {
@@ -112,7 +112,7 @@ public class Article implements Serializable  {
     public void setClothName(String clothName) {
         this.clothName = clothName;
     }
-     public void setWashPrice(float washPrice){
+     public void setWashPrice(double washPrice){
         this.washPrice = washPrice;
     }
 
@@ -127,10 +127,10 @@ public class Article implements Serializable  {
     public void setIronA(boolean ironA) {
         this.ironA = ironA;
     }
-    public void setWaiPrice(float waiPrice){
+    public void setWaiPrice(double waiPrice){
         this.waiPrice=waiPrice;
     }
-    public void setIronPrice(float ironPrice){
+    public void setIronPrice(double ironPrice){
        this.ironPrice=ironPrice;
     }
     public void setFoldA(boolean foldA) {

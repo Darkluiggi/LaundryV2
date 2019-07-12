@@ -10,6 +10,7 @@ package Frontera;
 import Utils.PanelUtils;
 import Utils.TableUtils;
 import DAO.DAOArticle;
+import DAO.DAOArticleRequest;
 import Entidad.Article;
 import Entidad.ArticleRequest;
 import Utils.BoxUtils;
@@ -27,13 +28,20 @@ public class NewRequestPanel extends javax.swing.JPanel implements requestInterf
     /**
      * Creates new form NewRequestPanel
      */
-    private DAOArticle daoT = new DAOArticle();
-    private ArticleRequest artR = new ArticleRequest();
-    private Article art = new Article();
-    private Hashtable<String, String[]> subItems = new Hashtable<String, String[]>();
-    
+    private DAOArticle daoT;
+    private ArticleRequest artR;
+    private DAOArticleRequest daoAR;
+    private Article art;
+    private Hashtable<String, String[]> subItems= new Hashtable<String, String[]>();
+    String a,b;    
+    int c, d;
     public NewRequestPanel() {
         initComponents();
+        daoT = new DAOArticle();
+        artR = new ArticleRequest();
+        art = new Article();
+        daoAR = new DAOArticleRequest();
+     
         BoxUtils.updateBox(daoT.getGenders(), GenderBox);
         GenderBox.addActionListener((ev)->{
             genderSelected(ev);
@@ -66,15 +74,16 @@ public class NewRequestPanel extends javax.swing.JPanel implements requestInterf
         jLabel3 = new javax.swing.JLabel();
         QuantityTF = new javax.swing.JTextField();
         ironWashChk = new javax.swing.JCheckBox();
+        XpressChk = new javax.swing.JCheckBox();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Id de cabina");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
-        add(CabinTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 37, 99, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        add(CabinTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 99, -1));
 
         jLabel2.setText("Género");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 84, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
 
         GenderBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         GenderBox.addItemListener(new java.awt.event.ItemListener() {
@@ -92,7 +101,7 @@ public class NewRequestPanel extends javax.swing.JPanel implements requestInterf
                 GenderBoxActionPerformed(evt);
             }
         });
-        add(GenderBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 81, 89, -1));
+        add(GenderBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 89, -1));
 
         requestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -138,7 +147,7 @@ public class NewRequestPanel extends javax.swing.JPanel implements requestInterf
                 washChkActionPerformed(evt);
             }
         });
-        add(washChk, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 231, -1, -1));
+        add(washChk, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, -1));
 
         ironChk.setText("Planchado");
         ironChk.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -151,13 +160,13 @@ public class NewRequestPanel extends javax.swing.JPanel implements requestInterf
                 ironChkActionPerformed(evt);
             }
         });
-        add(ironChk, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, -1));
+        add(ironChk, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, -1));
 
         foldChk.setText("Doblado");
-        add(foldChk, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, -1));
+        add(foldChk, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, -1, -1));
 
         clothL.setText("Prenda");
-        add(clothL, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 133, -1, -1));
+        add(clothL, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
 
         ClothBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         ClothBox.addItemListener(new java.awt.event.ItemListener() {
@@ -175,7 +184,7 @@ public class NewRequestPanel extends javax.swing.JPanel implements requestInterf
                 ClothBoxActionPerformed(evt);
             }
         });
-        add(ClothBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 130, 89, -1));
+        add(ClothBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 89, -1));
 
         AddB.setText("Agregar");
         AddB.addActionListener(new java.awt.event.ActionListener() {
@@ -183,14 +192,14 @@ public class NewRequestPanel extends javax.swing.JPanel implements requestInterf
                 AddBActionPerformed(evt);
             }
         });
-        add(AddB, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, -1, -1));
+        add(AddB, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, -1, -1));
 
         CancelB.setText("Cancelar");
-        add(CancelB, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 400, -1, -1));
+        add(CancelB, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, -1, -1));
 
         jLabel3.setText("Cantidad");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 183, -1, -1));
-        add(QuantityTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 180, 89, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
+        add(QuantityTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 89, -1));
 
         ironWashChk.setText("Lavado y planchado");
         ironWashChk.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -203,7 +212,10 @@ public class NewRequestPanel extends javax.swing.JPanel implements requestInterf
                 ironWashChkActionPerformed(evt);
             }
         });
-        add(ironWashChk, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, -1, -1));
+        add(ironWashChk, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
+
+        XpressChk.setText("Express");
+        add(XpressChk, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void GenderBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenderBoxActionPerformed
@@ -227,22 +239,32 @@ public class NewRequestPanel extends javax.swing.JPanel implements requestInterf
         }
     }
     private void AddBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBActionPerformed
-        String a =(String) ClothBox.getSelectedItem();
-        String b = (String)GenderBox.getSelectedItem();
-        Float serviceP = 00.0f;
+
+        double e = 00.0;
+        a =(String) ClothBox.getSelectedItem();
+        b = (String)GenderBox.getSelectedItem();
         art.setClothName(a);
         art.setGender(b);
-        int c =daoT.findID(art);
+        c =daoT.findID(art);
         art=daoT.read(c);        
         artR.setArticle(art);
-        artR.setQuantity(Integer.parseInt(QuantityTF.getText()));
-        if (washChk.isSelected()) {
-            
-            
+        d=Integer.parseInt(QuantityTF.getText());
+        artR.setQuantity(d);
+         if(washChk.isSelected()){
+            e=art.getWashPrice();
+            artR.setService("Lavado");
+        }else if (ironChk.isSelected()) {
+            e=art.getIronPrice(); 
+            artR.setService("Planchado");
+        }else if (ironWashChk.isSelected()) {
+            e=art.getWaiPrice();
+            artR.setService("LAvado y Planchado");
         }
-        
-//        artR.setSubtotal();
-        
+        artR.setSubtotal(d*e);
+        artR.setExpress(XpressChk.isSelected());
+        daoAR.create(artR);
+        TableUtils.fillTableArticleRequest(requestTable, daoAR.findAll());
+        art.getClothName();
             // TODO add your handling code here:
     }//GEN-LAST:event_AddBActionPerformed
 
@@ -306,11 +328,11 @@ public class NewRequestPanel extends javax.swing.JPanel implements requestInterf
     }//GEN-LAST:event_GenderBoxItemStateChanged
 
     private void ClothBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ClothBoxItemStateChanged
-        String a =(String) ClothBox.getSelectedItem();
-        String b = (String)GenderBox.getSelectedItem();
-        art.setClothName(a);
+        a =(String) ClothBox.getSelectedItem();
+        b = (String)GenderBox.getSelectedItem();
         art.setGender(b);
-        int c =daoT.findID(art);
+        art.setClothName(a);
+        c =daoT.findID(art);
         art=daoT.read(c); 
         foldChk.setEnabled(art.getFold());        // TODO add your handling code here:
     }//GEN-LAST:event_ClothBoxItemStateChanged
@@ -323,6 +345,7 @@ public class NewRequestPanel extends javax.swing.JPanel implements requestInterf
     private javax.swing.JComboBox<String> ClothBox;
     private javax.swing.JComboBox<String> GenderBox;
     private javax.swing.JTextField QuantityTF;
+    private javax.swing.JCheckBox XpressChk;
     private javax.swing.JLabel clothL;
     private javax.swing.JCheckBox foldChk;
     private javax.swing.JCheckBox ironChk;

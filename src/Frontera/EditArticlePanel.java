@@ -6,6 +6,7 @@
 package Frontera;
 
 import DAO.DAOArticle;
+import DAO.DAOArticleRequest;
 import Entidad.Article;
 import Utils.BoxUtils;
 import Utils.TableUtils;
@@ -24,15 +25,13 @@ public class EditArticlePanel extends javax.swing.JPanel implements articleInter
     Article art = new Article();
     Article art1 = new Article();
     AddGender addG;
+    DAOArticleRequest daoAR;
         
         
     public EditArticlePanel() {
         initComponents();
         addG = new AddGender(this);
-//        BoxUtils.updateBox(daoT.getGenders(),GenderBox); 
-        
-           
-        
+       
     }
     
     
@@ -212,6 +211,8 @@ public class EditArticlePanel extends javax.swing.JPanel implements articleInter
        daoT.update(art);
        TableUtils.fillTableArticle(schemaClothes,daoT.findAll());
        BoxUtils.updateBox(daoT.getGenders(),GenderBox);
+       
+       
 //         TODO add your handling code here:
     }//GEN-LAST:event_AcceptBActionPerformed
 
@@ -230,13 +231,13 @@ public class EditArticlePanel extends javax.swing.JPanel implements articleInter
        art=daoT.read(schemaClothes.getSelectedRow()+1);
        GenderBox.setSelectedItem(art.getGender());
        NameTF.setText(art.getClothName());
-       WashTF.setText(Float.toString(art.getWashPrice()));
+       WashTF.setText(Double.toString(art.getWashPrice()));
        WashC.setSelected(art.isWashA());
-       IronandWashTF.setText(Float.toString(art.getWaiPrice()));
+       IronandWashTF.setText(Double.toString(art.getWaiPrice()));
        WaiC.setSelected(art.isWaiA());
-       IronTF.setText(Float.toString(art.getIronPrice()));
+       IronTF.setText(Double.toString(art.getIronPrice()));
        IronC.setSelected(art.isIronA());
-       foldTF.setText(Float.toString(art.getFoldPrice()));
+       foldTF.setText(Double.toString(art.getFoldPrice()));
        foldC.setSelected(art.isFoldA());  
             // TODO add your handling code here:
     }//GEN-LAST:event_schemaClothesMouseClicked

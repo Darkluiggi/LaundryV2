@@ -52,4 +52,25 @@ public class DAOUser  extends GenericDAO<User>{
             }
             }
     }
+    public String readLogin(User Object){
+      
+        EntityManager em =emf.createEntityManager();
+        User user= null;
+            Query q =em.createQuery("SELECT u FROM User u "+
+                "WHERE u.userName LIKE :name " +
+                    "AND  u.password LIKE :password")
+                .setParameter("name",Object.getUserName())
+                    .setParameter("password",Object.getPassword());
+            try{
+                user = (User) q.getSingleResult();
+            }catch (NonUniqueResultException e){
+                user = (User) q.getResultList().get(0);
+            }catch(Exception e){
+            e.printStackTrace();
+           }finally {
+                em.close();
+                
+                return user.getRole();
+              }
+    }
 }

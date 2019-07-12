@@ -9,23 +9,26 @@ import DAO.DAOArticle;
 import Entidad.Article;
 import Utils.BoxUtils;
 import Utils.TableUtils;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 /**
  *
  * @author luaalvarezve
  */
-public class EditArticlePanel extends javax.swing.JPanel {
+public class EditArticlePanel extends javax.swing.JPanel implements articleInterface{
 
     /**
      * Creates new form EditService
      */
     private DAOArticle daoT = new DAOArticle();
     Article art = new Article();
-     Article art1 = new Article();
+    Article art1 = new Article();
+    AddGender addG;
         
         
     public EditArticlePanel() {
         initComponents();
+        addG = new AddGender(this);
 //        BoxUtils.updateBox(daoT.getGenders(),GenderBox); 
         
            
@@ -189,7 +192,7 @@ public class EditArticlePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_NameTFActionPerformed
 
     private void AddGenderBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddGenderBActionPerformed
-        NewArticlePanel.addG.setVisible(true);                   //visibiliza la ventana de añadir genero
+        addG.setVisible(true);                   //visibiliza la ventana de añadir genero
         // TODO add your handling code here:
     }//GEN-LAST:event_AddGenderBActionPerformed
 
@@ -207,7 +210,7 @@ public class EditArticlePanel extends javax.swing.JPanel {
        art.setIronA(foldC.isSelected());
        
        daoT.update(art);
-       TableUtils.fillArticleReuestTable(schemaClothes,daoT.findAll());
+       TableUtils.fillTableArticle(schemaClothes,daoT.findAll());
        BoxUtils.updateBox(daoT.getGenders(),GenderBox);
 //         TODO add your handling code here:
     }//GEN-LAST:event_AcceptBActionPerformed
@@ -270,6 +273,11 @@ public class EditArticlePanel extends javax.swing.JPanel {
 
     public static JTable getSchemaClothes() {
         return schemaClothes;
+    }
+
+    @Override
+    public JComboBox getGenderBox() {
+        return GenderBox;
     }
 
 

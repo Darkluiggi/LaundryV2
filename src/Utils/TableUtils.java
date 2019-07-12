@@ -6,6 +6,7 @@
 package Utils;
 
 import Entidad.Article;
+import Entidad.ArticleRequest;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -24,7 +25,7 @@ public class TableUtils {
     public TableUtils() {
     }
 
-    public static void fillArticleReuestTable(JTable table, List<Article> list) {
+    public static void fillTableArticle(JTable table, List<Article> list) {
         DefaultTableModel model = new DefaultTableModel(null, new String[]{
             "Género", "Nombre", "Lavado", "Lavado y Planchado", "Planchado"
         });
@@ -33,17 +34,18 @@ public class TableUtils {
         }
         table.setModel(model);
     }
-    public static void fillArticleTable(JTable table, List<Article> list) {
+
+    public static void fillTableArticleRequest(JTable table, List<ArticleRequest> list) {
         DefaultTableModel model = new DefaultTableModel(null, new String[]{
-            "Género", "Nombre", "Lavado", "Lavado y Planchado", "Planchado"
+            "Género", "Nombre", "Servicio", "Doblado", "Express", "Cantidad", "Subtotal"
         });
-        for (Article t : list) {
-            model.addRow(new Object[]{t.getGender(), t.getClothName(), t.getWashPrice(), t.getWaiPrice(), t.getIronPrice()});
+        for (ArticleRequest t : list) {
+            model.addRow(new Object[]{t.getArticle().getGender(), t.getArticle().getClothName(), t.getService(), t.isFold(), t.isExpress(), t.getQuantity(), t.getSubtotal()});
         }
         table.setModel(model);
     }
-    
-    public static void addPopUpMenu(JTable table){
+
+    public static void addPopUpMenu(JTable table) {
         final JPopupMenu popupMenu = new JPopupMenu();
         JMenuItem editItem = new JMenuItem("Editar");
         editItem.addActionListener((ActionEvent e) -> {

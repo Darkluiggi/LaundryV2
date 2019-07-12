@@ -13,6 +13,7 @@ import DAO.DAOArticle;
 import Entidad.Article;
 import Entidad.ArticleRequest;
 import Utils.BoxUtils;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.*;
 import javax.swing.*;
@@ -21,7 +22,7 @@ import javax.swing.*;
  *
  * @author User
  */
-public class NewRequestPanel extends javax.swing.JPanel {
+public class NewRequestPanel extends javax.swing.JPanel implements requestInterface{
 
     /**
      * Creates new form NewRequestPanel
@@ -29,11 +30,15 @@ public class NewRequestPanel extends javax.swing.JPanel {
     private DAOArticle daoT = new DAOArticle();
     private ArticleRequest artR = new ArticleRequest();
     private Article art = new Article();
+    private Hashtable<String, String[]> subItems = new Hashtable<String, String[]>();
     
     public NewRequestPanel() {
         initComponents();
         BoxUtils.updateBox(daoT.getGenders(), GenderBox);
-        
+        GenderBox.addActionListener((ev)->{
+            genderSelected(ev);
+        });
+        GenderBox.putClientProperty("JComboBox.isTableCellEditor", Boolean.TRUE);
     }
 
     /**
@@ -82,13 +87,6 @@ public class NewRequestPanel extends javax.swing.JPanel {
                 GenderBoxFocusGained(evt);
             }
         });
-        GenderBox.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                GenderBoxInputMethodTextChanged(evt);
-            }
-        });
         GenderBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GenderBoxActionPerformed(evt);
@@ -104,7 +102,7 @@ public class NewRequestPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Género", "Nombre", "Servicio", "Cantidad", "Doblado", "Express", "Subtotal"
+                "Género", "Nombre", "Servicio", "Doblado", "Express", "Cantidad", "Subtotal"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -209,32 +207,42 @@ public class NewRequestPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void GenderBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenderBoxActionPerformed
-         
-        
-         // TODO add your handling code here:
+       
     }//GEN-LAST:event_GenderBoxActionPerformed
 
+    
+    private void genderSelected(ActionEvent evt){
+        //BoxUtils.updateBox(daoT.getClothName((String)GenderBox.getSelectedItem()), ClothBox);  
+        String item = (String)GenderBox.getSelectedItem();
+        BoxUtils.getArticlesbyGender(item, subItems);
+        Object o = subItems.get(item);
+
+        if (o == null)
+        {
+            ClothBox.setModel( new DefaultComboBoxModel() );
+        }
+        else
+        {
+            ClothBox.setModel( new DefaultComboBoxModel( (String[])o ) );
+        }
+    }
     private void AddBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBActionPerformed
         String a =(String) ClothBox.getSelectedItem();
         String b = (String)GenderBox.getSelectedItem();
-        float price=0;
+        Float serviceP = 00.0f;
         art.setClothName(a);
         art.setGender(b);
         int c =daoT.findID(art);
         art=daoT.read(c);        
         artR.setArticle(art);
         artR.setQuantity(Integer.parseInt(QuantityTF.getText()));
-        if(washChk.isSelected()){
-             price= art.getWashPrice()*artR.getQuantity();
-        }else{ if(ironChk.isSelected()){
-             price= art.getIronPrice()*artR.getQuantity();
-            }else{ if(ironWashChk.isSelected()){
-             price= art.getWaiPrice()*artR.getQuantity();
-        }}
+        if (washChk.isSelected()) {
+            
+            
         }
-    
-        artR.setSubtotal(artR.getQuantity()*price);
-        artR.getSubtotal();
+        
+//        artR.setSubtotal();
+        
             // TODO add your handling code here:
     }//GEN-LAST:event_AddBActionPerformed
 
@@ -294,8 +302,7 @@ public class NewRequestPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_GenderBoxFocusGained
 
     private void GenderBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_GenderBoxItemStateChanged
-        List a = daoT.getClothName((String)GenderBox.getSelectedItem());
-        BoxUtils.updateBox(a, ClothBox);        
+        //BoxUtils.updateBox(daoT.getClothName((String)GenderBox.getSelectedItem()), ClothBox);
     }//GEN-LAST:event_GenderBoxItemStateChanged
 
     private void ClothBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ClothBoxItemStateChanged
@@ -307,10 +314,6 @@ public class NewRequestPanel extends javax.swing.JPanel {
         art=daoT.read(c); 
         foldChk.setEnabled(art.getFold());        // TODO add your handling code here:
     }//GEN-LAST:event_ClothBoxItemStateChanged
-
-    private void GenderBoxInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_GenderBoxInputMethodTextChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_GenderBoxInputMethodTextChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

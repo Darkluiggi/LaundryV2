@@ -6,6 +6,7 @@
 package Entidad;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -16,6 +17,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -34,6 +37,9 @@ public class Request implements Serializable {
     
     @ManyToOne
     private Cabin cabin;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created_at;
 
     public Request() {
     }

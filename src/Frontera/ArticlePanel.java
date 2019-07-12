@@ -23,7 +23,7 @@ public class ArticlePanel extends javax.swing.JPanel {
      */
     public NewArticlePanel newArticle;
     public ViewArticles viewArticles ;
-    public EditArticle editArticle;
+    public EditArticlePanel editArticle;
     private DAOArticle daoT = new DAOArticle();
     List<Article> list = daoT.findAll(); 
     
@@ -31,7 +31,7 @@ public class ArticlePanel extends javax.swing.JPanel {
         initComponents();
         newArticle = new NewArticlePanel();
         viewArticles = new ViewArticles();
-        editArticle = new EditArticle();  
+        editArticle = new EditArticlePanel();  
         
         PanelUtils.change(addArticleTab, newArticle);
         
@@ -39,16 +39,16 @@ public class ArticlePanel extends javax.swing.JPanel {
             switch (tabs.getSelectedIndex()) {
                 case 0:
                     PanelUtils.change(addArticleTab, newArticle);
-                     TableUtils.fillArticleReuestTable(newArticle.getSchemaClothes(), daoT.findAll()); 
+                     TableUtils.fillTableArticle(newArticle.getSchemaClothes(), daoT.findAll()); 
                     break;
                 case 1:
                     
                     PanelUtils.change(viewArticlesTab, viewArticles);
-                    TableUtils.fillArticleReuestTable(viewArticles.getSchemaClothes(), daoT.findAll());
+                    TableUtils.fillTableArticle(viewArticles.getSchemaClothes(), daoT.findAll());
                     break;
                 default:
                     PanelUtils.change(editArticleTab, editArticle);
-                    TableUtils.fillArticleReuestTable(editArticle.getSchemaClothes(), daoT.findAll());
+                    TableUtils.fillTableArticle(editArticle.getSchemaClothes(), daoT.findAll());
                     break;
             }
         });

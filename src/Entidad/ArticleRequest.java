@@ -3,6 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+
 package Entidad;
 
 import java.io.Serializable;
@@ -26,12 +28,21 @@ public class ArticleRequest implements Serializable {
     @ManyToOne
     @JoinColumn
     private Request request;
+    
+    @Column
+    private String service;
+    
+    @Column
+    private boolean express;
 
     @Column
     private int quantity;
     
     @Column 
     private double subtotal;
+    
+    @Column
+    private boolean fold;
 
     public ArticleRequest() {
     }
@@ -87,6 +98,30 @@ public class ArticleRequest implements Serializable {
 
     public void setSubtotal(double subtotal) {
         this.subtotal = subtotal;
+    }
+
+    public String getService() {
+        return service;
+    }
+
+    public void setService(String service) {
+        this.service = service;
+    }
+
+    public boolean isExpress() {
+        return express;
+    }
+
+    public void setExpress(boolean express) {
+        this.express = express;
+    }
+
+    public boolean isFold() {
+        return fold;
+    }
+
+    public void setFold(boolean fold) {
+        this.fold = fold;
     }
     
     

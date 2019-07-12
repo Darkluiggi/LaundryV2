@@ -16,11 +16,12 @@ import javax.swing.SwingUtilities;
 public class LoginControl implements Controller{
     //private Sistema sistema = formularioFramePrincipal.sistema;
     
-    private DAOUser dao = new DAOUser();
-    private User log = new User();
+    private DAOUser dao ;
+    private String log ;
                
     public LoginControl() {
-        
+        dao= new DAOUser();
+        log= new String();
     }
     public String verifyLogin (User user){
         if (!verifyNameLength(user.getUserName())){
@@ -29,13 +30,13 @@ public class LoginControl implements Controller{
         if (!verifyPasswordLength(user.getPassword())){
             return("Longitud contraseña incorrecta");
         }
-        int a = dao.findID(user);
-        if(dao.read(a)!= null){
-            log = dao.read(a);
-            if(log.getRole().equals("Administrador") ){
+      
+        if(dao.readLogin(user)!= null){
+            log = dao.readLogin(user);
+            if(log.equals("Administrador") ){
             return ("Administrador");
             }else{
-                if(log.getRole().equals("Encargado de cabina") ){
+                if(log.equals("Encargado de cabina") ){
                 return ("Encargado de cabina");
             }
           }

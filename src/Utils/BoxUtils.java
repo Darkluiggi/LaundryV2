@@ -6,6 +6,7 @@
 package Utils;
 
 import DAO.DAOArticle;
+import java.util.Hashtable;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -16,15 +17,21 @@ import javax.swing.JComboBox;
  */
 public class BoxUtils {
 
-    private DAOArticle daoT = new DAOArticle();
+    private static DAOArticle daoT = new DAOArticle();
     public BoxUtils() {
     }
     public static void updateBox(List<String> list, JComboBox box){
-//        String defaultItem = "Seleccionar...";
-//        list.add(defaultItem);
+        String defaultItem = "Seleccionar...";
+        list.add(defaultItem);
         DefaultComboBoxModel model = new DefaultComboBoxModel(list.toArray());
         box.setModel(model);
-//        box.setSelectedItem(defaultItem);
+        box.setSelectedItem(defaultItem);
     }
     
+    public static void getArticlesbyGender(String Gender, Hashtable<String, String[]> subItems){
+        List<String> clothes = daoT.getClothName(Gender);
+        clothes.add(0, "Seleccionar...");
+        String[] clothesArray = clothes.toArray(new String[0]);
+        subItems.put(Gender, (String[]) clothesArray);
+    }    
 }

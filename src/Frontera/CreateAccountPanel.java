@@ -14,10 +14,10 @@ import java.awt.event.KeyEvent;
  *
  * @author leoleguizamon
  */
-public class CreateAccount extends javax.swing.JPanel {
+public class CreateAccountPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form CreateAccount
+     * Creates new form CreateAccountPanel
      */
     
     
@@ -27,7 +27,7 @@ public class CreateAccount extends javax.swing.JPanel {
     private User userb = new User(); 
     private User userc = new User(); 
     
-    public CreateAccount() {
+    public CreateAccountPanel() {
         initComponents();
     }
 
@@ -296,6 +296,11 @@ public class CreateAccount extends javax.swing.JPanel {
         });
 
         countryTF.setText("País");
+        countryTF.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                countryTFFocusGained(evt);
+            }
+        });
         countryTF.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 countryTFMouseClicked(evt);
@@ -451,7 +456,8 @@ public class CreateAccount extends javax.swing.JPanel {
     private void AceptarBDialogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarBDialogoActionPerformed
       
         Control.ManageAccount.createUser(nameTF, lastNameTF, userNameTF, countryTF,
-                                            adressTF, passwordTF, phoneTF, adminC);        // TODO add your handling code here:
+                                            adressTF, passwordTF, phoneTF, adminC);     // TODO add your handling code here:
+        confirmCreate.dispose();
     }//GEN-LAST:event_AceptarBDialogoActionPerformed
 
     private void findIdTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findIdTFActionPerformed
@@ -471,13 +477,7 @@ public class CreateAccount extends javax.swing.JPanel {
         confirmCreate.setVisible(true);
         confirmCreate.setLocationRelativeTo(null);
         IDNUsuarioLabel.setText(userNameTF.getText());
-        ContraseñaNUsuarioLabel.setText(passwordTF.getText());
-         
-        
-        
-        
-        
-        
+        ContraseñaNUsuarioLabel.setText(passwordTF.getText()); 
     }//GEN-LAST:event_createBActionPerformed
 
     private void findBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findBActionPerformed
@@ -581,6 +581,11 @@ public class CreateAccount extends javax.swing.JPanel {
     private void lastNameTFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lastNameTFFocusGained
        lastNameTF.selectAll(); // TODO add your handling code here:
     }//GEN-LAST:event_lastNameTFFocusGained
+
+    private void countryTFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_countryTFFocusGained
+        countryTF.selectAll();
+// TODO add your handling code here:
+    }//GEN-LAST:event_countryTFFocusGained
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AceptarBDialogo;

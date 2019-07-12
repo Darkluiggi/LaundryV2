@@ -20,8 +20,10 @@ public class AddGender extends javax.swing.JFrame {
      * Creates new form AddGender
      */
     public String NewGender = new String();         //creo un string de acceso público para recibir el dato del textfield
+    public articleInterface artInterface;
     
-    public AddGender() {
+    public AddGender(articleInterface articlePanel) {
+        this.artInterface = articlePanel;
         initComponents();
         setLocationRelativeTo(null);
         
@@ -122,8 +124,8 @@ public class AddGender extends javax.swing.JFrame {
       
         
         NewGender = GenderTF.getText();                             //lee el texto en el textfield
-        NewArticlePanel.GenderBox.addItem(NewGender); 
-        EditArticlePanel.GenderBox.addItem(NewGender);
+        artInterface.getGenderBox().addItem(NewGender); 
+        artInterface.getGenderBox().setSelectedItem(NewGender);
         this.dispose();                                                 //cierro la ventana e nuevo genero
         GenderTF.setText(null);                                         //borro lo escrito en el textfield
 
@@ -172,11 +174,12 @@ public class AddGender extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(AddGender.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddGender().setVisible(true);
+                //new AddGender(artInterface).setVisible(true);
             }
         });
     }

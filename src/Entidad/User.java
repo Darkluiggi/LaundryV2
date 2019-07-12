@@ -7,7 +7,9 @@ import javax.persistence.*;
 @Entity
 @Table (name="Users")
 public class User extends Person implements Serializable  {
+    @Column(unique = true)
     private String userName;
+    
     private String password;
     private String role;
 

@@ -504,6 +504,7 @@
         <Property name="text" type="java.lang.String" value="Pa&#xed;s"/>
       </Properties>
       <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="countryTFFocusGained"/>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="countryTFMouseClicked"/>
       </Events>
     </Component>

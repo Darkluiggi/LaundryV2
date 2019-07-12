@@ -263,7 +263,7 @@ public class MainMenu extends javax.swing.JPanel {
     }//GEN-LAST:event_analyticsBtnMouseClicked
 
     private void usersBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usersBtnMouseClicked
-        CreateAccount userPanel = new CreateAccount();
+        CreateAccountPanel userPanel = new CreateAccountPanel();
         PanelUtils.change(main.getBigPanel(), userPanel);
         main.getBackBtn().setVisible(true);
     }//GEN-LAST:event_usersBtnMouseClicked

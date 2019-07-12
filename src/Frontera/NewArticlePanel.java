@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Frontera;
 
 import Utils.PanelUtils;
@@ -19,25 +18,20 @@ import javax.swing.*;
  *
  * @author leons
  */
-
-
-
-public class NewArticlePanel extends javax.swing.JPanel {
+public class NewArticlePanel extends javax.swing.JPanel implements articleInterface {
 
     /**
      * Creates new form NewServicePanel
      */
-    public static AddGender addG = new AddGender();             //instancio las ventanas a las que puede acceder este panel
-    public static ArrayList genders= new ArrayList();
+    public AddGender addG;            //instancio las ventanas a las que puede acceder este panel
+    public static ArrayList genders = new ArrayList();
     private DAOArticle daoT = new DAOArticle();
-    
-    
+
     public NewArticlePanel() {
-       
+
         initComponents();
 
-       
-        TableUtils.fillArticleReuestTable(schemaClothes, daoT.findAll());
+        TableUtils.fillTableArticle(schemaClothes, daoT.findAll());
         BoxUtils.updateBox(daoT.getGenders(), GenderBox);
     }
 
@@ -200,12 +194,13 @@ public class NewArticlePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_WashTFActionPerformed
 
     private void AddGenderBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddGenderBActionPerformed
-           addG.setVisible(true);                   //visibiliza la ventana de añadir genero
-       // TODO add your handling code here:
+        addG = new AddGender(this);
+        addG.setVisible(true);                   //visibiliza la ventana de añadir genero
+        // TODO add your handling code here:
     }//GEN-LAST:event_AddGenderBActionPerformed
 
     private void GenderBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenderBoxActionPerformed
-       // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_GenderBoxActionPerformed
 
     private void NameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameTFActionPerformed
@@ -214,14 +209,14 @@ public class NewArticlePanel extends javax.swing.JPanel {
 
     private void CancelBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBActionPerformed
         //PanelUtils.clear(ArticlePanel.ServP);                                         //al cancelar oculta la ventana
-        
-     // TODO add your handling code here:
+
+        // TODO add your handling code here:
     }//GEN-LAST:event_CancelBActionPerformed
 
     private void AcceptBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptBActionPerformed
         Article temp = new Article();
-        
-        temp.setGender((String)GenderBox.getSelectedItem());
+
+        temp.setGender((String) GenderBox.getSelectedItem());
         temp.setClothName(NameTF.getText());
         temp.setWashPrice(Float.parseFloat(WashTF.getText()));
         temp.setWashA(WashC.isSelected());
@@ -231,8 +226,7 @@ public class NewArticlePanel extends javax.swing.JPanel {
         temp.setIronA(IronC.isSelected());
         temp.setFoldA(foldC.isSelected());
         daoT.create(temp);
-        TableUtils.fillArticleReuestTable(schemaClothes, daoT.findAll());
-
+        TableUtils.fillTableArticle(schemaClothes, daoT.findAll());
 
         // TODO add your handling code here:
     }//GEN-LAST:event_AcceptBActionPerformed
@@ -242,9 +236,9 @@ public class NewArticlePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void AcceptBKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AcceptBKeyReleased
-            if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-               AcceptBActionPerformed(null);                                   //al presionar enter creando el género presiona aceptar y guarda el dato
-                      }         // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            AcceptBActionPerformed(null);                                   //al presionar enter creando el género presiona aceptar y guarda el dato
+        }         // TODO add your handling code here:
     }//GEN-LAST:event_AcceptBKeyReleased
 
 
@@ -253,7 +247,7 @@ public class NewArticlePanel extends javax.swing.JPanel {
     private javax.swing.JButton AddGenderB;
     private javax.swing.JLabel AvalL;
     private javax.swing.JButton CancelB;
-    public static javax.swing.JComboBox<String> GenderBox;
+    private javax.swing.JComboBox<String> GenderBox;
     private javax.swing.JLabel GenderL;
     private javax.swing.JLabel IronAndWashL;
     private javax.swing.JCheckBox IronC;
@@ -279,6 +273,10 @@ public class NewArticlePanel extends javax.swing.JPanel {
     public JTable getSchemaClothes() {
         return schemaClothes;
     }
-    
+
+    @Override
+    public JComboBox<String> getGenderBox() {
+        return GenderBox;
+    }
 
 }

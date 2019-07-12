@@ -39,16 +39,16 @@ public class ArticlePanel extends javax.swing.JPanel {
             switch (tabs.getSelectedIndex()) {
                 case 0:
                     PanelUtils.change(addArticleTab, newArticle);
-                     TableUtils.fillTable(newArticle.getSchemaClothes(), daoT.findAll()); 
+                     TableUtils.fillArticleReuestTable(newArticle.getSchemaClothes(), daoT.findAll()); 
                     break;
                 case 1:
                     
                     PanelUtils.change(viewArticlesTab, viewArticles);
-                    TableUtils.fillTable(viewArticles.getSchemaClothes(), daoT.findAll());
+                    TableUtils.fillArticleReuestTable(viewArticles.getSchemaClothes(), daoT.findAll());
                     break;
                 default:
                     PanelUtils.change(editArticleTab, editArticle);
-                    TableUtils.fillTable(editArticle.getSchemaClothes(), daoT.findAll());
+                    TableUtils.fillArticleReuestTable(editArticle.getSchemaClothes(), daoT.findAll());
                     break;
             }
         });

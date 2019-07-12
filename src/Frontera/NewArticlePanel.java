@@ -37,7 +37,7 @@ public class NewArticlePanel extends javax.swing.JPanel {
         initComponents();
 
        
-        TableUtils.fillTable(schemaClothes, daoT.findAll());
+        TableUtils.fillArticleReuestTable(schemaClothes, daoT.findAll());
         BoxUtils.updateBox(daoT.getGenders(), GenderBox);
     }
 
@@ -231,7 +231,7 @@ public class NewArticlePanel extends javax.swing.JPanel {
         temp.setIronA(IronC.isSelected());
         temp.setFoldA(foldC.isSelected());
         daoT.create(temp);
-        TableUtils.fillTable(schemaClothes, daoT.findAll());
+        TableUtils.fillArticleReuestTable(schemaClothes, daoT.findAll());
 
 
         // TODO add your handling code here:

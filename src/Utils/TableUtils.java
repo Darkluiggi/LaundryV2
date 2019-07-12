@@ -24,7 +24,16 @@ public class TableUtils {
     public TableUtils() {
     }
 
-    public static void fillTable(JTable table, List<Article> list) {
+    public static void fillArticleReuestTable(JTable table, List<Article> list) {
+        DefaultTableModel model = new DefaultTableModel(null, new String[]{
+            "Género", "Nombre", "Lavado", "Lavado y Planchado", "Planchado"
+        });
+        for (Article t : list) {
+            model.addRow(new Object[]{t.getGender(), t.getClothName(), t.getWashPrice(), t.getWaiPrice(), t.getIronPrice()});
+        }
+        table.setModel(model);
+    }
+    public static void fillArticleTable(JTable table, List<Article> list) {
         DefaultTableModel model = new DefaultTableModel(null, new String[]{
             "Género", "Nombre", "Lavado", "Lavado y Planchado", "Planchado"
         });

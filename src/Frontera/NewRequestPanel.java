@@ -33,6 +33,7 @@ public class NewRequestPanel extends javax.swing.JPanel {
     public NewRequestPanel() {
         initComponents();
         BoxUtils.updateBox(daoT.getGenders(), GenderBox);
+        
     }
 
     /**
@@ -81,6 +82,13 @@ public class NewRequestPanel extends javax.swing.JPanel {
                 GenderBoxFocusGained(evt);
             }
         });
+        GenderBox.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                GenderBoxInputMethodTextChanged(evt);
+            }
+        });
         GenderBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GenderBoxActionPerformed(evt);
@@ -90,17 +98,17 @@ public class NewRequestPanel extends javax.swing.JPanel {
 
         requestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Género", "Nombre", "Servicio", "Cantidad", "Doblado", "Express"
+                "Género", "Nombre", "Servicio", "Cantidad", "Doblado", "Express", "Subtotal"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -116,6 +124,7 @@ public class NewRequestPanel extends javax.swing.JPanel {
             requestTable.getColumnModel().getColumn(3).setResizable(false);
             requestTable.getColumnModel().getColumn(4).setResizable(false);
             requestTable.getColumnModel().getColumn(5).setResizable(false);
+            requestTable.getColumnModel().getColumn(6).setResizable(false);
         }
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 37, 539, -1));
@@ -200,20 +209,32 @@ public class NewRequestPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void GenderBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenderBoxActionPerformed
-        //BoxUtils.updateBox(daoT.getClothName((String)GenderBox.getSelectedItem()), ClothBox);        // TODO add your handling code here:
+         
+        
+         // TODO add your handling code here:
     }//GEN-LAST:event_GenderBoxActionPerformed
 
     private void AddBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBActionPerformed
         String a =(String) ClothBox.getSelectedItem();
         String b = (String)GenderBox.getSelectedItem();
+        float price=0;
         art.setClothName(a);
         art.setGender(b);
         int c =daoT.findID(art);
         art=daoT.read(c);        
         artR.setArticle(art);
         artR.setQuantity(Integer.parseInt(QuantityTF.getText()));
-        artR.setSubtotal(ABORT);
-        
+        if(washChk.isSelected()){
+             price= art.getWashPrice()*artR.getQuantity();
+        }else{ if(ironChk.isSelected()){
+             price= art.getIronPrice()*artR.getQuantity();
+            }else{ if(ironWashChk.isSelected()){
+             price= art.getWaiPrice()*artR.getQuantity();
+        }}
+        }
+    
+        artR.setSubtotal(artR.getQuantity()*price);
+        artR.getSubtotal();
             // TODO add your handling code here:
     }//GEN-LAST:event_AddBActionPerformed
 
@@ -273,7 +294,8 @@ public class NewRequestPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_GenderBoxFocusGained
 
     private void GenderBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_GenderBoxItemStateChanged
-        BoxUtils.updateBox(daoT.getClothName((String)GenderBox.getSelectedItem()), ClothBox);
+        List a = daoT.getClothName((String)GenderBox.getSelectedItem());
+        BoxUtils.updateBox(a, ClothBox);        
     }//GEN-LAST:event_GenderBoxItemStateChanged
 
     private void ClothBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ClothBoxItemStateChanged
@@ -285,6 +307,10 @@ public class NewRequestPanel extends javax.swing.JPanel {
         art=daoT.read(c); 
         foldChk.setEnabled(art.getFold());        // TODO add your handling code here:
     }//GEN-LAST:event_ClothBoxItemStateChanged
+
+    private void GenderBoxInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_GenderBoxInputMethodTextChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_GenderBoxInputMethodTextChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

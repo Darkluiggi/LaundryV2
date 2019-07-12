@@ -207,7 +207,7 @@ public class EditArticlePanel extends javax.swing.JPanel {
        art.setIronA(foldC.isSelected());
        
        daoT.update(art);
-       TableUtils.fillTable(schemaClothes,daoT.findAll());
+       TableUtils.fillArticleReuestTable(schemaClothes,daoT.findAll());
        BoxUtils.updateBox(daoT.getGenders(),GenderBox);
 //         TODO add your handling code here:
     }//GEN-LAST:event_AcceptBActionPerformed

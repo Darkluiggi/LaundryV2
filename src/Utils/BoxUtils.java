@@ -20,11 +20,11 @@ public class BoxUtils {
     public BoxUtils() {
     }
     public static void updateBox(List<String> list, JComboBox box){
-        String defaultItem = "Seleccionar...";
-        list.add(defaultItem);
+//        String defaultItem = "Seleccionar...";
+//        list.add(defaultItem);
         DefaultComboBoxModel model = new DefaultComboBoxModel(list.toArray());
         box.setModel(model);
-        box.setSelectedItem(defaultItem);
+//        box.setSelectedItem(defaultItem);
     }
     
 }

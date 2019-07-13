@@ -7,6 +7,7 @@ package Entidad;
 
 import java.io.Serializable;
 import java.util.Set;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,16 +22,23 @@ import javax.persistence.Table;
 @Entity
 @Table (name="Article")
 public class Article implements Serializable  {
-    
+    @Column
     private String gender;
+    @Column
     private String clothName;
+    @Column
     private double washPrice;
+    @Column
     private boolean washA;
+    @Column
     private double waiPrice;
-    private boolean waiA;
+    @Column
     private double ironPrice;
+    @Column
     private boolean ironA;
+    @Column
     private double foldPrice;
+    @Column
     private boolean foldA;
     
     @Id
@@ -79,9 +87,6 @@ public class Article implements Serializable  {
         return washA;
     }
 
-    public boolean isWaiA() {
-        return waiA;
-    }
 
     public boolean isIronA() {
         return ironA;
@@ -118,10 +123,6 @@ public class Article implements Serializable  {
 
     public void setWashA(boolean washA) {
         this.washA = washA;
-    }
-
-    public void setWaiA(boolean waiA) {
-        this.waiA = waiA;
     }
 
     public void setIronA(boolean ironA) {

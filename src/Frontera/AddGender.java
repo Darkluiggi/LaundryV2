@@ -5,10 +5,12 @@
  */
 package Frontera;
 
-
-import static Frontera.NewArticlePanel.genders;
+import DAO.DAOArticle;
+import Entidad.Article;
+import Utils.BoxUtils;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.util.List;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -19,14 +21,23 @@ public class AddGender extends javax.swing.JFrame {
     /**
      * Creates new form AddGender
      */
-    public String NewGender = new String();         //creo un string de acceso público para recibir el dato del textfield
+    private String NewGender = new String();         //creo un string de acceso público para recibir el dato del textfield
     public articleInterface artInterface;
+    private final List<String> genders;
+    DefaultListModel<String> model;
     
-    public AddGender(articleInterface articlePanel) {
+    public AddGender(articleInterface articlePanel, List<String> genders) {
+        this.genders = genders;
+        model = new DefaultListModel<>();
+        this.genders.forEach(model::addElement);
         this.artInterface = articlePanel;
         initComponents();
+        genderList.setModel(model);
+        EGenderL.setVisible(false);
+        EditGenderTF.setVisible(false);
+        editGenderBtn.setVisible(false);
+        sep.setVisible(false);
         setLocationRelativeTo(null);
-        
     }
 
     /**
@@ -37,14 +48,141 @@ public class AddGender extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        GenderTF = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        EditGenderTF = new javax.swing.JTextField();
+        EGenderL = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        genderList = new javax.swing.JList<>();
+        editGenderBtn = new javax.swing.JButton();
         AcceptB = new javax.swing.JButton();
         CancelB = new javax.swing.JButton();
+        sep = new javax.swing.JSeparator();
+        addGenderBtn = new javax.swing.JButton();
+        GenderTF = new javax.swing.JTextField();
         NGenderL = new javax.swing.JLabel();
+
+        jButton2.setText("jButton2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Nuevo Género");
+        setMinimumSize(new java.awt.Dimension(300, 350));
+        setPreferredSize(new java.awt.Dimension(300, 350));
+        getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        EditGenderTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditGenderTFActionPerformed(evt);
+            }
+        });
+        EditGenderTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                EditGenderTFKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                EditGenderTFKeyReleased(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 50;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 25);
+        getContentPane().add(EditGenderTF, gridBagConstraints);
+
+        EGenderL.setText("Editar Género");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 25);
+        getContentPane().add(EGenderL, gridBagConstraints);
+
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(50, 90));
+
+        genderList.setMaximumSize(new java.awt.Dimension(44, 60));
+        genderList.setMinimumSize(new java.awt.Dimension(44, 60));
+        genderList.setPreferredSize(new java.awt.Dimension(44, 60));
+        genderList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                genderListValueChanged(evt);
+            }
+        });
+        jScrollPane1.setViewportView(genderList);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridheight = 9;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 30;
+        gridBagConstraints.ipady = 20;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(25, 25, 25, 25);
+        getContentPane().add(jScrollPane1, gridBagConstraints);
+
+        editGenderBtn.setText("Actualizar");
+        editGenderBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editGenderBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 25);
+        getContentPane().add(editGenderBtn, gridBagConstraints);
+
+        AcceptB.setText("Aceptar");
+        AcceptB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AcceptBActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.ipadx = 31;
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
+        getContentPane().add(AcceptB, gridBagConstraints);
+
+        CancelB.setText("Cancelar");
+        CancelB.setMaximumSize(new java.awt.Dimension(100, 25));
+        CancelB.setMinimumSize(new java.awt.Dimension(100, 25));
+        CancelB.setPreferredSize(new java.awt.Dimension(100, 25));
+        CancelB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelBActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 25);
+        getContentPane().add(CancelB, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(21, 0, 21, 25);
+        getContentPane().add(sep, gridBagConstraints);
+
+        addGenderBtn.setText("Agregar");
+        addGenderBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addGenderBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 25);
+        getContentPane().add(addGenderBtn, gridBagConstraints);
 
         GenderTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,94 +197,110 @@ public class AddGender extends javax.swing.JFrame {
                 GenderTFKeyReleased(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 50;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 25);
+        getContentPane().add(GenderTF, gridBagConstraints);
 
-        AcceptB.setText("Aceptar");
-        AcceptB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AcceptBActionPerformed(evt);
-            }
-        });
-
-        CancelB.setText("Cancelar");
-        CancelB.setMaximumSize(new java.awt.Dimension(100, 25));
-        CancelB.setMinimumSize(new java.awt.Dimension(100, 25));
-        CancelB.setPreferredSize(new java.awt.Dimension(100, 25));
-        CancelB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CancelBActionPerformed(evt);
-            }
-        });
-
-        NGenderL.setText("Nuevo Género:");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(NGenderL)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(GenderTF)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(AcceptB, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CancelB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 12, Short.MAX_VALUE))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(NGenderL)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(GenderTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AcceptB)
-                    .addComponent(CancelB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        NGenderL.setText("Nuevo Género");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(25, 0, 0, 25);
+        getContentPane().add(NGenderL, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void GenderTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenderTFActionPerformed
-        
-// TODO add your handling code here:
-    }//GEN-LAST:event_GenderTFActionPerformed
+    private void EditGenderTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditGenderTFActionPerformed
+
+    }//GEN-LAST:event_EditGenderTFActionPerformed
 
     private void AcceptBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptBActionPerformed
-      
-        
-        NewGender = GenderTF.getText();                             //lee el texto en el textfield
-        artInterface.getGenderBox().addItem(NewGender); 
-        artInterface.getGenderBox().setSelectedItem(NewGender);
+        BoxUtils.updateBox(genders, artInterface.getGenderBox());
+        artInterface.getGenderBox().setSelectedIndex(genders.size() - 1);
         this.dispose();                                                 //cierro la ventana e nuevo genero
-        GenderTF.setText(null);                                         //borro lo escrito en el textfield
-
+        GenderTF.setText(null);        
+        genderList.setSelectedIndex(-1);
+        EditGenderTF.setText(null);//borro lo escrito en el textfield
     }//GEN-LAST:event_AcceptBActionPerformed
 
     private void CancelBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBActionPerformed
-       
-       this.dispose();                                                  //al presionar cancelar, cierra la ventana
-       // TODO add your handling code here:
+        this.dispose();                                                  //al presionar cancelar, cierra la ventana
+        // TODO add your handling code here:
     }//GEN-LAST:event_CancelBActionPerformed
+
+    private void EditGenderTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_EditGenderTFKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EditGenderTFKeyPressed
+
+    private void EditGenderTFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_EditGenderTFKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            editGenderBtnActionPerformed(null);
+        }
+// TODO add your handling code here:
+    }//GEN-LAST:event_EditGenderTFKeyReleased
+
+    private void genderListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_genderListValueChanged
+        if (evt.getValueIsAdjusting() == false) {
+            
+            if (genderList.getSelectedIndex() == -1) {
+                EGenderL.setVisible(false);
+                EditGenderTF.setVisible(false);
+                editGenderBtn.setVisible(false);
+                sep.setVisible(false);
+                
+            } else {
+                EditGenderTF.setText(genderList.getSelectedValue());
+                EGenderL.setVisible(true);
+                EditGenderTF.setVisible(true);
+                editGenderBtn.setVisible(true);
+                sep.setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_genderListValueChanged
+
+    private void GenderTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenderTFActionPerformed
+
+    }//GEN-LAST:event_GenderTFActionPerformed
 
     private void GenderTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_GenderTFKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_GenderTFKeyPressed
 
     private void GenderTFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_GenderTFKeyReleased
-           if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-               AcceptBActionPerformed(null);                                   //al presionar enter creando el género presiona aceptar y guarda el dato
-                      }
-// TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            addGenderBtnActionPerformed(null);                                   //al presionar enter creando el género presiona aceptar y guarda el dato
+        }
     }//GEN-LAST:event_GenderTFKeyReleased
+
+    private void addGenderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addGenderBtnActionPerformed
+        if (!GenderTF.getText().isEmpty()) {
+            genders.add(GenderTF.getText());
+            model.addElement(GenderTF.getText());
+        }
+    }//GEN-LAST:event_addGenderBtnActionPerformed
+
+    private void editGenderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editGenderBtnActionPerformed
+        int index = genders.indexOf(genderList.getSelectedValue());
+        DAOArticle daoA = new DAOArticle();
+        if (!EditGenderTF.getText().isEmpty()) {
+            List list = daoA.getByGender(genderList.getSelectedValue());
+            if (list.size() > 0) {
+                for (Object ar : list) {
+                    ((Article) ar).setGender(EditGenderTF.getText());
+                    Article a = (Article) ar;
+                    daoA.update(a);
+                }
+            }
+            genders.set(index, EditGenderTF.getText());
+            model.set(index, EditGenderTF.getText());
+        }
+    }//GEN-LAST:event_editGenderBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,7 +341,15 @@ public class AddGender extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AcceptB;
     private javax.swing.JButton CancelB;
+    private javax.swing.JLabel EGenderL;
+    private javax.swing.JTextField EditGenderTF;
     private javax.swing.JTextField GenderTF;
     private javax.swing.JLabel NGenderL;
+    private javax.swing.JButton addGenderBtn;
+    private javax.swing.JButton editGenderBtn;
+    private javax.swing.JList<String> genderList;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator sep;
     // End of variables declaration//GEN-END:variables
 }

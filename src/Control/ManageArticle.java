@@ -31,7 +31,6 @@ public class ManageArticle implements Controller{
         temp.setWashPrice(Float.parseFloat(WashTF.getText()));
         temp.setWashA(WashC.isSelected());
         temp.setWaiPrice(Float.parseFloat(IronandWashTF.getText()));
-        temp.setWaiA(WaiC.isSelected());
         temp.setIronPrice(Float.parseFloat(IronTF.getText()));
         temp.setIronA(IronC.isSelected());
         temp.setFoldPrice(Float.parseFloat(FoldTF.getText()));

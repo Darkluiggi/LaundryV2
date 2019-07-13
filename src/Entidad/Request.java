@@ -37,6 +37,10 @@ public class Request implements Serializable {
     
     @ManyToOne
     private Cabin cabin;
+
+    public Date getCreated_at() {
+        return created_at;
+    }
     
     @Temporal(TemporalType.TIMESTAMP)
     private Date created_at;

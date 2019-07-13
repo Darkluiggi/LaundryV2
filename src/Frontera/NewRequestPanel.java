@@ -13,11 +13,13 @@ import DAO.DAOArticle;
 import DAO.DAOArticleRequest;
 import Entidad.Article;
 import Entidad.ArticleRequest;
+import Entidad.Request;
 import Utils.BoxUtils;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.*;
 import javax.swing.*;
+import java.util.Set;
 
 /**
  *
@@ -32,6 +34,7 @@ public class NewRequestPanel extends javax.swing.JPanel implements requestInterf
     private ArticleRequest artR;
     private DAOArticleRequest daoAR;
     private Article art;
+    private Request req;
     private Hashtable<String, String[]> subItems= new Hashtable<String, String[]>();
     String a,b;    
     int c, d;
@@ -41,7 +44,7 @@ public class NewRequestPanel extends javax.swing.JPanel implements requestInterf
         artR = new ArticleRequest();
         art = new Article();
         daoAR = new DAOArticleRequest();
-     
+        req = new Request(); 
         BoxUtils.updateBox(daoT.getGenders(), GenderBox);
         GenderBox.addActionListener((ev)->{
             genderSelected(ev);
@@ -114,9 +117,16 @@ public class NewRequestPanel extends javax.swing.JPanel implements requestInterf
                 "Género", "Nombre", "Servicio", "Doblado", "Express", "Cantidad", "Subtotal"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Integer.class, java.lang.Double.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -262,10 +272,11 @@ public class NewRequestPanel extends javax.swing.JPanel implements requestInterf
         }
         artR.setSubtotal(d*e);
         artR.setExpress(XpressChk.isSelected());
+        artR.setRequest(req);
         daoAR.create(artR);
         TableUtils.fillTableArticleRequest(requestTable, daoAR.findAll());
         art.getClothName();
-            // TODO add your handling code here:
+          // TODO add your handling code here:
     }//GEN-LAST:event_AddBActionPerformed
 
     private void washChkStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_washChkStateChanged

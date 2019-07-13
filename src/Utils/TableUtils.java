@@ -37,10 +37,10 @@ public class TableUtils {
 
     public static void fillTableArticleRequest(JTable table, List<ArticleRequest> list) {
         DefaultTableModel model = new DefaultTableModel(null, new String[]{
-            "Género", "Nombre", "Servicio", "Doblado", "Express", "Cantidad", "Subtotal"
-        });
+            "Género", "Nombre", "Servicio", "Doblado", "Express", "Cantidad", "Subtotal"}){
+        };       
         for (ArticleRequest t : list) {
-            model.addRow(new Object[]{t.getArticle().getGender(), t.getArticle().getClothName(), t.getService(), t.isFold(), t.isExpress(), t.getQuantity(), t.getSubtotal()});
+        model.addRow(new Object[]{t.getArticle().getGender(), t.getArticle().getClothName(), t.getService(), t.isFold(), t.isExpress(), t.getQuantity(), t.getSubtotal()});
         }
         table.setModel(model);
     }

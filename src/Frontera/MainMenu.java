@@ -54,7 +54,7 @@ public class MainMenu extends javax.swing.JPanel {
         articleBtn = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         analyticsBtn = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        StatisticsB = new javax.swing.JLabel();
         usersBtn = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         logoutBtn = new javax.swing.JPanel();
@@ -139,15 +139,20 @@ public class MainMenu extends javax.swing.JPanel {
         });
         analyticsBtn.setLayout(new java.awt.GridBagLayout());
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontera/increasing-stocks-graphic-of-bars.png"))); // NOI18N
-        jLabel5.setText("Estadísticas");
-        jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel5.setPreferredSize(new java.awt.Dimension(120, 100));
-        jLabel5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        analyticsBtn.add(jLabel5, new java.awt.GridBagConstraints());
+        StatisticsB.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        StatisticsB.setForeground(new java.awt.Color(255, 255, 255));
+        StatisticsB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        StatisticsB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontera/increasing-stocks-graphic-of-bars.png"))); // NOI18N
+        StatisticsB.setText("Estadísticas");
+        StatisticsB.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        StatisticsB.setPreferredSize(new java.awt.Dimension(120, 100));
+        StatisticsB.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        StatisticsB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                StatisticsBMouseClicked(evt);
+            }
+        });
+        analyticsBtn.add(StatisticsB, new java.awt.GridBagConstraints());
 
         add(analyticsBtn);
 
@@ -272,13 +277,19 @@ public class MainMenu extends javax.swing.JPanel {
         main.logOut();
     }//GEN-LAST:event_logoutBtnMouseClicked
 
+    private void StatisticsBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StatisticsBMouseClicked
+        StatisticsPanel statisticsPanel = new StatisticsPanel();
+        PanelUtils.change(main.getBigPanel(), statisticsPanel);
+        main.getBackBtn().setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_StatisticsBMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel StatisticsB;
     private javax.swing.JPanel analyticsBtn;
     private javax.swing.JPanel articleBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel logoutBtn;

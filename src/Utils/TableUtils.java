@@ -5,6 +5,7 @@
  */
 package Utils;
 
+import Control.Controller;
 import Entidad.Article;
 import Entidad.ArticleRequest;
 import java.awt.event.ActionEvent;
@@ -62,10 +63,19 @@ public class TableUtils {
     public static void addPopUpMenu(JTable table) {
         final JPopupMenu popupMenu = new JPopupMenu();
         JMenuItem editItem = new JMenuItem("Editar");
+        JMenuItem disableItem = new JMenuItem("Deshabilitar");
         editItem.addActionListener((ActionEvent e) -> {
             //TODO: Add Popup for editing
         });
         popupMenu.add(editItem);
         table.setComponentPopupMenu(popupMenu);
+    }
+
+    public static void clearTable(JTable table) {
+        DefaultTableModel dm = (DefaultTableModel) table.getModel();
+        int rowCount = dm.getRowCount();
+        for (int i = rowCount - 1; i >= 0; i--) {
+            dm.removeRow(i);
+        }
     }
 }

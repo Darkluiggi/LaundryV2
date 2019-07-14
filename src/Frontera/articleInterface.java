@@ -6,6 +6,7 @@
 package Frontera;
 
 import javax.swing.JComboBox;
+import javax.swing.JTable;
 
 /**
  *
@@ -17,4 +18,6 @@ public interface articleInterface {
      *
      */
     public JComboBox getGenderBox();
+    
+    public JTable getSchemaClothes();
 }

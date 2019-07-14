@@ -8,6 +8,8 @@ package Frontera;
 import Control.LoginControl;
 import Utils.PanelUtils;
 import Control.ManageAccount;
+import DAO.DAORequest;
+import Entidad.Request;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -38,11 +40,16 @@ public class MainFrame extends javax.swing.JFrame {
         PanelUtils.change(BigPanel, login);
         mainTB.setVisible(false);
         backBtn.setVisible(false);
+
         setLocationRelativeTo(null);   //Centra el programa en la pantalla
         articlePanel            = new Article();
         accountPanel            = new Account();
         estatisticsPanel        = new Estadisticas();
         requestPanel            = new Request();
+
+
+        setExtendedState( getExtendedState()|MAXIMIZED_BOTH ); //Maximiza el programa automáticamente
+        setLocationRelativeTo(null);                            //Centra el programa en la pantalla
 
     }
 
@@ -101,7 +108,7 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.RELATIVE;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 410;
-        gridBagConstraints.ipady = 86;
+        gridBagConstraints.ipady = 20;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
         getContentPane().add(headerPanel, gridBagConstraints);
 

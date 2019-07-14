@@ -42,7 +42,6 @@ public class ArticlePanel extends javax.swing.JPanel {
                      TableUtils.fillTableArticle(newArticle.getSchemaClothes(), daoT.findAll()); 
                     break;
                 case 1:
-                    
                     PanelUtils.change(viewArticlesTab, viewArticles);
                     TableUtils.fillTableArticle(viewArticles.getSchemaClothes(), daoT.findAll());
                     break;

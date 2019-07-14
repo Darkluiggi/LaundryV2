@@ -6,11 +6,12 @@
 package Utils;
 
 import java.awt.Color;
+import java.util.stream.Stream;
 import javax.swing.BorderFactory;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
 
@@ -28,6 +29,9 @@ public class FormUtils {
             }else if(component instanceof JComboBox){
                 JComboBox combobox = (JComboBox) component;
                 combobox.setSelectedIndex(0);
+            }else if(component instanceof JCheckBox){
+                JCheckBox checkBox = (JCheckBox) component;
+                checkBox.setSelected(false);
             }
             
         }
@@ -60,6 +64,10 @@ public class FormUtils {
             }
         }
         return ex;
+    }
+    
+    public static void enableComponents(JComponent... components){
+        Stream.of(components).forEach(c -> c.setEnabled(true));
     }
     
 }

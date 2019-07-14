@@ -5,7 +5,14 @@
  */
 package Utils;
 
+import java.awt.Color;
+import javax.swing.BorderFactory;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
 
 /**
  *
@@ -13,10 +20,46 @@ import javax.swing.JTextField;
  */
 public class FormUtils {
     
-    public static void clearFields(JTextField... textFields){
-        for(JTextField textfield : textFields){
-            textfield.setText("");
+    public static void clearFields(JComponent... jComponents){
+        for(JComponent component : jComponents){
+            if(component instanceof JTextField){
+                JTextField textfield = (JTextField) component;
+                textfield.setText("");
+            }else if(component instanceof JComboBox){
+                JComboBox combobox = (JComboBox) component;
+                combobox.setSelectedIndex(0);
+            }
+            
         }
+    }
+    
+    public static String validateField(JComponent... jComponents){
+        final String EXCEPTION = "Por favor asegúrese que la información ingresada sea válida";
+        String ex = "";
+        Border defaultBorder = UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border");
+        for(JComponent jComponent : jComponents){
+            if(jComponent instanceof JTextField){
+                JTextField text = (JTextField) jComponent;
+                if(text.getText().isEmpty()){
+                    text.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                    ex = EXCEPTION;
+                }else{
+                    ex = "";
+                    text.setBorder(defaultBorder);
+                }
+            }else if(jComponent instanceof JComboBox){
+                JComboBox combo = (JComboBox) jComponent;
+                defaultBorder = UIManager.getLookAndFeel().getDefaults().getBorder("ComboBox.border");
+                if(combo.getSelectedIndex() < 1){
+                    combo.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                    ex = EXCEPTION;
+                }else{
+                    ex = "";
+                    combo.setBorder(defaultBorder);
+                }
+            }
+        }
+        return ex;
     }
     
 }

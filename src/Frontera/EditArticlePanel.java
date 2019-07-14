@@ -21,7 +21,7 @@ public class EditArticlePanel extends javax.swing.JPanel implements articleInter
     /**
      * Creates new form EditService
      */
-    private DAOArticle daoT = new DAOArticle();
+    private DAOArticle daoT;
     Article art = new Article();
     Article art1 = new Article();
     AddGender addG;
@@ -29,8 +29,9 @@ public class EditArticlePanel extends javax.swing.JPanel implements articleInter
         
         
     public EditArticlePanel() {
+        daoT = new DAOArticle();
         initComponents();
-        addG = new AddGender(this);
+        addG = new AddGender(this, daoT.getGenders());
        
     }
     
@@ -202,7 +203,6 @@ public class EditArticlePanel extends javax.swing.JPanel implements articleInter
        art.setWashPrice((Float.parseFloat(WashTF.getText())));
        art.setWashA(WashC.isSelected());
        art.setWaiPrice(Float.parseFloat(IronandWashTF.getText()));
-       art.setWaiA(WaiC.isSelected());
        art.setIronPrice(Float.parseFloat(IronTF.getText()));
        art.setIronA(IronC.isSelected());
        art.setFoldPrice(Float.parseFloat(foldTF.getText()));
@@ -234,7 +234,6 @@ public class EditArticlePanel extends javax.swing.JPanel implements articleInter
        WashTF.setText(Double.toString(art.getWashPrice()));
        WashC.setSelected(art.isWashA());
        IronandWashTF.setText(Double.toString(art.getWaiPrice()));
-       WaiC.setSelected(art.isWaiA());
        IronTF.setText(Double.toString(art.getIronPrice()));
        IronC.setSelected(art.isIronA());
        foldTF.setText(Double.toString(art.getFoldPrice()));

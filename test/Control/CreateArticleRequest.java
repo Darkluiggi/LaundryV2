@@ -57,7 +57,7 @@ public class CreateArticleRequest {
         ArticleRequest c= new ArticleRequest();
         Article d= new Article();
         Request e = new Request();
-       
+        e.setId(1);
         d=daoA.read(1);
         a.setArticle(d);
         a.setExpress(Boolean.FALSE);

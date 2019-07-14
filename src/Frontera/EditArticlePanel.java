@@ -12,11 +12,12 @@ import Utils.BoxUtils;
 import Utils.TableUtils;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
+
 /**
  *
  * @author luaalvarezve
  */
-public class EditArticlePanel extends javax.swing.JPanel implements articleInterface{
+public class EditArticlePanel extends javax.swing.JPanel implements articleInterface {
 
     /**
      * Creates new form EditService
@@ -26,16 +27,16 @@ public class EditArticlePanel extends javax.swing.JPanel implements articleInter
     Article art1 = new Article();
     AddGender addG;
     DAOArticleRequest daoAR;
-        
-        
+
     public EditArticlePanel() {
         daoT = new DAOArticle();
         initComponents();
         addG = new AddGender(this, daoT.getGenders());
-       
     }
-    
-    
+
+    public EditArticlePanel(Integer id) {
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -45,6 +46,7 @@ public class EditArticlePanel extends javax.swing.JPanel implements articleInter
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         foldC = new javax.swing.JCheckBox();
         foldTF = new javax.swing.JTextField();
@@ -52,10 +54,8 @@ public class EditArticlePanel extends javax.swing.JPanel implements articleInter
         IronL1 = new javax.swing.JLabel();
         IronTF = new javax.swing.JTextField();
         IronC = new javax.swing.JCheckBox();
-        WaiC = new javax.swing.JCheckBox();
         IronandWashTF = new javax.swing.JTextField();
         IronAndWashL = new javax.swing.JLabel();
-        IronL = new javax.swing.JLabel();
         LaundryL = new javax.swing.JLabel();
         WashTF = new javax.swing.JTextField();
         WashC = new javax.swing.JCheckBox();
@@ -71,64 +71,141 @@ public class EditArticlePanel extends javax.swing.JPanel implements articleInter
         GenderBox = new javax.swing.JComboBox<>();
 
         setPreferredSize(new java.awt.Dimension(800, 600));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        add(foldC, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 345, -1, -1));
+        setLayout(new java.awt.GridBagLayout());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.insets = new java.awt.Insets(15, 20, 29, 39);
+        add(foldC, gridBagConstraints);
 
         foldTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 foldTFActionPerformed(evt);
             }
         });
-        add(foldTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 345, 70, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 58;
+        gridBagConstraints.insets = new java.awt.Insets(15, 21, 29, 0);
+        add(foldTF, gridBagConstraints);
 
+        jLabel1.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         jLabel1.setText("Doblado");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 348, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(20, 15, 29, 0);
+        add(jLabel1, gridBagConstraints);
 
+        IronL1.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         IronL1.setText("Planchado");
-        add(IronL1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 303, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(20, 15, 0, 0);
+        add(IronL1, gridBagConstraints);
 
         IronTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 IronTFActionPerformed(evt);
             }
         });
-        add(IronTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 300, 70, -1));
-        add(IronC, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 300, -1, -1));
-        add(WaiC, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 251, -1, -1));
-        add(IronandWashTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 252, 70, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 58;
+        gridBagConstraints.insets = new java.awt.Insets(15, 21, 0, 0);
+        add(IronTF, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.insets = new java.awt.Insets(15, 20, 0, 39);
+        add(IronC, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 58;
+        gridBagConstraints.insets = new java.awt.Insets(15, 21, 0, 0);
+        add(IronandWashTF, gridBagConstraints);
 
-        IronAndWashL.setText("Lavado y ");
-        add(IronAndWashL, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 244, -1, -1));
+        IronAndWashL.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        IronAndWashL.setText("Lavado y Planchado ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(20, 15, 0, 0);
+        add(IronAndWashL, gridBagConstraints);
 
-        IronL.setText("Planchado");
-        add(IronL, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 264, -1, -1));
-
+        LaundryL.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         LaundryL.setText("Lavado");
-        add(LaundryL, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 197, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(20, 15, 0, 0);
+        add(LaundryL, gridBagConstraints);
 
         WashTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 WashTFActionPerformed(evt);
             }
         });
-        add(WashTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 194, 70, -1));
-        add(WashC, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 194, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 58;
+        gridBagConstraints.insets = new java.awt.Insets(15, 21, 0, 0);
+        add(WashTF, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.insets = new java.awt.Insets(15, 20, 0, 39);
+        add(WashC, gridBagConstraints);
 
+        AvalL.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         AvalL.setText("Disponibilidad");
-        add(AvalL, new org.netbeans.lib.awtextra.AbsoluteConstraints(236, 151, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(20, 20, 0, 39);
+        add(AvalL, gridBagConstraints);
 
         NameTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NameTFActionPerformed(evt);
             }
         });
-        add(NameTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 125, 210, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(15, 21, 0, 0);
+        add(NameTF, gridBagConstraints);
 
+        GenderL.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         GenderL.setText("Género");
-        add(GenderL, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 43, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(20, 16, 0, 0);
+        add(GenderL, gridBagConstraints);
 
+        NameL.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         NameL.setText("Nombre");
-        add(NameL, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 128, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(20, 15, 0, 0);
+        add(NameL, gridBagConstraints);
 
         AddGenderB.setText("Añadir Género");
         AddGenderB.addActionListener(new java.awt.event.ActionListener() {
@@ -136,7 +213,14 @@ public class EditArticlePanel extends javax.swing.JPanel implements articleInter
                 AddGenderBActionPerformed(evt);
             }
         });
-        add(AddGenderB, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 77, 140, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 33;
+        gridBagConstraints.ipady = 2;
+        gridBagConstraints.insets = new java.awt.Insets(20, 21, 0, 0);
+        add(AddGenderB, gridBagConstraints);
 
         jScrollPane1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -159,7 +243,18 @@ public class EditArticlePanel extends javax.swing.JPanel implements articleInter
         });
         jScrollPane1.setViewportView(schemaClothes);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(369, 43, 407, 390));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 10;
+        gridBagConstraints.gridheight = 15;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 382;
+        gridBagConstraints.ipady = 361;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        add(jScrollPane1, gridBagConstraints);
 
         AcceptB.setText("Aceptar");
         AcceptB.addActionListener(new java.awt.event.ActionListener() {
@@ -167,12 +262,30 @@ public class EditArticlePanel extends javax.swing.JPanel implements articleInter
                 AcceptBActionPerformed(evt);
             }
         });
-        add(AcceptB, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 95, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipady = 12;
+        gridBagConstraints.insets = new java.awt.Insets(0, 21, 0, 0);
+        add(AcceptB, gridBagConstraints);
 
         CancelB.setText("Cancelar");
-        add(CancelB, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 400, -1, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipady = 12;
+        gridBagConstraints.insets = new java.awt.Insets(0, 21, 0, 39);
+        add(CancelB, gridBagConstraints);
 
-        add(GenderBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 80, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 44;
+        gridBagConstraints.insets = new java.awt.Insets(20, 15, 0, 0);
+        add(GenderBox, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void foldTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foldTFActionPerformed
@@ -197,22 +310,21 @@ public class EditArticlePanel extends javax.swing.JPanel implements articleInter
     }//GEN-LAST:event_AddGenderBActionPerformed
 
     private void AcceptBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptBActionPerformed
-        
-       art.setGender((String)GenderBox.getSelectedItem());
-       art.setClothName((String)NameTF.getText());
-       art.setWashPrice((Float.parseFloat(WashTF.getText())));
-       art.setWashA(WashC.isSelected());
-       art.setWaiPrice(Float.parseFloat(IronandWashTF.getText()));
-       art.setIronPrice(Float.parseFloat(IronTF.getText()));
-       art.setIronA(IronC.isSelected());
-       art.setFoldPrice(Float.parseFloat(foldTF.getText()));
-       art.setIronA(foldC.isSelected());
-       
-       daoT.update(art);
-       TableUtils.fillTableArticle(schemaClothes,daoT.findAll());
-       BoxUtils.updateBox(daoT.getGenders(),GenderBox);
-       
-       
+
+        art.setGender((String) GenderBox.getSelectedItem());
+        art.setClothName((String) NameTF.getText());
+        art.setWashPrice((Float.parseFloat(WashTF.getText())));
+        art.setWashA(WashC.isSelected());
+        art.setWaiPrice(Float.parseFloat(IronandWashTF.getText()));
+        art.setIronPrice(Float.parseFloat(IronTF.getText()));
+        art.setIronA(IronC.isSelected());
+        art.setFoldPrice(Float.parseFloat(foldTF.getText()));
+        art.setIronA(foldC.isSelected());
+
+        daoT.update(art);
+        TableUtils.fillTableArticle(schemaClothes, daoT.findAll());
+        BoxUtils.updateBox(daoT.getGenders(), GenderBox);
+
 //         TODO add your handling code here:
     }//GEN-LAST:event_AcceptBActionPerformed
 
@@ -221,57 +333,53 @@ public class EditArticlePanel extends javax.swing.JPanel implements articleInter
     }//GEN-LAST:event_jScrollPane1MouseClicked
 
     private void schemaClothesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_schemaClothesMouseClicked
-        BoxUtils.updateBox(daoT.getGenders(),GenderBox);
-        String a,b;
-               
-       a= (String)schemaClothes.getValueAt(schemaClothes.getSelectedRow(), 0);
-       b= (String)schemaClothes.getValueAt(schemaClothes.getSelectedRow(), 1);
-       art.setGender(a);
-       art.setClothName(b);
-       art=daoT.read(schemaClothes.getSelectedRow()+1);
-       GenderBox.setSelectedItem(art.getGender());
-       NameTF.setText(art.getClothName());
-       WashTF.setText(Double.toString(art.getWashPrice()));
-       WashC.setSelected(art.isWashA());
-       IronandWashTF.setText(Double.toString(art.getWaiPrice()));
-       IronTF.setText(Double.toString(art.getIronPrice()));
-       IronC.setSelected(art.isIronA());
-       foldTF.setText(Double.toString(art.getFoldPrice()));
-       foldC.setSelected(art.isFoldA());  
-            // TODO add your handling code here:
+        BoxUtils.updateBox(daoT.getGenders(), GenderBox);
+        String a, b;
+
+        a = (String) schemaClothes.getValueAt(schemaClothes.getSelectedRow(), 0);
+        b = (String) schemaClothes.getValueAt(schemaClothes.getSelectedRow(), 1);
+        art.setGender(a);
+        art.setClothName(b);
+        art = daoT.read(schemaClothes.getSelectedRow() + 1);
+        GenderBox.setSelectedItem(art.getGender());
+        NameTF.setText(art.getClothName());
+        WashTF.setText(Double.toString(art.getWashPrice()));
+        WashC.setSelected(art.isWashA());
+        IronandWashTF.setText(Double.toString(art.getWaiPrice()));
+        IronTF.setText(Double.toString(art.getIronPrice()));
+        IronC.setSelected(art.isIronA());
+        foldTF.setText(Double.toString(art.getFoldPrice()));
+        foldC.setSelected(art.isFoldA());
+        // TODO add your handling code here:
     }//GEN-LAST:event_schemaClothesMouseClicked
 
-    
-    
-    
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AcceptB;
     private javax.swing.JButton AddGenderB;
     private javax.swing.JLabel AvalL;
     private javax.swing.JButton CancelB;
-    protected static javax.swing.JComboBox<String> GenderBox;
+    private javax.swing.JComboBox<String> GenderBox;
     private javax.swing.JLabel GenderL;
     private javax.swing.JLabel IronAndWashL;
     private javax.swing.JCheckBox IronC;
-    private javax.swing.JLabel IronL;
     private javax.swing.JLabel IronL1;
     private javax.swing.JTextField IronTF;
     private javax.swing.JTextField IronandWashTF;
     private javax.swing.JLabel LaundryL;
     private javax.swing.JLabel NameL;
     private javax.swing.JTextField NameTF;
-    private javax.swing.JCheckBox WaiC;
     private javax.swing.JCheckBox WashC;
     private javax.swing.JTextField WashTF;
     private javax.swing.JCheckBox foldC;
     private javax.swing.JTextField foldTF;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    public static javax.swing.JTable schemaClothes;
+    private javax.swing.JTable schemaClothes;
     // End of variables declaration//GEN-END:variables
 
-    public static JTable getSchemaClothes() {
+    @Override
+    public JTable getSchemaClothes() {
         return schemaClothes;
     }
 
@@ -279,6 +387,5 @@ public class EditArticlePanel extends javax.swing.JPanel implements articleInter
     public JComboBox getGenderBox() {
         return GenderBox;
     }
-
 
 }

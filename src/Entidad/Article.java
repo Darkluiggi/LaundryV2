@@ -40,6 +40,8 @@ public class Article implements Serializable  {
     private double foldPrice;
     @Column
     private boolean foldA;
+    @Column
+    private boolean status;
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -137,5 +139,15 @@ public class Article implements Serializable  {
     public void setFoldA(boolean foldA) {
         this.foldA=foldA;
     }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+    
+    
 
 }

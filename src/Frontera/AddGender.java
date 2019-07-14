@@ -8,6 +8,7 @@ package Frontera;
 import DAO.DAOArticle;
 import Entidad.Article;
 import Utils.BoxUtils;
+import Utils.TableUtils;
 import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -221,8 +222,10 @@ public class AddGender extends javax.swing.JFrame {
     }//GEN-LAST:event_EditGenderTFActionPerformed
 
     private void AcceptBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptBActionPerformed
+        DAOArticle daoT = new DAOArticle();
         BoxUtils.updateBox(genders, artInterface.getGenderBox());
         artInterface.getGenderBox().setSelectedIndex(genders.size() - 1);
+        TableUtils.fillTableArticle(artInterface.getSchemaClothes(), daoT.findAll());
         this.dispose();                                                 //cierro la ventana e nuevo genero
         GenderTF.setText(null);        
         genderList.setSelectedIndex(-1);

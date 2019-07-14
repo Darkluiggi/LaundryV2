@@ -338,6 +338,7 @@ public class NewArticlePanel extends javax.swing.JPanel implements articleInterf
             temp.setIronA(IronC.isSelected());
             temp.setFoldPrice(Float.parseFloat(FoldTF.getText()));
             temp.setFoldA(foldC.isSelected());
+            temp.setStatus(true);
             daoT.create(temp);
             TableUtils.fillTableArticle(schemaClothes, daoT.findAll());
             FormUtils.clearFields(NameTF, GenderBox, WashTF, IronTF, IronandWashTF, FoldTF);
@@ -386,6 +387,7 @@ public class NewArticlePanel extends javax.swing.JPanel implements articleInterf
     private javax.swing.JTable schemaClothes;
     // End of variables declaration//GEN-END:variables
 
+    @Override
     public JTable getSchemaClothes() {
         return schemaClothes;
     }

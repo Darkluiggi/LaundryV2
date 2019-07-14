@@ -65,7 +65,7 @@ public class ArticleRequest implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(article.getClothName(), request.getId(), quantity);
+        return Objects.hash(article.getClothName(), article.getGender(), this.service, quantity);
     }
 
     public Article getArticle() {

@@ -17,16 +17,16 @@ public abstract class GenericDAO<T> {
 
     public GenericDAO(EntityManagerFactory factory) {
         ParameterizedType genericSuperclass = (ParameterizedType) getClass()
-             .getGenericSuperclass();
+                .getGenericSuperclass();
         this.entityClass = (Class<T>) genericSuperclass
-             .getActualTypeArguments()[0];  
+                .getActualTypeArguments()[0];
         this.emf = factory;
     }
 
     public EntityManager Provider() {
         return emf.createEntityManager();
     }
-    
+
     @SuppressWarnings("unchecked")
     private Class<T> getClazz() {
         return (Class<T>) ((ParameterizedType) getClass()
@@ -42,9 +42,9 @@ public abstract class GenericDAO<T> {
     public T read(Serializable id) {
         EntityManager em = Provider();
         T temp = em.find(entityClass, id);
-       
-            return temp;
-        
+
+        return temp;
+
     }
 
     public void create(T object) {
@@ -138,6 +138,7 @@ public abstract class GenericDAO<T> {
 
     /**
      * Initialize the session and the transaction
+     *
      * @param em
      */
     protected void begin(EntityManager em) {
@@ -151,6 +152,7 @@ public abstract class GenericDAO<T> {
 
     /**
      * Execute commit operation
+     *
      * @param em
      */
     protected void commit(EntityManager em) {
@@ -165,6 +167,7 @@ public abstract class GenericDAO<T> {
 
     /**
      * Execute rollback operation
+     *
      * @param em
      */
     protected void rollback(EntityManager em) {

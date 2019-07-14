@@ -56,6 +56,7 @@ public class Request extends javax.swing.JPanel {
         topCreate = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         CabinTF = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
         center = new javax.swing.JPanel();
         requestPanel = new javax.swing.JScrollPane();
         requestList = new javax.swing.JList<>();
@@ -261,7 +262,8 @@ public class Request extends javax.swing.JPanel {
 
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         setPreferredSize(new java.awt.Dimension(700, 400));
-        setLayout(new java.awt.BorderLayout());
+
+        jPanel1.setLayout(new java.awt.BorderLayout());
 
         center.setLayout(new java.awt.BorderLayout());
 
@@ -275,7 +277,7 @@ public class Request extends javax.swing.JPanel {
 
         center.add(requestPanel, java.awt.BorderLayout.CENTER);
 
-        add(center, java.awt.BorderLayout.CENTER);
+        jPanel1.add(center, java.awt.BorderLayout.CENTER);
 
         left.setPreferredSize(new java.awt.Dimension(180, 400));
         left.setLayout(new java.awt.GridLayout(12, 1, 5, 5));
@@ -296,7 +298,24 @@ public class Request extends javax.swing.JPanel {
         });
         left.add(editSelectedRequestButton);
 
-        add(left, java.awt.BorderLayout.LINE_START);
+        jPanel1.add(left, java.awt.BorderLayout.LINE_START);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void GenderBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_GenderBoxItemStateChanged
@@ -464,6 +483,7 @@ public class Request extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;

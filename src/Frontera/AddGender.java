@@ -30,7 +30,7 @@ public class AddGender extends javax.swing.JFrame {
     public AddGender(articleInterface articlePanel, List<String> genders) {
         this.genders = genders;
         model = new DefaultListModel<>();
-        this.genders.forEach(model::addElement);
+        this.genders.stream().filter(b -> !b.equals("Seleccionar...")).forEach(model::addElement);
         this.artInterface = articlePanel;
         initComponents();
         genderList.setModel(model);
@@ -223,7 +223,8 @@ public class AddGender extends javax.swing.JFrame {
 
     private void AcceptBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptBActionPerformed
         DAOArticle daoT = new DAOArticle();
-        BoxUtils.updateBox(genders, artInterface.getGenderBox());
+        List<String> gendersAux = genders;
+        BoxUtils.updateBox(gendersAux, artInterface.getGenderBox());
         artInterface.getGenderBox().setSelectedIndex(genders.size() - 1);
         TableUtils.fillTableArticle(artInterface.getSchemaClothes(), daoT.findAll());
         this.dispose();                                                 //cierro la ventana e nuevo genero

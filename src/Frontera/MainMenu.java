@@ -20,13 +20,16 @@ public class MainMenu extends javax.swing.JPanel {
      */
     
     private final MainFrame main;
+    
     public MainMenu(String role, MainFrame main) {
         this.main = main;
         initComponents();
+        requestBtn.setVisible(false);
         if(!role.equals("Administrador")){
             articleBtn.setVisible(false);
             analyticsBtn.setVisible(false);
             usersBtn.setVisible(false);
+            requestBtn.setVisible(true);
         }
         main.menu = this;
     }
@@ -90,6 +93,11 @@ public class MainMenu extends javax.swing.JPanel {
         jLabel1.setPreferredSize(new java.awt.Dimension(120, 100));
         jLabel1.setRequestFocusEnabled(false);
         jLabel1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -252,13 +260,13 @@ public class MainMenu extends javax.swing.JPanel {
     }//GEN-LAST:event_logoutBtnMouseExited
 
     private void requestBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_requestBtnMouseClicked
-        RequestPanel requestPanel = new RequestPanel();
+        Request requestPanel = new Request();
         PanelUtils.change(main.getBigPanel(), requestPanel);
         main.getBackBtn().setVisible(true);
     }//GEN-LAST:event_requestBtnMouseClicked
 
     private void articleBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_articleBtnMouseClicked
-        ArticlePanel articlePanel = new ArticlePanel();
+        Article articlePanel = new Article();
         PanelUtils.change(main.getBigPanel(), articlePanel);
         main.getBackBtn().setVisible(true);
     }//GEN-LAST:event_articleBtnMouseClicked
@@ -268,7 +276,7 @@ public class MainMenu extends javax.swing.JPanel {
     }//GEN-LAST:event_analyticsBtnMouseClicked
 
     private void usersBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usersBtnMouseClicked
-        CreateAccountPanel userPanel = new CreateAccountPanel();
+        Account userPanel = new Account();
         PanelUtils.change(main.getBigPanel(), userPanel);
         main.getBackBtn().setVisible(true);
     }//GEN-LAST:event_usersBtnMouseClicked
@@ -278,10 +286,14 @@ public class MainMenu extends javax.swing.JPanel {
     }//GEN-LAST:event_logoutBtnMouseClicked
 
     private void StatisticsBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StatisticsBMouseClicked
-        StatisticsPanel statisticsPanel = new StatisticsPanel();
+        Estadisticas statisticsPanel = new Estadisticas();
         PanelUtils.change(main.getBigPanel(), statisticsPanel);
         main.getBackBtn().setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_StatisticsBMouseClicked
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

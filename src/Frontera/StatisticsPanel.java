@@ -29,9 +29,9 @@ public class StatisticsPanel extends javax.swing.JPanel {
 
         servicePanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        servivcePanel = new javax.swing.JTable();
+        ServiceTable = new javax.swing.JTable();
         clothesPanel = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        ClothesTable = new javax.swing.JScrollPane();
         servivcePanel1 = new javax.swing.JTable();
         jDialog1 = new javax.swing.JDialog();
         statisticsMainPanel = new javax.swing.JPanel();
@@ -55,7 +55,7 @@ public class StatisticsPanel extends javax.swing.JPanel {
 
         servicePanel.setPreferredSize(new java.awt.Dimension(597, 386));
 
-        servivcePanel.setModel(new javax.swing.table.DefaultTableModel(
+        ServiceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -74,15 +74,15 @@ public class StatisticsPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(servivcePanel);
-        if (servivcePanel.getColumnModel().getColumnCount() > 0) {
-            servivcePanel.getColumnModel().getColumn(0).setResizable(false);
-            servivcePanel.getColumnModel().getColumn(1).setResizable(false);
-            servivcePanel.getColumnModel().getColumn(2).setResizable(false);
-            servivcePanel.getColumnModel().getColumn(3).setResizable(false);
-            servivcePanel.getColumnModel().getColumn(4).setResizable(false);
-            servivcePanel.getColumnModel().getColumn(5).setResizable(false);
-            servivcePanel.getColumnModel().getColumn(6).setResizable(false);
+        jScrollPane1.setViewportView(ServiceTable);
+        if (ServiceTable.getColumnModel().getColumnCount() > 0) {
+            ServiceTable.getColumnModel().getColumn(0).setResizable(false);
+            ServiceTable.getColumnModel().getColumn(1).setResizable(false);
+            ServiceTable.getColumnModel().getColumn(2).setResizable(false);
+            ServiceTable.getColumnModel().getColumn(3).setResizable(false);
+            ServiceTable.getColumnModel().getColumn(4).setResizable(false);
+            ServiceTable.getColumnModel().getColumn(5).setResizable(false);
+            ServiceTable.getColumnModel().getColumn(6).setResizable(false);
         }
 
         javax.swing.GroupLayout servicePanelLayout = new javax.swing.GroupLayout(servicePanel);
@@ -121,7 +121,7 @@ public class StatisticsPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(servivcePanel1);
+        ClothesTable.setViewportView(servivcePanel1);
         if (servivcePanel1.getColumnModel().getColumnCount() > 0) {
             servivcePanel1.getColumnModel().getColumn(0).setResizable(false);
             servivcePanel1.getColumnModel().getColumn(1).setResizable(false);
@@ -138,13 +138,13 @@ public class StatisticsPanel extends javax.swing.JPanel {
             clothesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 597, Short.MAX_VALUE)
             .addGroup(clothesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE))
+                .addComponent(ClothesTable, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE))
         );
         clothesPanelLayout.setVerticalGroup(
             clothesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 386, Short.MAX_VALUE)
             .addGroup(clothesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE))
+                .addComponent(ClothesTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
@@ -275,6 +275,8 @@ public class StatisticsPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane ClothesTable;
+    private javax.swing.JTable ServiceTable;
     private javax.swing.JPanel clothesPanel;
     private javax.swing.JButton jButton4;
     private javax.swing.JDialog jDialog1;
@@ -285,7 +287,6 @@ public class StatisticsPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JButton lastMonthButton;
@@ -293,7 +294,6 @@ public class StatisticsPanel extends javax.swing.JPanel {
     private javax.swing.JButton lastYearButton;
     private javax.swing.JLabel selectedButtonLabel;
     private javax.swing.JPanel servicePanel;
-    private javax.swing.JTable servivcePanel;
     private javax.swing.JTable servivcePanel1;
     private javax.swing.JPanel statisticsMainPanel;
     private javax.swing.JLabel totalIWLabel;

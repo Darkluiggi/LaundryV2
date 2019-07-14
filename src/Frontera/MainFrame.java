@@ -26,6 +26,10 @@ public class MainFrame extends javax.swing.JFrame {
     
     public Login login;                  //instancio los paneles cambiantes del programa   
     public MainMenu menu;
+        protected    Article         articlePanel;            
+        Account         accountPanel;           
+        Estadisticas    estatisticsPanel;        
+        Request         requestPanel; 
     
     public MainFrame() {
         login = new Login(this, new LoginControl());
@@ -34,7 +38,12 @@ public class MainFrame extends javax.swing.JFrame {
         PanelUtils.change(BigPanel, login);
         mainTB.setVisible(false);
         backBtn.setVisible(false);
-        setLocationRelativeTo(null);                            //Centra el programa en la pantalla
+        setLocationRelativeTo(null);   //Centra el programa en la pantalla
+        articlePanel            = new Article();
+        accountPanel            = new Account();
+        estatisticsPanel        = new Estadisticas();
+        requestPanel            = new Request();
+
     }
 
     /**
@@ -266,9 +275,8 @@ public class MainFrame extends javax.swing.JFrame {
     public JButton getBackBtn() {
         return backBtn;
     }
-    
-    
-    
+
+     
     
     
 }

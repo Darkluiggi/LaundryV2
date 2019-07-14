@@ -44,6 +44,20 @@ public class TableUtils {
         }
         table.setModel(model);
     }
+    
+    public static void fillTableArticleServices(JTable table, List<ArticleRequest> list) {
+        DefaultTableModel model = new DefaultTableModel(null, new String [] {
+        "ID", "Cabina", "Lavado", "Planchado", "Lav. y Plan.", "Express", "Total"
+    });
+        for (ArticleRequest t : list) {
+        model.addRow(new Object[]{t.getRequest().getId(), t.getRequest().getCabin(), t.getArticle().getClothName(), 
+            t.getService(), t.isFold(), t.isExpress(), t.getQuantity(), t.getSubtotal()});
+        }
+        table.setModel(model);
+    }
+    
+    
+    
 
     public static void addPopUpMenu(JTable table) {
         final JPopupMenu popupMenu = new JPopupMenu();

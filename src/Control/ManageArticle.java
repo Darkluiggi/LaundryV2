@@ -23,7 +23,7 @@ import javax.swing.JTextField;
 public class ManageArticle implements Controller{
 
     private static DAOArticle daoA = new DAOArticle();
-   
+    private static Article temp = new Article();
     public ManageArticle() {
         
         
@@ -52,7 +52,7 @@ public class ManageArticle implements Controller{
             JTextField IronTF,JTextField foldTF, JCheckBox WashC, JCheckBox WaiC,
             JCheckBox IronC, JCheckBox foldC) {
             
-            Article temp = new Article();
+            
             temp.setClothName(NameTF.getText());
             temp.setGender((String)GenderBox.getSelectedItem());
             temp.setWashPrice(Double.parseDouble(WashTF.getText()));
@@ -74,22 +74,22 @@ public class ManageArticle implements Controller{
             JCheckBox IronC, JCheckBox foldC,JLabel ExceptionField, JTable schemaClothes) {
         
         String a,b;
-        Article art = new Article();
+        
         a= (String)schemaClothes.getValueAt(schemaClothes.getSelectedRow(), 0);
         b= (String)schemaClothes.getValueAt(schemaClothes.getSelectedRow(), 1);
-        art.setGender(a);
-        art.setClothName(b);
-        art=daoA.read(schemaClothes.getSelectedRow()+1);
-        GenderBox.setSelectedItem(art.getGender());
-        NameTF.setText(art.getClothName());
-        WashTF.setText(Double.toString(art.getWashPrice()));
-        WashC.setSelected(art.isWashA());
-        IronandWashTF.setText(Double.toString(art.getWaiPrice()));
-        WaiC.setSelected(art.isWaiA());
-        IronTF.setText(Double.toString(art.getIronPrice()));
-        IronC.setSelected(art.isIronA());
-        FoldTF.setText(Double.toString(art.getFoldPrice()));
-        foldC.setSelected(art.isFoldA());
+        temp.setGender(a);
+        temp.setClothName(b);
+        temp=daoA.read(schemaClothes.getSelectedRow()+1);
+        GenderBox.setSelectedItem(temp.getGender());
+        NameTF.setText(temp.getClothName());
+        WashTF.setText(Double.toString(temp.getWashPrice()));
+        WashC.setSelected(temp.isWashA());
+        IronandWashTF.setText(Double.toString(temp.getWaiPrice()));
+        WaiC.setSelected(temp.isWaiA());
+        IronTF.setText(Double.toString(temp.getIronPrice()));
+        IronC.setSelected(temp.isIronA());
+        FoldTF.setText(Double.toString(temp.getFoldPrice()));
+        foldC.setSelected(temp.isFoldA());
         
     }
 

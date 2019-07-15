@@ -46,45 +46,7 @@ public class ManageArticlePanel extends javax.swing.JPanel implements articleInt
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        genderDialog = new javax.swing.JDialog();
-        acceptNewGenderButtonDialog = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        newGenderLabelDialog = new javax.swing.JLabel();
-        newGenderTFDialog = new javax.swing.JTextField();
-        editArticlePanel = new javax.swing.JPanel();
-        chekboxPanelEdit = new javax.swing.JPanel();
-        filler9 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
-        filler10 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
-        availableCEdit = new javax.swing.JCheckBox();
-        filler13 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
-        WashCEdit = new javax.swing.JCheckBox();
-        IronCEdit = new javax.swing.JCheckBox();
-        WaiCEdit = new javax.swing.JCheckBox();
-        foldCEdit = new javax.swing.JCheckBox();
-        centerLeftPanelEdit = new javax.swing.JPanel();
-        GenderL1 = new javax.swing.JLabel();
-        filler15 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
-        GenderBoxEdit = new javax.swing.JComboBox<>();
-        filler18 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
-        AvalL1 = new javax.swing.JLabel();
-        filler16 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
-        NameL1 = new javax.swing.JLabel();
-        NameTFEdit = new javax.swing.JTextField();
-        LaundryL1 = new javax.swing.JLabel();
-        WashTFEdit = new javax.swing.JTextField();
-        IronL1 = new javax.swing.JLabel();
-        IronTFEdit = new javax.swing.JTextField();
-        IronAndWashL1 = new javax.swing.JLabel();
-        IronandWashTFEdit = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        foldTFEdit = new javax.swing.JTextField();
-        filler17 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
-        filler14 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
-        aceptEditButton = new javax.swing.JButton();
-        cancelEditButton = new javax.swing.JButton();
-        topcenterEdit = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        Container = new javax.swing.JPanel();
         left = new javax.swing.JPanel();
         newArticlePanel = new javax.swing.JPanel();
         chekboxPanel = new javax.swing.JPanel();
@@ -127,169 +89,9 @@ public class ManageArticlePanel extends javax.swing.JPanel implements articleInt
         schemaClothes = new javax.swing.JTable();
         ExceptionField = new javax.swing.JLabel();
 
-        genderDialog.setBounds(new java.awt.Rectangle(300, 300, 230, 150));
-        genderDialog.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        genderDialog.setResizable(false);
-        genderDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
-
-        acceptNewGenderButtonDialog.setText("Aceptar");
-        acceptNewGenderButtonDialog.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        acceptNewGenderButtonDialog.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                acceptNewGenderButtonDialogActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        genderDialog.getContentPane().add(acceptNewGenderButtonDialog, gridBagConstraints);
-
-        jButton2.setText("Cancelar");
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        genderDialog.getContentPane().add(jButton2, gridBagConstraints);
-
-        newGenderLabelDialog.setText("Ingrese el nuevo Genero");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        genderDialog.getContentPane().add(newGenderLabelDialog, gridBagConstraints);
-
-        newGenderTFDialog.setText("NewGender");
-        newGenderTFDialog.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                newGenderTFDialogMouseClicked(evt);
-            }
-        });
-        newGenderTFDialog.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newGenderTFDialogActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        genderDialog.getContentPane().add(newGenderTFDialog, gridBagConstraints);
-
-        editArticlePanel.setPreferredSize(new java.awt.Dimension(500, 400));
-        editArticlePanel.setLayout(new java.awt.BorderLayout());
-
-        chekboxPanelEdit.setLayout(new java.awt.GridLayout(11, 1, 5, 5));
-        chekboxPanelEdit.add(filler9);
-        chekboxPanelEdit.add(filler10);
-        chekboxPanelEdit.add(availableCEdit);
-        chekboxPanelEdit.add(filler13);
-        chekboxPanelEdit.add(WashCEdit);
-        chekboxPanelEdit.add(IronCEdit);
-        chekboxPanelEdit.add(WaiCEdit);
-        chekboxPanelEdit.add(foldCEdit);
-
-        editArticlePanel.add(chekboxPanelEdit, java.awt.BorderLayout.LINE_END);
-
-        centerLeftPanelEdit.setLayout(new java.awt.GridLayout(11, 2, 5, 5));
-
-        GenderL1.setText("Género:");
-        centerLeftPanelEdit.add(GenderL1);
-        centerLeftPanelEdit.add(filler15);
-
-        centerLeftPanelEdit.add(GenderBoxEdit);
-        centerLeftPanelEdit.add(filler18);
-
-        AvalL1.setText("Disponibilidad:");
-        centerLeftPanelEdit.add(AvalL1);
-        centerLeftPanelEdit.add(filler16);
-
-        NameL1.setText("Nombre:");
-        centerLeftPanelEdit.add(NameL1);
-
-        NameTFEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NameTFEditActionPerformed(evt);
-            }
-        });
-        centerLeftPanelEdit.add(NameTFEdit);
-
-        LaundryL1.setText("Lavado:");
-        centerLeftPanelEdit.add(LaundryL1);
-
-        WashTFEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                WashTFEditActionPerformed(evt);
-            }
-        });
-        centerLeftPanelEdit.add(WashTFEdit);
-
-        IronL1.setText("Planchado:");
-        centerLeftPanelEdit.add(IronL1);
-
-        IronTFEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IronTFEditActionPerformed(evt);
-            }
-        });
-        centerLeftPanelEdit.add(IronTFEdit);
-
-        IronAndWashL1.setText("Lav. y Plan.:");
-        centerLeftPanelEdit.add(IronAndWashL1);
-        centerLeftPanelEdit.add(IronandWashTFEdit);
-
-        jLabel2.setText("Doblado:");
-        centerLeftPanelEdit.add(jLabel2);
-
-        foldTFEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                foldTFEditActionPerformed(evt);
-            }
-        });
-        centerLeftPanelEdit.add(foldTFEdit);
-        centerLeftPanelEdit.add(filler17);
-        centerLeftPanelEdit.add(filler14);
-
-        aceptEditButton.setText("Aceptar");
-        aceptEditButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        aceptEditButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aceptEditButtonActionPerformed(evt);
-            }
-        });
-        centerLeftPanelEdit.add(aceptEditButton);
-
-        cancelEditButton.setText("Cancelar");
-        cancelEditButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        cancelEditButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelEditButtonActionPerformed(evt);
-            }
-        });
-        centerLeftPanelEdit.add(cancelEditButton);
-
-        editArticlePanel.add(centerLeftPanelEdit, java.awt.BorderLayout.CENTER);
-
-        jLabel3.setText("Editar Articulo");
-        topcenterEdit.add(jLabel3);
-
-        editArticlePanel.add(topcenterEdit, java.awt.BorderLayout.NORTH);
-
         setPreferredSize(new java.awt.Dimension(700, 400));
 
-        jPanel1.setLayout(new java.awt.BorderLayout());
+        Container.setLayout(new java.awt.BorderLayout());
 
         left.setPreferredSize(new java.awt.Dimension(250, 400));
         left.setLayout(new java.awt.BorderLayout());
@@ -398,7 +200,7 @@ public class ManageArticlePanel extends javax.swing.JPanel implements articleInt
 
         left.add(bot, java.awt.BorderLayout.SOUTH);
 
-        jPanel1.add(left, java.awt.BorderLayout.LINE_START);
+        Container.add(left, java.awt.BorderLayout.LINE_START);
 
         center.setLayout(new java.awt.BorderLayout());
 
@@ -428,28 +230,7 @@ public class ManageArticlePanel extends javax.swing.JPanel implements articleInt
 
         schemaClothes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Género", "Nombre", "Lavado", "Planchado", "Lavado y Planchado", "Doblado"
@@ -463,6 +244,7 @@ public class ManageArticlePanel extends javax.swing.JPanel implements articleInt
                 return canEdit [columnIndex];
             }
         });
+        schemaClothes.setColumnSelectionAllowed(true);
         schemaClothes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         schemaClothes.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
         schemaClothes.setMinimumSize(new java.awt.Dimension(0, 0));
@@ -487,11 +269,11 @@ public class ManageArticlePanel extends javax.swing.JPanel implements articleInt
 
         center.add(verPanel, java.awt.BorderLayout.CENTER);
 
-        jPanel1.add(center, java.awt.BorderLayout.CENTER);
+        Container.add(center, java.awt.BorderLayout.CENTER);
 
         ExceptionField.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         ExceptionField.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(ExceptionField, java.awt.BorderLayout.PAGE_START);
+        Container.add(ExceptionField, java.awt.BorderLayout.PAGE_START);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -499,14 +281,14 @@ public class ManageArticlePanel extends javax.swing.JPanel implements articleInt
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE)
+                .addComponent(Container, javax.swing.GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Container, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -562,60 +344,6 @@ public class ManageArticlePanel extends javax.swing.JPanel implements articleInt
         // TODO add your handling code here:
     }//GEN-LAST:event_centerScrollMouseClicked
 
-    private void NameTFEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameTFEditActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NameTFEditActionPerformed
-
-    private void WashTFEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WashTFEditActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_WashTFEditActionPerformed
-
-    private void IronTFEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IronTFEditActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_IronTFEditActionPerformed
-
-    private void foldTFEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foldTFEditActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_foldTFEditActionPerformed
-
-    private void aceptEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptEditButtonActionPerformed
-        
-        //PONER ESTO DESPUES DE RECOGER LOS DATOS!!! ESTO LOS BORRA
-        NameTFEdit.setText("");
-        WashTFEdit.setText("");
-        IronTFEdit.setText("");
-        IronandWashTFEdit.setText("");
-        foldTFEdit.setText("");
-        
-        availableCEdit.setSelected(false);
-        WashCEdit.setSelected(false);
-        IronCEdit.setSelected(false);
-        WaiCEdit.setSelected(false);
-        foldCEdit.setSelected(false);
-        
-        center.setVisible(false);
-        center.removeAll();
-        center.setLayout(new BorderLayout());
-        center.add(verPanel);
-        center.setVisible(true);
-    }//GEN-LAST:event_aceptEditButtonActionPerformed
-
-    private void newGenderTFDialogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGenderTFDialogActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_newGenderTFDialogActionPerformed
-
-    private void newGenderTFDialogMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGenderTFDialogMouseClicked
-        newGenderTFDialog.setText("");
-    }//GEN-LAST:event_newGenderTFDialogMouseClicked
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        genderDialog.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void acceptNewGenderButtonDialogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptNewGenderButtonDialogActionPerformed
-        genderDialog.dispose();
-    }//GEN-LAST:event_acceptNewGenderButtonDialogActionPerformed
-
     private void CancelBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBActionPerformed
         NameTF.setText("");
         WashTF.setText("");
@@ -630,26 +358,6 @@ public class ManageArticlePanel extends javax.swing.JPanel implements articleInt
                
         
     }//GEN-LAST:event_CancelBActionPerformed
-
-    private void cancelEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelEditButtonActionPerformed
-        NameTFEdit.setText("");
-        WashTFEdit.setText("");
-        IronTFEdit.setText("");
-        IronandWashTFEdit.setText("");
-        foldTFEdit.setText("");
-        
-        availableCEdit.setSelected(false);
-        WashCEdit.setSelected(false);
-        IronCEdit.setSelected(false);
-        WaiCEdit.setSelected(false);
-        foldCEdit.setSelected(false);
-        
-        center.setVisible(false);
-        center.removeAll();
-        center.setLayout(new BorderLayout());
-        center.add(verPanel);
-        center.setVisible(true);
-    }//GEN-LAST:event_cancelEditButtonActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         String exception = FormUtils.validateField(NameTF, GenderBox, WashTF, IronTF, IronandWashTF, foldTF);
@@ -670,58 +378,31 @@ public class ManageArticlePanel extends javax.swing.JPanel implements articleInt
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AcceptB;
     private javax.swing.JButton AddGenderB;
-    private javax.swing.JLabel AvalL1;
     private javax.swing.JButton CancelB;
+    private javax.swing.JPanel Container;
     private javax.swing.JLabel ExceptionField;
     protected static javax.swing.JComboBox<String> GenderBox;
-    protected static javax.swing.JComboBox<String> GenderBoxEdit;
     private javax.swing.JLabel GenderL;
-    private javax.swing.JLabel GenderL1;
     private javax.swing.JLabel IronAndWashL;
-    private javax.swing.JLabel IronAndWashL1;
     private javax.swing.JCheckBox IronC;
-    private javax.swing.JCheckBox IronCEdit;
     private javax.swing.JLabel IronL;
-    private javax.swing.JLabel IronL1;
     private javax.swing.JTextField IronTF;
-    private javax.swing.JTextField IronTFEdit;
     private javax.swing.JTextField IronandWashTF;
-    private javax.swing.JTextField IronandWashTFEdit;
     private javax.swing.JLabel LaundryL;
-    private javax.swing.JLabel LaundryL1;
     private javax.swing.JLabel NameL;
-    private javax.swing.JLabel NameL1;
     private javax.swing.JTextField NameTF;
-    private javax.swing.JTextField NameTFEdit;
     private javax.swing.JCheckBox WaiC;
-    private javax.swing.JCheckBox WaiCEdit;
     private javax.swing.JCheckBox WashC;
-    private javax.swing.JCheckBox WashCEdit;
     private javax.swing.JTextField WashTF;
-    private javax.swing.JTextField WashTFEdit;
-    private javax.swing.JButton acceptNewGenderButtonDialog;
-    private javax.swing.JButton aceptEditButton;
-    private javax.swing.JCheckBox availableCEdit;
     private javax.swing.JPanel bot;
-    private javax.swing.JButton cancelEditButton;
     private javax.swing.JPanel center;
     private javax.swing.JPanel centerLeftPanel;
-    private javax.swing.JPanel centerLeftPanelEdit;
     private javax.swing.JScrollPane centerScroll;
     private javax.swing.JPanel chekboxPanel;
-    private javax.swing.JPanel chekboxPanelEdit;
-    private javax.swing.JPanel editArticlePanel;
     private javax.swing.JButton editButton;
     private javax.swing.Box.Filler filler1;
-    private javax.swing.Box.Filler filler10;
     private javax.swing.Box.Filler filler11;
     private javax.swing.Box.Filler filler12;
-    private javax.swing.Box.Filler filler13;
-    private javax.swing.Box.Filler filler14;
-    private javax.swing.Box.Filler filler15;
-    private javax.swing.Box.Filler filler16;
-    private javax.swing.Box.Filler filler17;
-    private javax.swing.Box.Filler filler18;
     private javax.swing.Box.Filler filler2;
     private javax.swing.Box.Filler filler3;
     private javax.swing.Box.Filler filler4;
@@ -729,24 +410,13 @@ public class ManageArticlePanel extends javax.swing.JPanel implements articleInt
     private javax.swing.Box.Filler filler6;
     private javax.swing.Box.Filler filler7;
     private javax.swing.Box.Filler filler8;
-    private javax.swing.Box.Filler filler9;
     private javax.swing.JCheckBox foldC;
-    private javax.swing.JCheckBox foldCEdit;
     private javax.swing.JTextField foldTF;
-    private javax.swing.JTextField foldTFEdit;
-    private javax.swing.JDialog genderDialog;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel left;
     private javax.swing.JPanel newArticlePanel;
-    private javax.swing.JLabel newGenderLabelDialog;
-    private javax.swing.JTextField newGenderTFDialog;
     public static javax.swing.JTable schemaClothes;
     private javax.swing.JPanel topCenter;
-    private javax.swing.JPanel topcenterEdit;
     private javax.swing.JPanel verPanel;
     // End of variables declaration//GEN-END:variables
 

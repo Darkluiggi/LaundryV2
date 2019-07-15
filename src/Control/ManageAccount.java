@@ -9,8 +9,10 @@ import DAO.DAOUser;
 import Entidad.User;
 import Utils.PanelUtils;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 /**
@@ -19,8 +21,8 @@ import javax.swing.JTextField;
  */
 public class ManageAccount implements Controller{
     
-    private static DAOUser dao = new DAOUser();
-    
+    private static DAOUser daoU = new DAOUser();
+    private static User temp = new User();
     public ManageAccount() {
     }
     public static void createAdmin(){
@@ -59,35 +61,63 @@ public class ManageAccount implements Controller{
           user.setRole("Encargado de cabina");
       }
             
-      dao.create(user); 
+      daoU.create(user); 
     }
-    public static void updateUser(User userA, JTextField nameTF, JTextField lastNameTF,JTextField userNameTF,
+    public static void updateUser( JTextField nameTF, JTextField lastNameTF,JTextField userNameTF,
             JTextField countryTF, JTextField adressTF,JTextField passwordTF,JTextField phoneTF,JCheckBox adminC){
         
-        int a=dao.findID(userA);
-        userA=dao.read(a);
-        userA.setName(nameTF.getText());
-        userA.setLastName(lastNameTF.getText());
-        userA.setUserName(userNameTF.getText());
-        userA.setCountry(countryTF.getText());       
-        userA.setPhone(phoneTF.getText());
-        userA.setAdress(adressTF.getText());
-        userA.setPassword(passwordTF.getText());
+        
+       
+        temp.setName(nameTF.getText());
+        temp.setLastName(lastNameTF.getText());
+        temp.setUserName(userNameTF.getText());
+        temp.setCountry(countryTF.getText());       
+        temp.setPhone(phoneTF.getText());
+        temp.setAdress(adressTF.getText());
+        temp.setPassword(passwordTF.getText());
         if(adminC.isSelected() == Boolean.TRUE){
-          userA.setRole("Administrador");
+          temp.setRole("Administrador");
       }else{
-          userA.setRole("Encargado de cabina");
+          temp.setRole("Encargado de cabina");
       }
-        dao.update(userA);
+        daoU.update(temp);
     }
+    public static void TableClicked(JTextField nameTF, JTextField lastNameTF,JTextField userNameTF, JTextField countryTF,
+            JTextField adressTF,JTextField phoneTF, JTextField passwordTF, JTable userTable) {
+        
+        nameTF.setText("Nombre");
+        lastNameTF.setText("Apellido");
+        userNameTF.setText("Nombre de Usuario");
+        countryTF.setText("Pais");
+        adressTF.setText("Direccion");
+        phoneTF.setText("Telefono");
+        passwordTF.setText("Contraseña");
+        
+        String a,b;
+        
+        a= (String)userTable.getValueAt(userTable.getSelectedRow(), 0);
+        b= (String)userTable.getValueAt(userTable.getSelectedRow(), 1);
+        
+        temp=daoU.read(userTable.getSelectedRow()+1);
+        nameTF.setText(temp.getName());
+        lastNameTF.setText(temp.getLastName());
+        userNameTF.setText(temp.getUserName());
+        countryTF.setText(temp.getCountry());
+        adressTF.setText(temp.getAdress());
+        phoneTF.setText(temp.getPhone());
+        passwordTF.setText(temp.getPassword());
+        
+        
+    }
+    
     
     public static void findUser(User userA, JTextField findIdTF,JTextField editNameTF, JTextField editLastNameTF,   JTextField editUserNameTF ,JTextField editPassTF, JTextField editCountryTF,
                                     JTextField editPhoneTF,JTextField editAdressTF, JCheckBox editAdminC,JPanel editUserActualPanel, 
                                     JPanel editUserErrorPanel,JPanel editPanel, JLabel idEditLabel,JLabel buscarErrorLabel){
         
         userA.setUserName(findIdTF.getText());
-        int a=dao.findID(userA);
-        userA=dao.read(a);
+        int a=daoU.findID(userA);
+        userA=daoU.read(a);
         if(userA==null){
             PanelUtils.change(editUserActualPanel, editUserErrorPanel);
              buscarErrorLabel.setText(findIdTF.getText());

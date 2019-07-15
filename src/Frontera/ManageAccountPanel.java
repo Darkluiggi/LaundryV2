@@ -5,8 +5,10 @@
  */
 package Frontera;
 
+import Control.ManageAccount;
 import DAO.DAOUser;
 import Entidad.User;
+import Utils.FormUtils;
 import Utils.PanelUtils;
 import Utils.TableUtils;
 import java.awt.BorderLayout;
@@ -29,6 +31,8 @@ public class ManageAccountPanel extends javax.swing.JPanel {
     private User userc = new User(); 
     public ManageAccountPanel() {
         initComponents();
+        TableUtils.fillTableUser(userTable, dao.findAll());
+        
     }
 
     /**
@@ -107,10 +111,6 @@ public class ManageAccountPanel extends javax.swing.JPanel {
         cancelButton = new javax.swing.JButton();
         centerPanel = new javax.swing.JPanel();
         topPanel = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        searchIDTextArea = new javax.swing.JTextField();
-        findButton = new javax.swing.JButton();
-        seeAllUsersButton = new javax.swing.JButton();
         centerMainPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         userTable = new javax.swing.JTable();
@@ -461,6 +461,11 @@ public class ManageAccountPanel extends javax.swing.JPanel {
 
         editAccountButton.setText("Editar");
         editAccountButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        editAccountButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editAccountButtonActionPerformed(evt);
+            }
+        });
         leftPanel.add(editAccountButton);
 
         cancelButton.setText("Cancelar");
@@ -478,56 +483,23 @@ public class ManageAccountPanel extends javax.swing.JPanel {
 
         topPanel.setPreferredSize(new java.awt.Dimension(500, 30));
         topPanel.setLayout(new java.awt.GridLayout(1, 5, 5, 5));
-
-        jLabel5.setText("Buscar Usuario:");
-        topPanel.add(jLabel5);
-
-        searchIDTextArea.setText("ID a buscar");
-        searchIDTextArea.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                searchIDTextAreaMouseClicked(evt);
-            }
-        });
-        searchIDTextArea.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchIDTextAreaActionPerformed(evt);
-            }
-        });
-        topPanel.add(searchIDTextArea);
-
-        findButton.setText("Buscar");
-        findButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        findButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                findButtonActionPerformed(evt);
-            }
-        });
-        topPanel.add(findButton);
-
-        seeAllUsersButton.setText("Ver todos");
-        seeAllUsersButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        seeAllUsersButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                seeAllUsersButtonActionPerformed(evt);
-            }
-        });
-        topPanel.add(seeAllUsersButton);
-
         centerPanel.add(topPanel, java.awt.BorderLayout.NORTH);
 
         centerMainPanel.setLayout(new java.awt.GridLayout(1, 0));
 
         userTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Nombre", "Apellido", "Nombre de Usuario", "País", "Dirección", "Teléfono", "Contraseña", "Rol"
             }
         ));
+        userTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                userTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(userTable);
         if (userTable.getColumnModel().getColumnCount() > 0) {
             userTable.getColumnModel().getColumn(0).setResizable(false);
@@ -635,51 +607,6 @@ public class ManageAccountPanel extends javax.swing.JPanel {
         }         // TODO add your handling code here
     }//GEN-LAST:event_createBKeyReleased
 
-    private void searchIDTextAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchIDTextAreaMouseClicked
-        searchIDTextArea.setText("");
-    }//GEN-LAST:event_searchIDTextAreaMouseClicked
-
-    private void searchIDTextAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchIDTextAreaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchIDTextAreaActionPerformed
-
-    private void findButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findButtonActionPerformed
-        centerMainPanel.setVisible(false);
-        centerMainPanel.removeAll();
-        centerMainPanel.setLayout(new BorderLayout());
-        centerMainPanel.add(editPanel);
-        centerMainPanel.setVisible(true);
-        
-        String a;
-        int m;
-
-        a=searchIDTextArea.getText();
-        usera.setUserName(a);
-        m=dao.findID(usera);
-        userb=dao.read(m);
-        if(userb==null){
-            PanelUtils.change(centerMainPanel, editUserErrorPanel);
-            buscarErrorLabel.setText(searchIDTextArea.getText());
-        }else{
-            editNameTF.setText(userb.getName());
-            editLastNameTF.setText(userb.getLastName());
-            editUserNameTF.setText(userb.getUserName());
-            editPasswordTF.setText(userb.getPassword());
-            editCountryTF.setText(userb.getCountry());
-            editPhoneTF.setText(userb.getPhone());
-            editAdressTF.setText(userb.getAdress());
-            if(userb.getRole().equals("Administrador")){
-                editAdminC.setSelected(Boolean.TRUE);
-            }else{
-                editAdminC.setSelected(Boolean.FALSE);
-            }
-            PanelUtils.change(centerMainPanel, editPanel);
-            idEditLabel.setText(searchIDTextArea.getText());
-
-        }
-        // TODO add your handling code here:
-    }//GEN-LAST:event_findButtonActionPerformed
-
     private void AceptarBDialogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarBDialogoActionPerformed
 
         Control.ManageAccount.createUser(nameTF, lastNameTF, userNameTF, countryTF,
@@ -711,22 +638,14 @@ public class ManageAccountPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_editBActionPerformed
 
     private void cancelBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBActionPerformed
-        editNameTF.setText("");
-        editLastNameTF.setText("");
-        editUserNameTF.setText("");
-        editCountryTF.setText("");
-        editAdressTF.setText("");
-        editPhoneTF.setText("");
-        editPasswordTF.setText("");
         
-        editAdminC.setSelected(false);
+        FormUtils.clearFields(editNameTF,editLastNameTF,editUserNameTF,editCountryTF,editAdressTF,
+                editPhoneTF,editPasswordTF,editAdminC);
+      
+      
         
+       FormUtils.addBorderLayout(centerMainPanel, userTable);
         
-        centerMainPanel.setVisible(false);
-        centerMainPanel.removeAll();
-        centerMainPanel.setLayout(new BorderLayout());
-        centerMainPanel.add(userTable);
-        centerMainPanel.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_cancelBActionPerformed
 
@@ -746,15 +665,20 @@ public class ManageAccountPanel extends javax.swing.JPanel {
         adminC.setSelected(false);
     }//GEN-LAST:event_cancelButtonActionPerformed
 
-    private void seeAllUsersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seeAllUsersButtonActionPerformed
+    private void userTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTableMouseClicked
+        ManageAccount.TableClicked(nameTF, lastNameTF, userNameTF, countryTF,
+                adressTF, phoneTF, passwordTF, userTable);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userTableMouseClicked
+
+    private void editAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editAccountButtonActionPerformed
+        ManageAccount.updateUser(nameTF, lastNameTF, userNameTF, countryTF,
+                adressTF, passwordTF, phoneTF, adminC);  
         TableUtils.fillTableUser(userTable, dao.findAll());
-        centerMainPanel.setVisible(false);
-        centerMainPanel.removeAll();
-        centerMainPanel.setLayout(new BorderLayout());
-        centerMainPanel.add(userTable);
-        centerMainPanel.setVisible(true);
-        
-    }//GEN-LAST:event_seeAllUsersButtonActionPerformed
+        FormUtils.setFields(nameTF, lastNameTF, userNameTF, countryTF,
+                adressTF, passwordTF, phoneTF, adminC);// TODO add your handling code here:
+    }//GEN-LAST:event_editAccountButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -799,10 +723,8 @@ public class ManageAccountPanel extends javax.swing.JPanel {
     private javax.swing.Box.Filler filler7;
     private javax.swing.Box.Filler filler8;
     private javax.swing.Box.Filler filler9;
-    private javax.swing.JButton findButton;
     private javax.swing.JLabel idEditLabel;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
@@ -825,8 +747,6 @@ public class ManageAccountPanel extends javax.swing.JPanel {
     private javax.swing.JTextField passwordTF;
     private javax.swing.JTextField phoneTF;
     private javax.swing.JPanel rightEditPanel;
-    private javax.swing.JTextField searchIDTextArea;
-    private javax.swing.JButton seeAllUsersButton;
     private javax.swing.JPanel topDialog;
     private javax.swing.JPanel topPanel;
     private javax.swing.JTextField userNameTF;

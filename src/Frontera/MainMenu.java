@@ -260,13 +260,11 @@ public class MainMenu extends javax.swing.JPanel {
     }//GEN-LAST:event_logoutBtnMouseExited
 
     private void requestBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_requestBtnMouseClicked
-//        NewRequestPanel requestPanel = new NewRequestPanel();
-//        PanelUtils.change(main.getBigPanel(), requestPanel);
-//        main.getBackBtn().setVisible(true);
+;
     }//GEN-LAST:event_requestBtnMouseClicked
 
     private void articleBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_articleBtnMouseClicked
-        ArticlePanel articlePanel = new ArticlePanel();
+        ManageArticlePanel articlePanel = new ManageArticlePanel();
         PanelUtils.change(main.getBigPanel(), articlePanel);
         main.getBackBtn().setVisible(true);
     }//GEN-LAST:event_articleBtnMouseClicked
@@ -292,7 +290,7 @@ public class MainMenu extends javax.swing.JPanel {
     }//GEN-LAST:event_StatisticsBMouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-       RequestPanel requestPanel = new RequestPanel();
+       NewRequestPanel requestPanel = new NewRequestPanel();
         PanelUtils.change(main.getBigPanel(), requestPanel);
         main.getBackBtn().setVisible(true); // TODO add your handling code here:
     }//GEN-LAST:event_jLabel1MouseClicked

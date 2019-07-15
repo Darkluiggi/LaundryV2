@@ -5,7 +5,14 @@
  */
 package Frontera;
 
+import Control.ManageAccount;
+import Control.ManageArticle;
+import DAO.DAOArticle;
+import Utils.BoxUtils;
+import Utils.TableUtils;
 import java.awt.BorderLayout;
+import javax.swing.JComboBox;
+import javax.swing.JTable;
 
 
 
@@ -13,13 +20,18 @@ import java.awt.BorderLayout;
  *
  * @author leoleguizamon
  */
-public class Article extends javax.swing.JPanel {
+public class Article extends javax.swing.JPanel implements articleInterface {
     
     /**
      * Creates new form Article
      */
+    AddGender addG;
+    DAOArticle daoA ;
     public Article() {
+        daoA = new DAOArticle();
         initComponents();
+        TableUtils.fillTableArticle(schemaClothes, daoA.findAll());
+        BoxUtils.updateBox(daoA.getGenders(), GenderBox);
     }
 
     /**
@@ -71,18 +83,7 @@ public class Article extends javax.swing.JPanel {
         topcenterEdit = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        center = new javax.swing.JPanel();
-        verPanel = new javax.swing.JPanel();
-        topCenter = new javax.swing.JPanel();
-        filler8 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
-        filler11 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
-        filler12 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0));
-        editButton = new javax.swing.JButton();
-        centerScroll = new javax.swing.JScrollPane();
-        schemaClothes = new javax.swing.JTable();
-        bot = new javax.swing.JPanel();
-        AcceptB = new javax.swing.JButton();
-        CancelB = new javax.swing.JButton();
+        left = new javax.swing.JPanel();
         newArticlePanel = new javax.swing.JPanel();
         chekboxPanel = new javax.swing.JPanel();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
@@ -110,6 +111,19 @@ public class Article extends javax.swing.JPanel {
         IronandWashTF = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         foldTF = new javax.swing.JTextField();
+        bot = new javax.swing.JPanel();
+        AcceptB = new javax.swing.JButton();
+        CancelB = new javax.swing.JButton();
+        center = new javax.swing.JPanel();
+        verPanel = new javax.swing.JPanel();
+        topCenter = new javax.swing.JPanel();
+        filler8 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
+        filler11 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
+        filler12 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0));
+        editButton = new javax.swing.JButton();
+        centerScroll = new javax.swing.JScrollPane();
+        schemaClothes = new javax.swing.JTable();
+        ExceptionField = new javax.swing.JLabel();
 
         genderDialog.setBounds(new java.awt.Rectangle(300, 300, 230, 150));
         genderDialog.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -271,122 +285,12 @@ public class Article extends javax.swing.JPanel {
 
         editArticlePanel.add(topcenterEdit, java.awt.BorderLayout.NORTH);
 
-        setPreferredSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(700, 400));
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
-        verPanel.setLayout(new java.awt.BorderLayout());
-
-        javax.swing.GroupLayout centerLayout = new javax.swing.GroupLayout(center);
-        center.setLayout(centerLayout);
-        centerLayout.setHorizontalGroup(
-            centerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(verPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        centerLayout.setVerticalGroup(
-            centerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(verPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
-        jPanel1.add(center, java.awt.BorderLayout.PAGE_START);
-
-        topCenter.setLayout(new java.awt.GridLayout(1, 4, 5, 5));
-        topCenter.add(filler8);
-        topCenter.add(filler11);
-        topCenter.add(filler12);
-
-        editButton.setText("Editar");
-        editButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        editButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editButtonActionPerformed(evt);
-            }
-        });
-        topCenter.add(editButton);
-
-        centerScroll.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                centerScrollMouseClicked(evt);
-            }
-        });
-
-        schemaClothes.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Género", "Nombre", "Lavado", "Planchado", "Lavado y Planchado", "Doblado"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        schemaClothes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        schemaClothes.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
-        schemaClothes.setMinimumSize(new java.awt.Dimension(0, 0));
-        schemaClothes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        schemaClothes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                schemaClothesMouseClicked(evt);
-            }
-        });
-        centerScroll.setViewportView(schemaClothes);
-        schemaClothes.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        if (schemaClothes.getColumnModel().getColumnCount() > 0) {
-            schemaClothes.getColumnModel().getColumn(0).setResizable(false);
-            schemaClothes.getColumnModel().getColumn(1).setResizable(false);
-            schemaClothes.getColumnModel().getColumn(2).setResizable(false);
-            schemaClothes.getColumnModel().getColumn(3).setResizable(false);
-            schemaClothes.getColumnModel().getColumn(4).setResizable(false);
-            schemaClothes.getColumnModel().getColumn(5).setResizable(false);
-        }
-
-        bot.setPreferredSize(new java.awt.Dimension(200, 30));
-        bot.setLayout(new java.awt.GridLayout(1, 2, 5, 5));
-
-        AcceptB.setText("Aceptar");
-        AcceptB.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        AcceptB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AcceptBActionPerformed(evt);
-            }
-        });
-        bot.add(AcceptB);
-
-        CancelB.setText("Cancelar");
-        CancelB.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        CancelB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CancelBActionPerformed(evt);
-            }
-        });
-        bot.add(CancelB);
+        left.setPreferredSize(new java.awt.Dimension(250, 400));
+        left.setLayout(new java.awt.BorderLayout());
 
         newArticlePanel.setLayout(new java.awt.BorderLayout());
 
@@ -467,48 +371,147 @@ public class Article extends javax.swing.JPanel {
 
         newArticlePanel.add(centerLeftPanel, java.awt.BorderLayout.CENTER);
 
+        left.add(newArticlePanel, java.awt.BorderLayout.CENTER);
+
+        bot.setPreferredSize(new java.awt.Dimension(200, 30));
+        bot.setLayout(new java.awt.GridLayout(1, 2, 5, 5));
+
+        AcceptB.setText("Aceptar");
+        AcceptB.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        AcceptB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AcceptBActionPerformed(evt);
+            }
+        });
+        bot.add(AcceptB);
+
+        CancelB.setText("Cancelar");
+        CancelB.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CancelB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelBActionPerformed(evt);
+            }
+        });
+        bot.add(CancelB);
+
+        left.add(bot, java.awt.BorderLayout.SOUTH);
+
+        jPanel1.add(left, java.awt.BorderLayout.LINE_START);
+
+        center.setLayout(new java.awt.BorderLayout());
+
+        verPanel.setLayout(new java.awt.BorderLayout());
+
+        topCenter.setLayout(new java.awt.GridLayout(1, 4, 5, 5));
+        topCenter.add(filler8);
+        topCenter.add(filler11);
+        topCenter.add(filler12);
+
+        editButton.setText("Editar");
+        editButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        editButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editButtonActionPerformed(evt);
+            }
+        });
+        topCenter.add(editButton);
+
+        verPanel.add(topCenter, java.awt.BorderLayout.PAGE_START);
+
+        centerScroll.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                centerScrollMouseClicked(evt);
+            }
+        });
+
+        schemaClothes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Género", "Nombre", "Lavado", "Planchado", "Lavado y Planchado", "Doblado"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        schemaClothes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        schemaClothes.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
+        schemaClothes.setMinimumSize(new java.awt.Dimension(0, 0));
+        schemaClothes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        schemaClothes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                schemaClothesMouseClicked(evt);
+            }
+        });
+        centerScroll.setViewportView(schemaClothes);
+        schemaClothes.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (schemaClothes.getColumnModel().getColumnCount() > 0) {
+            schemaClothes.getColumnModel().getColumn(0).setResizable(false);
+            schemaClothes.getColumnModel().getColumn(1).setResizable(false);
+            schemaClothes.getColumnModel().getColumn(2).setResizable(false);
+            schemaClothes.getColumnModel().getColumn(3).setResizable(false);
+            schemaClothes.getColumnModel().getColumn(4).setResizable(false);
+            schemaClothes.getColumnModel().getColumn(5).setResizable(false);
+        }
+
+        verPanel.add(centerScroll, java.awt.BorderLayout.CENTER);
+
+        center.add(verPanel, java.awt.BorderLayout.CENTER);
+
+        jPanel1.add(center, java.awt.BorderLayout.CENTER);
+
+        ExceptionField.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        ExceptionField.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(ExceptionField, java.awt.BorderLayout.PAGE_START);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(newArticlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bot, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(topCenter, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(centerScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
-                        .addContainerGap())))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(topCenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(centerScroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(623, 623, 623)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(newArticlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(bot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(461, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void AddGenderBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddGenderBActionPerformed
-        genderDialog.setVisible(true);
+        addG = new AddGender(this,daoA.getGenders());
+        addG.setVisible(true);
     }//GEN-LAST:event_AddGenderBActionPerformed
 
     private void NameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameTFActionPerformed
@@ -528,55 +531,18 @@ public class Article extends javax.swing.JPanel {
     }//GEN-LAST:event_foldTFActionPerformed
 
     private void AcceptBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptBActionPerformed
-/*
-        art.setGender((String)GenderBox.getSelectedItem());
-        art.setClothName((String)NameTF.getText());
-        art.setWashPrice((Float.parseFloat(WashTF.getText())));
-        art.setWashA(WashC.isSelected());
-        art.setWaiPrice(Float.parseFloat(IronandWashTF.getText()));
-        art.setWaiA(WaiC.isSelected());
-        art.setIronPrice(Float.parseFloat(IronTF.getText()));
-        art.setIronA(IronC.isSelected());
-        art.setFoldPrice(Float.parseFloat(foldTF.getText()));
-        art.setIronA(foldC.isSelected());
-
-        daoT.update(art);
-        TableUtils.fillTable(schemaClothes,daoT.findAll());
-        BoxUtils.updateBox(daoT.getGenders(),GenderBox);*/
-        //         TODO add your handling code here:
+        ManageArticle.createArticle(GenderBox, NameTF, WashTF, IronandWashTF, IronTF, foldTF, 
+                WashC, WaiC, IronC, foldC, ExceptionField, schemaClothes);
         
-        NameTF.setText("");
-        WashTF.setText("");
-        IronTF.setText("");
-        IronandWashTF.setText("");
-        foldTF.setText("");
-        
-        WashC.setSelected(false);
-        IronC.setSelected(false);
-        WaiC.setSelected(false);
-        foldC.setSelected(false);
+     
     }//GEN-LAST:event_AcceptBActionPerformed
 
     private void schemaClothesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_schemaClothesMouseClicked
-/*        BoxUtils.updateBox(daoT.getGenders(),GenderBox);
-        String a,b;
-
-        a= (String)schemaClothes.getValueAt(schemaClothes.getSelectedRow(), 0);
-        b= (String)schemaClothes.getValueAt(schemaClothes.getSelectedRow(), 1);
-        art.setGender(a);
-        art.setClothName(b);
-        art=daoT.read(schemaClothes.getSelectedRow()+1);
-        GenderBox.setSelectedItem(art.getGender());
-        NameTF.setText(art.getClothName());
-        WashTF.setText(Float.toString(art.getWashPrice()));
-        WashC.setSelected(art.isWashA());
-        IronandWashTF.setText(Float.toString(art.getWaiPrice()));
-        WaiC.setSelected(art.isWaiA());
-        IronTF.setText(Float.toString(art.getIronPrice()));
-        IronC.setSelected(art.isIronA());
-        foldTF.setText(Float.toString(art.getFoldPrice()));
-        foldC.setSelected(art.isFoldA());
-        // TODO add your handling code here:*/
+      
+        ManageArticle.TableClicked(GenderBox, NameTF, WashTF, IronandWashTF, 
+                IronTF, foldTF,WashC, WaiC, IronC, foldC, ExceptionField, schemaClothes);
+        
+        // TODO add your handling code here:
     }//GEN-LAST:event_schemaClothesMouseClicked
 
     private void centerScrollMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_centerScrollMouseClicked
@@ -686,6 +652,7 @@ public class Article extends javax.swing.JPanel {
     private javax.swing.JButton AddGenderB;
     private javax.swing.JLabel AvalL1;
     private javax.swing.JButton CancelB;
+    private javax.swing.JLabel ExceptionField;
     protected static javax.swing.JComboBox<String> GenderBox;
     protected static javax.swing.JComboBox<String> GenderBoxEdit;
     private javax.swing.JLabel GenderL;
@@ -753,6 +720,7 @@ public class Article extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel left;
     private javax.swing.JPanel newArticlePanel;
     private javax.swing.JLabel newGenderLabelDialog;
     private javax.swing.JTextField newGenderTFDialog;
@@ -761,4 +729,14 @@ public class Article extends javax.swing.JPanel {
     private javax.swing.JPanel topcenterEdit;
     private javax.swing.JPanel verPanel;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public JComboBox getGenderBox() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public JTable getSchemaClothes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

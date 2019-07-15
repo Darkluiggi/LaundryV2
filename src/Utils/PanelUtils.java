@@ -5,6 +5,7 @@
  */
 package Utils;
 
+import Frontera.Article;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import javax.swing.JPanel;
@@ -14,8 +15,20 @@ import javax.swing.JPanel;
  * @author leons
  */
 public class PanelUtils {
-
+    Article art = new Article();
+    
     public PanelUtils() {
+    }
+     public static void add(JPanel panelA, Article art){
+        BorderLayout layout = (BorderLayout) panelA.getLayout();
+        panelA.setVisible(false);
+        Component center = layout.getLayoutComponent(BorderLayout.CENTER);
+        if(center != null){
+            panelA.remove(center); 
+            panelA.updateUI();
+        }                           //cambia el main panel por el loginal dar clic en login
+        panelA.add(art, BorderLayout.CENTER);
+        panelA.setVisible(true);
     }
     
     public static void change(JPanel panelA, JPanel panelB){

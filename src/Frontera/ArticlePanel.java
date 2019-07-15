@@ -21,33 +21,30 @@ public class ArticlePanel extends javax.swing.JPanel {
     /**
      * Creates new form ArticlePanel
      */
-    public NewArticlePanel newArticle;
-    public ViewArticles viewArticles ;
-    public EditArticlePanel editArticle;
+    public Frontera.Article art;
+    
     private DAOArticle daoT = new DAOArticle();
     List<Article> list = daoT.findAll(); 
     
     public ArticlePanel() {
         initComponents();
-        newArticle = new NewArticlePanel();
-        viewArticles = new ViewArticles();
-        editArticle = new EditArticlePanel();  
-        
-        PanelUtils.change(addArticleTab, newArticle);
+        art = new Frontera.Article();
+                
+        PanelUtils.add(addArticleTab, art);
         
         tabs.addChangeListener(e -> {
             switch (tabs.getSelectedIndex()) {
                 case 0:
-                    PanelUtils.change(addArticleTab, newArticle);
-                     TableUtils.fillTableArticle(newArticle.getSchemaClothes(), daoT.findAll()); 
+                    PanelUtils.change(addArticleTab, art);
+                     TableUtils.fillTableArticle(art.getSchemaClothes(), daoT.findAll()); 
                     break;
                 case 1:
-                    PanelUtils.change(viewArticlesTab, viewArticles);
-                    TableUtils.fillTableArticle(viewArticles.getSchemaClothes(), daoT.findAll());
+                    PanelUtils.change(viewArticlesTab, art);
+                    
                     break;
                 default:
-                    PanelUtils.change(editArticleTab, editArticle);
-                    TableUtils.fillTableArticle(editArticle.getSchemaClothes(), daoT.findAll());
+                    PanelUtils.change(editArticleTab, art);
+                    
                     break;
             }
         });

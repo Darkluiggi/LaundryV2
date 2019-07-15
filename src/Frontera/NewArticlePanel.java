@@ -325,6 +325,7 @@ public class NewArticlePanel extends javax.swing.JPanel implements articleInterf
     }//GEN-LAST:event_CancelBActionPerformed
 
     private void AcceptBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptBActionPerformed
+       
         Article temp = new Article();
         String exception = FormUtils.validateField(NameTF, GenderBox, WashTF, IronTF, IronandWashTF, FoldTF);
         if (exception.equals("")) {

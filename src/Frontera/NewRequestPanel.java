@@ -388,9 +388,11 @@ public class NewRequestPanel extends javax.swing.JPanel {
 
         add(jPanel2, java.awt.BorderLayout.SOUTH);
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    
+    
     private void GenderBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_GenderBoxItemStateChanged
-        //BoxUtils.updateBox(daoT.getClothName((String)GenderBox.getSelectedItem()), ClothBox);
+      
     }//GEN-LAST:event_GenderBoxItemStateChanged
 
     private void GenderBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_GenderBoxFocusGained
@@ -451,7 +453,8 @@ public class NewRequestPanel extends javax.swing.JPanel {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_ClothBoxActionPerformed
-
+        
+    
     private void AddBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBActionPerformed
         String articleName, articleGender;
         int articleId , quantity;

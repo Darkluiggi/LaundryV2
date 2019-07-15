@@ -8,7 +8,9 @@ package Frontera;
 import Control.ManageAccount;
 import Control.ManageArticle;
 import DAO.DAOArticle;
+import Entidad.Article;
 import Utils.BoxUtils;
+import Utils.FormUtils;
 import Utils.TableUtils;
 import java.awt.BorderLayout;
 import javax.swing.JComboBox;
@@ -20,14 +22,14 @@ import javax.swing.JTable;
  *
  * @author leoleguizamon
  */
-public class Article extends javax.swing.JPanel implements articleInterface {
+public class ManageArticlePanel extends javax.swing.JPanel implements articleInterface {
     
     /**
-     * Creates new form Article
+     * Creates new form ManageArticlePanel
      */
     AddGender addG;
     DAOArticle daoA ;
-    public Article() {
+    public ManageArticlePanel() {
         daoA = new DAOArticle();
         initComponents();
         TableUtils.fillTableArticle(schemaClothes, daoA.findAll());
@@ -505,7 +507,7 @@ public class Article extends javax.swing.JPanel implements articleInterface {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(461, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -531,9 +533,20 @@ public class Article extends javax.swing.JPanel implements articleInterface {
     }//GEN-LAST:event_foldTFActionPerformed
 
     private void AcceptBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptBActionPerformed
-        ManageArticle.createArticle(GenderBox, NameTF, WashTF, IronandWashTF, IronTF, foldTF, 
-                WashC, WaiC, IronC, foldC, ExceptionField, schemaClothes);
         
+                  
+        String exception = FormUtils.validateField(NameTF, GenderBox, WashTF, IronTF, IronandWashTF, foldTF);
+        if (exception.equals("")) {
+            ExceptionField.setText(exception);
+            ManageArticle.createArticle( GenderBox, NameTF, WashTF, IronandWashTF, IronTF,
+                    foldTF, WashC, WaiC, IronC, foldC);
+            
+            TableUtils.fillTableArticle(schemaClothes, daoA.findAll());
+            FormUtils.clearFields(NameTF, GenderBox, WashTF, IronTF, IronandWashTF, foldTF);
+
+        }else{
+            ExceptionField.setText(exception);
+        }
      
     }//GEN-LAST:event_AcceptBActionPerformed
 
@@ -639,11 +652,18 @@ public class Article extends javax.swing.JPanel implements articleInterface {
     }//GEN-LAST:event_cancelEditButtonActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-        center.setVisible(false);
-        center.removeAll();
-        center.setLayout(new BorderLayout());
-        center.add(editArticlePanel);
-        center.setVisible(true);
+        String exception = FormUtils.validateField(NameTF, GenderBox, WashTF, IronTF, IronandWashTF, foldTF);
+        if (exception.equals("")) {
+            ExceptionField.setText(exception);
+            ManageArticle.editArticle(GenderBox, NameTF, WashTF, IronandWashTF, IronTF,
+                    foldTF, WashC, WaiC, IronC, foldC);
+            
+            TableUtils.fillTableArticle(schemaClothes, daoA.findAll());
+            FormUtils.clearFields(NameTF, GenderBox, WashTF, IronTF, IronandWashTF, foldTF);
+
+        }else{
+            ExceptionField.setText(exception);
+            }     
     }//GEN-LAST:event_editButtonActionPerformed
 
 

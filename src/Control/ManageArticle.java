@@ -22,22 +22,18 @@ import javax.swing.JTextField;
 
 public class ManageArticle implements Controller{
 
-    private static DAOArticle daoT;
-    private static Entidad.Article art;
+    private static DAOArticle daoA = new DAOArticle();
+   
     public ManageArticle() {
-        daoT = new DAOArticle();
-        art = new Entidad.Article();
+        
+        
     }
     
-    public static void createArticle(JComboBox GenderBox, JTextField NameTF,JTextField WashTF, JTextField IronandWashTF,
-            JTextField IronTF,JTextField FoldTF, JCheckBox WashC, JCheckBox WaiC,
-            JCheckBox IronC, JCheckBox foldC,JLabel ExceptionField, JTable schemaClothes) {
+    public static void createArticle( JComboBox GenderBox, JTextField NameTF,JTextField WashTF, JTextField IronandWashTF,
+            JTextField IronTF,JTextField foldTF, JCheckBox WashC, JCheckBox WaiC,
+            JCheckBox IronC, JCheckBox foldC ) {
+            
             Article temp = new Article();
-        
-                
-        String exception = FormUtils.validateField(NameTF, GenderBox, WashTF, IronTF, IronandWashTF, FoldTF);
-        if (exception.equals("")) {
-            ExceptionField.setText(exception);
             temp.setClothName(NameTF.getText());
             temp.setGender((String)GenderBox.getSelectedItem());
             temp.setWashPrice(Double.parseDouble(WashTF.getText()));
@@ -46,29 +42,44 @@ public class ManageArticle implements Controller{
             temp.setWaiA(WaiC.isSelected());
             temp.setIronPrice(Double.parseDouble(IronTF.getText()));
             temp.setIronA(IronC.isSelected());
-            temp.setFoldPrice(Double.parseDouble(FoldTF.getText()));
+            temp.setFoldPrice(Double.parseDouble(foldTF.getText()));
             temp.setFoldA(foldC.isSelected());
             temp.setStatus(true);
-            daoT.create(temp);
-            TableUtils.fillTableArticle(schemaClothes, daoT.findAll());
-            FormUtils.clearFields(NameTF, GenderBox, WashTF, IronTF, IronandWashTF, FoldTF);
-        }else{
-            ExceptionField.setText(exception);
-        }
-        
-        
+            daoA.create(temp);
+            
     }
+        public static void editArticle( JComboBox GenderBox, JTextField NameTF,JTextField WashTF, JTextField IronandWashTF,
+            JTextField IronTF,JTextField foldTF, JCheckBox WashC, JCheckBox WaiC,
+            JCheckBox IronC, JCheckBox foldC) {
+            
+            Article temp = new Article();
+            temp.setClothName(NameTF.getText());
+            temp.setGender((String)GenderBox.getSelectedItem());
+            temp.setWashPrice(Double.parseDouble(WashTF.getText()));
+            temp.setWashA(WashC.isSelected());
+            temp.setWaiPrice(Double.parseDouble(IronandWashTF.getText()));
+            temp.setWaiA(WaiC.isSelected());
+            temp.setIronPrice(Double.parseDouble(IronTF.getText()));
+            temp.setIronA(IronC.isSelected());
+            temp.setFoldPrice(Double.parseDouble(foldTF.getText()));
+            temp.setFoldA(foldC.isSelected());
+            temp.setStatus(true);
+            daoA.update(temp);
+            
+    }
+        
+   
     public static void TableClicked(JComboBox GenderBox, JTextField NameTF,JTextField WashTF, JTextField IronandWashTF,
             JTextField IronTF,JTextField FoldTF, JCheckBox WashC, JCheckBox WaiC,
             JCheckBox IronC, JCheckBox foldC,JLabel ExceptionField, JTable schemaClothes) {
         
         String a,b;
-
+        Article art = new Article();
         a= (String)schemaClothes.getValueAt(schemaClothes.getSelectedRow(), 0);
         b= (String)schemaClothes.getValueAt(schemaClothes.getSelectedRow(), 1);
         art.setGender(a);
         art.setClothName(b);
-        art=daoT.read(schemaClothes.getSelectedRow()+1);
+        art=daoA.read(schemaClothes.getSelectedRow()+1);
         GenderBox.setSelectedItem(art.getGender());
         NameTF.setText(art.getClothName());
         WashTF.setText(Double.toString(art.getWashPrice()));

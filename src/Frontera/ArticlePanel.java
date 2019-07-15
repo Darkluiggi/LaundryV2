@@ -21,14 +21,14 @@ public class ArticlePanel extends javax.swing.JPanel {
     /**
      * Creates new form ArticlePanel
      */
-    public Frontera.Article art;
+    public Frontera.ManageArticlePanel art;
     
     private DAOArticle daoT = new DAOArticle();
     List<Article> list = daoT.findAll(); 
     
     public ArticlePanel() {
         initComponents();
-        art = new Frontera.Article();
+        art = new Frontera.ManageArticlePanel();
                 
         PanelUtils.add(addArticleTab, art);
         

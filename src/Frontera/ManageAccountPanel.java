@@ -5,18 +5,29 @@
  */
 package Frontera;
 
+import DAO.DAOUser;
+import Entidad.User;
+import Utils.PanelUtils;
+import Utils.TableUtils;
 import java.awt.BorderLayout;
+import java.awt.event.KeyEvent;
 
 /**
  *
  * @author leoleguizamon
  */
-public class Account extends javax.swing.JPanel {
+public class ManageAccountPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form Account
+     * Creates new form ManageAccountPanel
      */
-    public Account() {
+    
+       
+    private DAOUser dao = new DAOUser();
+    private User usera = new User();
+    private User userb = new User(); 
+    private User userc = new User(); 
+    public ManageAccountPanel() {
         initComponents();
     }
 
@@ -101,8 +112,8 @@ public class Account extends javax.swing.JPanel {
         findButton = new javax.swing.JButton();
         seeAllUsersButton = new javax.swing.JButton();
         centerMainPanel = new javax.swing.JPanel();
-        allUserScrollPanel = new javax.swing.JScrollPane();
-        allUserList = new javax.swing.JList<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        userTable = new javax.swing.JTable();
 
         confirmCreate.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         confirmCreate.setTitle("Confirmar: Nuevo Usuario");
@@ -506,15 +517,30 @@ public class Account extends javax.swing.JPanel {
 
         centerMainPanel.setLayout(new java.awt.GridLayout(1, 0));
 
-        allUserList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        allUserList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        allUserScrollPanel.setViewportView(allUserList);
+        userTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Nombre", "Apellido", "Nombre de Usuario", "País", "Dirección", "Teléfono", "Contraseña", "Rol"
+            }
+        ));
+        jScrollPane1.setViewportView(userTable);
+        if (userTable.getColumnModel().getColumnCount() > 0) {
+            userTable.getColumnModel().getColumn(0).setResizable(false);
+            userTable.getColumnModel().getColumn(1).setResizable(false);
+            userTable.getColumnModel().getColumn(2).setResizable(false);
+            userTable.getColumnModel().getColumn(3).setResizable(false);
+            userTable.getColumnModel().getColumn(4).setResizable(false);
+            userTable.getColumnModel().getColumn(5).setResizable(false);
+            userTable.getColumnModel().getColumn(6).setResizable(false);
+            userTable.getColumnModel().getColumn(7).setResizable(false);
+        }
 
-        centerMainPanel.add(allUserScrollPanel);
+        centerMainPanel.add(jScrollPane1);
 
         centerPanel.add(centerMainPanel, java.awt.BorderLayout.CENTER);
 
@@ -595,18 +621,18 @@ public class Account extends javax.swing.JPanel {
     }//GEN-LAST:event_passwordTFKeyReleased
 
     private void createBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBActionPerformed
-/*
+
         confirmCreate.setVisible(true);
         confirmCreate.setLocationRelativeTo(null);
         IDNUsuarioLabel.setText(userNameTF.getText());
         ContraseñaNUsuarioLabel.setText(passwordTF.getText());
-*/
+
     }//GEN-LAST:event_createBActionPerformed
 
     private void createBKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_createBKeyReleased
-    /*    if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+   if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             createBActionPerformed(null);                                   //al presionar enter creando el género presiona aceptar y guarda el dato
-        }         // TODO add your handling code here:*/
+        }         // TODO add your handling code here
     }//GEN-LAST:event_createBKeyReleased
 
     private void searchIDTextAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchIDTextAreaMouseClicked
@@ -624,7 +650,7 @@ public class Account extends javax.swing.JPanel {
         centerMainPanel.add(editPanel);
         centerMainPanel.setVisible(true);
         
-        /* String a;
+        String a;
         int m;
 
         a=searchIDTextArea.getText();
@@ -632,13 +658,13 @@ public class Account extends javax.swing.JPanel {
         m=dao.findID(usera);
         userb=dao.read(m);
         if(userb==null){
-            PanelUtils.change(editUserActualPanel, editUserErrorPanel);
+            PanelUtils.change(centerMainPanel, editUserErrorPanel);
             buscarErrorLabel.setText(searchIDTextArea.getText());
         }else{
             editNameTF.setText(userb.getName());
             editLastNameTF.setText(userb.getLastName());
             editUserNameTF.setText(userb.getUserName());
-            editPassTF.setText(userb.getPassword());
+            editPasswordTF.setText(userb.getPassword());
             editCountryTF.setText(userb.getCountry());
             editPhoneTF.setText(userb.getPhone());
             editAdressTF.setText(userb.getAdress());
@@ -647,17 +673,17 @@ public class Account extends javax.swing.JPanel {
             }else{
                 editAdminC.setSelected(Boolean.FALSE);
             }
-            PanelUtils.change(editUserActualPanel, editPanel);
+            PanelUtils.change(centerMainPanel, editPanel);
             idEditLabel.setText(searchIDTextArea.getText());
 
         }
-        // TODO add your handling code here:*/
+        // TODO add your handling code here:
     }//GEN-LAST:event_findButtonActionPerformed
 
     private void AceptarBDialogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarBDialogoActionPerformed
-/*
+
         Control.ManageAccount.createUser(nameTF, lastNameTF, userNameTF, countryTF,
-            adressTF, passwordTF, phoneTF, adminC);        // TODO add your handling code here:*/
+            adressTF, passwordTF, phoneTF, adminC);       
     }//GEN-LAST:event_AceptarBDialogoActionPerformed
 
     private void CancelarBDialogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBDialogoActionPerformed
@@ -699,7 +725,7 @@ public class Account extends javax.swing.JPanel {
         centerMainPanel.setVisible(false);
         centerMainPanel.removeAll();
         centerMainPanel.setLayout(new BorderLayout());
-        centerMainPanel.add(allUserScrollPanel);
+        centerMainPanel.add(userTable);
         centerMainPanel.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_cancelBActionPerformed
@@ -721,12 +747,13 @@ public class Account extends javax.swing.JPanel {
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void seeAllUsersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seeAllUsersButtonActionPerformed
-
+        TableUtils.fillTableUser(userTable, dao.findAll());
         centerMainPanel.setVisible(false);
         centerMainPanel.removeAll();
         centerMainPanel.setLayout(new BorderLayout());
-        centerMainPanel.add(allUserScrollPanel);
+        centerMainPanel.add(userTable);
         centerMainPanel.setVisible(true);
+        
     }//GEN-LAST:event_seeAllUsersButtonActionPerformed
 
 
@@ -737,8 +764,6 @@ public class Account extends javax.swing.JPanel {
     private javax.swing.JLabel IDNUsuarioLabel;
     private javax.swing.JCheckBox adminC;
     private javax.swing.JTextField adressTF;
-    private javax.swing.JList<String> allUserList;
-    private javax.swing.JScrollPane allUserScrollPanel;
     private javax.swing.JPanel botDialog;
     private javax.swing.JLabel buscarErrorLabel;
     private javax.swing.JButton cancelB;
@@ -781,6 +806,7 @@ public class Account extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelAddress;
     private javax.swing.JLabel labelContraseña;
     private javax.swing.JLabel labelCountry;
@@ -804,5 +830,6 @@ public class Account extends javax.swing.JPanel {
     private javax.swing.JPanel topDialog;
     private javax.swing.JPanel topPanel;
     private javax.swing.JTextField userNameTF;
+    private javax.swing.JTable userTable;
     // End of variables declaration//GEN-END:variables
 }

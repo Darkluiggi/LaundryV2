@@ -5,7 +5,7 @@
  */
 package Utils;
 
-import Frontera.Article;
+import Frontera.ManageArticlePanel;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import javax.swing.JPanel;
@@ -15,11 +15,11 @@ import javax.swing.JPanel;
  * @author leons
  */
 public class PanelUtils {
-    Article art = new Article();
+    ManageArticlePanel art = new ManageArticlePanel();
     
     public PanelUtils() {
     }
-     public static void add(JPanel panelA, Article art){
+     public static void add(JPanel panelA, ManageArticlePanel art){
         BorderLayout layout = (BorderLayout) panelA.getLayout();
         panelA.setVisible(false);
         Component center = layout.getLayoutComponent(BorderLayout.CENTER);

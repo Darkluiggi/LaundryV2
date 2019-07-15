@@ -28,8 +28,8 @@ public class MainFrame extends javax.swing.JFrame {
     
     public Login login;                  //instancio los paneles cambiantes del programa   
     public MainMenu menu;
-        protected    Article         articlePanel;            
-        Account         accountPanel;           
+        protected    ManageArticlePanel         articlePanel;            
+        ManageAccountPanel         accountPanel;           
         Estadisticas    estatisticsPanel;        
         Request         requestPanel; 
     
@@ -42,8 +42,8 @@ public class MainFrame extends javax.swing.JFrame {
         backBtn.setVisible(false);
 
         setLocationRelativeTo(null);   //Centra el programa en la pantalla
-        articlePanel            = new Article();
-        accountPanel            = new Account();
+        articlePanel            = new ManageArticlePanel();
+        accountPanel            = new ManageAccountPanel();
         estatisticsPanel        = new Estadisticas();
         requestPanel            = new Request();
 

@@ -8,6 +8,7 @@ package Utils;
 import Control.Controller;
 import Entidad.Article;
 import Entidad.ArticleRequest;
+import Entidad.User;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -16,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
+import sun.net.www.content.image.gif;
 
 /**
  *
@@ -26,12 +28,24 @@ public class TableUtils {
     public TableUtils() {
     }
 
+    public static void fillTableUser(JTable table, List<User> list) {
+        DefaultTableModel model = new DefaultTableModel(null, new String [] {
+        "Nombre", "Apellido", "Nombre de Usuario", "País", "Dirección", "Teléfono", "Contraseña", "Rol"
+    });
+        for (User t : list) {
+            model.addRow(new Object[]{t.getName(), t.getLastName(), t.getUserName(), t.getCountry(), t.getAdress(),
+            t.getPhone(),t.getPassword(),t.getRole()});
+        }
+        table.setModel(model);
+    } 
+    
     public static void fillTableArticle(JTable table, List<Article> list) {
         DefaultTableModel model = new DefaultTableModel(null, new String[]{
-            "Género", "Nombre", "Lavado", "Lavado y Planchado", "Planchado"
+            "Género", "Nombre", "Lavado", "Lavado y Planchado", "Planchado", "Doblado"
         });
         for (Article t : list) {
-            model.addRow(new Object[]{t.getGender(), t.getClothName(), t.getWashPrice(), t.getWaiPrice(), t.getIronPrice()});
+            model.addRow(new Object[]{t.getGender(), t.getClothName(), t.getWashPrice(), t.getWaiPrice(), t.getIronPrice()
+            ,t.getFoldPrice()});
         }
         table.setModel(model);
     }

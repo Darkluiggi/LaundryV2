@@ -5,15 +5,24 @@
  */
 package Frontera;
 
+import DAO.DAORequest;
+import Utils.FormUtils;
+import Utils.TableUtils;
 import java.awt.BorderLayout;
+import java.text.NumberFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.stream.Collectors;
 
 /**
  *
  * @author usuario
  */
 public class Estadisticas extends javax.swing.JPanel {
-    boolean selectedTypeCounter =true;
-    
+
+    boolean selectedTypeCounter = true;
+
     /**
      * Creates new form Estadisticas
      */
@@ -399,50 +408,120 @@ public class Estadisticas extends javax.swing.JPanel {
 
     private void lastYearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastYearButtonActionPerformed
         // TODO add your handling code here:
-        selectedTimeButtonLabel.setText("por año");
+        selectedTimeButtonLabel.setText("Por Año");
+        if (selectedTypeCounter == true) {
+            fillRequestsByTime("year");
+        }else{
+            fillArticlesByTime("year");
+        }
     }//GEN-LAST:event_lastYearButtonActionPerformed
 
     private void lastMonthButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastMonthButtonActionPerformed
         selectedTimeButtonLabel.setText("por mes");
+        if (selectedTypeCounter == true) {
+            fillRequestsByTime("month");
+        }else{
+            fillArticlesByTime("month");
+        }
     }//GEN-LAST:event_lastMonthButtonActionPerformed
 
     private void lastWeekButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastWeekButtonActionPerformed
         selectedTimeButtonLabel.setText("por semana");
+        if (selectedTypeCounter == true) {
+            fillRequestsByTime("week");
+        }else{
+            fillArticlesByTime("week");
+        }
     }//GEN-LAST:event_lastWeekButtonActionPerformed
 
+    private void fillRequestsByTime(String time) {
+        int period = 0;
+        switch (time) {
+            case "year":
+                period = Calendar.YEAR;
+                break;
+            case "month":
+                period = Calendar.MONTH;
+                break;
+            case "week":
+                period = Calendar.WEEK_OF_MONTH;
+                break;
+        }
+        DAORequest daoR = new DAORequest();
+        Calendar cal = Calendar.getInstance();
+        Date today = cal.getTime();
+        cal.add(period, -1);
+        Date previous = cal.getTime();
+        double washSum = 0, ironSum = 0, ironWashSum = 0, expressSum = 0, total = 0;
+        TableUtils.fillRequestStatistics(serviceTable, daoR.findBetweenDates(previous, today));
+        HashMap hm = FormUtils.statisticsTotals(daoR.findBetweenDates(previous, today));
+        NumberFormat formatter = NumberFormat.getCurrencyInstance();
+        totalServiceLabel.setText(formatter.format(hm.get("total")));
+        totalWashLabel.setText(formatter.format(hm.get("wash")));
+        totalIronLabel.setText(formatter.format(hm.get("iron")));
+        totalIWLabel.setText(formatter.format(hm.get("ironwash")));
+        
+    }
+    
+    private void fillArticlesByTime(String time) {
+        int period = 0;
+        switch (time) {
+            case "year":
+                period = Calendar.YEAR;
+                break;
+            case "month":
+                period = Calendar.MONTH;
+                break;
+            case "week":
+                period = Calendar.WEEK_OF_MONTH;
+                break;
+        }
+        DAORequest daoR = new DAORequest();
+        Calendar cal = Calendar.getInstance();
+        Date today = cal.getTime();
+        cal.add(period, -1);
+        Date previous = cal.getTime();
+        double washSum = 0, ironSum = 0, ironWashSum = 0, expressSum = 0, total = 0;
+        TableUtils.fillArticleStatistics(clothesTable, daoR.findBetweenDates(previous, today));
+        HashMap hm = FormUtils.statisticsTotals(daoR.findBetweenDates(previous, today));
+        NumberFormat formatter = NumberFormat.getCurrencyInstance();
+        totalServiceLabel.setText(formatter.format(hm.get("total")));
+        totalWashLabel.setText(formatter.format(hm.get("wash")));
+        totalIronLabel.setText(formatter.format(hm.get("iron")));
+        totalIWLabel.setText(formatter.format(hm.get("ironwash")));
+        
+    }
     private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonActionPerformed
         saveConfirmationDialog.setVisible(true);
     }//GEN-LAST:event_printButtonActionPerformed
 
     private void estTypeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estTypeButtonActionPerformed
-            if(selectedTypeCounter==true){
-                selectedTypeButtonLabel.setText("Prendas");
-                estTypeButton.setText("Prendas");
-                selectedTypeCounter = false;
-                
-                statisticsMainPanel.setVisible(false);
-                statisticsMainPanel.removeAll();
-                statisticsMainPanel.setLayout(new BorderLayout());
-                statisticsMainPanel.add(clothesPanel);
-                statisticsMainPanel.setVisible(true);
-            }else{
-                selectedTypeButtonLabel.setText("Solicitud");
-                estTypeButton.setText("Solicitud");
-                selectedTypeCounter = true;
-                
-                statisticsMainPanel.setVisible(false);
-                statisticsMainPanel.removeAll();
-                statisticsMainPanel.setLayout(new BorderLayout());
-                statisticsMainPanel.add(servicePanel);
-                statisticsMainPanel.setVisible(true);
-            }
-            
+        if (selectedTypeCounter == true) {
+            selectedTypeButtonLabel.setText("Prendas");
+            estTypeButton.setText("Prendas");
+            selectedTypeCounter = false;
+            statisticsMainPanel.setVisible(false);
+            statisticsMainPanel.removeAll();
+            statisticsMainPanel.setLayout(new BorderLayout());
+            statisticsMainPanel.add(clothesPanel);
+            statisticsMainPanel.setVisible(true);
+        } else {
+            selectedTypeButtonLabel.setText("Solicitud");
+            estTypeButton.setText("Solicitud");
+            selectedTypeCounter = true;
+            statisticsMainPanel.setVisible(false);
+            statisticsMainPanel.removeAll();
+            statisticsMainPanel.setLayout(new BorderLayout());
+            statisticsMainPanel.add(servicePanel);
+            statisticsMainPanel.setVisible(true);
+        }
+
     }//GEN-LAST:event_estTypeButtonActionPerformed
 
     private void savePrintButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savePrintButtonActionPerformed
         saveConfirmationDialog.dispose();
         saveFileChooser.showDialog(null, "Guardar");
-        
+
     }//GEN-LAST:event_savePrintButtonActionPerformed
 
     private void cancelPrintButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelPrintButtonActionPerformed

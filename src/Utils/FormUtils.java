@@ -5,7 +5,13 @@
  */
 package Utils;
 
+import Entidad.ArticleRequest;
+import Entidad.Request;
 import java.awt.Color;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
@@ -68,6 +74,22 @@ public class FormUtils {
     
     public static void enableComponents(JComponent... components){
         Stream.of(components).forEach(c -> c.setEnabled(true));
+    }
+    
+    public static HashMap<String, Double> statisticsTotals(List<Request> list2){
+        double wash = 0, iron = 0, ironwash  = 0, total = 0;
+        total = list2.stream().mapToDouble(req -> req.getTotal()).sum();
+        wash = list2.stream().mapToDouble(r -> r.getArticleSet().stream().filter(ar -> ar.getService().equalsIgnoreCase("lavado")).mapToDouble(ar -> ar.getSubtotal()).sum()).sum();
+        iron = list2.stream().mapToDouble(r -> r.getArticleSet().stream().filter(ar -> ar.getService().equalsIgnoreCase("planchado")).mapToDouble(ar -> ar.getSubtotal()).sum()).sum();
+        ironwash = list2.stream().mapToDouble(r -> r.getArticleSet().stream().filter(ar -> ar.getService().equalsIgnoreCase("lavado y planchado")).mapToDouble(ar -> ar.getSubtotal()).sum()).sum();
+        
+        HashMap<String, Double> hm = new HashMap<>();
+        hm.put("wash", wash);
+        hm.put("iron", iron);
+        hm.put("ironwash", ironwash);
+        hm.put("total", total);
+        
+        return hm;
     }
     
 }

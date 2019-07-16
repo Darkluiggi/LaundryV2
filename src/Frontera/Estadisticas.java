@@ -460,7 +460,6 @@ public class Estadisticas extends javax.swing.JPanel {
         totalWashLabel.setText(formatter.format(hm.get("wash")));
         totalIronLabel.setText(formatter.format(hm.get("iron")));
         totalIWLabel.setText(formatter.format(hm.get("ironwash")));
-        
     }
     
     private void fillArticlesByTime(String time) {

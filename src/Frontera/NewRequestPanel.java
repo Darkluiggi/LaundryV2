@@ -498,6 +498,7 @@ public class NewRequestPanel extends javax.swing.JPanel {
             artR.setService("Lavado y Planchado");
         }
         if (XpressChk.isSelected()){
+            artR.setExpress(true);
             price=price*1.5;
             artR.setSubtotal(quantity*price);
         }else {

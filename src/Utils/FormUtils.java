@@ -4,9 +4,8 @@
  * and open the template in the editor.
  */
 package Utils;
-
-import Entidad.ArticleRequest;
 import Entidad.Request;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +16,8 @@ import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
@@ -70,6 +71,24 @@ public class FormUtils {
             }
         }
         return ex;
+    }
+    public static void addBorderLayout(JPanel centerMainPanel, JTable userTable) {
+         centerMainPanel.setVisible(false);
+        centerMainPanel.removeAll();
+        centerMainPanel.setLayout(new BorderLayout());
+        centerMainPanel.add(userTable);
+        centerMainPanel.setVisible(true);
+    }
+    public static void setFields(JTextField nameTF, JTextField lastNameTF,JTextField userNameTF,JTextField countryTF,
+                JTextField adressTF,JTextField passwordTF,JTextField phoneTF,JCheckBox adminC) {
+        
+        nameTF.setText("Nombre");
+        lastNameTF.setText("Apellido");
+        userNameTF.setText("Nombre de Usuario");
+        countryTF.setText("Pais");
+        adressTF.setText("Direccion");
+        phoneTF.setText("Telefono");
+        passwordTF.setText("Contraseña");
     }
     
     public static void enableComponents(JComponent... components){

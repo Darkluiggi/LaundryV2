@@ -250,11 +250,6 @@ public class Estadisticas extends javax.swing.JPanel {
         printButton.setMaximumSize(new java.awt.Dimension(10000, 10000));
         printButton.setMinimumSize(new java.awt.Dimension(0, 0));
         printButton.setPreferredSize(new java.awt.Dimension(100, 50));
-        printButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                printButtonActionPerformed(evt);
-            }
-        });
         topPanel.add(printButton);
 
         centerPanel.add(topPanel, java.awt.BorderLayout.NORTH);
@@ -490,9 +485,9 @@ public class Estadisticas extends javax.swing.JPanel {
         totalIWLabel.setText(formatter.format(hm.get("ironwash")));
         
     }
-    private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonActionPerformed
+    private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {                                            
         saveConfirmationDialog.setVisible(true);
-    }//GEN-LAST:event_printButtonActionPerformed
+    }                                           
 
     private void estTypeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estTypeButtonActionPerformed
         if (selectedTypeCounter == true) {

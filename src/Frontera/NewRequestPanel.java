@@ -164,6 +164,9 @@ public class NewRequestPanel extends javax.swing.JPanel {
                 "Género", "Nombre", "Servicio", "Doblado", "Express", "Cantidad", "Subtotal"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false
             };
@@ -174,6 +177,15 @@ public class NewRequestPanel extends javax.swing.JPanel {
         });
         requestTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(requestTable);
+        if (requestTable.getColumnModel().getColumnCount() > 0) {
+            requestTable.getColumnModel().getColumn(0).setResizable(false);
+            requestTable.getColumnModel().getColumn(1).setResizable(false);
+            requestTable.getColumnModel().getColumn(2).setResizable(false);
+            requestTable.getColumnModel().getColumn(3).setResizable(false);
+            requestTable.getColumnModel().getColumn(4).setResizable(false);
+            requestTable.getColumnModel().getColumn(5).setResizable(false);
+            requestTable.getColumnModel().getColumn(6).setResizable(false);
+        }
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
@@ -367,9 +379,11 @@ public class NewRequestPanel extends javax.swing.JPanel {
 
         add(jPanel2, java.awt.BorderLayout.SOUTH);
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    
+    
     private void GenderBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_GenderBoxItemStateChanged
-        //BoxUtils.updateBox(daoT.getClothName((String)GenderBox.getSelectedItem()), ClothBox);
+      
     }//GEN-LAST:event_GenderBoxItemStateChanged
 
     private void GenderBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_GenderBoxFocusGained
@@ -424,6 +438,18 @@ public class NewRequestPanel extends javax.swing.JPanel {
         }// TODO add your handling code here:
     }//GEN-LAST:event_ClothBoxItemStateChanged
 
+
+
+    private void ClothBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ClothBoxFocusGained
+
+    }//GEN-LAST:event_ClothBoxFocusGained
+
+    private void ClothBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClothBoxActionPerformed
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ClothBoxActionPerformed
+        
+    
     private void AddBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBActionPerformed
         String articleName, articleGender;
         int articleId, quantity;
@@ -458,7 +484,18 @@ public class NewRequestPanel extends javax.swing.JPanel {
             price = art.getWaiPrice();
             artR.setService("Lavado y Planchado");
         }
+
         artR.setSubtotal(quantity * price);
+
+
+        if (XpressChk.isSelected()){
+            artR.setExpress(true);
+            price=price*1.5;
+            artR.setSubtotal(quantity*price);
+        }else {
+             artR.setSubtotal(quantity*price);
+        }
+       
 
         artR.setFold(foldChk.isSelected());
         artR.setExpress(XpressChk.isSelected());

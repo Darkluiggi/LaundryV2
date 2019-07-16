@@ -138,7 +138,7 @@ public class TableUtils {
         List<ArticleRequest> ars = daoT.findAll();
         List<ArticleRequest> filtered = ars.stream()
                 .filter(arr -> list.stream()
-                .anyMatch(r -> arr.getRequest().equals(r)))
+                .anyMatch(r -> arr.getRequest().getId() == r.getId()))
                 .collect(Collectors.toList());
 
         Map<Article, List<ArticleRequest>> art = filtered.stream().collect(Collectors.groupingBy(ArticleRequest::getArticle));

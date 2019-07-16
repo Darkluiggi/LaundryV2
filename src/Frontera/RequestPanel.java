@@ -17,13 +17,13 @@ public class RequestPanel extends javax.swing.JPanel {
      * Creates new form RequestPanel
      */
     public NewRequestPanel newRequest;
-//    public ViewRequests viewRequests;
+    public ViewRequest viewRequests;
     public EditRequest editRequest;
     
     public RequestPanel() {
         initComponents();
         newRequest = new NewRequestPanel();
-//        viewRequests = new ViewRequests();
+        viewRequests = new ViewRequest();
         editRequest = new EditRequest();
         PanelUtils.change(addRequestTab, newRequest);
         
@@ -33,7 +33,7 @@ public class RequestPanel extends javax.swing.JPanel {
                     PanelUtils.change(addRequestTab, newRequest);
                     break;
                 case 1:
-//                    PanelUtils.change(viewRequestsTab, viewRequests);
+                    PanelUtils.change(viewRequestsTab, viewRequests);
                     break;
                 default:
                     PanelUtils.change(editRequestTab, editRequest);

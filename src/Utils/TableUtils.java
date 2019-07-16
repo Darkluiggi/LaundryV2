@@ -51,15 +51,24 @@ public class TableUtils {
     }
 
     public static void fillTableArticleRequest(JTable table, List<ArticleRequest> list) {
-        DefaultTableModel model = new DefaultTableModel(null, new String[]{
-            "Género", "Nombre", "Servicio", "Doblado", "Express", "Cantidad", "Subtotal"})
-        {
-           };
-         
-        Class[] types = new Class [] {
-        java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, 
-              java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class}; 
-        
+        DefaultTableModel model = new DefaultTableModel(null,
+    new String [] {
+        "Género", "Nombre", "Servicio", "Doblado", "Express", "Cantidad", "Subtotal"
+    }) {
+    Class[] types = new Class [] {
+        java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class
+    };
+    boolean[] canEdit = new boolean [] {
+        false, false, false, false, false, false, false
+    };
+    public Class getColumnClass(int columnIndex) {
+        return types [columnIndex];
+    }
+
+    public boolean isCellEditable(int rowIndex, int columnIndex) {
+        return canEdit [columnIndex];
+    }
+};
         for (ArticleRequest t : list) {
         model.addRow(new Object[]{t.getArticle().getGender(), t.getArticle().getClothName(), t.getService(), t.isFold(), t.isExpress(), t.getQuantity(), t.getSubtotal()});
         }

@@ -410,10 +410,6 @@ public class Estadisticas extends javax.swing.JPanel {
         selectedTimeButtonLabel.setText("por semana");
     }//GEN-LAST:event_lastWeekButtonActionPerformed
 
-    private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonActionPerformed
-        saveConfirmationDialog.setVisible(true);
-    }//GEN-LAST:event_printButtonActionPerformed
-
     private void estTypeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estTypeButtonActionPerformed
             if(selectedTypeCounter==true){
                 selectedTypeButtonLabel.setText("Prendas");
@@ -448,6 +444,10 @@ public class Estadisticas extends javax.swing.JPanel {
     private void cancelPrintButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelPrintButtonActionPerformed
         saveConfirmationDialog.dispose();
     }//GEN-LAST:event_cancelPrintButtonActionPerformed
+
+    private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonActionPerformed
+        saveConfirmationDialog.setVisible(true);
+    }//GEN-LAST:event_printButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

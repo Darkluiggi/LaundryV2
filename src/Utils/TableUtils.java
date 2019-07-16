@@ -22,6 +22,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
+import sun.net.www.content.image.gif;
 
 /**
  *
@@ -43,6 +44,16 @@ public class TableUtils {
         table.setModel(model);
     }
 
+        DefaultTableModel model = new DefaultTableModel(null, new String [] {
+        "Nombre", "Apellido", "Nombre de Usuario", "País", "Dirección", "Teléfono", "Contraseña", "Rol"
+    });
+        for (User t : list) {
+            model.addRow(new Object[]{t.getName(), t.getLastName(), t.getUserName(), t.getCountry(), t.getAdress(),
+            t.getPhone(),t.getPassword(),t.getRole()});
+        }
+        table.setModel(model);
+    } 
+    
     public static void fillTableArticle(JTable table, List<Article> list) {
         DefaultTableModel model = new DefaultTableModel(null, new String[]{
             "Género", "Nombre", "Lavado", "Lavado y Planchado", "Planchado", "Doblado"
@@ -62,12 +73,28 @@ public class TableUtils {
         Class[] types = new Class[]{
             java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
             java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class};
+        DefaultTableModel model = new DefaultTableModel(null,
+    new String [] {
+        "Género", "Nombre", "Servicio", "Doblado", "Express", "Cantidad", "Subtotal"
+    }) {
+    Class[] types = new Class [] {
+        java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class
+    };
+    boolean[] canEdit = new boolean [] {
+        false, false, false, false, false, false, false
+    };
+    public Class getColumnClass(int columnIndex) {
+        return types [columnIndex];
+    }
 
+    public boolean isCellEditable(int rowIndex, int columnIndex) {
+        return canEdit [columnIndex];
+    }
+};
         for (ArticleRequest t : list) {
             model.addRow(new Object[]{t.getArticle().getGender(), t.getArticle().getClothName(), t.getService(), t.isFold(), t.isExpress(), t.getQuantity(), t.getSubtotal()});
         }
         table.setModel(model);
-
     }
 
     public static void fillTableArticleServices(JTable table, List<ArticleRequest> list) {
@@ -80,7 +107,6 @@ public class TableUtils {
         }
         table.setModel(model);
     }
-
     public class MiModelo extends DefaultTableModel {
 
         /**
@@ -96,7 +122,18 @@ public class TableUtils {
             return Object.class;
         }
     }
-
+    
+    public class MiModelo extends DefaultTableModel
+{
+   /** Primera columna Boolean, segunda Integer y el resto Object */
+   public Class getColumnClass(int columna)
+   {
+      if (columna == 0) return Boolean.class;
+      if (columna == 1) return Integer.class;
+      return Object.class;
+   }
+}
+    
     public static void addPopUpMenu(JTable table) {
         final JPopupMenu popupMenu = new JPopupMenu();
         JMenuItem editItem = new JMenuItem("Editar");

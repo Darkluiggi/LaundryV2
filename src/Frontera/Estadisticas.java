@@ -490,9 +490,9 @@ public class Estadisticas extends javax.swing.JPanel {
         totalIWLabel.setText(formatter.format(hm.get("ironwash")));
         
     }
-    private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonActionPerformed
+    private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {                                            
         saveConfirmationDialog.setVisible(true);
-    }//GEN-LAST:event_printButtonActionPerformed
+    }                                           
 
     private void estTypeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estTypeButtonActionPerformed
         if (selectedTypeCounter == true) {
@@ -526,6 +526,10 @@ public class Estadisticas extends javax.swing.JPanel {
     private void cancelPrintButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelPrintButtonActionPerformed
         saveConfirmationDialog.dispose();
     }//GEN-LAST:event_cancelPrintButtonActionPerformed
+
+    private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonActionPerformed
+        saveConfirmationDialog.setVisible(true);
+    }//GEN-LAST:event_printButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

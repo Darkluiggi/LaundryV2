@@ -33,6 +33,8 @@ public class Article implements Serializable  {
     @Column
     private double waiPrice;
     @Column
+    private boolean waiA;
+    @Column
     private double ironPrice;
     @Column
     private boolean ironA;
@@ -71,6 +73,14 @@ public class Article implements Serializable  {
 
     public void setFoldPrice(double foldPrice) {
         this.foldPrice = foldPrice;
+    }
+
+    public void setWaiA(boolean waiA) {
+        this.waiA = waiA;
+    }
+
+    public boolean isWaiA() {
+        return waiA;
     }
 
     public double getFoldPrice() {

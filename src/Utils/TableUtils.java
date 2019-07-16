@@ -49,6 +49,8 @@ public class TableUtils {
             "Género", "Nombre", "Lavado", "Lavado y Planchado", "Planchado", "Doblado"
         });
         for (Article t : list) {
+            model.addRow(new Object[]{t.getGender(), t.getClothName(), t.getWashPrice(), t.getWaiPrice(), t.getIronPrice()
+            ,t.getFoldPrice()});
         }
         table.setModel(model);
     }
@@ -132,7 +134,7 @@ public class TableUtils {
         List<ArticleRequest> ars = daoT.findAll();
         List<ArticleRequest> filtered = ars.stream()
                 .filter(arr -> list.stream()
-                .anyMatch(r -> arr.getRequest().equals(r)))
+                .anyMatch(r -> arr.getRequest().getId() == r.getId()))
                 .collect(Collectors.toList());
 
         Map<Article, List<ArticleRequest>> art = filtered.stream().collect(Collectors.groupingBy(ArticleRequest::getArticle));
@@ -142,13 +144,13 @@ public class TableUtils {
         });
 
         art.forEach((k, v) -> {
-            double wash = v.stream().filter(ar -> ar.getService().equalsIgnoreCase("planchado")).mapToDouble(ar -> ar.getSubtotal()).sum();
+            double wash = v.stream().filter(ar -> ar.getService().equalsIgnoreCase("lavado")).mapToDouble(ar -> ar.getSubtotal()).sum();
             double iron = v.stream().filter(ar -> ar.getService().equalsIgnoreCase("planchado")).mapToDouble(ar -> ar.getSubtotal()).sum();
             double ironWash = v.stream().filter(ar -> ar.getService().equalsIgnoreCase("lavado y planchado")).mapToDouble(ar -> ar.getSubtotal()).sum();
             double express = v.stream().filter(ar -> ar.isExpress()).mapToDouble(ar -> ar.getSubtotal()).sum();
             double Total = v.stream().mapToDouble(ar -> ar.getSubtotal()).sum();
             model.addRow(new Object[]{k.getClothName(), wash, iron, ironWash, express, Total});
         });
-
+        table.setModel(model);
     }
 }

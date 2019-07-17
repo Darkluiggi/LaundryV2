@@ -483,6 +483,7 @@ public class NewRequestPanel extends javax.swing.JPanel {
         }
         artR.setSubtotal(quantity * price);
         if (XpressChk.isSelected()){
+            artR.setExpress(true);
             price=price*1.5;
             artR.setSubtotal(quantity*price);
         }else {

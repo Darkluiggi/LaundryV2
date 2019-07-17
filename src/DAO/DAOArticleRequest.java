@@ -48,8 +48,8 @@ public class DAOArticleRequest extends GenericDAO<ArticleRequest>{
         
         List list = new ArrayList();
         EntityManager em = Provider();
-        Query q = em.createQuery("SELECT u FROM ArticleRequest u " +
-                "WHERE u.request.id LIKE :id")
+        Query q = em.createQuery("SELECT u FROM ArticleRequest u " 
+                + "WHERE u.request.id LIKE :id ")
                 .setParameter("id", id);
         try {
             list = q.getResultList();

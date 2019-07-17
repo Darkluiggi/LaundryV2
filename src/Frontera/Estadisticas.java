@@ -250,11 +250,6 @@ public class Estadisticas extends javax.swing.JPanel {
         printButton.setMaximumSize(new java.awt.Dimension(10000, 10000));
         printButton.setMinimumSize(new java.awt.Dimension(0, 0));
         printButton.setPreferredSize(new java.awt.Dimension(100, 50));
-        printButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                printButtonActionPerformed(evt);
-            }
-        });
         topPanel.add(printButton);
 
         centerPanel.add(topPanel, java.awt.BorderLayout.NORTH);

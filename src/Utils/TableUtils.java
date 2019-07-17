@@ -5,6 +5,11 @@
  */
 package Utils;
 
+import DAO.DAOArticle;
+import DAO.DAOArticleRequest;
+import Entidad.Article;
+import Entidad.ArticleRequest;
+import Entidad.Request;
 import Entidad.User;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
@@ -39,53 +44,37 @@ public class TableUtils {
         table.setModel(model);
     }
 
-        DefaultTableModel model = new DefaultTableModel(null, new String [] {
-        "Nombre", "Apellido", "Nombre de Usuario", "País", "Dirección", "Teléfono", "Contraseña", "Rol"
-    });
-        for (User t : list) {
-            model.addRow(new Object[]{t.getName(), t.getLastName(), t.getUserName(), t.getCountry(), t.getAdress(),
-            t.getPhone(),t.getPassword(),t.getRole()});
-        }
-        table.setModel(model);
-    } 
-    
     public static void fillTableArticle(JTable table, List<Article> list) {
         DefaultTableModel model = new DefaultTableModel(null, new String[]{
             "Género", "Nombre", "Lavado", "Lavado y Planchado", "Planchado", "Doblado"
         });
         for (Article t : list) {
-            model.addRow(new Object[]{t.getGender(), t.getClothName(), t.getWashPrice(), t.getWaiPrice(), t.getIronPrice(),
-                t.getFoldPrice()});
+            model.addRow(new Object[]{t.getGender(), t.getClothName(), t.getWashPrice(), t.getWaiPrice(), t.getIronPrice()
+            ,t.getFoldPrice()});
         }
         table.setModel(model);
     }
 
     public static void fillTableArticleRequest(JTable table, List<ArticleRequest> list) {
-        DefaultTableModel model = new DefaultTableModel(null, new String[]{
-            "Género", "Nombre", "Servicio", "Doblado", "Express", "Cantidad", "Subtotal"}) {
-        };
-
-        Class[] types = new Class[]{
-            java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-            java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class};
         DefaultTableModel model = new DefaultTableModel(null,
-    new String [] {
-        "Género", "Nombre", "Servicio", "Doblado", "Express", "Cantidad", "Subtotal"
-    }) {
-    Class[] types = new Class [] {
-        java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class
-    };
-    boolean[] canEdit = new boolean [] {
-        false, false, false, false, false, false, false
-    };
-    public Class getColumnClass(int columnIndex) {
-        return types [columnIndex];
-    }
+                new String[]{
+                    "Género", "Nombre", "Servicio", "Doblado", "Express", "Cantidad", "Subtotal"
+                }) {
+            Class[] types = new Class[]{
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false, false, false, false
+            };
 
-    public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return canEdit [columnIndex];
-    }
-};
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        };
         for (ArticleRequest t : list) {
             model.addRow(new Object[]{t.getArticle().getGender(), t.getArticle().getClothName(), t.getService(), t.isFold(), t.isExpress(), t.getQuantity(), t.getSubtotal()});
         }
@@ -102,6 +91,7 @@ public class TableUtils {
         }
         table.setModel(model);
     }
+
     public class MiModelo extends DefaultTableModel {
 
         /**
@@ -174,20 +164,19 @@ public class TableUtils {
                 .collect(Collectors.toList());
 
         Map<Article, List<ArticleRequest>> art = filtered.stream().collect(Collectors.groupingBy(ArticleRequest::getArticle));
-        
 
         DefaultTableModel model = new DefaultTableModel(null, new String[]{
             "Nombre prenda", "Lavado", "Planchado", "Lav. y Plan.", "Express", "Total"
         });
 
         art.forEach((k, v) -> {
-            double wash = v.stream().filter(ar -> ar.getService().equalsIgnoreCase("planchado")).mapToDouble(ar -> ar.getSubtotal()).sum();
+            double wash = v.stream().filter(ar -> ar.getService().equalsIgnoreCase("lavado")).mapToDouble(ar -> ar.getSubtotal()).sum();
             double iron = v.stream().filter(ar -> ar.getService().equalsIgnoreCase("planchado")).mapToDouble(ar -> ar.getSubtotal()).sum();
             double ironWash = v.stream().filter(ar -> ar.getService().equalsIgnoreCase("lavado y planchado")).mapToDouble(ar -> ar.getSubtotal()).sum();
             double express = v.stream().filter(ar -> ar.isExpress()).mapToDouble(ar -> ar.getSubtotal()).sum();
             double Total = v.stream().mapToDouble(ar -> ar.getSubtotal()).sum();
-            model.addRow(new Object[]{k.getClothName(), wash, iron, ironWash, express, Total });
+            model.addRow(new Object[]{k.getClothName(), wash, iron, ironWash, express, Total});
         });
-        
+        table.setModel(model);
     }
 }

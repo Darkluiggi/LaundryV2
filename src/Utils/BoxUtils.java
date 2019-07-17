@@ -25,7 +25,7 @@ public class BoxUtils {
 
     public static void updateBox(List<String> list, JComboBox box) {
         String defaultItem = "Seleccionar...";
-        if (!list.get(0).equals((String)defaultItem)) {
+        if (list.size()> 0 && !list.get(0).equals((String)defaultItem)) {
             list.add(0, defaultItem);
         }
         DefaultComboBoxModel model = new DefaultComboBoxModel(list.toArray());

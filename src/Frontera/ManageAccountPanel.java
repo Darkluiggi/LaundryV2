@@ -610,9 +610,7 @@ public class ManageAccountPanel extends javax.swing.JPanel {
     private void AceptarBDialogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarBDialogoActionPerformed
 
         Control.ManageAccount.createUser(nameTF, lastNameTF, userNameTF, countryTF,
-            adressTF, passwordTF, phoneTF, adminC);  
-        confirmCreate.dispose();
-        TableUtils.fillTableUser(userTable, dao.findAll());
+            adressTF, passwordTF, phoneTF, adminC);       
     }//GEN-LAST:event_AceptarBDialogoActionPerformed
 
     private void CancelarBDialogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBDialogoActionPerformed

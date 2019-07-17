@@ -422,11 +422,11 @@ public class ManageArticlePanel extends javax.swing.JPanel implements articleInt
 
     @Override
     public JComboBox getGenderBox() {
-        return GenderBox;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public JTable getSchemaClothes() {
-        return schemaClothes;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

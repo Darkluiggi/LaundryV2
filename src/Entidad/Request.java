@@ -11,7 +11,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -35,7 +34,7 @@ public class Request implements Serializable {
     private int id;
     
     @OneToMany(mappedBy = "request", targetEntity = ArticleRequest.class, cascade = CascadeType.PERSIST)
-    private Set<ArticleRequest> articleSet;
+    private Set articleSet;
     
     @ManyToOne
     private Cabin cabin;
@@ -43,9 +42,6 @@ public class Request implements Serializable {
         
     @Temporal(TemporalType.TIMESTAMP)
     private Date created_at;
-    
-    @Column
-    private double total;
 
     public Request() {
     }
@@ -64,7 +60,7 @@ public class Request implements Serializable {
         this.cabin = cabin;
     }
 
-    public Set<ArticleRequest> getArticleSet() {
+    public Set getArticleSet() {
         return articleSet;
     }
 
@@ -88,15 +84,6 @@ public class Request implements Serializable {
     public void setCreated_at(Date created_at) {
         this.created_at = created_at;
     }
-
-    public double getTotal() {
-        return total;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
-    }
-    
     
     
 }

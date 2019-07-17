@@ -38,7 +38,7 @@ public class NewRequestPanel extends javax.swing.JPanel {
     private DAORequest daoR;
     private Article art;
     private Set<ArticleRequest> articleRequestsSet;
-    private Hashtable<String, String[]> subItems = new Hashtable<String, String[]>();
+    private Hashtable<String, String[]> subItems= new Hashtable<String, String[]>();
     private Request request;
     private Cabin cabin;
     private DAOCabin daoC;
@@ -53,22 +53,25 @@ public class NewRequestPanel extends javax.swing.JPanel {
         daoC = new DAOCabin();
         createRequestBtn.setEnabled(false);
         BoxUtils.updateBox(daoT.getGenders(), GenderBox);
-        GenderBox.addActionListener((ev) -> {
+        GenderBox.addActionListener((ev)->{
             genderSelected(ev);
         });
-
+                
         GenderBox.putClientProperty("JComboBox.isTableCellEditor", Boolean.TRUE);
     }
-
-    private void genderSelected(ActionEvent evt) {
-        String item = (String) GenderBox.getSelectedItem();
+    
+    private void genderSelected(ActionEvent evt){
+        String item = (String)GenderBox.getSelectedItem();
         BoxUtils.getArticlesbyGender(item, subItems);
         Object o = subItems.get(item);
 
-        if (o == null) {
-            ClothBox.setModel(new DefaultComboBoxModel());
-        } else {
-            ClothBox.setModel(new DefaultComboBoxModel((String[]) o));
+        if (o == null)
+        {
+            ClothBox.setModel( new DefaultComboBoxModel() );
+        }
+        else
+        {
+            ClothBox.setModel( new DefaultComboBoxModel( (String[])o ) );
         }
     }
 
@@ -171,6 +174,10 @@ public class NewRequestPanel extends javax.swing.JPanel {
                 false, false, false, false, false, false, false
             };
 
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
@@ -254,6 +261,16 @@ public class NewRequestPanel extends javax.swing.JPanel {
         ClothBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 ClothBoxItemStateChanged(evt);
+            }
+        });
+        ClothBox.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                ClothBoxFocusGained(evt);
+            }
+        });
+        ClothBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ClothBoxActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -399,10 +416,10 @@ public class NewRequestPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_washChkStateChanged
 
     private void washChkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_washChkActionPerformed
-        if (washChk.isSelected()) {
+        if(washChk.isSelected()){
             ironWashChk.setEnabled(false);
             ironChk.setEnabled(false);
-        } else {
+        }else{
             ironWashChk.setEnabled(true);
             ironChk.setEnabled(true);
         }
@@ -413,10 +430,10 @@ public class NewRequestPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_ironChkStateChanged
 
     private void ironChkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ironChkActionPerformed
-        if (ironChk.isSelected()) {
+        if(ironChk.isSelected()){
             ironWashChk.setEnabled(false);
             washChk.setEnabled(false);
-        } else {
+        }else{
             washChk.setEnabled(true);
             ironWashChk.setEnabled(true);
         }
@@ -426,19 +443,15 @@ public class NewRequestPanel extends javax.swing.JPanel {
         Article article = new Article();
         String a, b;
         int c;
-        if (ClothBox.getSelectedIndex() > 0) {
-            a = (String) ClothBox.getSelectedItem();
-            b = (String) GenderBox.getSelectedItem();
-            article.setGender(b);
-            article.setClothName(a);
-            c = daoT.findID(article);
-            article = daoT.read(c);
-            foldChk.setSelected(false);
-            foldChk.setEnabled(article.getFold());       
-        }// TODO add your handling code here:
+        a = (String) ClothBox.getSelectedItem();
+        b = (String)GenderBox.getSelectedItem();
+        article.setGender(b);
+        article.setClothName(a);
+        c = daoT.findID(article);
+        article = daoT.read(c);
+        foldChk.setSelected(false);
+        foldChk.setEnabled(article.getFold());        // TODO add your handling code here:
     }//GEN-LAST:event_ClothBoxItemStateChanged
-
-
 
     private void ClothBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ClothBoxFocusGained
 
@@ -452,42 +465,38 @@ public class NewRequestPanel extends javax.swing.JPanel {
     
     private void AddBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBActionPerformed
         String articleName, articleGender;
-        int articleId, quantity;
-
+        int articleId , quantity;
+        
         artR = new ArticleRequest();
         art = new Article();
-
+        
         double price = 0.0;
-
+        
         articleName = (String) ClothBox.getSelectedItem();
         articleGender = (String) GenderBox.getSelectedItem();
-
+        
         art.setClothName(articleName);
         art.setGender(articleGender);
-
+        
         articleId = daoT.findID(art);
         art = daoT.read(articleId);
-
+        
         artR.setArticle(art);
-
+        
         quantity = Integer.parseInt(QuantityTF.getText());
-
+        
         artR.setQuantity(quantity);
-
-        if (washChk.isSelected()) {
+        
+        if(washChk.isSelected()){
             price = art.getWashPrice();
             artR.setService("Lavado");
-        } else if (ironChk.isSelected()) {
+        }else if (ironChk.isSelected()) {
             price = art.getIronPrice();
             artR.setService("Planchado");
-        } else if (ironWashChk.isSelected()) {
+        }else if (ironWashChk.isSelected()) {
             price = art.getWaiPrice();
             artR.setService("Lavado y Planchado");
         }
-
-        artR.setSubtotal(quantity * price);
-
-
         if (XpressChk.isSelected()){
             artR.setExpress(true);
             price=price*1.5;
@@ -496,18 +505,18 @@ public class NewRequestPanel extends javax.swing.JPanel {
              artR.setSubtotal(quantity*price);
         }
        
-
+        
         artR.setFold(foldChk.isSelected());
         artR.setExpress(XpressChk.isSelected());
-
+        
         articleRequestsSet.add(artR);
-
+        
         TableUtils.fillTableArticleRequest(requestTable, new ArrayList<>(articleRequestsSet));
         FormUtils.clearFields(GenderBox, ClothBox, QuantityTF, washChk, ironChk, ironWashChk, foldChk, XpressChk);
-        if (articleRequestsSet.size() > 0 && !CabinTF.getText().isEmpty()) {
+        if(articleRequestsSet.size()>0 && !CabinTF.getText().isEmpty()){
             createRequestBtn.setEnabled(true);
         }
-
+        
         FormUtils.enableComponents(washChk, ironChk, ironWashChk, foldChk);
     }//GEN-LAST:event_AddBActionPerformed
 
@@ -516,10 +525,10 @@ public class NewRequestPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_ironWashChkStateChanged
 
     private void ironWashChkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ironWashChkActionPerformed
-        if (ironWashChk.isSelected()) {
+        if(ironWashChk.isSelected()){
             washChk.setEnabled(false);
             ironChk.setEnabled(false);
-        } else {
+        }else{
             washChk.setEnabled(true);
             ironChk.setEnabled(true);
         }
@@ -529,16 +538,14 @@ public class NewRequestPanel extends javax.swing.JPanel {
         cabin = new Cabin();
         request = new Request();
         Cabin cab = daoC.read(Integer.parseInt(CabinTF.getText()));
-        if (cab == null) {
+        if(cab == null){
             cabin.setId(Integer.parseInt(CabinTF.getText()));
             daoC.create(cabin);
-        } else {
+        }else{
             cabin.setId(cab.getId());
         }
         request.setCabin(cabin);
         request.setCreated_at(new Date(System.currentTimeMillis()));
-        double total = articleRequestsSet.stream().mapToDouble(ar -> ar.getSubtotal()).sum();
-        request.setTotal(total);
         daoR.create(request);
         articleRequestsSet.forEach((ar) -> {
             ar.setRequest(request);
@@ -560,7 +567,7 @@ public class NewRequestPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_cancelRequestActionPerformed
 
     private void CabinTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CabinTFKeyTyped
-        if (articleRequestsSet.size() > 0) {
+        if(articleRequestsSet.size()>0){
             createRequestBtn.setEnabled(true);
         }
     }//GEN-LAST:event_CabinTFKeyTyped

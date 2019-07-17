@@ -5,11 +5,6 @@
  */
 package Utils;
 
-import DAO.DAOArticle;
-import DAO.DAOArticleRequest;
-import Entidad.Article;
-import Entidad.ArticleRequest;
-import Entidad.Request;
 import Entidad.User;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;

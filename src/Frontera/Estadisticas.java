@@ -527,10 +527,6 @@ public class Estadisticas extends javax.swing.JPanel {
         saveConfirmationDialog.dispose();
     }//GEN-LAST:event_cancelPrintButtonActionPerformed
 
-    private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonActionPerformed
-        saveConfirmationDialog.setVisible(true);
-    }//GEN-LAST:event_printButtonActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel beforePanel;

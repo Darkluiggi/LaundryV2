@@ -155,7 +155,15 @@ public class ViewRequest extends javax.swing.JPanel {
             new String [] {
                 "ID", "Cabina", "Total", "Nº Prendas", "Fecha de creación"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Integer.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         requestTable.getTableHeader().setReorderingAllowed(false);
         requestTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

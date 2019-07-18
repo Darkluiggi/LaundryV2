@@ -79,7 +79,7 @@ public class TableUtils {
             }
         };
         for (ArticleRequest t : list) {
-            model.addRow(new Object[]{t.getId(), t.getArticle().getGender(), t.getArticle().getClothName(), t.getService(), t.isFold(), t.isExpress(), t.getQuantity(), t.getSubtotal()});
+            model.addRow(new Object[]{t.getId() == null ? t.getTempId() : t.getId(), t.getArticle().getGender(), t.getArticle().getClothName(), t.getService(), t.isFold(), t.isExpress(), t.getQuantity(), t.getSubtotal()});
         }
         table.setModel(model);
     }
@@ -114,7 +114,11 @@ public class TableUtils {
     public static void fillTableRequest(JTable table, List<Request> list) {
         DefaultTableModel model = new DefaultTableModel(null, new String[]{
             "ID", "Cabina", "Total", "Nº Prendas", "Fecha de creación"
-        });
+        }) {
+            Class[] types = new Class[]{
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Integer.class, java.lang.Object.class
+            };
+        };
 
         for (Request r : list) {
             model.addRow(new Object[]{r.getId(), r.getCabin().getId(), r.getTotal(), r.getArticleSet().size(), r.getCreated_at()});

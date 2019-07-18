@@ -15,6 +15,7 @@ import Entidad.Article;
 import Entidad.ArticleRequest;
 import Entidad.Cabin;
 import Entidad.Request;
+import static Frontera.ManageArticlePanel.GenderBox;
 import Utils.BoxUtils;
 import Utils.FormUtils;
 import Utils.TableUtils;
@@ -30,6 +31,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.function.Predicate;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListSelectionModel;
 
 /**
  *
@@ -82,6 +84,7 @@ public class NewRequestPanel extends javax.swing.JPanel {
             NumberFormat formatter = NumberFormat.getCurrencyInstance(Locale.US);
             this.totalLbl.setText(String.valueOf(formatter.format(editRequest.getTotal())));
             this.createRequestBtn.setText("Editar Solicitud");
+            partialTotal = editRequest.getTotal();
             superEditMode = true;
         }
 
@@ -110,7 +113,28 @@ public class NewRequestPanel extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        saveConfirmationDialog = new javax.swing.JDialog();
+        jLabel6 = new javax.swing.JLabel();
+        cancelPrintButton = new javax.swing.JButton();
+        savePrintButton = new javax.swing.JButton();
+        saveFileChooser = new javax.swing.JFileChooser();
+        confirmCreate = new javax.swing.JDialog();
+        topDialog = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        centerDialog = new javax.swing.JPanel();
+        IDNUsuarioLabel = new javax.swing.JLabel();
+        labelID = new javax.swing.JLabel();
+        labelNuevoUsuario = new javax.swing.JLabel();
+        botDialog = new javax.swing.JPanel();
+        AceptarBDialogo = new javax.swing.JButton();
+        CancelarBDialogo = new javax.swing.JButton();
+        confirmPrint = new javax.swing.JDialog();
+        jLabel8 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        printButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        ExceptionField = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         GenderBox = new javax.swing.JComboBox<>();
@@ -135,12 +159,169 @@ public class NewRequestPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         totalLbl = new javax.swing.JLabel();
 
+        saveConfirmationDialog.setTitle("Confirmar guardado");
+        saveConfirmationDialog.setBounds(new java.awt.Rectangle(300, 300, 300, 150));
+        saveConfirmationDialog.setModal(true);
+        saveConfirmationDialog.setResizable(false);
+        saveConfirmationDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        jLabel6.setText("<html>\n<pre>\nSe creará un arcchivo .txt\nSeleccione a continuación la dirección \nde guardado del archivo.\n</pre>\n</html>");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        saveConfirmationDialog.getContentPane().add(jLabel6, gridBagConstraints);
+
+        cancelPrintButton.setText("Cancelar");
+        cancelPrintButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        saveConfirmationDialog.getContentPane().add(cancelPrintButton, gridBagConstraints);
+
+        savePrintButton.setText("Guardar");
+        savePrintButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        saveConfirmationDialog.getContentPane().add(savePrintButton, gridBagConstraints);
+
+        saveFileChooser.setDialogType(javax.swing.JFileChooser.SAVE_DIALOG);
+        saveFileChooser.setApproveButtonToolTipText("save");
+        saveFileChooser.setDialogTitle("Guardar");
+        saveFileChooser.setFileFilter(null);
+        saveFileChooser.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
+        saveFileChooser.setSelectedFiles(null);
+
+        confirmCreate.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        confirmCreate.setTitle("Confirmar: Nuevo Usuario");
+        confirmCreate.setLocation(new java.awt.Point(0, 0));
+        confirmCreate.setResizable(false);
+        confirmCreate.setSize(new java.awt.Dimension(440, 240));
+
+        topDialog.setLayout(new java.awt.GridLayout(1, 0));
+
+        jLabel7.setText("Se creará una nueva solicitud de servicio");
+        topDialog.add(jLabel7);
+
+        confirmCreate.getContentPane().add(topDialog, java.awt.BorderLayout.NORTH);
+
+        IDNUsuarioLabel.setText("###################");
+
+        labelID.setText("ID de cabina:");
+
+        labelNuevoUsuario.setText("¿Crear nueva solicitud de servicio?");
+
+        javax.swing.GroupLayout centerDialogLayout = new javax.swing.GroupLayout(centerDialog);
+        centerDialog.setLayout(centerDialogLayout);
+        centerDialogLayout.setHorizontalGroup(
+            centerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(centerDialogLayout.createSequentialGroup()
+                .addGroup(centerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelNuevoUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(centerDialogLayout.createSequentialGroup()
+                        .addComponent(labelID, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(IDNUsuarioLabel)
+                        .addGap(0, 13, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        centerDialogLayout.setVerticalGroup(
+            centerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(centerDialogLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(labelNuevoUsuario)
+                .addGap(18, 18, 18)
+                .addGroup(centerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelID)
+                    .addComponent(IDNUsuarioLabel))
+                .addContainerGap(47, Short.MAX_VALUE))
+        );
+
+        confirmCreate.getContentPane().add(centerDialog, java.awt.BorderLayout.CENTER);
+
+        botDialog.setLayout(new java.awt.GridLayout(1, 2, 5, 5));
+
+        AceptarBDialogo.setText("Aceptar");
+        AceptarBDialogo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botDialog.add(AceptarBDialogo);
+
+        CancelarBDialogo.setText("Cancelar");
+        CancelarBDialogo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botDialog.add(CancelarBDialogo);
+
+        confirmCreate.getContentPane().add(botDialog, java.awt.BorderLayout.SOUTH);
+
+        confirmPrint.setSize(new java.awt.Dimension(260, 91));
+
+        jLabel8.setText("¿Desea imprimir la factura?");
+
+        printButton.setText("Imprimir");
+        printButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        printButton.setFocusPainted(false);
+        printButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        printButton.setMaximumSize(new java.awt.Dimension(10000, 10000));
+        printButton.setMinimumSize(new java.awt.Dimension(0, 0));
+
+        jButton1.setText("Cancelar");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(printButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(printButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jButton1)
+        );
+
+        javax.swing.GroupLayout confirmPrintLayout = new javax.swing.GroupLayout(confirmPrint.getContentPane());
+        confirmPrint.getContentPane().setLayout(confirmPrintLayout);
+        confirmPrintLayout.setHorizontalGroup(
+            confirmPrintLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(confirmPrintLayout.createSequentialGroup()
+                .addGroup(confirmPrintLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(confirmPrintLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(6, 6, 6))
+        );
+        confirmPrintLayout.setVerticalGroup(
+            confirmPrintLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(confirmPrintLayout.createSequentialGroup()
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
         setMaximumSize(new java.awt.Dimension(2147483647, 1000));
         setMinimumSize(new java.awt.Dimension(800, 400));
         setPreferredSize(new java.awt.Dimension(800, 520));
         setLayout(new java.awt.BorderLayout());
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
+
+        ExceptionField.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        ExceptionField.setForeground(new java.awt.Color(255, 0, 0));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.insets = new java.awt.Insets(18, 0, 18, 0);
+        jPanel1.add(ExceptionField, gridBagConstraints);
 
         jLabel4.setText("Añadir Prendas");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -229,7 +410,7 @@ public class NewRequestPanel extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 14;
+        gridBagConstraints.gridheight = 15;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 514;
         gridBagConstraints.ipady = 399;
@@ -293,6 +474,16 @@ public class NewRequestPanel extends javax.swing.JPanel {
         ClothBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 ClothBoxItemStateChanged(evt);
+            }
+        });
+        ClothBox.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                ClothBoxFocusGained(evt);
+            }
+        });
+        ClothBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ClothBoxActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -507,63 +698,81 @@ public class NewRequestPanel extends javax.swing.JPanel {
         String articleName, articleGender;
         int articleId, quantity;
 
-        artR = editMode ? editArticleRequest : new ArticleRequest();
-        art = new Article();
+        String exception = FormUtils.validateField(GenderBox, ClothBox, QuantityTF);
+        if (exception.equals("")) {
+            artR = new ArticleRequest();
+            art = new Article();
 
-        double price = 0.0;
+            double price = 0.0;
 
-        articleName = (String) ClothBox.getSelectedItem();
-        articleGender = (String) GenderBox.getSelectedItem();
+            articleName = (String) ClothBox.getSelectedItem();
+            articleGender = (String) GenderBox.getSelectedItem();
 
-        art.setClothName(articleName);
-        art.setGender(articleGender);
+            art.setClothName(articleName);
+            art.setGender(articleGender);
 
-        articleId = daoT.findID(art);
-        art = daoT.read(articleId);
+            articleId = daoT.findID(art);
+            art = daoT.read(articleId);
 
-        artR.setArticle(art);
+            artR.setArticle(art);
 
-        quantity = Integer.parseInt(QuantityTF.getText());
+            quantity = Integer.parseInt(QuantityTF.getText());
 
-        artR.setQuantity(quantity);
+            artR.setQuantity(quantity);
 
-        if (washChk.isSelected()) {
-            price = art.getWashPrice();
-            artR.setService("Lavado");
-        } else if (ironChk.isSelected()) {
-            price = art.getIronPrice();
-            artR.setService("Planchado");
-        } else if (ironWashChk.isSelected()) {
-            price = art.getWaiPrice();
-            artR.setService("Lavado y Planchado");
-        }
-        artR.setSubtotal(quantity * price);
-        if (XpressChk.isSelected()) {
-            artR.setExpress(true);
-            price *= 1.5;
-            artR.setSubtotal(quantity * price);
+            if (washChk.isSelected()) {
+                price = art.getWashPrice();
+                artR.setService("Lavado");
+            } else if (ironChk.isSelected()) {
+                price = art.getIronPrice();
+                artR.setService("Planchado");
+            } else if (ironWashChk.isSelected()) {
+                price = art.getWaiPrice();
+                artR.setService("Lavado y Planchado");
+            } else {
+                exception = "Por favor seleccione un servicio";
+            }
+            if (exception.equals("")) {
+                artR.setSubtotal(quantity * price);
+                if (XpressChk.isSelected()) {
+                    artR.setExpress(true);
+                    price *= 1.5;
+                    artR.setSubtotal(quantity * price);
+                } else {
+                    artR.setSubtotal(quantity * price);
+                }
+
+                if (editMode) {
+                    if (superEditMode) {
+                        artR.setId(editArticleRequest.getId());
+                    } else {
+                        artR.setTempId(editArticleRequest.getTempId());
+                    }
+                    partialTotal -= editArticleRequest.getSubtotal();
+                    articleRequestsSet.remove(editArticleRequest);
+                } else {
+                    artR.setTempId(articleRequestsSet.size() + 1);
+                }
+                partialTotal += artR.getSubtotal();
+                NumberFormat formatter = NumberFormat.getCurrencyInstance(Locale.US);
+                totalLbl.setText(String.valueOf(formatter.format(partialTotal)));
+                artR.setFold(foldChk.isSelected());
+
+                articleRequestsSet.add(artR);
+
+                TableUtils.fillTableArticleRequest(requestTable, new ArrayList<>(articleRequestsSet));
+                FormUtils.clearFields(GenderBox, ClothBox, QuantityTF, washChk, ironChk, ironWashChk, foldChk, XpressChk);
+                if (articleRequestsSet.size() > 0 && !CabinTF.getText().isEmpty()) {
+                    createRequestBtn.setEnabled(true);
+                }
+                editMode = false;
+                FormUtils.enableComponents(washChk, ironChk, ironWashChk, foldChk);
+            }else{
+                ExceptionField.setText(exception);
+            }
         } else {
-            artR.setSubtotal(quantity * price);
+            ExceptionField.setText(exception);
         }
-        
-        if (editMode) {
-            partialTotal -= editArticleRequest.getSubtotal();
-            articleRequestsSet.remove(editArticleRequest);
-        }
-        partialTotal += artR.getSubtotal();
-        NumberFormat formatter = NumberFormat.getCurrencyInstance(Locale.US);
-        totalLbl.setText(String.valueOf(formatter.format(partialTotal)));
-        artR.setFold(foldChk.isSelected());
-
-        articleRequestsSet.add(artR);
-
-        TableUtils.fillTableArticleRequest(requestTable, new ArrayList<>(articleRequestsSet));
-        FormUtils.clearFields(GenderBox, ClothBox, QuantityTF, washChk, ironChk, ironWashChk, foldChk, XpressChk);
-        if (articleRequestsSet.size() > 0 && !CabinTF.getText().isEmpty()) {
-            createRequestBtn.setEnabled(true);
-        }
-
-        FormUtils.enableComponents(washChk, ironChk, ironWashChk, foldChk);
     }//GEN-LAST:event_AddBActionPerformed
 
     private void ironWashChkStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ironWashChkStateChanged
@@ -630,7 +839,12 @@ public class NewRequestPanel extends javax.swing.JPanel {
         ViewRequestsControl.TableClicked(GenderBox, ClothBox, QuantityTF, washChk, ironChk, ironWashChk, foldChk, XpressChk, requestTable);
         AddB.setText("Editar");
         editMode = true;
-        editArticleRequest = daoAR.read((Integer) requestTable.getValueAt(requestTable.getSelectedRow(), 0));
+        if (superEditMode) {
+            editArticleRequest = daoAR.read((Integer) requestTable.getValueAt(requestTable.getSelectedRow(), 0));
+        } else {
+            int row = requestTable.getSelectedRow();
+            editArticleRequest = articleRequestsSet.stream().filter(ar -> ar.getTempId() == row + 1).findFirst().get();
+        }
     }//GEN-LAST:event_requestTableMouseClicked
 
     private void CancelBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBActionPerformed
@@ -643,28 +857,49 @@ public class NewRequestPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_CancelBActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AceptarBDialogo;
     private javax.swing.JButton AddB;
     private javax.swing.JTextField CabinTF;
     private javax.swing.JButton CancelB;
+    private javax.swing.JButton CancelarBDialogo;
     private javax.swing.JComboBox<String> ClothBox;
+    private javax.swing.JLabel ExceptionField;
     private javax.swing.JComboBox<String> GenderBox;
+    private javax.swing.JLabel IDNUsuarioLabel;
     private javax.swing.JTextField QuantityTF;
     private javax.swing.JCheckBox XpressChk;
+    private javax.swing.JPanel botDialog;
+    private javax.swing.JButton cancelPrintButton;
     private javax.swing.JButton cancelRequest;
+    private javax.swing.JPanel centerDialog;
     private javax.swing.JLabel clothL;
+    private javax.swing.JDialog confirmCreate;
+    private javax.swing.JDialog confirmPrint;
     private javax.swing.JButton createRequestBtn;
     private javax.swing.JCheckBox foldChk;
     private javax.swing.JCheckBox ironChk;
     private javax.swing.JCheckBox ironWashChk;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelID;
+    private javax.swing.JLabel labelNuevoUsuario;
+    private javax.swing.JButton printButton;
     private javax.swing.JTable requestTable;
+    private javax.swing.JDialog saveConfirmationDialog;
+    private javax.swing.JFileChooser saveFileChooser;
+    private javax.swing.JButton savePrintButton;
+    private javax.swing.JPanel topDialog;
     private javax.swing.JLabel totalLbl;
     private javax.swing.JCheckBox washChk;
     // End of variables declaration//GEN-END:variables

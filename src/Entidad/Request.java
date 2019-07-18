@@ -34,7 +34,7 @@ public class Request implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
-    @OneToMany(mappedBy = "request", targetEntity = ArticleRequest.class, cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "request", targetEntity = ArticleRequest.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<ArticleRequest> articleSet;
     
     @ManyToOne

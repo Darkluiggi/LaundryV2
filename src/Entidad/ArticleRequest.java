@@ -19,6 +19,9 @@ import javax.persistence.*;
 @Table(name = "ArticleRequest")
 public class ArticleRequest implements Serializable {
     
+    @Transient
+    Integer tempId;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
@@ -133,7 +136,14 @@ public class ArticleRequest implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-    
+
+    public Integer getTempId() {
+        return tempId;
+    }
+
+    public void setTempId(Integer tempId) {
+        this.tempId = tempId;
+    }
     
     
 }

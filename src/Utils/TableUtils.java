@@ -11,6 +11,9 @@ import Entidad.ArticleRequest;
 import Entidad.User;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -97,7 +100,7 @@ public class TableUtils {
       return Object.class;
    }
 }
-    
+   
 
     public static void addPopUpMenu(JTable table) {
         final JPopupMenu popupMenu = new JPopupMenu();
@@ -109,7 +112,33 @@ public class TableUtils {
         popupMenu.add(editItem);
         table.setComponentPopupMenu(popupMenu);
     }
+    public static void guardaTabla(JTable table){
+        try {
 
+            String sucursalesCSVFile = "archivos/DatosTabla.txt";
+            BufferedWriter bfw = new BufferedWriter(new FileWriter(sucursalesCSVFile ));
+            bfw.write("_______________________________________________");
+            bfw.newLine(); 
+            for (int i = 0 ; i < table.getRowCount(); i++) //realiza un barrido por filas.
+            {
+                for(int j = 0 ; j < table.getColumnCount();j++) //realiza un barrido por columnas.
+                { 
+                    bfw.write((table.getValueAt(i,j)).toString());
+                    if (j < table.getColumnCount() -1) { //agrega separador "," si no es el ultimo elemento de la fila.
+                        bfw.write("|");
+                    }
+                }
+                bfw.newLine();
+                bfw.write("_______________________________________________");
+                bfw.newLine();//inserta nueva linea.
+            }
+
+            bfw.close(); //cierra archivo!
+            System.out.println("El archivo fue salvado correctamente!");
+        } catch (IOException e) {
+            System.out.println("ERROR: Ocurrio un problema al salvar el archivo!" + e.getMessage());
+        }
+    }
     public static void clearTable(JTable table) {
         DefaultTableModel dm = (DefaultTableModel) table.getModel();
         int rowCount = dm.getRowCount();

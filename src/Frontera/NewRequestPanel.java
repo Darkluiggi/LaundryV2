@@ -19,6 +19,7 @@ import static Frontera.ManageArticlePanel.GenderBox;
 import Utils.BoxUtils;
 import Utils.FormUtils;
 import Utils.TableUtils;
+import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -52,16 +53,19 @@ public class NewRequestPanel extends javax.swing.JPanel {
     private final Request editRequest;
     private ArticleRequest editArticleRequest;
     private double partialTotal;
+    private ViewRequest viewPanel;
 
     private boolean editMode;
     private boolean superEditMode;
 
     public NewRequestPanel() {
-        this(null);
+        this(null, null);
     }
 
-    public NewRequestPanel(final Request r) {
+    public NewRequestPanel(final Request r, ViewRequest rPanel) {
         this.editRequest = r;
+        this.viewPanel = rPanel;
+        
         initComponents();
         daoT = new DAOArticle();
         articleRequestsSet = new HashSet<>();
@@ -767,7 +771,7 @@ public class NewRequestPanel extends javax.swing.JPanel {
                 }
                 editMode = false;
                 FormUtils.enableComponents(washChk, ironChk, ironWashChk, foldChk);
-            }else{
+            } else {
                 ExceptionField.setText(exception);
             }
         } else {
@@ -790,35 +794,43 @@ public class NewRequestPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_ironWashChkActionPerformed
 
     private void createRequestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createRequestBtnActionPerformed
-        cabin = new Cabin();
-        request = superEditMode ? daoR.read(editRequest.getId()) : new Request();
-        Cabin cab = daoC.read(Integer.parseInt(CabinTF.getText()));
-        if (cab == null) {
-            cabin.setId(Integer.parseInt(CabinTF.getText()));
-            daoC.create(cabin);
-        } else {
-            cabin.setId(cab.getId());
+        String exception = FormUtils.validateField(CabinTF);
+        if (exception.equals("") && articleRequestsSet.size() > 0) {
+            cabin = new Cabin();
+            request = superEditMode ? daoR.read(editRequest.getId()) : new Request();
+            Cabin cab = daoC.read(Integer.parseInt(CabinTF.getText()));
+            if (cab == null) {
+                cabin.setId(Integer.parseInt(CabinTF.getText()));
+                daoC.create(cabin);
+            } else {
+                cabin.setId(cab.getId());
+            }
+            request.setCabin(cabin);
+            request.setCreated_at(new Date(System.currentTimeMillis()));
+            double total = articleRequestsSet.stream().mapToDouble(ar -> ar.getSubtotal()).sum();
+            request.setTotal(total);
+            request.setArticleSet(articleRequestsSet);
+            articleRequestsSet.forEach((ar) -> {
+                ar.setRequest(request);
+            });
+            if (superEditMode) {
+                daoR.update(request);
+            } else {
+                daoR.create(request);
+            }
+            FormUtils.clearFields(CabinTF, GenderBox, ClothBox, QuantityTF, washChk, ironChk, ironWashChk, foldChk, XpressChk);
+            articleRequestsSet.clear();
+            TableUtils.clearTable(requestTable);
+            FormUtils.enableComponents(washChk, ironChk, ironWashChk, foldChk);
+            editMode = false;
+            partialTotal = 0;
+            totalLbl.setText("$0.0");
+            TableUtils.fillTableRequest(viewPanel.getRequestTable(), daoR.findAll());
+            CardLayout cardLayout = (CardLayout) viewPanel.getLayout();
+            cardLayout.show(viewPanel, "view");
+        }else{
+            ExceptionField.setText(exception);
         }
-        request.setCabin(cabin);
-        request.setCreated_at(new Date(System.currentTimeMillis()));
-        double total = articleRequestsSet.stream().mapToDouble(ar -> ar.getSubtotal()).sum();
-        request.setTotal(total);
-        request.setArticleSet(articleRequestsSet);
-        articleRequestsSet.forEach((ar) -> {
-            ar.setRequest(request);
-        });
-        if (superEditMode) {
-            daoR.update(request);
-        } else {
-            daoR.create(request);
-        }
-        FormUtils.clearFields(CabinTF, GenderBox, ClothBox, QuantityTF, washChk, ironChk, ironWashChk, foldChk, XpressChk);
-        articleRequestsSet.clear();
-        TableUtils.clearTable(requestTable);
-        FormUtils.enableComponents(washChk, ironChk, ironWashChk, foldChk);
-        editMode = false;
-        partialTotal = 0;
-        totalLbl.setText("$0.0");
     }//GEN-LAST:event_createRequestBtnActionPerformed
 
     private void cancelRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelRequestActionPerformed

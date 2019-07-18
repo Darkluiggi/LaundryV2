@@ -29,6 +29,8 @@ public class Estadisticas extends javax.swing.JPanel {
      */
     public Estadisticas() {
         initComponents();
+        estTypeButtonActionPerformed(null);
+        lastYearButtonActionPerformed(null);
     }
 
     /**
@@ -503,6 +505,7 @@ public class Estadisticas extends javax.swing.JPanel {
         } else {
             selectedTypeButtonLabel.setText("Solicitud");
             estTypeButton.setText("Solicitud");
+            lastYearButtonActionPerformed(null);
             selectedTypeCounter = true;
             statisticsMainPanel.setVisible(false);
             statisticsMainPanel.removeAll();

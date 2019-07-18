@@ -276,7 +276,7 @@ public class ViewRequest extends javax.swing.JPanel {
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         int selectedID = (Integer) requestTable.getValueAt(requestTable.getSelectedRow(), 0);
         Request r = daoR.read(selectedID);
-        NewRequestPanel requestPanel = new NewRequestPanel(r);
+        NewRequestPanel requestPanel = new NewRequestPanel(r, this);
         CardLayout cardLayout = (CardLayout) this.getLayout();
         requestEditLbl.setText("Editando Solicitud # " + String.valueOf(r.getId()));
         cardLayout.show(this, "edit");

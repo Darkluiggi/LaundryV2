@@ -35,12 +35,18 @@ public class ViewRequestsControl {
         switch(c.toLowerCase()){
             case "lavado":
                 wash.setSelected(true);
+                iron.setEnabled(false);
+                ironWash.setEnabled(false);
                 break;
             case "planchado":
                 iron.setSelected(true);
+                wash.setEnabled(false);
+                ironWash.setEnabled(false);
                 break;
             case "lavado y planchado":
                 ironWash.setSelected(true);
+                wash.setEnabled(false);
+                iron.setEnabled(false);
                 break;
             default:
                 break;

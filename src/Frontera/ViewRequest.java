@@ -72,6 +72,7 @@ public class ViewRequest extends javax.swing.JPanel {
         mainTB3 = new javax.swing.JToolBar();
         backBtn3 = new javax.swing.JButton();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
+        requestEditLbl = new javax.swing.JLabel();
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 32767));
         userLbl = new javax.swing.JLabel();
         filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 32767));
@@ -156,6 +157,11 @@ public class ViewRequest extends javax.swing.JPanel {
             }
         ));
         requestTable.getTableHeader().setReorderingAllowed(false);
+        requestTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                requestTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(requestTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -209,12 +215,16 @@ public class ViewRequest extends javax.swing.JPanel {
         });
         mainTB3.add(backBtn3);
         mainTB3.add(filler1);
+
+        requestEditLbl.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        requestEditLbl.setText("Editando Solicitud");
+        mainTB3.add(requestEditLbl);
         mainTB3.add(filler2);
         mainTB3.add(userLbl);
         mainTB3.add(filler3);
 
         ExitB.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
-        ExitB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontera/sign-out-option (1).png"))); // NOI18N
+        ExitB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontera/close (1).png"))); // NOI18N
         ExitB.setText("Cancelar");
         ExitB.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ExitB.setFocusable(false);
@@ -253,7 +263,6 @@ public class ViewRequest extends javax.swing.JPanel {
         a = (Integer) CabinId.getSelectedItem();
         lista = daoAR.findByIDs(a);
         TableUtils.fillTableArticleRequest(requestTable, lista);
-
     }//GEN-LAST:event_FindBActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
@@ -261,6 +270,7 @@ public class ViewRequest extends javax.swing.JPanel {
         Request r = daoR.read(selectedID);
         NewRequestPanel requestPanel = new NewRequestPanel(r);
         CardLayout cardLayout = (CardLayout) this.getLayout();
+        requestEditLbl.setText("Editando Solicitud # " + String.valueOf(r.getId()));
         cardLayout.show(this, "edit");
         PanelUtils.change(editPanel, requestPanel);
     }//GEN-LAST:event_editButtonActionPerformed
@@ -274,14 +284,15 @@ public class ViewRequest extends javax.swing.JPanel {
         cardLayout.show(this, "view");
     }//GEN-LAST:event_backBtn3ActionPerformed
 
+    private void requestTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_requestTableMouseClicked
+        
+    }//GEN-LAST:event_requestTableMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CabinId;
     private javax.swing.JButton ExitB;
     private javax.swing.JButton FindB;
-    private javax.swing.JButton backBtn;
-    private javax.swing.JButton backBtn1;
-    private javax.swing.JButton backBtn2;
     private javax.swing.JButton backBtn3;
     private javax.swing.JButton editButton;
     private javax.swing.JPanel editPanel;
@@ -294,10 +305,8 @@ public class ViewRequest extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JToolBar mainTB;
-    private javax.swing.JToolBar mainTB1;
-    private javax.swing.JToolBar mainTB2;
     private javax.swing.JToolBar mainTB3;
+    private javax.swing.JLabel requestEditLbl;
     private javax.swing.JTable requestTable;
     private javax.swing.JLabel userLbl;
     private javax.swing.JPanel viewPanel;

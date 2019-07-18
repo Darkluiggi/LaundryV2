@@ -47,7 +47,7 @@ public class TableUtils {
         });
         for (Article t : list) {
             model.addRow(new Object[]{t.getGender(), t.getClothName(), t.getWashPrice(), t.getWaiPrice(), t.getIronPrice(),
-                 t.getFoldPrice()});
+                t.getFoldPrice()});
         }
         table.setModel(model);
     }
@@ -55,10 +55,10 @@ public class TableUtils {
     public static void fillTableArticleRequest(JTable table, List<ArticleRequest> list) {
         DefaultTableModel model = new DefaultTableModel(null,
                 new String[]{
-                    "Género", "Nombre", "Servicio", "Doblado", "Express", "Cantidad", "Subtotal"
+                    "#", "Género", "Nombre", "Servicio", "Doblado", "Express", "Cantidad", "Subtotal"
                 }) {
             Class[] types = new Class[]{
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean[]{
                 false, false, false, false, false, false, false
@@ -73,7 +73,7 @@ public class TableUtils {
             }
         };
         for (ArticleRequest t : list) {
-            model.addRow(new Object[]{t.getArticle().getGender(), t.getArticle().getClothName(), t.getService(), t.isFold(), t.isExpress(), t.getQuantity(), t.getSubtotal()});
+            model.addRow(new Object[]{t.getId(), t.getArticle().getGender(), t.getArticle().getClothName(), t.getService(), t.isFold(), t.isExpress(), t.getQuantity(), t.getSubtotal()});
         }
         table.setModel(model);
     }

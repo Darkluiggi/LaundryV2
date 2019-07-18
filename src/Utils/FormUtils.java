@@ -99,6 +99,7 @@ public class FormUtils {
     
     public static HashMap<String, Double> statisticsTotals(List<Request> list2){
         double wash = 0, iron = 0, ironwash  = 0, total = 0;
+        
         total = list2.stream().mapToDouble(req -> req.getTotal()).sum();
         wash = list2.stream().mapToDouble(r -> r.getArticleSet().stream().filter(ar -> ar.getService().equalsIgnoreCase("lavado")).mapToDouble(ar -> ar.getSubtotal()).sum()).sum();
         iron = list2.stream().mapToDouble(r -> r.getArticleSet().stream().filter(ar -> ar.getService().equalsIgnoreCase("planchado")).mapToDouble(ar -> ar.getSubtotal()).sum()).sum();

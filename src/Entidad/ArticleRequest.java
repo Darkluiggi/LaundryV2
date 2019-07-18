@@ -18,14 +18,16 @@ import javax.persistence.*;
 @Entity
 @Table(name = "ArticleRequest")
 public class ArticleRequest implements Serializable {
-
+    
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Integer id;
+
     @ManyToOne
     @JoinColumn
     private Article article;
 
-    @Id
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Request request;
     
@@ -123,7 +125,15 @@ public class ArticleRequest implements Serializable {
     public void setFold(boolean fold) {
         this.fold = fold;
     }
-    
-    
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
+    
+    
 }

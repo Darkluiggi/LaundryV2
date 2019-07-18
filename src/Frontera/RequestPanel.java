@@ -21,19 +21,19 @@ public class RequestPanel extends javax.swing.JPanel {
     private NewRequestPanel newRequest;
     private ViewRequest viewRequests;
     private EditRequest editRequest;
-    
+
     private DAORequest daoR;
-    
+
     public RequestPanel() {
         initComponents();
         newRequest = new NewRequestPanel();
         viewRequests = new ViewRequest();
         editRequest = new EditRequest();
-        
+
         daoR = new DAORequest();
-        
+
         PanelUtils.change(addRequestTab, newRequest);
-        
+
         tabs.addChangeListener(e -> {
             switch (tabs.getSelectedIndex()) {
                 case 0:
@@ -44,11 +44,11 @@ public class RequestPanel extends javax.swing.JPanel {
                     TableUtils.fillTableRequest(viewRequests.getRequestTable(), daoR.findAll());
                     break;
                 default:
-                    PanelUtils.change(editRequestTab, editRequest);
+                    PanelUtils.change(addRequestTab, newRequest);
                     break;
             }
         });
-                
+
     }
 
     /**
@@ -63,7 +63,6 @@ public class RequestPanel extends javax.swing.JPanel {
         tabs = new javax.swing.JTabbedPane();
         addRequestTab = new javax.swing.JPanel();
         viewRequestsTab = new javax.swing.JPanel();
-        editRequestTab = new javax.swing.JPanel();
 
         setPreferredSize(new java.awt.Dimension(860, 500));
         setLayout(new java.awt.BorderLayout());
@@ -76,16 +75,12 @@ public class RequestPanel extends javax.swing.JPanel {
         viewRequestsTab.setLayout(new java.awt.BorderLayout());
         tabs.addTab("Ver solicitudes", viewRequestsTab);
 
-        editRequestTab.setLayout(new java.awt.BorderLayout());
-        tabs.addTab("Editar solicitud", editRequestTab);
-
         add(tabs, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel addRequestTab;
-    private javax.swing.JPanel editRequestTab;
     private javax.swing.JTabbedPane tabs;
     private javax.swing.JPanel viewRequestsTab;
     // End of variables declaration//GEN-END:variables

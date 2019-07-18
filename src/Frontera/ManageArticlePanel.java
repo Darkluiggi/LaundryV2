@@ -44,7 +44,6 @@ public class ManageArticlePanel extends javax.swing.JPanel implements articleInt
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         Container = new javax.swing.JPanel();
         left = new javax.swing.JPanel();
@@ -289,7 +288,7 @@ public class ManageArticlePanel extends javax.swing.JPanel implements articleInt
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Container, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

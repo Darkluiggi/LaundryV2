@@ -260,7 +260,7 @@ public class MainMenu extends javax.swing.JPanel {
     }//GEN-LAST:event_logoutBtnMouseExited
 
     private void requestBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_requestBtnMouseClicked
-;
+
     }//GEN-LAST:event_requestBtnMouseClicked
 
     private void articleBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_articleBtnMouseClicked

@@ -13,6 +13,7 @@ import java.text.NumberFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 /**
@@ -478,7 +479,7 @@ public class Estadisticas extends javax.swing.JPanel {
         double washSum = 0, ironSum = 0, ironWashSum = 0, expressSum = 0, total = 0;
         TableUtils.fillArticleStatistics(clothesTable, daoR.findBetweenDates(previous, today));
         HashMap hm = FormUtils.statisticsTotals(daoR.findBetweenDates(previous, today));
-        NumberFormat formatter = NumberFormat.getCurrencyInstance();
+        NumberFormat formatter = NumberFormat.getCurrencyInstance(Locale.US);
         totalServiceLabel.setText(formatter.format(hm.get("total")));
         totalWashLabel.setText(formatter.format(hm.get("wash")));
         totalIronLabel.setText(formatter.format(hm.get("iron")));

@@ -5,6 +5,8 @@
  */
 package Frontera;
 
+import Control.ViewArticlesControl;
+import Control.ViewRequestsControl;
 import DAO.DAOArticle;
 import DAO.DAOArticleRequest;
 import DAO.DAOCabin;
@@ -17,12 +19,16 @@ import Utils.BoxUtils;
 import Utils.FormUtils;
 import Utils.TableUtils;
 import java.awt.event.ActionEvent;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Hashtable;
+import java.util.Locale;
+import java.util.Objects;
 import java.util.Set;
+import java.util.function.Predicate;
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -41,13 +47,18 @@ public class NewRequestPanel extends javax.swing.JPanel {
     private Request request;
     private Cabin cabin;
     private DAOCabin daoC;
-    private Request editRequest;
+    private final Request editRequest;
+    private ArticleRequest editArticleRequest;
+    private double partialTotal;
+
+    private boolean editMode;
+    private boolean superEditMode;
 
     public NewRequestPanel() {
         this(null);
     }
-    
-    public NewRequestPanel(Request r){
+
+    public NewRequestPanel(final Request r) {
         this.editRequest = r;
         initComponents();
         daoT = new DAOArticle();
@@ -61,7 +72,20 @@ public class NewRequestPanel extends javax.swing.JPanel {
             genderSelected(ev);
         });
         GenderBox.putClientProperty("JComboBox.isTableCellEditor", Boolean.TRUE);
-        TableUtils.fillTableArticleRequest(requestTable, r != null ? daoAR.findByIDs(r.getId()) : Collections.emptyList());
+        partialTotal = 0;
+        editMode = false;
+        if (editRequest != null) {
+            this.CabinTF.setText(String.valueOf(r.getCabin().getId()));
+            this.CabinTF.setEnabled(false);
+            this.CabinTF.setEditable(false);
+            articleRequestsSet = editRequest.getArticleSet();
+            NumberFormat formatter = NumberFormat.getCurrencyInstance(Locale.US);
+            this.totalLbl.setText(String.valueOf(formatter.format(editRequest.getTotal())));
+            this.createRequestBtn.setText("Editar Solicitud");
+            superEditMode = true;
+        }
+
+        TableUtils.fillTableArticleRequest(requestTable, r != null ? new ArrayList<>(articleRequestsSet) : Collections.emptyList());
     }
 
     private void genderSelected(ActionEvent evt) {
@@ -108,6 +132,8 @@ public class NewRequestPanel extends javax.swing.JPanel {
         cancelRequest = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         CabinTF = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        totalLbl = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(2147483647, 1000));
         setMinimumSize(new java.awt.Dimension(800, 400));
@@ -175,11 +201,20 @@ public class NewRequestPanel extends javax.swing.JPanel {
                 false, false, false, false, false, false, false
             };
 
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
         requestTable.getTableHeader().setReorderingAllowed(false);
+        requestTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                requestTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(requestTable);
         if (requestTable.getColumnModel().getColumnCount() > 0) {
             requestTable.getColumnModel().getColumn(0).setResizable(false);
@@ -282,6 +317,11 @@ public class NewRequestPanel extends javax.swing.JPanel {
         jPanel1.add(AddB, gridBagConstraints);
 
         CancelB.setText("Cancelar");
+        CancelB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelBActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 12;
@@ -344,7 +384,7 @@ public class NewRequestPanel extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
@@ -357,7 +397,7 @@ public class NewRequestPanel extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridx = 9;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
@@ -365,7 +405,7 @@ public class NewRequestPanel extends javax.swing.JPanel {
 
         jLabel1.setText("Id de cabina");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
         jPanel2.add(jLabel1, gridBagConstraints);
@@ -376,18 +416,30 @@ public class NewRequestPanel extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 100;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
         jPanel2.add(CabinTF, gridBagConstraints);
 
+        jLabel5.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        jLabel5.setText("Total");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 13, 0, 13);
+        jPanel2.add(jLabel5, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(0, 13, 0, 13);
+        jPanel2.add(totalLbl, gridBagConstraints);
+
         add(jPanel2, java.awt.BorderLayout.SOUTH);
     }// </editor-fold>//GEN-END:initComponents
-    
-    
-    
+
+
     private void GenderBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_GenderBoxItemStateChanged
-      
+
     }//GEN-LAST:event_GenderBoxItemStateChanged
 
     private void GenderBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_GenderBoxFocusGained
@@ -438,7 +490,7 @@ public class NewRequestPanel extends javax.swing.JPanel {
             c = daoT.findID(article);
             article = daoT.read(c);
             foldChk.setSelected(false);
-            foldChk.setEnabled(article.getFold());       
+            foldChk.setEnabled(article.getFold());
         }// TODO add your handling code here:
     }//GEN-LAST:event_ClothBoxItemStateChanged
 
@@ -455,7 +507,7 @@ public class NewRequestPanel extends javax.swing.JPanel {
         String articleName, articleGender;
         int articleId, quantity;
 
-        artR = new ArticleRequest();
+        artR = editMode ? editArticleRequest : new ArticleRequest();
         art = new Article();
 
         double price = 0.0;
@@ -486,15 +538,22 @@ public class NewRequestPanel extends javax.swing.JPanel {
             artR.setService("Lavado y Planchado");
         }
         artR.setSubtotal(quantity * price);
-        if (XpressChk.isSelected()){
+        if (XpressChk.isSelected()) {
             artR.setExpress(true);
-            price=price*1.5;
-            artR.setSubtotal(quantity*price);
-        }else {
-             artR.setSubtotal(quantity*price);
+            price *= 1.5;
+            artR.setSubtotal(quantity * price);
+        } else {
+            artR.setSubtotal(quantity * price);
         }
+        
+        if (editMode) {
+            partialTotal -= editArticleRequest.getSubtotal();
+            articleRequestsSet.remove(editArticleRequest);
+        }
+        partialTotal += artR.getSubtotal();
+        NumberFormat formatter = NumberFormat.getCurrencyInstance(Locale.US);
+        totalLbl.setText(String.valueOf(formatter.format(partialTotal)));
         artR.setFold(foldChk.isSelected());
-        artR.setExpress(XpressChk.isSelected());
 
         articleRequestsSet.add(artR);
 
@@ -523,7 +582,7 @@ public class NewRequestPanel extends javax.swing.JPanel {
 
     private void createRequestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createRequestBtnActionPerformed
         cabin = new Cabin();
-        request = new Request();
+        request = superEditMode ? daoR.read(editRequest.getId()) : new Request();
         Cabin cab = daoC.read(Integer.parseInt(CabinTF.getText()));
         if (cab == null) {
             cabin.setId(Integer.parseInt(CabinTF.getText()));
@@ -535,16 +594,22 @@ public class NewRequestPanel extends javax.swing.JPanel {
         request.setCreated_at(new Date(System.currentTimeMillis()));
         double total = articleRequestsSet.stream().mapToDouble(ar -> ar.getSubtotal()).sum();
         request.setTotal(total);
-        daoR.create(request);
+        request.setArticleSet(articleRequestsSet);
         articleRequestsSet.forEach((ar) -> {
             ar.setRequest(request);
-            daoAR.create(ar);
         });
+        if (superEditMode) {
+            daoR.update(request);
+        } else {
+            daoR.create(request);
+        }
         FormUtils.clearFields(CabinTF, GenderBox, ClothBox, QuantityTF, washChk, ironChk, ironWashChk, foldChk, XpressChk);
         articleRequestsSet.clear();
         TableUtils.clearTable(requestTable);
         FormUtils.enableComponents(washChk, ironChk, ironWashChk, foldChk);
-
+        editMode = false;
+        partialTotal = 0;
+        totalLbl.setText("$0.0");
     }//GEN-LAST:event_createRequestBtnActionPerformed
 
     private void cancelRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelRequestActionPerformed
@@ -561,6 +626,21 @@ public class NewRequestPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_CabinTFKeyTyped
 
+    private void requestTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_requestTableMouseClicked
+        ViewRequestsControl.TableClicked(GenderBox, ClothBox, QuantityTF, washChk, ironChk, ironWashChk, foldChk, XpressChk, requestTable);
+        AddB.setText("Editar");
+        editMode = true;
+        editArticleRequest = daoAR.read((Integer) requestTable.getValueAt(requestTable.getSelectedRow(), 0));
+    }//GEN-LAST:event_requestTableMouseClicked
+
+    private void CancelBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBActionPerformed
+        FormUtils.clearFields(GenderBox, ClothBox, QuantityTF, washChk, ironChk, ironWashChk, foldChk, XpressChk);
+        requestTable.clearSelection();
+        if (editMode) {
+            AddB.setText("Agregar");
+        }
+        editMode = false;
+    }//GEN-LAST:event_CancelBActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddB;
@@ -580,10 +660,12 @@ public class NewRequestPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable requestTable;
+    private javax.swing.JLabel totalLbl;
     private javax.swing.JCheckBox washChk;
     // End of variables declaration//GEN-END:variables
 }

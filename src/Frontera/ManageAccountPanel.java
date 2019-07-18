@@ -104,7 +104,7 @@ public class ManageAccountPanel extends javax.swing.JPanel {
         countryTF = new javax.swing.JTextField();
         adressTF = new javax.swing.JTextField();
         phoneTF = new javax.swing.JTextField();
-        passwordTF = new javax.swing.JTextField();
+        passwordTF = new javax.swing.JPasswordField();
         adminC = new javax.swing.JCheckBox();
         createB = new javax.swing.JButton();
         editAccountButton = new javax.swing.JButton();
@@ -746,7 +746,11 @@ public class ManageAccountPanel extends javax.swing.JPanel {
     private javax.swing.JPanel leftEditPanel;
     private javax.swing.JPanel leftPanel;
     private javax.swing.JTextField nameTF;
+    /*
     private javax.swing.JTextField passwordTF;
+    */
+
+    private javax.swing.JPasswordField passwordTF;
     private javax.swing.JTextField phoneTF;
     private javax.swing.JPanel rightEditPanel;
     private javax.swing.JPanel topDialog;

@@ -5,14 +5,11 @@
  */
 package DAO;
 
-import Entidad.Article;
 import Entidad.ArticleRequest;
-import com.sun.org.apache.xerces.internal.xs.StringList;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.NonUniqueResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
@@ -30,20 +27,20 @@ public class DAOArticleRequest extends GenericDAO<ArticleRequest>{
         super(Persistence.createEntityManagerFactory("LoginJPAPU"));
     }
      
-      public List<String> findIds() {
-        
-        List list = new ArrayList();
-        EntityManager em = Provider();
-        Query q = em.createQuery("SELECT DISTINCT u.id FROM Request u");
-        try {
-            
-            list = q.getResultList();
-        } catch (Exception e) {
-        } finally {
-            em.close();
-            return list;
-        }
-    }
+//      public List<String> findIds() {
+//        
+//        List list = new ArrayList();
+//        EntityManager em = Provider();
+//        Query q = em.createQuery("SELECT DISTINCT u.id FROM Request u");
+//        try {
+//            
+//            list = q.getResultList();
+//        } catch (Exception e) {
+//        } finally {
+//            em.close();
+//            return list;
+//        }
+//    }
       public List<ArticleRequest> findByIds(int id) {
         
         List list = new ArrayList();

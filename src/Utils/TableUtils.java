@@ -5,7 +5,6 @@
  */
 package Utils;
 
-import DAO.DAOArticle;
 import DAO.DAOArticleRequest;
 import Entidad.Article;
 import Entidad.ArticleRequest;
@@ -13,7 +12,6 @@ import Entidad.Request;
 import Entidad.User;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -22,7 +20,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
-import sun.net.www.content.image.gif;
 
 /**
  *
@@ -49,8 +46,8 @@ public class TableUtils {
             "Género", "Nombre", "Lavado", "Lavado y Planchado", "Planchado", "Doblado"
         });
         for (Article t : list) {
-            model.addRow(new Object[]{t.getGender(), t.getClothName(), t.getWashPrice(), t.getWaiPrice(), t.getIronPrice()
-            ,t.getFoldPrice()});
+            model.addRow(new Object[]{t.getGender(), t.getClothName(), t.getWashPrice(), t.getWaiPrice(), t.getIronPrice(),
+                 t.getFoldPrice()});
         }
         table.setModel(model);
     }
@@ -92,6 +89,17 @@ public class TableUtils {
         table.setModel(model);
     }
 
+    public static void fillTableRequest(JTable table, List<Request> list) {
+        DefaultTableModel model = new DefaultTableModel(null, new String[]{
+            "ID", "Cabina", "Total", "Nº Prendas", "Fecha de creación"
+        });
+
+        for (Request r : list) {
+            model.addRow(new Object[]{r.getId(), r.getCabin().getId(), r.getTotal(), r.getArticleSet().size(), r.getCreated_at()});
+        }
+        table.setModel(model);
+    }
+
     public class MiModelo extends DefaultTableModel {
 
         /**
@@ -107,18 +115,7 @@ public class TableUtils {
             return Object.class;
         }
     }
-    
-    public class MiModelo extends DefaultTableModel
-{
-   /** Primera columna Boolean, segunda Integer y el resto Object */
-   public Class getColumnClass(int columna)
-   {
-      if (columna == 0) return Boolean.class;
-      if (columna == 1) return Integer.class;
-      return Object.class;
-   }
-}
-    
+
     public static void addPopUpMenu(JTable table) {
         final JPopupMenu popupMenu = new JPopupMenu();
         JMenuItem editItem = new JMenuItem("Editar");

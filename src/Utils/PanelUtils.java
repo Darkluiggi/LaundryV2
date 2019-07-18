@@ -14,9 +14,7 @@ import javax.swing.JPanel;
  *
  * @author leons
  */
-public class PanelUtils {
-    ManageArticlePanel art = new ManageArticlePanel();
-    
+public class PanelUtils {    
     public PanelUtils() {
     }
      public static void add(JPanel panelA, ManageArticlePanel art){

@@ -57,7 +57,7 @@ public class FormUtils {
                     text.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
                     ex = EXCEPTION;
                 }else{
-                    ex = "";
+                    ex = ex.isEmpty() ? "" : EXCEPTION;
                     text.setBorder(defaultBorder);
                 }
             }else if(jComponent instanceof JComboBox){
@@ -67,7 +67,7 @@ public class FormUtils {
                     combo.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
                     ex = EXCEPTION;
                 }else{
-                    ex = "";
+                    ex = ex.isEmpty() ? "" : EXCEPTION;
                     combo.setBorder(defaultBorder);
                 }
             }

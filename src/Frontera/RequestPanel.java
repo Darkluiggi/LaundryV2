@@ -5,7 +5,9 @@
  */
 package Frontera;
 
+import DAO.DAORequest;
 import Utils.PanelUtils;
+import Utils.TableUtils;
 
 /**
  *
@@ -16,15 +18,20 @@ public class RequestPanel extends javax.swing.JPanel {
     /**
      * Creates new form RequestPanel
      */
-    public NewRequestPanel newRequest;
-    public ViewRequest viewRequests;
-    public EditRequest editRequest;
+    private NewRequestPanel newRequest;
+    private ViewRequest viewRequests;
+    private EditRequest editRequest;
+    
+    private DAORequest daoR;
     
     public RequestPanel() {
         initComponents();
         newRequest = new NewRequestPanel();
         viewRequests = new ViewRequest();
         editRequest = new EditRequest();
+        
+        daoR = new DAORequest();
+        
         PanelUtils.change(addRequestTab, newRequest);
         
         tabs.addChangeListener(e -> {
@@ -34,6 +41,7 @@ public class RequestPanel extends javax.swing.JPanel {
                     break;
                 case 1:
                     PanelUtils.change(viewRequestsTab, viewRequests);
+                    TableUtils.fillTableRequest(viewRequests.getRequestTable(), daoR.findAll());
                     break;
                 default:
                     PanelUtils.change(editRequestTab, editRequest);

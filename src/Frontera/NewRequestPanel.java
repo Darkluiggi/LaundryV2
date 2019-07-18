@@ -17,7 +17,6 @@ import Utils.BoxUtils;
 import Utils.FormUtils;
 import Utils.TableUtils;
 import java.awt.event.ActionEvent;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -42,10 +41,15 @@ public class NewRequestPanel extends javax.swing.JPanel {
     private Request request;
     private Cabin cabin;
     private DAOCabin daoC;
+    private Request editRequest;
 
     public NewRequestPanel() {
+        this(null);
+    }
+    
+    public NewRequestPanel(Request r){
+        this.editRequest = r;
         initComponents();
-        TableUtils.fillTableArticleRequest(requestTable, Collections.emptyList());
         daoT = new DAOArticle();
         articleRequestsSet = new HashSet<>();
         daoAR = new DAOArticleRequest();
@@ -56,8 +60,8 @@ public class NewRequestPanel extends javax.swing.JPanel {
         GenderBox.addActionListener((ev) -> {
             genderSelected(ev);
         });
-
         GenderBox.putClientProperty("JComboBox.isTableCellEditor", Boolean.TRUE);
+        TableUtils.fillTableArticleRequest(requestTable, r != null ? daoAR.findByIDs(r.getId()) : Collections.emptyList());
     }
 
     private void genderSelected(ActionEvent evt) {

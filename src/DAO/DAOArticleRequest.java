@@ -41,12 +41,12 @@ public class DAOArticleRequest extends GenericDAO<ArticleRequest>{
 //            return list;
 //        }
 //    }
-      public List<ArticleRequest> findByIds(int id) {
+      public List<ArticleRequest> findByIDs(int id) {
         
         List list = new ArrayList();
         EntityManager em = Provider();
         Query q = em.createQuery("SELECT u FROM ArticleRequest u " 
-                + "WHERE u.request.id LIKE :id ")
+                + "WHERE u.request.id = :id ")
                 .setParameter("id", id);
         try {
             list = q.getResultList();

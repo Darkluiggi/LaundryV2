@@ -315,8 +315,7 @@ public class ManageArticlePanel extends javax.swing.JPanel implements articleInt
     }//GEN-LAST:event_foldTFActionPerformed
 
     private void AcceptBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptBActionPerformed
-        
-                  
+
         String exception = FormUtils.validateField(NameTF, GenderBox, WashTF, IronTF, IronandWashTF, foldTF);
         if (exception.equals("")) {
             ExceptionField.setText(exception);

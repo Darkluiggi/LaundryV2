@@ -1,0 +1,2 @@
+Mujer,Blusa,Lavado,false,false,2,4.0
+Hombre,Camisa,Lavado,false,false,2,2.0

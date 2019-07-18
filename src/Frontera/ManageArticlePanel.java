@@ -46,6 +46,36 @@ public class ManageArticlePanel extends javax.swing.JPanel implements articleInt
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        confirmUpdate = new javax.swing.JDialog();
+        topDialog1 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        centerDialog1 = new javax.swing.JPanel();
+        ContraseñaNUsuarioLabel1 = new javax.swing.JLabel();
+        IDNUsuarioLabel1 = new javax.swing.JLabel();
+        labelID1 = new javax.swing.JLabel();
+        labelNuevoUsuario1 = new javax.swing.JLabel();
+        labelContraseña1 = new javax.swing.JLabel();
+        botDialog1 = new javax.swing.JPanel();
+        AceptarBDialogo1 = new javax.swing.JButton();
+        CancelarBDialogo1 = new javax.swing.JButton();
+        confirmCreate = new javax.swing.JDialog();
+        topDialog = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        centerDialog = new javax.swing.JPanel();
+        name = new javax.swing.JLabel();
+        gender = new javax.swing.JLabel();
+        labelGender = new javax.swing.JLabel();
+        labelNuevoUsuario = new javax.swing.JLabel();
+        labelName = new javax.swing.JLabel();
+        labelWashPrice = new javax.swing.JLabel();
+        labelWaiPrice = new javax.swing.JLabel();
+        labelIron = new javax.swing.JLabel();
+        washPrice = new javax.swing.JLabel();
+        WAIPrice = new javax.swing.JLabel();
+        Iron = new javax.swing.JLabel();
+        botDialog = new javax.swing.JPanel();
+        AceptarBDialogo = new javax.swing.JButton();
+        CancelarBDialogo = new javax.swing.JButton();
         Container = new javax.swing.JPanel();
         left = new javax.swing.JPanel();
         newArticlePanel = new javax.swing.JPanel();
@@ -88,6 +118,203 @@ public class ManageArticlePanel extends javax.swing.JPanel implements articleInt
         centerScroll = new javax.swing.JScrollPane();
         schemaClothes = new javax.swing.JTable();
         ExceptionField = new javax.swing.JLabel();
+
+        confirmUpdate.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        confirmUpdate.setTitle("Confirmar: Nuevo Usuario");
+        confirmUpdate.setLocation(new java.awt.Point(0, 0));
+        confirmUpdate.setResizable(false);
+        confirmUpdate.setSize(new java.awt.Dimension(440, 240));
+
+        topDialog1.setLayout(new java.awt.GridLayout());
+
+        jLabel4.setText("Se editará el usuario seleccionado, ¿continuar?");
+        topDialog1.add(jLabel4);
+
+        confirmUpdate.getContentPane().add(topDialog1, java.awt.BorderLayout.NORTH);
+
+        centerDialog1.setLayout(new java.awt.GridBagLayout());
+
+        ContraseñaNUsuarioLabel1.setText("###################");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        centerDialog1.add(ContraseñaNUsuarioLabel1, gridBagConstraints);
+
+        IDNUsuarioLabel1.setText("###################");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        centerDialog1.add(IDNUsuarioLabel1, gridBagConstraints);
+
+        labelID1.setText("ID del usuario:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        centerDialog1.add(labelID1, gridBagConstraints);
+
+        labelNuevoUsuario1.setText("¿Editar usuario?");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        centerDialog1.add(labelNuevoUsuario1, gridBagConstraints);
+
+        labelContraseña1.setText("Contraseña:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        centerDialog1.add(labelContraseña1, gridBagConstraints);
+
+        confirmUpdate.getContentPane().add(centerDialog1, java.awt.BorderLayout.LINE_START);
+
+        botDialog1.setLayout(new java.awt.GridLayout(1, 2, 5, 5));
+
+        AceptarBDialogo1.setText("Aceptar");
+        AceptarBDialogo1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        AceptarBDialogo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AceptarBDialogo1ActionPerformed(evt);
+            }
+        });
+        botDialog1.add(AceptarBDialogo1);
+
+        CancelarBDialogo1.setText("Cancelar");
+        CancelarBDialogo1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CancelarBDialogo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarBDialogo1ActionPerformed(evt);
+            }
+        });
+        botDialog1.add(CancelarBDialogo1);
+
+        confirmUpdate.getContentPane().add(botDialog1, java.awt.BorderLayout.SOUTH);
+
+        confirmCreate.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        confirmCreate.setTitle("Confirmar: Nuevo Usuario");
+        confirmCreate.setLocation(new java.awt.Point(0, 0));
+        confirmCreate.setResizable(false);
+        confirmCreate.setSize(new java.awt.Dimension(440, 240));
+
+        topDialog.setLayout(new java.awt.GridLayout());
+
+        jLabel3.setText("Se creará un nuevo artñiculo, este proceso es irreversible");
+        topDialog.add(jLabel3);
+
+        confirmCreate.getContentPane().add(topDialog, java.awt.BorderLayout.NORTH);
+
+        name.setText("###################");
+
+        gender.setText("###################");
+
+        labelGender.setText("Género");
+
+        labelNuevoUsuario.setText("¿Crear nuevo artículo?");
+
+        labelName.setText("Nombre");
+
+        labelWashPrice.setText("Precio lavado");
+
+        labelWaiPrice.setText("Pecio lavado y planchado");
+
+        labelIron.setText("Precio planchado");
+
+        washPrice.setText("###################");
+
+        WAIPrice.setText("###################");
+
+        Iron.setText("###################");
+
+        javax.swing.GroupLayout centerDialogLayout = new javax.swing.GroupLayout(centerDialog);
+        centerDialog.setLayout(centerDialogLayout);
+        centerDialogLayout.setHorizontalGroup(
+            centerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(centerDialogLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(centerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(centerDialogLayout.createSequentialGroup()
+                        .addComponent(labelGender, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(gender))
+                    .addGroup(centerDialogLayout.createSequentialGroup()
+                        .addComponent(labelName, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(name))
+                    .addGroup(centerDialogLayout.createSequentialGroup()
+                        .addComponent(labelWashPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(washPrice))
+                    .addGroup(centerDialogLayout.createSequentialGroup()
+                        .addComponent(labelWaiPrice, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(WAIPrice))
+                    .addGroup(centerDialogLayout.createSequentialGroup()
+                        .addGroup(centerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelIron, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelNuevoUsuario))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Iron)))
+                .addContainerGap())
+        );
+        centerDialogLayout.setVerticalGroup(
+            centerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(centerDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelNuevoUsuario)
+                .addGap(10, 10, 10)
+                .addGroup(centerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelGender)
+                    .addComponent(gender))
+                .addGap(10, 10, 10)
+                .addGroup(centerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelName)
+                    .addComponent(name))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(centerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelWashPrice)
+                    .addComponent(washPrice))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(centerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelWaiPrice)
+                    .addComponent(WAIPrice))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(centerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelIron)
+                    .addComponent(Iron))
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
+
+        confirmCreate.getContentPane().add(centerDialog, java.awt.BorderLayout.CENTER);
+
+        botDialog.setLayout(new java.awt.GridLayout(1, 2, 5, 5));
+
+        AceptarBDialogo.setText("Aceptar");
+        AceptarBDialogo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        AceptarBDialogo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AceptarBDialogoActionPerformed(evt);
+            }
+        });
+        botDialog.add(AceptarBDialogo);
+
+        CancelarBDialogo.setText("Cancelar");
+        CancelarBDialogo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CancelarBDialogo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarBDialogoActionPerformed(evt);
+            }
+        });
+        botDialog.add(CancelarBDialogo);
+
+        confirmCreate.getContentPane().add(botDialog, java.awt.BorderLayout.SOUTH);
 
         setPreferredSize(new java.awt.Dimension(700, 400));
 
@@ -281,7 +508,7 @@ public class ManageArticlePanel extends javax.swing.JPanel implements articleInt
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Container, javax.swing.GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE)
+                .addComponent(Container, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -319,13 +546,10 @@ public class ManageArticlePanel extends javax.swing.JPanel implements articleInt
                   
         String exception = FormUtils.validateField(NameTF, GenderBox, WashTF, IronTF, IronandWashTF, foldTF);
         if (exception.equals("")) {
-            ExceptionField.setText(exception);
-            ManageArticle.createArticle( GenderBox, NameTF, WashTF, IronandWashTF, IronTF,
-                    foldTF, WashC, WaiC, IronC, foldC);
+            confirmCreate.setVisible(true);
+            confirmCreate.setLocationRelativeTo(null);
             
-            TableUtils.fillTableArticle(schemaClothes, daoA.findAll());
-            FormUtils.clearFields(NameTF, GenderBox, WashTF, IronTF, IronandWashTF, foldTF);
-
+            ExceptionField.setText(exception);  
         }else{
             ExceptionField.setText(exception);
         }
@@ -345,17 +569,9 @@ public class ManageArticlePanel extends javax.swing.JPanel implements articleInt
     }//GEN-LAST:event_centerScrollMouseClicked
 
     private void CancelBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBActionPerformed
-        NameTF.setText("");
-        WashTF.setText("");
-        IronTF.setText("");
-        IronandWashTF.setText("");
-        foldTF.setText("");
         
-        WashC.setSelected(false);
-        IronC.setSelected(false);
-        WaiC.setSelected(false);
-        foldC.setSelected(false);
-               
+        FormUtils.clearFields(NameTF,WashTF,IronTF,IronandWashTF,foldTF,WashC,
+                IronC,WaiC,IronC,foldC);
         
     }//GEN-LAST:event_CancelBActionPerformed
 
@@ -374,15 +590,44 @@ public class ManageArticlePanel extends javax.swing.JPanel implements articleInt
             }     
     }//GEN-LAST:event_editButtonActionPerformed
 
+    private void AceptarBDialogo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarBDialogo1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AceptarBDialogo1ActionPerformed
+
+    private void CancelarBDialogo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBDialogo1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CancelarBDialogo1ActionPerformed
+
+    private void AceptarBDialogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarBDialogoActionPerformed
+            
+            ManageArticle.createArticle( GenderBox, NameTF, WashTF, IronandWashTF, IronTF,
+                    foldTF, WashC, WaiC, IronC, foldC);
+            
+            TableUtils.fillTableArticle(schemaClothes, daoA.findAll());
+            FormUtils.clearFields(NameTF, GenderBox, WashTF, IronTF, IronandWashTF, foldTF);
+            confirmCreate.dispose();
+    }//GEN-LAST:event_AceptarBDialogoActionPerformed
+
+    private void CancelarBDialogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBDialogoActionPerformed
+        confirmCreate.dispose();                 // TODO add your handling code here:
+    }//GEN-LAST:event_CancelarBDialogoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AcceptB;
+    private javax.swing.JButton AceptarBDialogo;
+    private javax.swing.JButton AceptarBDialogo1;
     private javax.swing.JButton AddGenderB;
     private javax.swing.JButton CancelB;
+    private javax.swing.JButton CancelarBDialogo;
+    private javax.swing.JButton CancelarBDialogo1;
     private javax.swing.JPanel Container;
+    private javax.swing.JLabel ContraseñaNUsuarioLabel1;
     private javax.swing.JLabel ExceptionField;
     protected static javax.swing.JComboBox<String> GenderBox;
     private javax.swing.JLabel GenderL;
+    private javax.swing.JLabel IDNUsuarioLabel1;
+    private javax.swing.JLabel Iron;
     private javax.swing.JLabel IronAndWashL;
     private javax.swing.JCheckBox IronC;
     private javax.swing.JLabel IronL;
@@ -391,14 +636,21 @@ public class ManageArticlePanel extends javax.swing.JPanel implements articleInt
     private javax.swing.JLabel LaundryL;
     private javax.swing.JLabel NameL;
     private javax.swing.JTextField NameTF;
+    private javax.swing.JLabel WAIPrice;
     private javax.swing.JCheckBox WaiC;
     private javax.swing.JCheckBox WashC;
     private javax.swing.JTextField WashTF;
     private javax.swing.JPanel bot;
+    private javax.swing.JPanel botDialog;
+    private javax.swing.JPanel botDialog1;
     private javax.swing.JPanel center;
+    private javax.swing.JPanel centerDialog;
+    private javax.swing.JPanel centerDialog1;
     private javax.swing.JPanel centerLeftPanel;
     private javax.swing.JScrollPane centerScroll;
     private javax.swing.JPanel chekboxPanel;
+    private javax.swing.JDialog confirmCreate;
+    private javax.swing.JDialog confirmUpdate;
     private javax.swing.JButton editButton;
     private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler11;
@@ -412,21 +664,37 @@ public class ManageArticlePanel extends javax.swing.JPanel implements articleInt
     private javax.swing.Box.Filler filler8;
     private javax.swing.JCheckBox foldC;
     private javax.swing.JTextField foldTF;
+    private javax.swing.JLabel gender;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel labelContraseña1;
+    private javax.swing.JLabel labelGender;
+    private javax.swing.JLabel labelID1;
+    private javax.swing.JLabel labelIron;
+    private javax.swing.JLabel labelName;
+    private javax.swing.JLabel labelNuevoUsuario;
+    private javax.swing.JLabel labelNuevoUsuario1;
+    private javax.swing.JLabel labelWaiPrice;
+    private javax.swing.JLabel labelWashPrice;
     private javax.swing.JPanel left;
+    private javax.swing.JLabel name;
     private javax.swing.JPanel newArticlePanel;
     public static javax.swing.JTable schemaClothes;
     private javax.swing.JPanel topCenter;
+    private javax.swing.JPanel topDialog;
+    private javax.swing.JPanel topDialog1;
     private javax.swing.JPanel verPanel;
+    private javax.swing.JLabel washPrice;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public JComboBox getGenderBox() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return GenderBox; //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public JTable getSchemaClothes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return schemaClothes; //To change body of generated methods, choose Tools | Templates.
     }
 }

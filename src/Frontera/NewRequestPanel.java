@@ -15,14 +15,18 @@ import Entidad.Cabin;
 import Entidad.Request;
 import Utils.BoxUtils;
 import Utils.FormUtils;
+import Utils.PrintUtils;
 import Utils.TableUtils;
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.awt.event.ActionEvent;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Set;
 import javax.swing.DefaultComboBoxModel;
 
@@ -38,7 +42,7 @@ public class NewRequestPanel extends javax.swing.JPanel {
     private DAORequest daoR;
     private Article art;
     private Set<ArticleRequest> articleRequestsSet;
-    private Hashtable<String, String[]> subItems= new Hashtable<String, String[]>();
+    private Hashtable<String, String[]> subItems = new Hashtable<String, String[]>();
     private Request request;
     private Cabin cabin;
     private DAOCabin daoC;
@@ -53,25 +57,22 @@ public class NewRequestPanel extends javax.swing.JPanel {
         daoC = new DAOCabin();
         createRequestBtn.setEnabled(false);
         BoxUtils.updateBox(daoT.getGenders(), GenderBox);
-        GenderBox.addActionListener((ev)->{
+        GenderBox.addActionListener((ev) -> {
             genderSelected(ev);
         });
-                
+
         GenderBox.putClientProperty("JComboBox.isTableCellEditor", Boolean.TRUE);
     }
-    
-    private void genderSelected(ActionEvent evt){
-        String item = (String)GenderBox.getSelectedItem();
+
+    private void genderSelected(ActionEvent evt) {
+        String item = (String) GenderBox.getSelectedItem();
         BoxUtils.getArticlesbyGender(item, subItems);
         Object o = subItems.get(item);
 
-        if (o == null)
-        {
-            ClothBox.setModel( new DefaultComboBoxModel() );
-        }
-        else
-        {
-            ClothBox.setModel( new DefaultComboBoxModel( (String[])o ) );
+        if (o == null) {
+            ClothBox.setModel(new DefaultComboBoxModel());
+        } else {
+            ClothBox.setModel(new DefaultComboBoxModel((String[]) o));
         }
     }
 
@@ -85,6 +86,26 @@ public class NewRequestPanel extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        saveConfirmationDialog = new javax.swing.JDialog();
+        jLabel6 = new javax.swing.JLabel();
+        cancelPrintButton = new javax.swing.JButton();
+        savePrintButton = new javax.swing.JButton();
+        saveFileChooser = new javax.swing.JFileChooser();
+        confirmCreate = new javax.swing.JDialog();
+        topDialog = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        centerDialog = new javax.swing.JPanel();
+        IDNUsuarioLabel = new javax.swing.JLabel();
+        labelID = new javax.swing.JLabel();
+        labelNuevoUsuario = new javax.swing.JLabel();
+        botDialog = new javax.swing.JPanel();
+        AceptarBDialogo = new javax.swing.JButton();
+        CancelarBDialogo = new javax.swing.JButton();
+        confirmPrint = new javax.swing.JDialog();
+        jLabel5 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        printButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -107,6 +128,184 @@ public class NewRequestPanel extends javax.swing.JPanel {
         cancelRequest = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         CabinTF = new javax.swing.JTextField();
+
+        saveConfirmationDialog.setTitle("Confirmar guardado");
+        saveConfirmationDialog.setBounds(new java.awt.Rectangle(300, 300, 300, 150));
+        saveConfirmationDialog.setModal(true);
+        saveConfirmationDialog.setResizable(false);
+        saveConfirmationDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        jLabel6.setText("<html>\n<pre>\nSe creará un arcchivo .txt\nSeleccione a continuación la dirección \nde guardado del archivo.\n</pre>\n</html>");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        saveConfirmationDialog.getContentPane().add(jLabel6, gridBagConstraints);
+
+        cancelPrintButton.setText("Cancelar");
+        cancelPrintButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cancelPrintButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelPrintButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        saveConfirmationDialog.getContentPane().add(cancelPrintButton, gridBagConstraints);
+
+        savePrintButton.setText("Guardar");
+        savePrintButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        savePrintButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                savePrintButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        saveConfirmationDialog.getContentPane().add(savePrintButton, gridBagConstraints);
+
+        saveFileChooser.setDialogType(javax.swing.JFileChooser.SAVE_DIALOG);
+        saveFileChooser.setApproveButtonToolTipText("save");
+        saveFileChooser.setDialogTitle("Guardar");
+        saveFileChooser.setFileFilter(null);
+        saveFileChooser.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
+        saveFileChooser.setSelectedFiles(null);
+
+        confirmCreate.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        confirmCreate.setTitle("Confirmar: Nuevo Usuario");
+        confirmCreate.setLocation(new java.awt.Point(0, 0));
+        confirmCreate.setResizable(false);
+        confirmCreate.setSize(new java.awt.Dimension(440, 240));
+
+        topDialog.setLayout(new java.awt.GridLayout(1, 0));
+
+        jLabel7.setText("Se creará una nueva solicitud de servicio");
+        topDialog.add(jLabel7);
+
+        confirmCreate.getContentPane().add(topDialog, java.awt.BorderLayout.NORTH);
+
+        IDNUsuarioLabel.setText("###################");
+
+        labelID.setText("ID de cabina:");
+
+        labelNuevoUsuario.setText("¿Crear nueva solicitud de servicio?");
+
+        javax.swing.GroupLayout centerDialogLayout = new javax.swing.GroupLayout(centerDialog);
+        centerDialog.setLayout(centerDialogLayout);
+        centerDialogLayout.setHorizontalGroup(
+            centerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(centerDialogLayout.createSequentialGroup()
+                .addGroup(centerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelNuevoUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(centerDialogLayout.createSequentialGroup()
+                        .addComponent(labelID, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(IDNUsuarioLabel)
+                        .addGap(0, 13, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        centerDialogLayout.setVerticalGroup(
+            centerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(centerDialogLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(labelNuevoUsuario)
+                .addGap(18, 18, 18)
+                .addGroup(centerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelID)
+                    .addComponent(IDNUsuarioLabel))
+                .addContainerGap(47, Short.MAX_VALUE))
+        );
+
+        confirmCreate.getContentPane().add(centerDialog, java.awt.BorderLayout.CENTER);
+
+        botDialog.setLayout(new java.awt.GridLayout(1, 2, 5, 5));
+
+        AceptarBDialogo.setText("Aceptar");
+        AceptarBDialogo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        AceptarBDialogo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AceptarBDialogoActionPerformed(evt);
+            }
+        });
+        botDialog.add(AceptarBDialogo);
+
+        CancelarBDialogo.setText("Cancelar");
+        CancelarBDialogo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CancelarBDialogo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarBDialogoActionPerformed(evt);
+            }
+        });
+        botDialog.add(CancelarBDialogo);
+
+        confirmCreate.getContentPane().add(botDialog, java.awt.BorderLayout.SOUTH);
+
+        confirmPrint.setSize(new java.awt.Dimension(260, 91));
+
+        jLabel5.setText("¿Desea imprimir la factura?");
+
+        printButton.setText("Imprimir");
+        printButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        printButton.setFocusPainted(false);
+        printButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        printButton.setMaximumSize(new java.awt.Dimension(10000, 10000));
+        printButton.setMinimumSize(new java.awt.Dimension(0, 0));
+        printButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printButtonActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Cancelar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(printButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(printButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jButton1)
+        );
+
+        javax.swing.GroupLayout confirmPrintLayout = new javax.swing.GroupLayout(confirmPrint.getContentPane());
+        confirmPrint.getContentPane().setLayout(confirmPrintLayout);
+        confirmPrintLayout.setHorizontalGroup(
+            confirmPrintLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(confirmPrintLayout.createSequentialGroup()
+                .addGroup(confirmPrintLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(confirmPrintLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(6, 6, 6))
+        );
+        confirmPrintLayout.setVerticalGroup(
+            confirmPrintLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(confirmPrintLayout.createSequentialGroup()
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         setMaximumSize(new java.awt.Dimension(2147483647, 1000));
         setMinimumSize(new java.awt.Dimension(800, 400));
@@ -396,11 +595,10 @@ public class NewRequestPanel extends javax.swing.JPanel {
 
         add(jPanel2, java.awt.BorderLayout.SOUTH);
     }// </editor-fold>//GEN-END:initComponents
-    
-    
-    
+
+
     private void GenderBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_GenderBoxItemStateChanged
-      
+
     }//GEN-LAST:event_GenderBoxItemStateChanged
 
     private void GenderBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_GenderBoxFocusGained
@@ -416,10 +614,10 @@ public class NewRequestPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_washChkStateChanged
 
     private void washChkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_washChkActionPerformed
-        if(washChk.isSelected()){
+        if (washChk.isSelected()) {
             ironWashChk.setEnabled(false);
             ironChk.setEnabled(false);
-        }else{
+        } else {
             ironWashChk.setEnabled(true);
             ironChk.setEnabled(true);
         }
@@ -430,10 +628,10 @@ public class NewRequestPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_ironChkStateChanged
 
     private void ironChkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ironChkActionPerformed
-        if(ironChk.isSelected()){
+        if (ironChk.isSelected()) {
             ironWashChk.setEnabled(false);
             washChk.setEnabled(false);
-        }else{
+        } else {
             washChk.setEnabled(true);
             ironWashChk.setEnabled(true);
         }
@@ -444,7 +642,7 @@ public class NewRequestPanel extends javax.swing.JPanel {
         String a, b;
         int c;
         a = (String) ClothBox.getSelectedItem();
-        b = (String)GenderBox.getSelectedItem();
+        b = (String) GenderBox.getSelectedItem();
         article.setGender(b);
         article.setClothName(a);
         c = daoT.findID(article);
@@ -461,63 +659,63 @@ public class NewRequestPanel extends javax.swing.JPanel {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_ClothBoxActionPerformed
-        
-    
+
+
     private void AddBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBActionPerformed
         String articleName, articleGender;
-        int articleId , quantity;
-        
+        int articleId, quantity;
+
         artR = new ArticleRequest();
         art = new Article();
-        
+
         double price = 0.0;
-        
+
         articleName = (String) ClothBox.getSelectedItem();
         articleGender = (String) GenderBox.getSelectedItem();
-        
+
         art.setClothName(articleName);
         art.setGender(articleGender);
-        
+
         articleId = daoT.findID(art);
         art = daoT.read(articleId);
-        
+
         artR.setArticle(art);
-        
+
         quantity = Integer.parseInt(QuantityTF.getText());
-        
+
         artR.setQuantity(quantity);
-        
-        if(washChk.isSelected()){
+
+        if (washChk.isSelected()) {
             price = art.getWashPrice();
             artR.setService("Lavado");
-        }else if (ironChk.isSelected()) {
+        } else if (ironChk.isSelected()) {
             price = art.getIronPrice();
             artR.setService("Planchado");
-        }else if (ironWashChk.isSelected()) {
+        } else if (ironWashChk.isSelected()) {
             price = art.getWaiPrice();
             artR.setService("Lavado y Planchado");
         }
-        if (XpressChk.isSelected()){
+        if (XpressChk.isSelected()) {
             artR.setExpress(true);
-            price=price*1.5;
-            artR.setSubtotal(quantity*price);
-        }else {
-             artR.setSubtotal(quantity*price);
+            price = price * 1.5;
+            artR.setSubtotal(quantity * price);
+        } else {
+            artR.setSubtotal(quantity * price);
         }
-       
-        
+
         artR.setFold(foldChk.isSelected());
         artR.setExpress(XpressChk.isSelected());
-        
+
         articleRequestsSet.add(artR);
-        
+
         TableUtils.fillTableArticleRequest(requestTable, new ArrayList<>(articleRequestsSet));
         FormUtils.clearFields(GenderBox, ClothBox, QuantityTF, washChk, ironChk, ironWashChk, foldChk, XpressChk);
-        if(articleRequestsSet.size()>0 && !CabinTF.getText().isEmpty()){
+        if (articleRequestsSet.size() > 0 && !CabinTF.getText().isEmpty()) {
             createRequestBtn.setEnabled(true);
         }
-        
+
         FormUtils.enableComponents(washChk, ironChk, ironWashChk, foldChk);
+        
     }//GEN-LAST:event_AddBActionPerformed
 
     private void ironWashChkStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ironWashChkStateChanged
@@ -525,36 +723,18 @@ public class NewRequestPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_ironWashChkStateChanged
 
     private void ironWashChkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ironWashChkActionPerformed
-        if(ironWashChk.isSelected()){
+        if (ironWashChk.isSelected()) {
             washChk.setEnabled(false);
             ironChk.setEnabled(false);
-        }else{
+        } else {
             washChk.setEnabled(true);
             ironChk.setEnabled(true);
         }
     }//GEN-LAST:event_ironWashChkActionPerformed
 
     private void createRequestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createRequestBtnActionPerformed
-        cabin = new Cabin();
-        request = new Request();
-        Cabin cab = daoC.read(Integer.parseInt(CabinTF.getText()));
-        if(cab == null){
-            cabin.setId(Integer.parseInt(CabinTF.getText()));
-            daoC.create(cabin);
-        }else{
-            cabin.setId(cab.getId());
-        }
-        request.setCabin(cabin);
-        request.setCreated_at(new Date(System.currentTimeMillis()));
-        daoR.create(request);
-        articleRequestsSet.forEach((ar) -> {
-            ar.setRequest(request);
-            daoAR.create(ar);
-        });
-        FormUtils.clearFields(CabinTF, GenderBox, ClothBox, QuantityTF, washChk, ironChk, ironWashChk, foldChk, XpressChk);
-        articleRequestsSet.clear();
-        TableUtils.clearTable(requestTable);
-        FormUtils.enableComponents(washChk, ironChk, ironWashChk, foldChk);
+
+        confirmCreate.setVisible(true);
 
     }//GEN-LAST:event_createRequestBtnActionPerformed
 
@@ -567,34 +747,127 @@ public class NewRequestPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_cancelRequestActionPerformed
 
     private void CabinTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CabinTFKeyTyped
-        if(articleRequestsSet.size()>0){
+        if (articleRequestsSet.size() > 0) {
             createRequestBtn.setEnabled(true);
         }
     }//GEN-LAST:event_CabinTFKeyTyped
 
+    private void cancelPrintButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelPrintButtonActionPerformed
+        saveConfirmationDialog.dispose();
+    }//GEN-LAST:event_cancelPrintButtonActionPerformed
+
+    private void savePrintButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savePrintButtonActionPerformed
+        saveConfirmationDialog.dispose();
+        saveFileChooser.showDialog(null, "Guardar");
+    }//GEN-LAST:event_savePrintButtonActionPerformed
+
+    private void AceptarBDialogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarBDialogoActionPerformed
+        cabin = new Cabin();
+        request = new Request();
+        Cabin cab = daoC.read(Integer.parseInt(CabinTF.getText()));
+        if (cab == null) {
+            cabin.setId(Integer.parseInt(CabinTF.getText()));
+            daoC.create(cabin);
+        } else {
+            cabin.setId(cab.getId());
+        }
+        request.setCabin(cabin);
+        request.setCreated_at(new Date(System.currentTimeMillis()));
+        daoR.create(request);
+        articleRequestsSet.forEach((ar) -> {
+            ar.setRequest(request);
+            daoAR.create(ar);
+        });
+        FormUtils.clearFields(CabinTF, GenderBox, ClothBox, QuantityTF, washChk, ironChk, ironWashChk, foldChk, XpressChk);
+        articleRequestsSet.clear();
+        
+        confirmCreate.dispose();
+        confirmPrint.setVisible(true);
+        confirmPrint.setLocationRelativeTo(null);
+
+    }//GEN-LAST:event_AceptarBDialogoActionPerformed
+
+    private void CancelarBDialogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBDialogoActionPerformed
+        confirmCreate.dispose();                 // TODO add your handling code here:
+    }//GEN-LAST:event_CancelarBDialogoActionPerformed
+
+    private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonActionPerformed
+////        saveConfirmationDialog.setVisible(true);
+//        List<String> row = new ArrayList();
+//        List<String> custInfo = new ArrayList();
+//        List<List<String>> t2Rows = new ArrayList();
+//        List<List<String>> t1Rows = new ArrayList();
+//        
+////        custInfo.add(request.getCreated_at().toString());
+////        custInfo.add(cabin.getResponsibleUser().getName());
+//         
+//        for (int i = 0; i < requestTable.getRowCount(); i++) //realiza un barrido por filas.
+//        {
+//            for (int j = 0; j < requestTable.getColumnCount(); j++) //realiza un barrido por columnas.
+//            {
+//                String a = ((requestTable.getValueAt(i, j)).toString());
+//                row.add(a);
+//
+//            }
+//            t1Rows.add(custInfo);
+//            t2Rows.add(row);
+//            
+//        }
+//        PrintUtils.Print(t2Rows,t1Rows);
+
+        TableUtils.guardaTabla(cabin, requestTable, request);
+        TableUtils.clearTable(requestTable);
+        FormUtils.enableComponents(washChk, ironChk, ironWashChk, foldChk);
+        confirmPrint.dispose();
+    }//GEN-LAST:event_printButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AceptarBDialogo;
     private javax.swing.JButton AddB;
     private javax.swing.JTextField CabinTF;
     private javax.swing.JButton CancelB;
+    private javax.swing.JButton CancelarBDialogo;
     private javax.swing.JComboBox<String> ClothBox;
     private javax.swing.JComboBox<String> GenderBox;
+    private javax.swing.JLabel IDNUsuarioLabel;
     private javax.swing.JTextField QuantityTF;
     private javax.swing.JCheckBox XpressChk;
+    private javax.swing.JPanel botDialog;
+    private javax.swing.JButton cancelPrintButton;
     private javax.swing.JButton cancelRequest;
+    private javax.swing.JPanel centerDialog;
     private javax.swing.JLabel clothL;
+    private javax.swing.JDialog confirmCreate;
+    private javax.swing.JDialog confirmPrint;
     private javax.swing.JButton createRequestBtn;
     private javax.swing.JCheckBox foldChk;
     private javax.swing.JCheckBox ironChk;
     private javax.swing.JCheckBox ironWashChk;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelID;
+    private javax.swing.JLabel labelNuevoUsuario;
+    private javax.swing.JButton printButton;
     private javax.swing.JTable requestTable;
+    private javax.swing.JDialog saveConfirmationDialog;
+    private javax.swing.JFileChooser saveFileChooser;
+    private javax.swing.JButton savePrintButton;
+    private javax.swing.JPanel topDialog;
     private javax.swing.JCheckBox washChk;
     // End of variables declaration//GEN-END:variables
 }

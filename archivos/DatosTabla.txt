@@ -1,0 +1,12 @@
+Lavandería a Bordo
+600 NW 1st Ave, Miami, FL‎
+Land: 812254630 Mob: 712205220 Fax: 812254639
+ 
+Fecha:  Thu Jul 18 12:42:18 COT 2019 
+ Solicitud Nº: 24
+Cliente: 
+_________________________________________
+Hombre|Camisa|Lavado|false|false|2|2.0
+_________________________________________
+Mujer|Chaqueta|Lavado|false|true|2|3.0
+_________________________________________

@@ -8,6 +8,8 @@ package Utils;
 import Control.Controller;
 import Entidad.Article;
 import Entidad.ArticleRequest;
+import Entidad.Cabin;
+import Entidad.Request;
 import Entidad.User;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -112,12 +114,22 @@ public class TableUtils {
         popupMenu.add(editItem);
         table.setComponentPopupMenu(popupMenu);
     }
-    public static void guardaTabla(JTable table){
+    public static void guardaTabla(Cabin cabin,JTable table, Request request){
         try {
-
+            String company = ""
+                + "Lavandería a Bordo\n"
+                + "600 NW 1st Ave, Miami, FL‎\n"
+                + "Land: 812254630 Mob: 712205220 Fax: 812254639\n"
+                + " \n";
             String sucursalesCSVFile = "archivos/DatosTabla.txt";
             BufferedWriter bfw = new BufferedWriter(new FileWriter(sucursalesCSVFile ));
-            bfw.write("_______________________________________________");
+            bfw.write(company);
+            bfw.write("Fecha:  ");
+            bfw.write(request.getCreated_at().toString() + " \n ");
+            bfw.write("Solicitud Nº: " + cabin.getId() + "\n");
+            bfw.write("Cliente: " );
+//          bfw.write(cabin.getResponsibleUser().getName());
+            bfw.write("\n_________________________________________");
             bfw.newLine(); 
             for (int i = 0 ; i < table.getRowCount(); i++) //realiza un barrido por filas.
             {
@@ -128,8 +140,8 @@ public class TableUtils {
                         bfw.write("|");
                     }
                 }
-                bfw.newLine();
-                bfw.write("_______________________________________________");
+               
+                bfw.write("\n_________________________________________");
                 bfw.newLine();//inserta nueva linea.
             }
 

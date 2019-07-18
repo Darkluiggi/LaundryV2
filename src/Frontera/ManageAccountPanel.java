@@ -57,44 +57,18 @@ public class ManageAccountPanel extends javax.swing.JPanel {
         botDialog = new javax.swing.JPanel();
         AceptarBDialogo = new javax.swing.JButton();
         CancelarBDialogo = new javax.swing.JButton();
-        editPanel = new javax.swing.JPanel();
-        centerEditPanel = new javax.swing.JPanel();
-        filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
-        idEditLabel = new javax.swing.JLabel();
-        editNameTF = new javax.swing.JTextField();
-        editLastNameTF = new javax.swing.JTextField();
-        editUserNameTF = new javax.swing.JTextField();
-        editPasswordTF = new javax.swing.JTextField();
-        editCountryTF = new javax.swing.JTextField();
-        editPhoneTF = new javax.swing.JTextField();
-        editAdressTF = new javax.swing.JTextField();
-        editAdminC = new javax.swing.JCheckBox();
-        rightEditPanel = new javax.swing.JPanel();
-        filler5 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
-        filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
-        filler6 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
-        filler7 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
-        filler8 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
-        filler9 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
-        filler10 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
-        filler11 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
-        filler12 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
-        editB = new javax.swing.JButton();
-        cancelB = new javax.swing.JButton();
-        leftEditPanel = new javax.swing.JPanel();
-        filler13 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
-        labelIDEdit = new javax.swing.JLabel();
-        labelName = new javax.swing.JLabel();
-        labelLastName = new javax.swing.JLabel();
-        labelUser = new javax.swing.JLabel();
-        labelPassword = new javax.swing.JLabel();
-        labelCountry = new javax.swing.JLabel();
-        labelPhone = new javax.swing.JLabel();
-        labelAddress = new javax.swing.JLabel();
-        editUserErrorPanel = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        buscarErrorLabel = new javax.swing.JLabel();
+        confirmUpdate = new javax.swing.JDialog();
+        topDialog1 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        centerDialog1 = new javax.swing.JPanel();
+        ContraseñaNUsuarioLabel1 = new javax.swing.JLabel();
+        IDNUsuarioLabel1 = new javax.swing.JLabel();
+        labelID1 = new javax.swing.JLabel();
+        labelNuevoUsuario1 = new javax.swing.JLabel();
+        labelContraseña1 = new javax.swing.JLabel();
+        botDialog1 = new javax.swing.JPanel();
+        AceptarBDialogo1 = new javax.swing.JButton();
+        CancelarBDialogo1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         leftPanel = new javax.swing.JPanel();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0));
@@ -194,121 +168,84 @@ public class ManageAccountPanel extends javax.swing.JPanel {
 
         confirmCreate.getContentPane().add(botDialog, java.awt.BorderLayout.SOUTH);
 
-        editPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        editPanel.setPreferredSize(new java.awt.Dimension(500, 400));
-        editPanel.setLayout(new java.awt.BorderLayout());
+        confirmUpdate.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        confirmUpdate.setTitle("Confirmar: Nuevo Usuario");
+        confirmUpdate.setLocation(new java.awt.Point(0, 0));
+        confirmUpdate.setResizable(false);
+        confirmUpdate.setSize(new java.awt.Dimension(440, 240));
 
-        centerEditPanel.setLayout(new java.awt.GridLayout(12, 1, 5, 5));
-        centerEditPanel.add(filler3);
+        topDialog1.setLayout(new java.awt.GridLayout());
 
-        idEditLabel.setText("######");
-        centerEditPanel.add(idEditLabel);
+        jLabel4.setText("Se editará el usuario seleccionado, ¿continuar?");
+        topDialog1.add(jLabel4);
 
-        editNameTF.addActionListener(new java.awt.event.ActionListener() {
+        confirmUpdate.getContentPane().add(topDialog1, java.awt.BorderLayout.NORTH);
+
+        centerDialog1.setLayout(new java.awt.GridBagLayout());
+
+        ContraseñaNUsuarioLabel1.setText("###################");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        centerDialog1.add(ContraseñaNUsuarioLabel1, gridBagConstraints);
+
+        IDNUsuarioLabel1.setText("###################");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        centerDialog1.add(IDNUsuarioLabel1, gridBagConstraints);
+
+        labelID1.setText("ID del usuario:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        centerDialog1.add(labelID1, gridBagConstraints);
+
+        labelNuevoUsuario1.setText("¿Editar usuario?");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        centerDialog1.add(labelNuevoUsuario1, gridBagConstraints);
+
+        labelContraseña1.setText("Contraseña:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        centerDialog1.add(labelContraseña1, gridBagConstraints);
+
+        confirmUpdate.getContentPane().add(centerDialog1, java.awt.BorderLayout.LINE_START);
+
+        botDialog1.setLayout(new java.awt.GridLayout(1, 2, 5, 5));
+
+        AceptarBDialogo1.setText("Aceptar");
+        AceptarBDialogo1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        AceptarBDialogo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editNameTFActionPerformed(evt);
+                AceptarBDialogo1ActionPerformed(evt);
             }
         });
-        centerEditPanel.add(editNameTF);
-        centerEditPanel.add(editLastNameTF);
-        centerEditPanel.add(editUserNameTF);
-        centerEditPanel.add(editPasswordTF);
+        botDialog1.add(AceptarBDialogo1);
 
-        editCountryTF.addActionListener(new java.awt.event.ActionListener() {
+        CancelarBDialogo1.setText("Cancelar");
+        CancelarBDialogo1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CancelarBDialogo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editCountryTFActionPerformed(evt);
+                CancelarBDialogo1ActionPerformed(evt);
             }
         });
-        centerEditPanel.add(editCountryTF);
-        centerEditPanel.add(editPhoneTF);
-        centerEditPanel.add(editAdressTF);
+        botDialog1.add(CancelarBDialogo1);
 
-        editAdminC.setText("Administrador");
-        editAdminC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editAdminCActionPerformed(evt);
-            }
-        });
-        centerEditPanel.add(editAdminC);
-
-        editPanel.add(centerEditPanel, java.awt.BorderLayout.CENTER);
-
-        rightEditPanel.setLayout(new java.awt.GridLayout(12, 1, 5, 5));
-        rightEditPanel.add(filler5);
-        rightEditPanel.add(filler4);
-        rightEditPanel.add(filler6);
-        rightEditPanel.add(filler7);
-        rightEditPanel.add(filler8);
-        rightEditPanel.add(filler9);
-        rightEditPanel.add(filler10);
-        rightEditPanel.add(filler11);
-        rightEditPanel.add(filler12);
-
-        editB.setText("Editar");
-        editB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editBActionPerformed(evt);
-            }
-        });
-        rightEditPanel.add(editB);
-
-        cancelB.setText("Cancelar");
-        cancelB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelBActionPerformed(evt);
-            }
-        });
-        rightEditPanel.add(cancelB);
-
-        editPanel.add(rightEditPanel, java.awt.BorderLayout.LINE_END);
-
-        leftEditPanel.setPreferredSize(new java.awt.Dimension(100, 150));
-        leftEditPanel.setLayout(new java.awt.GridLayout(12, 1, 5, 5));
-        leftEditPanel.add(filler13);
-
-        labelIDEdit.setText("ID:");
-        leftEditPanel.add(labelIDEdit);
-
-        labelName.setText("Nombre:");
-        leftEditPanel.add(labelName);
-
-        labelLastName.setText("Apellido:");
-        leftEditPanel.add(labelLastName);
-
-        labelUser.setText("User Name");
-        leftEditPanel.add(labelUser);
-
-        labelPassword.setText("Contraseña");
-        leftEditPanel.add(labelPassword);
-
-        labelCountry.setText("País:");
-        leftEditPanel.add(labelCountry);
-
-        labelPhone.setText("Telefono:");
-        leftEditPanel.add(labelPhone);
-
-        labelAddress.setText("Dirección:");
-        leftEditPanel.add(labelAddress);
-
-        editPanel.add(leftEditPanel, java.awt.BorderLayout.LINE_START);
-
-        editUserErrorPanel.setPreferredSize(new java.awt.Dimension(500, 400));
-        editUserErrorPanel.setLayout(new java.awt.GridLayout(12, 1, 5, 1));
-
-        jLabel7.setText("Error:");
-        jLabel7.setToolTipText("");
-        jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        editUserErrorPanel.add(jLabel7);
-
-        jLabel8.setText("No se pudo encontrar el ID:");
-        jLabel8.setToolTipText("");
-        jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        editUserErrorPanel.add(jLabel8);
-
-        buscarErrorLabel.setText("##############");
-        buscarErrorLabel.setToolTipText("");
-        buscarErrorLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        editUserErrorPanel.add(buscarErrorLabel);
+        confirmUpdate.getContentPane().add(botDialog1, java.awt.BorderLayout.SOUTH);
 
         setAutoscrolls(true);
         setPreferredSize(new java.awt.Dimension(900, 500));
@@ -617,38 +554,6 @@ public class ManageAccountPanel extends javax.swing.JPanel {
         confirmCreate.dispose();                 // TODO add your handling code here:
     }//GEN-LAST:event_CancelarBDialogoActionPerformed
 
-    private void editNameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editNameTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_editNameTFActionPerformed
-
-    private void editCountryTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCountryTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_editCountryTFActionPerformed
-
-    private void editAdminCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editAdminCActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_editAdminCActionPerformed
-
-    private void editBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBActionPerformed
-/*
-        Control.ManageAccount.updateUser(usera, editNameTF, editLastNameTF, editUserNameTF,
-            editCountryTF, editAdressTF, editPassTF, editPhoneTF, editAdminC);
-*/
-        // TODO add your handling code here:
-    }//GEN-LAST:event_editBActionPerformed
-
-    private void cancelBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBActionPerformed
-        
-        FormUtils.clearFields(editNameTF,editLastNameTF,editUserNameTF,editCountryTF,editAdressTF,
-                editPhoneTF,editPasswordTF,editAdminC);
-      
-      
-        
-       FormUtils.addBorderLayout(centerMainPanel, userTable);
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cancelBActionPerformed
-
     private void passwordTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordTFActionPerformed
@@ -680,74 +585,56 @@ public class ManageAccountPanel extends javax.swing.JPanel {
                 adressTF, passwordTF, phoneTF, adminC);// TODO add your handling code here:
     }//GEN-LAST:event_editAccountButtonActionPerformed
 
+    private void AceptarBDialogo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarBDialogo1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AceptarBDialogo1ActionPerformed
+
+    private void CancelarBDialogo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBDialogo1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CancelarBDialogo1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AceptarBDialogo;
+    private javax.swing.JButton AceptarBDialogo1;
     private javax.swing.JButton CancelarBDialogo;
+    private javax.swing.JButton CancelarBDialogo1;
     private javax.swing.JLabel ContraseñaNUsuarioLabel;
+    private javax.swing.JLabel ContraseñaNUsuarioLabel1;
     private javax.swing.JLabel IDNUsuarioLabel;
+    private javax.swing.JLabel IDNUsuarioLabel1;
     private javax.swing.JCheckBox adminC;
     private javax.swing.JTextField adressTF;
     private javax.swing.JPanel botDialog;
-    private javax.swing.JLabel buscarErrorLabel;
-    private javax.swing.JButton cancelB;
+    private javax.swing.JPanel botDialog1;
     private javax.swing.JButton cancelButton;
     private javax.swing.JPanel centerDialog;
-    private javax.swing.JPanel centerEditPanel;
+    private javax.swing.JPanel centerDialog1;
     private javax.swing.JPanel centerMainPanel;
     private javax.swing.JPanel centerPanel;
     private javax.swing.JDialog confirmCreate;
+    private javax.swing.JDialog confirmUpdate;
     private javax.swing.JTextField countryTF;
     private javax.swing.JButton createB;
     private javax.swing.JButton editAccountButton;
-    private javax.swing.JCheckBox editAdminC;
-    private javax.swing.JTextField editAdressTF;
-    private javax.swing.JButton editB;
-    private javax.swing.JTextField editCountryTF;
-    private javax.swing.JTextField editLastNameTF;
-    private javax.swing.JTextField editNameTF;
-    private javax.swing.JPanel editPanel;
-    private javax.swing.JTextField editPasswordTF;
-    private javax.swing.JTextField editPhoneTF;
-    private javax.swing.JPanel editUserErrorPanel;
-    private javax.swing.JTextField editUserNameTF;
     private javax.swing.Box.Filler filler1;
-    private javax.swing.Box.Filler filler10;
-    private javax.swing.Box.Filler filler11;
-    private javax.swing.Box.Filler filler12;
-    private javax.swing.Box.Filler filler13;
-    private javax.swing.Box.Filler filler3;
-    private javax.swing.Box.Filler filler4;
-    private javax.swing.Box.Filler filler5;
-    private javax.swing.Box.Filler filler6;
-    private javax.swing.Box.Filler filler7;
-    private javax.swing.Box.Filler filler8;
-    private javax.swing.Box.Filler filler9;
-    private javax.swing.JLabel idEditLabel;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel labelAddress;
     private javax.swing.JLabel labelContraseña;
-    private javax.swing.JLabel labelCountry;
+    private javax.swing.JLabel labelContraseña1;
     private javax.swing.JLabel labelID;
-    private javax.swing.JLabel labelIDEdit;
-    private javax.swing.JLabel labelLastName;
-    private javax.swing.JLabel labelName;
+    private javax.swing.JLabel labelID1;
     private javax.swing.JLabel labelNuevoUsuario;
-    private javax.swing.JLabel labelPassword;
-    private javax.swing.JLabel labelPhone;
-    private javax.swing.JLabel labelUser;
+    private javax.swing.JLabel labelNuevoUsuario1;
     private javax.swing.JTextField lastNameTF;
-    private javax.swing.JPanel leftEditPanel;
     private javax.swing.JPanel leftPanel;
     private javax.swing.JTextField nameTF;
     private javax.swing.JTextField passwordTF;
     private javax.swing.JTextField phoneTF;
-    private javax.swing.JPanel rightEditPanel;
     private javax.swing.JPanel topDialog;
+    private javax.swing.JPanel topDialog1;
     private javax.swing.JPanel topPanel;
     private javax.swing.JTextField userNameTF;
     private javax.swing.JTable userTable;
